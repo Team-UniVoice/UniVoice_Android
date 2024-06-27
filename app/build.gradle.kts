@@ -57,6 +57,7 @@ android {
 dependencies {
     // AndroidX
     implementation(libs.bundles.androidx)
+    implementation(libs.androidx.lifecycle)
 
     // Navigation
     implementation(libs.bundles.navigation)
@@ -93,4 +94,8 @@ dependencies {
     debugImplementation(libs.compose.ui.test.manifest)
     implementation(libs.coil.compose)
     implementation(libs.glide.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.activity.compose)
 }
