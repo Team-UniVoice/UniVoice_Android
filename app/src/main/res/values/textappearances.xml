@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.UniVoice" parent="">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:letterSpacing">-0.025</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head1Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">32dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head1Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">32dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head1Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">32dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head2Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">29dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head2Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">29dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head2Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">29dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head3Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">26dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head3Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">26dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head3Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">26dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head4Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">23dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head4Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">23dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head4Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">23dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head5Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head5Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head5Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head6Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head6Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head6Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head7Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head7Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.head7Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title1Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">23dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title1Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">23dp</item>
+        <item name="android:lineHeight">1.5dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title1Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">23dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title2Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title2Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title2Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title3Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title3Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title3Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:lineHeight">1.3dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title4Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title4Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.title4Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body1Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body1Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body1Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:lineHeight">1.6dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body2Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body2Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body2Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:lineHeight">1.5dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body3Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body3Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body3Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body4Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body4Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.body4Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:lineHeight">1.25dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.caption1Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.caption2Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.caption3Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">11dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.caption4Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">10dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button1Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button1Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button1Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button2Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button2Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button2Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button3Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button3Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button3Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button4Bold">
+        <item name="fontFamily">@font/pretendard_bold</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button4Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button4Regular">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+</resources>
