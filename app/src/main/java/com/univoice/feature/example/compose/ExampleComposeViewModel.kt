@@ -1,4 +1,4 @@
-package com.univoice.feature.example_compose
+package com.univoice.feature.example.compose
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -30,6 +30,6 @@ class ExampleComposeViewModel @Inject constructor(
         exampleRepository.getExample(page).collectLatest {
             _getExampleState.value = _getExampleState.value.copy(exampleState = UiState.Success(it))
         }
-        _getExampleSideEffect.emit(ExampleSideEffect.ShowToast("로딩중"))
+        _getExampleSideEffect.emit(ExampleSideEffect.ExampleShowToast("로딩중"))
     }
 }
