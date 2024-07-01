@@ -16,13 +16,13 @@ import javax.inject.Inject
 class ExampleViewModel @Inject constructor(
     private val exampleRepository: ExampleRepository
 ) : ViewModel() {
-    private val _getExample = MutableStateFlow<UiState<List<UserEntity>>>(UiState.Empty)
-    val getExample: StateFlow<UiState<List<UserEntity>>> = _getExample
+    private val _getExampleState = MutableStateFlow<UiState<List<UserEntity>>>(UiState.Empty)
+    val getExampleState: StateFlow<UiState<List<UserEntity>>> = _getExampleState
 
     fun getExampleRecyclerview(page: Int) = viewModelScope.launch {
         exampleRepository.getExample(page).collectLatest {
-            _getExample.value = UiState.Success(it)
+            _getExampleState.value = UiState.Success(it)
         }
-        _getExample.value = UiState.Loading
+        _getExampleState.value = UiState.Loading
     }
 }

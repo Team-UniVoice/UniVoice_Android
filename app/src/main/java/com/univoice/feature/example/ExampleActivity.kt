@@ -21,7 +21,7 @@ class ExampleActivity : BindingActivity<ActivityExampleBinding>(R.layout.activit
     }
 
     private fun collectExample() {
-        viewModel.getExample.flowWithLifecycle(lifecycle).onEach {
+        viewModel.getExampleState.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit
                 is UiState.Success -> {
