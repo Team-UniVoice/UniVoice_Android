@@ -88,7 +88,7 @@ fun ExampleComposeScreen(userData: List<UserEntity>) {
                 contentDescription = "user",
                 modifier = Modifier
                     .size(100.dp)
-                    .aspectRatio(1f / 1f),
+                    .aspectRatio(1f),
             )
         }
     }
