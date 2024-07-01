@@ -16,28 +16,32 @@ import com.univoice.databinding.FragmentStorageBinding
 
 class StorageFragment : BindingFragment<FragmentStorageBinding>(R.layout.fragment_storage) {
     override fun initView() {
-        binding.cvStorage.setContent { StorageScreen() }
-    }
-
-    @Composable
-    fun StorageScreen() {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Storage Fragment",
-                textAlign = TextAlign.Center
-            )
+        binding.cvStorage.setContent {
+            UniVoiceAndroidTheme {
+                StorageScreen()
+            }
         }
     }
+}
 
-    @Preview(showBackground = true)
-    @Composable
-    fun StoragePreview() {
-        UniVoiceAndroidTheme {
-            StorageScreen()
-        }
+@Composable
+fun StorageScreen() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Storage Fragment",
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun StoragePreview() {
+    UniVoiceAndroidTheme {
+        StorageScreen()
     }
 }
