@@ -28,7 +28,7 @@ class ExampleComposeViewModel @Inject constructor(
 
     fun getExampleRecyclerview(page: Int) = viewModelScope.launch {
         exampleRepository.getExample(page).collectLatest {
-            _getExampleState.value = ExampleState(UiState.Success(it))
+            _getExampleState.value = _getExampleState.value.copy(exampleState = UiState.Success(it))
         }
         _getExampleSideEffect.emit(ExampleSideEffect.ShowToast("로딩중"))
     }
