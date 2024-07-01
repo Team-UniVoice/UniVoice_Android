@@ -1,25 +1,38 @@
 package com.univoice.feature.example_compose
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import coil.compose.rememberImagePainter
 import com.univoice.core_ui.theme.UniVoiceAndroidTheme
-import com.univoice.feature.example.ExampleActivity
+import com.univoice.core_ui.util.context.toast
+import com.univoice.core_ui.view.UiState
+import com.univoice.domain.entity.UserEntity
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class ExampleComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +42,7 @@ class ExampleComposeActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NavigateButton(onButtonClick = {
-                        startActivity(Intent(this, ExampleActivity::class.java))
-                    })
+                    ExampleComposeRoute()
                 }
             }
         }
@@ -39,18 +50,45 @@ class ExampleComposeActivity : ComponentActivity() {
 }
 
 @Composable
-fun NavigateButton(onButtonClick: () -> Unit) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+fun ExampleComposeRoute(viewModel: ExampleComposeViewModel = hiltViewModel()) {
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val state by viewModel.getExampleState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(true) {
+        viewModel.getExampleRecyclerview(2)
+    }
+
+    LaunchedEffect(viewModel.getExampleSideEffect, lifecycleOwner) {
+        viewModel.getExampleSideEffect.flowWithLifecycle(lifecycle = lifecycleOwner.lifecycle)
+            .onEach {
+                when (it) {
+                    is ExampleSideEffect.ShowToast -> context.toast(it.message)
+                }
+            }.launchIn(lifecycleOwner.lifecycleScope)
+    }
+
+    when (state.exampleState) {
+        is UiState.Loading -> Unit
+        is UiState.Success -> ExampleComposeScreen((state.exampleState as UiState.Success).data)
+        is UiState.Empty -> Unit
+        is UiState.Failure -> Unit
+    }
+}
+
+@Composable
+fun ExampleComposeScreen(userData: List<UserEntity>) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
     ) {
-        Button(
-            onClick = onButtonClick,
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text(
-                text = "Go to XML Activity",
-                fontSize = 18.sp
+        itemsIndexed(userData) { _, user ->
+            Image(
+                painter = rememberImagePainter(data = user.avatar),
+                contentDescription = "user",
+                modifier = Modifier
+                    .size(100.dp)
+                    .aspectRatio(1f / 1f),
             )
         }
     }
@@ -60,6 +98,6 @@ fun NavigateButton(onButtonClick: () -> Unit) {
 @Composable
 fun DefaultPreview() {
     UniVoiceAndroidTheme {
-        NavigateButton(onButtonClick = {})
+        ExampleComposeRoute()
     }
 }
