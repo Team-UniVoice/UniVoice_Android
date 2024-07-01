@@ -1,4 +1,4 @@
-package com.univoice.feature.example_compose
+package com.univoice.feature.example.compose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -28,6 +28,8 @@ import com.univoice.core_ui.theme.UniVoiceAndroidTheme
 import com.univoice.core_ui.util.context.toast
 import com.univoice.core_ui.view.UiState
 import com.univoice.domain.entity.UserEntity
+import com.univoice.feature.example.compose.ExampleComposeViewModel
+import com.univoice.feature.example.compose.ExampleSideEffect
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -63,7 +65,7 @@ fun ExampleComposeRoute(viewModel: ExampleComposeViewModel = hiltViewModel()) {
         viewModel.getExampleSideEffect.flowWithLifecycle(lifecycle = lifecycleOwner.lifecycle)
             .onEach {
                 when (it) {
-                    is ExampleSideEffect.ShowToast -> context.toast(it.message)
+                    is ExampleSideEffect.ExampleShowToast -> context.toast(it.message)
                 }
             }.launchIn(lifecycleOwner.lifecycleScope)
     }

@@ -1,4 +1,4 @@
-package com.univoice.feature.example
+package com.univoice.feature.example.xml
 
 import androidx.recyclerview.widget.RecyclerView
 import com.univoice.databinding.ItemExampleBinding

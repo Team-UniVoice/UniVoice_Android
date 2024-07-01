@@ -1,4 +1,4 @@
-package com.univoice.feature.example
+package com.univoice.feature.example.xml
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

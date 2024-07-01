@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".feature.example_compose.ExampleComposeActivity"
+            android:name=".feature.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -26,7 +26,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feature.example.ExampleActivity"
+            android:name=".feature.example.xml.ExampleActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.example.compose.ExampleComposeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
     </application>
