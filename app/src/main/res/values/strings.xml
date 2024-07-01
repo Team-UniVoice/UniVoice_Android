@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">UniVoice</string>
+
+    <!-- 바텀 네비게이션 -->
+    <string name="menu_item_home">홈</string>
+    <string name="menu_item_storage">저장</string>
+    <string name="menu_item_setting">설정</string>
+
 </resources>
