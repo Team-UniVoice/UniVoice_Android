@@ -122,7 +122,7 @@
     <style name="TextAppearance.UniVoice.title1Semi">
         <item name="fontFamily">@font/pretendard_semibold</item>
         <item name="android:textSize">23dp</item>
-        <item name="android:lineHeight">1.5dp</item>
+        <item name="android:lineHeight">34dp</item>
     </style>
 
     <style name="TextAppearance.UniVoice.title1Regular">
@@ -158,7 +158,7 @@
     <style name="TextAppearance.UniVoice.title3Regular">
         <item name="fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">18dp</item>
-        <item name="android:lineHeight">1.3dp</item>
+        <item name="android:lineHeight">23dp</item>
     </style>
 
     <style name="TextAppearance.UniVoice.title4Bold">
@@ -189,7 +189,7 @@
     <style name="TextAppearance.UniVoice.body1Regular">
         <item name="fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">15dp</item>
-        <item name="android:lineHeight">1.6dp</item>
+        <item name="android:lineHeight">24dp</item>
     </style>
 
     <style name="TextAppearance.UniVoice.body2Bold">
@@ -205,7 +205,7 @@
     <style name="TextAppearance.UniVoice.body2Regular">
         <item name="fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">14dp</item>
-        <item name="android:lineHeight">1.5dp</item>
+        <item name="android:lineHeight">21dp</item>
     </style>
 
     <style name="TextAppearance.UniVoice.body3Bold">
@@ -236,7 +236,7 @@
     <style name="TextAppearance.UniVoice.body4Regular">
         <item name="fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">12dp</item>
-        <item name="android:lineHeight">1.25dp</item>
+        <item name="android:lineHeight">14dp</item>
     </style>
 
     <style name="TextAppearance.UniVoice.caption1Regular">
