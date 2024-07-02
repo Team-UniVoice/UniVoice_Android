@@ -41,8 +41,8 @@
     <!-- Font -->
     <color name="font_B01">#FF111111</color>
     <color name="font_B02">#FF555555</color>
-    <color name="font_803">#FF767676</color>
-    <color name="font_804">#FF999999</color>
+    <color name="font_B03">#FF767676</color>
+    <color name="font_B04">#FF999999</color>
     <color name="font_W01">#FFFFFFFF</color>
 
     <!-- Line -->
