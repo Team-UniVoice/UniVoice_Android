@@ -14,10 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.core_ui.theme.UniVoiceAndroidTheme
+import com.univoice.core_ui.theme.cap1Regular
+import com.univoice.core_ui.theme.head1Bold
 import com.univoice.databinding.FragmentHomeBinding
 import com.univoice.feature.example.compose.ExampleComposeActivity
 import com.univoice.feature.example.xml.ExampleActivity
@@ -55,7 +56,7 @@ fun HomeScreen() {
         ) {
             Text(
                 text = "Go to ExampleComposeActivity",
-                fontSize = 18.sp
+                style = head1Bold,
             )
         }
         Spacer(modifier = Modifier.padding(10.dp))
@@ -72,7 +73,7 @@ fun HomeScreen() {
         ) {
             Text(
                 text = "Go to ExampleActivity",
-                fontSize = 18.sp
+                style = cap1Regular
             )
         }
     }
