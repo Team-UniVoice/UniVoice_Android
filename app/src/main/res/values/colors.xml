@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#FFFFFFFF</color>
-
     <!-- Gray Scale -->
     <color name="gray_900">#FF111111</color>
     <color name="gray_800">#FF333333</color>
@@ -23,7 +21,7 @@
     <color name="mint_400">#FF00CBB2</color>
     <color name="mint_300">#FF00E1C6</color>
     <color name="mint_200">#FFB0F6ED</color>
-    <color name="mint_100">#FFB0F6ED</color>
+    <color name="mint_100">#FFD9FBF6</color>
     <color name="mint_50">#FFE6FCF9</color>
 
     <!-- Blue Scale -->
