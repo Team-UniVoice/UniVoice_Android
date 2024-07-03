@@ -5,5 +5,6 @@
     <string name="menu_item_home">홈</string>
     <string name="menu_item_storage">저장</string>
     <string name="menu_item_setting">설정</string>
+    <string name="login_toolbar_title">로그인</string>
 
 </resources>
