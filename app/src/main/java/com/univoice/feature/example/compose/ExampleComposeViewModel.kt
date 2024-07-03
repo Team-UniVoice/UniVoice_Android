@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,7 +18,8 @@ import javax.inject.Inject
 class ExampleComposeViewModel @Inject constructor(
     private val exampleRepository: ExampleRepository
 ) : ViewModel() {
-    private val _getExampleState: MutableStateFlow<ExampleState> = MutableStateFlow(ExampleState(UiState.Empty))
+    private val _getExampleState: MutableStateFlow<ExampleState> =
+        MutableStateFlow(ExampleState(UiState.Empty))
     val getExampleState: StateFlow<ExampleState>
         get() = _getExampleState.asStateFlow()
 
@@ -27,9 +27,17 @@ class ExampleComposeViewModel @Inject constructor(
     val getExampleSideEffect: SharedFlow<ExampleSideEffect> get() = _getExampleSideEffect.asSharedFlow()
 
     fun getExampleRecyclerview(page: Int) = viewModelScope.launch {
-        exampleRepository.getExample(page).collectLatest {
-            _getExampleState.value = _getExampleState.value.copy(exampleState = UiState.Success(it))
-        }
-        _getExampleSideEffect.emit(ExampleSideEffect.ExampleShowToast("로딩중"))
+        exampleRepository.getExample(page).fold(
+            {
+                _getExampleState.value =
+                    _getExampleState.value.copy(exampleState = UiState.Success(it))
+                _getExampleSideEffect.emit(ExampleSideEffect.ExampleShowToast("성공"))
+            },
+            {
+                _getExampleState.value =
+                    _getExampleState.value.copy(exampleState = UiState.Failure(it.message.toString()))
+                _getExampleSideEffect.emit(ExampleSideEffect.ExampleShowToast("실패 : ${it.message}"))
+            }
+        )
     }
 }

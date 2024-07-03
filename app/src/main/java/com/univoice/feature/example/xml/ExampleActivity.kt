@@ -5,6 +5,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
+import com.univoice.core_ui.util.context.toast
 import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.ActivityExampleBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,10 +28,11 @@ class ExampleActivity : BindingActivity<ActivityExampleBinding>(R.layout.activit
                 is UiState.Success -> {
                     binding.rvExample.adapter = ExampleAdapter(click = { _, _ ->
                     }).apply { submitList(it.data) }
+                    toast("성공")
                 }
 
                 is UiState.Empty -> Unit
-                is UiState.Failure -> Unit
+                is UiState.Failure -> toast(it.toString())
             }
         }.launchIn(lifecycleScope)
     }
