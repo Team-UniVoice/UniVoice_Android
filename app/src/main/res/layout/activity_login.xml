@@ -72,6 +72,7 @@
                 app:layout_constraintTop_toBottomOf="@id/et_login_id" />
 
             <Button
+                android:id="@+id/btn_login_confirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_mint_fill_12_rect"
