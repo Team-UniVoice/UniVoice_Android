@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Gray Scale -->
+    <color name="gray_900">#FF111111</color>
+    <color name="gray_800">#FF333333</color>
+    <color name="gray_700">#FF505050</color>
+    <color name="gray_600">#FF666666</color>
+    <color name="gray_500">#FF767676</color>
+    <color name="gray_400">#FF888888</color>
+    <color name="gray_300">#FF999999</color>
+    <color name="gray_200">#FFBBBBBB</color>
+    <color name="gray_100">#FFE1E1E1</color>
+    <color name="gray_50">#FFF1F1F5</color>
+
+    <!-- Mint Scale -->
+    <color name="mint_900">#FF004F45</color>
+    <color name="mint_800">#FF006559</color>
+    <color name="mint_700">#FF008777</color>
+    <color name="mint_600">#FF00A995</color>
+    <color name="mint_500">#FF00B49E</color>
+    <color name="mint_400">#FF00CBB2</color>
+    <color name="mint_300">#FF00E1C6</color>
+    <color name="mint_200">#FFB0F6ED</color>
+    <color name="mint_100">#FFD9FBF6</color>
+    <color name="mint_50">#FFE6FCF9</color>
+
+    <!-- Blue Scale -->
+    <color name="blue_900">#FF102457</color>
+    <color name="blue_800">#FF152F70</color>
+    <color name="blue_700">#FF1C3E95</color>
+    <color name="blue_600">#FF234EBB</color>
+    <color name="blue_500">#FF2653C7</color>
+    <color name="blue_400">#FF2A5EE0</color>
+    <color name="blue_300">#FF2F68F9</color>
+    <color name="blue_200">#FF8FD0FD</color>
+    <color name="blue_100">#FFE0E8FE</color>
+    <color name="blue_50">#FFEAF0FE</color>
+
+    <!-- Font -->
+    <color name="font_B01">#FF111111</color>
+    <color name="font_B02">#FF555555</color>
+    <color name="font_B03">#FF767676</color>
+    <color name="font_B04">#FF999999</color>
+    <color name="font_W01">#FFFFFFFF</color>
+
+    <!-- Line -->
+    <color name="light">#FFF1F1F5</color>
+    <color name="regular">#FFE5E5EC</color>
+    <color name="black">#FF111111</color>
 </resources>

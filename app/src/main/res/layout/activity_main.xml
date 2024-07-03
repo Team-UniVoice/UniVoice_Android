@@ -28,7 +28,7 @@
             android:id="@+id/bnv_main_nav"
             android:layout_width="0dp"
             android:layout_height="75dp"
-            android:background="@color/white"
+            android:background="@color/font_W01"
             app:itemActiveIndicatorStyle="@null"
             app:itemIconSize="28dp"
             app:itemPaddingBottom="9dp"
