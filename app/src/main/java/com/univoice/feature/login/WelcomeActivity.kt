@@ -11,6 +11,21 @@ import com.univoice.databinding.ActivityWelcomeBinding
 
 class WelcomeActivity : BindingActivity<ActivityWelcomeBinding>(R.layout.activity_welcome) {
     override fun initView() {
-        TODO("Not yet implemented")
+        initToolbar()
+        initToolbarClickListener()
+    }
+
+    private fun initToolbar() {
+        with(binding) {
+            setSupportActionBar(toolbar)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+            tvToolbarTitle.text = getString(R.string.login_toolbar_title)
+        }
+    }
+
+    private fun initToolbarClickListener() {
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 }
