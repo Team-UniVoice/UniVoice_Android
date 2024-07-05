@@ -8,7 +8,6 @@ import com.univoice.domain.repository.ExampleRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,9 +19,10 @@ class ExampleViewModel @Inject constructor(
     val getExampleState: StateFlow<UiState<List<UserEntity>>> = _getExampleState
 
     fun getExampleRecyclerview(page: Int) = viewModelScope.launch {
-        exampleRepository.getExample(page).collectLatest {
-            _getExampleState.value = UiState.Success(it)
-        }
-        _getExampleState.value = UiState.Loading
+        _getExampleState.emit(UiState.Loading)
+        exampleRepository.getExample(page).fold(
+            { _getExampleState.emit(UiState.Success(it)) },
+            { _getExampleState.emit(UiState.Failure(it.message.toString())) }
+        )
     }
 }
