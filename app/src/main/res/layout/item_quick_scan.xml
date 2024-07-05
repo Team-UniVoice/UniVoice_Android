@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="quickScan"
+            type="com.univoice.domain.entity.QuickScanEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_quick_scan_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_quick_scan_icon"
+                imageUrl="@{quickScan.avatar}"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@android:color/background_dark" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_quick_scan_icon"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_quick_scan_council_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{quickScan.councilName}"
+                    android:textAppearance="@style/TextAppearance.UniVoice.body2Semi"
+                    android:textColor="@color/font_B01"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="제 58대 총학생회 개화" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_quick_scan_council_name">
+
+                    <TextView
+                        android:id="@+id/tv_quick_scan_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{quickScan.time}"
+                        android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
+                        android:textColor="@color/font_B04"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="40분 전" />
+
+                    <ImageView
+                        android:id="@+id/iv_quick_scan_view"
+                        android:layout_width="14dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@android:drawable/ic_menu_view"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1"
+                        app:layout_constraintStart_toEndOf="@id/tv_quick_scan_time"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_tv_quick_scan_view_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{quickScan.viewCount}"
+                        android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
+                        android:textColor="@color/font_B04"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/iv_quick_scan_view"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="20회" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_quick_scan_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{quickScan.title}"
+            android:textAppearance="@style/TextAppearance.UniVoice.head4Bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_quick_scan_header"
+            tools:text="2024학년도 제 2학기\n교내장학금 신청안내" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_quick_scan_subject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="@{quickScan.subject != null ? android.view.View.VISIBLE : android.view.View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_quick_scan_title">
+
+            <TextView
+                android:id="@+id/tv_quick_scan_subject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_gray50_fill_30_rect"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="신청 대상"
+                android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
+                android:textColor="@color/mint_800"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_quick_scan_subject_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@{quickScan.subject}"
+                android:textAppearance="@style/TextAppearance.UniVoice.body2Regular"
+                android:textColor="@color/font_B01"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_quick_scan_subject"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="2024-1학기 재학생" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_quick_scan_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="@{quickScan.subject != null ? android.view.View.VISIBLE : android.view.View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_quick_scan_subject">
+
+            <TextView
+                android:id="@+id/tv_quick_scan_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_gray50_fill_30_rect"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="일시"
+                android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
+                android:textColor="@color/mint_800"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_quick_scan_date_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@{quickScan.date}"
+                android:textAppearance="@style/TextAppearance.UniVoice.body2Regular"
+                android:textColor="@color/font_B01"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_quick_scan_date"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="05/21(화) 14:00 ~ 06/20(목) 22:00" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_quick_scan_summary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_quick_scan_date">
+
+            <TextView
+                android:id="@+id/tv_quick_scan_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_gray50_fill_30_rect"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="요약"
+                android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
+                android:textColor="@color/mint_800"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_quick_scan_summary_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@{quickScan.summary}"
+                android:textAppearance="@style/TextAppearance.UniVoice.body2Regular"
+                android:textColor="@color/font_B01"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_quick_scan_summary"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="2024학년도 2학기 교내장학금 신청 안내드\n립니다. 반드시 확인하고 놓치지 마시기 바랍\n니다." />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

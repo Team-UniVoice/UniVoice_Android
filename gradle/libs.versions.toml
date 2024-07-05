@@ -52,6 +52,9 @@ navigationCompose = "2.7.7"
 compose = "1.9.0"
 hiltNavigationCompose = "1.2.0"
 
+# CircleIndicator3
+indicator = "2.1.6"
+
 
 [libraries]
 # AndroidX
@@ -114,6 +117,8 @@ lifecycle-runtime-compose =  { group = "androidx.lifecycle", name = "lifecycle-r
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "compose" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 
+# CircleIndicator3
+indicator = { group = "me.relex", name = "circleindicator", version.ref = "indicator" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

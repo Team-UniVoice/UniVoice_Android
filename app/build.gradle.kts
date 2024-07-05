@@ -102,4 +102,6 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     androidTestImplementation(libs.compose.ui.test)
 
+    // CircleIndicator3
+    implementation(libs.indicator)
 }
