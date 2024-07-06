@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.bundles.androidx)
     implementation(libs.androidx.lifecycle)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.core.splashscreen)
 
     // Navigation
     implementation(libs.bundles.navigation)
