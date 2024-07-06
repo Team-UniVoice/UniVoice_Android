@@ -1,34 +1,67 @@
 package com.univoice.feature.quickscan
 
 import android.content.Intent
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
+import com.univoice.core_ui.util.context.toast
 import com.univoice.databinding.ActivityQuickScanBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.activity_quick_scan) {
     private val viewModel by viewModels<QuickScanViewModel>()
-    private var currentPage = 0
     override fun initView() {
         initToolbar()
         initToolbarClickListener()
         initAdapter()
+        initFabClickListener()
     }
 
     private fun initAdapter() {
         val adapter = QuickScanAdapter()
         binding.vpQuickScan.adapter = adapter
         adapter.submitList(viewModel.mockQuickScanList)
-        initIndicator()
+        initTabLayout()
+        initPageChangeCallback(adapter)
     }
 
-    private fun initIndicator() {
-        TabLayoutMediator(binding.indicatorQuickScan, binding.vpQuickScan) { _, _ -> }.attach()
+    private fun initPageChangeCallback(adapter: QuickScanAdapter) {
+        var currentPos = 0
+        var currentState = ViewPager2.SCROLL_STATE_IDLE
+        binding.vpQuickScan.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                if (currentState == ViewPager2.SCROLL_STATE_DRAGGING) {
+                    if (currentPos == adapter.itemCount - 1 && position == adapter.itemCount - 1) {
+                        val intent =
+                            Intent(this@QuickScanActivity, QuickScanCompleteActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            }
+
+            override fun onPageSelected(position: Int) {
+                currentPos = position
+                super.onPageSelected(position)
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+                currentState = state
+                super.onPageScrollStateChanged(state)
+            }
+        })
+    }
+
+    private fun initTabLayout() {
+        TabLayoutMediator(binding.tabQuickScan, binding.vpQuickScan) { _, _ -> }.attach()
     }
 
     private fun initToolbar() {
@@ -42,6 +75,12 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
     private fun initToolbarClickListener() {
         binding.toolbar.setNavigationOnClickListener {
             finish()
+        }
+    }
+
+    private fun initFabClickListener() {
+        binding.fabQuickScanBookmark.setOnClickListener {
+            toast("북마크 추가 완료")
         }
     }
 

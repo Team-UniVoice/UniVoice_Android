@@ -40,11 +40,16 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/indicator_quick_scan"
-                android:layout_width="wrap_content"
+                android:id="@+id/tab_quick_scan"
+                android:layout_width="242dp"
                 android:layout_height="4dp"
+                android:layout_marginTop="14dp"
+                android:background="@android:color/transparent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabBackground="@drawable/sel_quick_scan_tab_indicator"
+                app:tabIndicatorColor="@android:color/transparent"
+                app:tabIndicatorHeight="0dp" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_quick_scan"
@@ -55,18 +60,18 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/indicator_quick_scan" />
+                app:layout_constraintTop_toBottomOf="@id/tab_quick_scan" />
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/fab_save"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_quick_scan_bookmark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/mint_400"
-                android:text="저장"
-                android:textColor="@color/font_W01"
-                app:icon="@android:drawable/ic_input_add"
-                app:iconTint="@color/font_W01"
+                android:src="@drawable/ic_quick_scan_bookmark"
+                app:tint="@color/mint_400"
+                app:backgroundTint="@color/white"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_margin="10dp"
                 app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
