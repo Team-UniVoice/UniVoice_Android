@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.UniVoice" parent="Base.Theme.UniVoice" />
+
+    <!--Splash-->
+    <style name="Theme.UniVoice.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/font_W01</item> <!--배경 색상-->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_background</item> <!--아이콘-->
+        <item name="windowSplashScreenAnimationDuration">3000</item> <!--지속 시간-->
+        <item name="postSplashScreenTheme">@style/Base.Theme.UniVoice</item> <!--스플래시 화면 이후 적용할 테마 지정-->
+    </style>
 </resources>
