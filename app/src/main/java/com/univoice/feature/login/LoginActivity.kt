@@ -1,6 +1,7 @@
 package com.univoice.feature.login
 
 import android.content.Intent
+import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
@@ -10,6 +11,8 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
+    private val viewModel by viewModels<LoginViewModel>()
+
     override fun initView() {
         initToolbar()
         initToolbarClickListener()
@@ -35,7 +38,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             val userId = binding.etLoginId.text.toString()
             val userPwd = binding.etLoginPwd.text.toString()
             lifecycleScope.launch {
-                UserPreferences.saveUserId(this@LoginActivity, userId, userPwd)
+                viewModel.saveUserCredentials(userId, userPwd)
             }
             navigateToWelcomeActivity()
         }
