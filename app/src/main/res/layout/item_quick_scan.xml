@@ -123,12 +123,12 @@
                 android:id="@+id/tv_quick_scan_subject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_gray50_fill_30_rect"
+                android:background="@drawable/shape_white_line_30_rect"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="신청 대상"
+                android:text="대상"
                 android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
-                android:textColor="@color/mint_800"
+                android:textColor="@color/gray_800"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -160,12 +160,12 @@
                 android:id="@+id/tv_quick_scan_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_gray50_fill_30_rect"
+                android:background="@drawable/shape_white_line_30_rect"
                 android:gravity="center"
                 android:padding="6dp"
                 android:text="일시"
                 android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
-                android:textColor="@color/mint_800"
+                android:textColor="@color/gray_800"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -197,12 +197,12 @@
                 android:id="@+id/tv_quick_scan_summary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_gray50_fill_30_rect"
+                android:background="@drawable/shape_white_line_30_rect"
                 android:gravity="center"
                 android:padding="6dp"
                 android:text="요약"
                 android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
-                android:textColor="@color/mint_800"
+                android:textColor="@color/gray_800"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
