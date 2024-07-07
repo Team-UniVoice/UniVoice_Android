@@ -57,12 +57,14 @@ fun NoticeItem() {
                     thickness = 1.dp
                 )
                 Image(
+                    modifier = Modifier.size(12.dp),
                     painter = painterResource(id = R.drawable.ic_launcher_background),
                     contentDescription = "like"
                 )
                 Text(text = "10")
                 Spacer(modifier = Modifier.width(6.dp))
                 Image(
+                    modifier = Modifier.size(12.dp),
                     painter = painterResource(id = R.drawable.ic_launcher_background),
                     contentDescription = null
                 )
