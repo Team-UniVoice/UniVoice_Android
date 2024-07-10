@@ -34,7 +34,7 @@
             android:layout_height="0dp"
             android:paddingHorizontal="16dp"
             android:paddingTop="112dp"
-            android:paddingBottom="30dp"
+            android:paddingBottom="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
