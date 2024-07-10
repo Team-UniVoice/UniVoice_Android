@@ -43,8 +43,9 @@
                 android:id="@+id/tab_quick_scan"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="16dp"
                 android:background="@android:color/transparent"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tabBackground="@drawable/sel_quick_scan_tab_indicator"
@@ -61,18 +62,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tab_quick_scan" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_quick_scan_bookmark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_quick_scan_bookmark"
-                app:tint="@color/mint_400"
-                app:backgroundTint="@color/white"
-                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_margin="10dp"
-                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

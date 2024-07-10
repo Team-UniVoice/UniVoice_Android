@@ -1,12 +1,12 @@
 package com.univoice.feature.quickscan
 
 import android.content.Intent
+import android.view.View
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
-import com.univoice.core_ui.util.context.toast
 import com.univoice.databinding.ActivityQuickScanBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,11 +17,12 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
         initToolbar()
         initToolbarClickListener()
         initAdapter()
-        initFabClickListener()
     }
 
     private fun initAdapter() {
-        val adapter = QuickScanAdapter()
+        val adapter = QuickScanAdapter() {
+            id, isBookmark -> viewModel.updateBookmark(id, isBookmark)
+        }
         binding.vpQuickScan.adapter = adapter
         adapter.submitList(viewModel.mockQuickScanList)
         initTabLayout()
@@ -61,6 +62,11 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
     }
 
     private fun initTabLayout() {
+        if (viewModel.mockQuickScanList.size == 1) {
+            binding.tabQuickScan.visibility = View.INVISIBLE
+        } else {
+            binding.tabQuickScan.visibility = View.VISIBLE
+        }
         TabLayoutMediator(binding.tabQuickScan, binding.vpQuickScan) { _, _ -> }.attach()
     }
 
@@ -75,12 +81,6 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
     private fun initToolbarClickListener() {
         binding.toolbar.setNavigationOnClickListener {
             finish()
-        }
-    }
-
-    private fun initFabClickListener() {
-        binding.fabQuickScanBookmark.setOnClickListener {
-            toast("북마크 추가 완료")
         }
     }
 

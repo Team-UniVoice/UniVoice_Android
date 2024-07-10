@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/iv_quick_scan_icon"
+                android:id="@+id/iv_quick_scan_avatar"
                 imageUrl="@{quickScan.avatar}"
                 android:layout_width="40dp"
                 android:layout_height="0dp"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/iv_quick_scan_icon"
+                app:layout_constraintStart_toEndOf="@id/iv_quick_scan_avatar"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -113,7 +113,7 @@
             android:id="@+id/cl_quick_scan_subject"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:visibility="@{quickScan.subject != null ? android.view.View.VISIBLE : android.view.View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +150,7 @@
             android:id="@+id/cl_quick_scan_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:visibility="@{quickScan.subject != null ? android.view.View.VISIBLE : android.view.View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -187,7 +187,7 @@
             android:id="@+id/cl_quick_scan_summary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -219,5 +219,15 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="2024학년도 2학기 교내장학금 신청 안내드\n립니다. 반드시 확인하고 놓치지 마시기 바랍\n니다." />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/iv_quick_scan_bookmark"
+            android:layout_width="48dp"
+            android:layout_height="0dp"
+            android:contentDescription="quick_scan_bookmark_icon"
+            android:src="@drawable/sel_quick_scan_bookmark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
