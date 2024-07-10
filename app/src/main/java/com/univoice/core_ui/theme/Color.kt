@@ -38,6 +38,8 @@ val Blue200 = Color(0xFFBFD0FD)
 val Blue100 = Color(0xFFE0E8FE)
 val Blue50 = Color(0xFFEAF0FE)
 
+val White = Color(0xFFFFFFFF)
+
 // Font
 val Font_B01 = Color(0xFF111111)
 val Font_B02 = Color(0xFF555555)
