@@ -1,9 +1,9 @@
 package com.univoice.feature.login
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.view.View.OnFocusChangeListener
+import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
@@ -25,34 +25,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         initConfirmBtnIsEnabled()
         initIdFocusChangeListener()
         initPwdFocusChangeListener()
-    }
-
-    private fun initIdFocusChangeListener() {
-        with(binding) {
-            etLoginId.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
-                if (hasFocus) {
-                    viewIdDivider.backgroundTintList =
-                        ContextCompat.getColorStateList(this@LoginActivity, R.color.mint_400)
-                } else {
-                    viewIdDivider.backgroundTintList =
-                        ContextCompat.getColorStateList(this@LoginActivity, R.color.regular)
-                }
-            }
-        }
-    }
-
-    private fun initPwdFocusChangeListener() {
-        with(binding) {
-            etLoginPwd.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
-                if (hasFocus) {
-                    viewPwdDivider.backgroundTintList =
-                        ContextCompat.getColorStateList(this@LoginActivity, R.color.mint_400)
-                } else {
-                    viewPwdDivider.backgroundTintList =
-                        ContextCompat.getColorStateList(this@LoginActivity, R.color.regular)
-                }
-            }
-        }
     }
 
     private fun initConfirmBtnIsEnabled() {
@@ -100,5 +72,21 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private fun navigateToWelcomeActivity() {
         val intent = Intent(this, WelcomeActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun initIdFocusChangeListener() {
+        initFocusChangeListener(binding.etLoginId, binding.viewIdDivider)
+    }
+
+    private fun initPwdFocusChangeListener() {
+        initFocusChangeListener(binding.etLoginPwd, binding.viewPwdDivider)
+    }
+
+    private fun initFocusChangeListener(editText: EditText, dividerView: View) {
+        editText.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+            val colorResId = if (hasFocus) R.color.mint_400 else R.color.regular
+            dividerView.backgroundTintList =
+                ContextCompat.getColorStateList(this@LoginActivity, colorResId)
+        }
     }
 }
