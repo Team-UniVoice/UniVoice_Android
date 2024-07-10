@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_white_line_40_rect"
-            android:text="로그인 하기"
+            android:text="로그인"
             android:textColor="@color/mint_600"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
