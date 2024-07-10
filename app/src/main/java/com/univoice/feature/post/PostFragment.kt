@@ -41,7 +41,7 @@ class PostFragment : BindingFragment<FragmentPostBinding>(R.layout.fragment_post
     companion object {
         var mockData = PostModel(
             noticeIdx = 1,
-            wirteAffiliation = null,
+            wirteAffiliation = "학과 학생회",
             title = "2024 대학생 여름농활 준비 네트워크에서 주최하는 농촌봉사활동과 관련하여 학우분들의 문의가 많아 말씀드립니다.",
             target = "2024-1학기 재학생",
             startTime = "05/21(화) 14:00",
