@@ -82,6 +82,7 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.viewPager2)
     implementation(libs.glide)
+    implementation(libs.circleindicator)
 
     // Hilt
     implementation(libs.dagger.hilt)
