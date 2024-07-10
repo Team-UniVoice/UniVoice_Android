@@ -23,13 +23,13 @@
 
         <Button
             android:id="@+id/btn_entry_signup"
+            style="@style/LoginButtonWithoutShadow"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:background="@drawable/shape_mint_fill_40_rect"
             android:backgroundTint="@color/mint_400"
             android:text="유니보이스 시작하기"
-            android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
             android:textColor="@color/font_W01"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="@id/btn_entry_login"
@@ -38,11 +38,11 @@
 
         <Button
             android:id="@+id/btn_entry_login"
+            style="@style/LoginButtonWithoutShadow"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_white_line_40_rect"
             android:text="로그인 하기"
-            android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
             android:textColor="@color/mint_600"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

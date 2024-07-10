@@ -95,12 +95,12 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_login_confirm"
+                style="@style/LoginButtonWithoutShadow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/sel_login_button"
                 android:enabled="false"
                 android:text="확인"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
                 android:textColor="@color/font_W01"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

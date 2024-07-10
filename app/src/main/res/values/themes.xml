@@ -16,4 +16,8 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:colorBackground">@android:color/transparent</item>
     </style>
+
+    <style name="LoginButtonWithoutShadow" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textAppearance">@style/TextAppearance.UniVoice.title4Bold</item>
+    </style>
 </resources>

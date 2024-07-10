@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
@@ -45,26 +46,26 @@
                 android:layout_height="wrap_content"
                 android:text="환영합니다!"
                 android:textAppearance="@style/TextAppearance.UniVoice.title1Semi"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="38dp"
                 android:src="@drawable/ic_entry_logo"
-                app:layout_constraintTop_toBottomOf="@id/tv_welcome_title"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="38dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_welcome_title" />
 
             <Button
                 android:id="@+id/btn_login_confirm"
+                style="@style/LoginButtonWithoutShadow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_mint_fill_40_rect"
                 android:text="유니보이스 홈 가기"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
                 android:textColor="@color/font_W01"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
