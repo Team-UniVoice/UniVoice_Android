@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">UniVoice</string>
 
+    <string name="dummy">testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</string>
+
     <!-- 바텀 네비게이션 -->
     <string name="menu_item_home">홈</string>
     <string name="menu_item_storage">저장</string>
     <string name="menu_item_setting">설정</string>
 
+    <!--세부 공지사항-->
+    <string name="btn_post_target">대상</string>
+    <string name="btn_post_date">일시</string>
+    <string name="tv_post_views">조회수</string>
+    <string name="toolbar_post">학과 학생회</string>
 </resources>
