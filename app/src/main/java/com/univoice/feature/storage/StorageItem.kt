@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.DismissValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -37,7 +38,8 @@ import com.univoice.core_ui.theme.title4Semi
 import com.univoice.domain.entity.StorageEntity
 
 @Composable
-fun StorageItem(data: StorageEntity) {
+fun StorageItem(data: StorageEntity, onDismiss: () -> Unit) {
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -128,6 +130,6 @@ fun PreviewNoticeItem() {
             likeCount = 10,
             viewCount = 20,
             avatar = "https://avatars.githubusercontent.com/u/91470334?s=400&u=4a743fda141cf8a074022b515b0ce3286e6c8560&v=4"
-        )
+        ), onDismiss = {}
     )
 }
