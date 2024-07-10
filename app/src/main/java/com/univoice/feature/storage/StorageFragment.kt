@@ -1,26 +1,25 @@
 package com.univoice.feature.storage
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
+import com.univoice.core_ui.theme.Font_B01
+import com.univoice.core_ui.theme.Regular
 import com.univoice.core_ui.theme.UniVoiceAndroidTheme
+import com.univoice.core_ui.theme.head5Bold
 import com.univoice.databinding.FragmentStorageBinding
 
 class StorageFragment : BindingFragment<FragmentStorageBinding>(R.layout.fragment_storage) {
@@ -35,32 +34,28 @@ class StorageFragment : BindingFragment<FragmentStorageBinding>(R.layout.fragmen
 
 @Composable
 fun StorageScreen() {
+    val viewModel: StorageViewModel = viewModel()
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
             .padding(horizontal = 16.dp),
     ) {
-        Row(
-            modifier = Modifier.padding(vertical = 28.dp)
-        ) {
-            Text(
-                text = "변상우",
-                fontWeight = FontWeight.Bold,
-            )
-            Text(
-                text = "님이 저장한 공지사항"
-            )
-        }
+        Spacer(
+            modifier = Modifier.padding(vertical = 10.dp)
+        )
+        Text(
+            modifier = Modifier.padding(vertical = 16.dp),
+            text = "저장한 공지사항",
+            color = Font_B01,
+            style = head5Bold
+        )
         LazyColumn {
-            items(8) {
+            items(viewModel.mockStorageList.size) { index ->
+                val storage = viewModel.mockStorageList[index]
+                StorageItem(storage)
                 HorizontalDivider(
-                    color = Color.LightGray,
-                    thickness = 1.dp,
-                )
-                NoticeItem()
-                HorizontalDivider(
-                    color = Color.LightGray,
+                    color = Regular,
                     thickness = 1.dp,
                 )
             }
