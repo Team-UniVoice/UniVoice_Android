@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.univoice.feature.post.PostModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/font_W01">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_post"
+            style="@style/App.Toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/toolbar_post" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_post">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_post_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"
+                    android:maxLines="3"
+                    android:text="@{model.title}"
+                    android:textAppearance="@style/TextAppearance.UniVoice.head5Semi"
+                    android:textColor="@color/font_B01"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider_post"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:clickable="false"
+                    app:dividerColor="@color/regular"
+                    app:dividerInsetEnd="16dp"
+                    app:dividerInsetStart="16dp"
+                    app:dividerThickness="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_post_title" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_post_target"
+                    style="@style/post_info_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:clickable="false"
+                    android:text="@string/btn_post_target"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_post" />
+
+                <TextView
+                    android:id="@+id/tv_post_target"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="@{model.target}"
+                    android:textAppearance="@style/TextAppearance.UniVoice.button2Regular"
+                    android:textColor="@color/font_B01"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_post_target"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_post_target"
+                    app:layout_constraintTop_toTopOf="@id/btn_post_target" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_post_target"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:constraint_referenced_ids="btn_post_target, tv_post_target" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_post_date"
+                    style="@style/post_info_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/shape_regular_line_rect"
+                    android:clickable="false"
+                    android:text="@string/btn_post_date"
+                    app:layout_constraintStart_toStartOf="@id/btn_post_target"
+                    app:layout_constraintTop_toBottomOf="@id/btn_post_target" />
+
+                <TextView
+                    android:id="@+id/tv_post_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="@{model.startTime + '~' + model.endTime}"
+                    android:textAppearance="@style/TextAppearance.UniVoice.button2Regular"
+                    android:textColor="@color/font_B01"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_post_date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_post_date"
+                    app:layout_constraintTop_toTopOf="@id/btn_post_date" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_post_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:constraint_referenced_ids="btn_post_date, tv_post_date" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_post_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintTop_toBottomOf="@id/btn_post_date"
+                    app:shapeAppearanceOverlay="@style/post_rounded_image" />
+
+                <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/indicator_post_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="16dp"
+                    app:ci_drawable="@drawable/shape_post_fill_circle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/vp_post_image" />
+
+                <TextView
+                    android:id="@+id/tv_post_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@{model.content}"
+                    android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
+                    android:textColor="@color/font_B01"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/indicator_post_image" />
+
+                <TextView
+                    android:id="@+id/tv_post_create_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:text="@{model.createdAt}"
+                    android:textAppearance="@style/TextAppearance.UniVoice.caption3Regular"
+                    android:textColor="@color/font_B03"
+                    app:layout_constraintStart_toStartOf="@id/tv_post_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_post_content" />
+
+                <TextView
+                    android:id="@+id/tv_post_views"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{@string/tv_post_views + model.viewCount}"
+                    android:textAppearance="@style/TextAppearance.UniVoice.caption3Regular"
+                    android:textColor="@color/font_B03"
+                    app:layout_constraintStart_toStartOf="@id/tv_post_create_date"
+                    app:layout_constraintTop_toBottomOf="@id/tv_post_create_date" />
+
+                <ImageButton
+                    android:id="@+id/btn_post_bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/sel_post_bookmark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_post_create_date" />
+
+                <ImageButton
+                    android:id="@+id/btn_post_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/sel_post_like"
+                    app:layout_constraintEnd_toStartOf="@id/btn_post_bookmark"
+                    app:layout_constraintTop_toTopOf="@id/tv_post_create_date" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider_post_end"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="89dp"
+                    app:dividerColor="@color/regular"
+                    app:dividerThickness="1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_post_like" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
