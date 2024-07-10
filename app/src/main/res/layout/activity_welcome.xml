@@ -62,7 +62,7 @@
                 android:id="@+id/btn_login_confirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_mint_fill_12_rect"
+                android:background="@drawable/shape_mint_fill_40_rect"
                 android:text="유니보이스 홈 가기"
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
                 android:textColor="@color/font_W01"

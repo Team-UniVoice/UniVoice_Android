@@ -41,41 +41,64 @@
 
             <EditText
                 android:id="@+id/et_login_id"
+                style="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="38dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="37dp"
+                android:background="@android:color/transparent"
                 android:hint="아이디"
                 android:inputType="text"
-                android:paddingBottom="12dp"
+                android:paddingBottom="13dp"
                 android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
                 android:textColor="@color/font_B01"
                 android:textColorHint="@color/font_B04"
-                app:backgroundTint="@color/regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/et_login_pwd"
+            <View
+                android:id="@+id/view_id_divider"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:hint="비밀번호"
-                android:inputType="textPassword"
-                android:paddingBottom="12dp"
-                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
-                android:textColor="@color/font_B01"
-                android:textColorHint="@color/font_B04"
-                app:backgroundTint="@color/regular"
+                android:layout_height="3dp"
+                android:background="@drawable/shape_regular_fill_30_rect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_login_id" />
 
-            <Button
+            <EditText
+                android:id="@+id/et_login_pwd"
+                style="@style/EditTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="33dp"
+                android:background="@android:color/transparent"
+                android:hint="비밀번호"
+                android:inputType="textPassword"
+                android:paddingBottom="13dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
+                android:textColor="@color/font_B01"
+                android:textColorHint="@color/font_B04"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_id_divider" />
+
+            <View
+                android:id="@+id/view_pwd_divider"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:background="@drawable/shape_regular_fill_30_rect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_login_pwd" />
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_login_confirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_mint_fill_12_rect"
+                android:background="@drawable/sel_login_button"
+                android:enabled="false"
                 android:text="확인"
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
                 android:textColor="@color/font_W01"

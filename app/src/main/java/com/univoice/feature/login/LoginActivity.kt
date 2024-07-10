@@ -1,7 +1,12 @@
 package com.univoice.feature.login
 
 import android.content.Intent
+import android.util.Log
+import android.view.View
+import android.view.View.OnFocusChangeListener
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
@@ -17,6 +22,50 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         initToolbar()
         initToolbarClickListener()
         initConfirmBtnClickListener()
+        initConfirmBtnIsEnabled()
+        initIdFocusChangeListener()
+        initPwdFocusChangeListener()
+    }
+
+    private fun initIdFocusChangeListener() {
+        with(binding) {
+            etLoginId.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    viewIdDivider.backgroundTintList =
+                        ContextCompat.getColorStateList(this@LoginActivity, R.color.mint_400)
+                } else {
+                    viewIdDivider.backgroundTintList =
+                        ContextCompat.getColorStateList(this@LoginActivity, R.color.regular)
+                }
+            }
+        }
+    }
+
+    private fun initPwdFocusChangeListener() {
+        with(binding) {
+            etLoginPwd.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    viewPwdDivider.backgroundTintList =
+                        ContextCompat.getColorStateList(this@LoginActivity, R.color.mint_400)
+                } else {
+                    viewPwdDivider.backgroundTintList =
+                        ContextCompat.getColorStateList(this@LoginActivity, R.color.regular)
+                }
+            }
+        }
+    }
+
+    private fun initConfirmBtnIsEnabled() {
+        with(binding) {
+            etLoginId.addTextChangedListener {
+                btnLoginConfirm.isEnabled =
+                    etLoginId.text.isNotEmpty() && etLoginPwd.text.isNotEmpty()
+            }
+            etLoginPwd.addTextChangedListener {
+                btnLoginConfirm.isEnabled =
+                    etLoginId.text.isNotEmpty() && etLoginPwd.text.isNotEmpty()
+            }
+        }
     }
 
     private fun initToolbar() {
@@ -34,13 +83,17 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun initConfirmBtnClickListener() {
-        binding.btnLoginConfirm.setOnClickListener {
-            val userId = binding.etLoginId.text.toString()
-            val userPwd = binding.etLoginPwd.text.toString()
-            lifecycleScope.launch {
-                viewModel.saveUserCredentials(userId, userPwd)
+        with(binding) {
+            btnLoginConfirm.setOnClickListener {
+                if (btnLoginConfirm.isEnabled) {
+                    val userId = etLoginId.text.toString()
+                    val userPwd = etLoginPwd.text.toString()
+                    lifecycleScope.launch {
+                        viewModel.saveUserCredentials(userId, userPwd)
+                    }
+                    navigateToWelcomeActivity()
+                }
             }
-            navigateToWelcomeActivity()
         }
     }
 
