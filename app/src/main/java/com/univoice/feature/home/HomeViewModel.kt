@@ -13,9 +13,9 @@ class HomeViewModel : ViewModel() {
             count = 5
         ),
         QuickScanListEntity(
-            name = "자연과학대학\n학생회",
+            name = "소프트웨어융합대학\n학생회",
             image = "",
-            count = 3
+            count = 10
         ),
         QuickScanListEntity(
             name = "경영대학\n학생회",
@@ -171,31 +171,11 @@ class HomeViewModel : ViewModel() {
                     views = 8,
                     image = false,
                 ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "총학생회6",
-                    date = "06/26 ~ 07/01",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "총학생회7",
-                    date = "06/26 ~ 07/01",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "총학생회8",
-                    date = "06/26 ~ 07/01",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
             )
+        ),
+        NoticeCategoryListEntity(
+            name = "소프트웨어융합대학 학생회",
+            noticeData = listOf()
         ),
         NoticeCategoryListEntity(
             name = "자연과학대학 학생회",
@@ -219,75 +199,6 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "자연과학대학 학생회3",
-                    date = "06/26 ~ 07/01",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-            )
-        ),
-        NoticeCategoryListEntity(
-            name = "경영대학 학생회",
-            noticeData = listOf(
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "경영대학 학생회1",
-                    date = "06/26 ~ 07/01",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "경영대학 학생회2",
-                    date = "06/26 ~ 07/01",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "경영대학 학생회3",
-                    date = "06/26 ~ 07/01",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "경영대학 학생회4",
-                    date = "06/26 ~ 07/01",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "경영대학 학생회5",
-                    date = "06/26 ~ 07/01",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "경영대학 학생회6",
-                    date = "06/26 ~ 07/01",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "경영대학 학생회7",
-                    date = "06/26 ~ 07/01",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "경영대학 학생회8",
                     date = "06/26 ~ 07/01",
                     like = 10,
                     views = 8,
