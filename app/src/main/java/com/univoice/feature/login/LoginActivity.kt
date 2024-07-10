@@ -60,10 +60,18 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 if (btnLoginConfirm.isEnabled) {
                     val userId = etLoginId.text.toString()
                     val userPwd = etLoginPwd.text.toString()
+                    // 로그인 성공 여부에 따라 화면 이동
                     lifecycleScope.launch {
-                        viewModel.saveUserCredentials(userId, userPwd)
+                        // 로그인 성공한 경우
+                        if (viewModel.loginState.value == true) {
+                            viewModel.saveUserCredentials(userId, userPwd)
+                            navigateToWelcomeActivity()
+                        }
+                        // 로그인 실패한 경우
+                        else {
+                            showBottomSheetFragment()
+                        }
                     }
-                    navigateToWelcomeActivity()
                 }
             }
         }
@@ -88,5 +96,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             dividerView.backgroundTintList =
                 ContextCompat.getColorStateList(this@LoginActivity, colorResId)
         }
+    }
+
+    private fun showBottomSheetFragment() {
+        val loginBottomSheetFragment = LoginBottomSheetFragment()
+        loginBottomSheetFragment.show(supportFragmentManager, loginBottomSheetFragment.tag)
     }
 }

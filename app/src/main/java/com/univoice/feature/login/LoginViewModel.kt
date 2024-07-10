@@ -1,5 +1,7 @@
 package com.univoice.feature.login
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.univoice.domain.repository.UserPreferencesRepository
@@ -13,6 +15,9 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val userPreferencesRepository: UserPreferencesRepository
 ) : ViewModel() {
+    private val _loginState = MutableLiveData<Boolean>()
+    val loginState: LiveData<Boolean> = _loginState
+
     private val _userId = MutableStateFlow<String?>(null)
     val userId: StateFlow<String?> = _userId
 
@@ -28,6 +33,7 @@ class LoginViewModel @Inject constructor(
                 _userPwd.value = it
             }
         }
+        _loginState.value = false
     }
 
     fun saveUserCredentials(userId: String, userPwd: String) {
