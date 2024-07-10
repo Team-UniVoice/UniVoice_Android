@@ -5,4 +5,15 @@
         <item name="titleTextAppearance">@style/TextAppearance.UniVoice.title4Regular</item>
         <item name="android:textColor">@color/font_B01</item>
     </style>
+
+    <!--게시물 버튼-->
+    <style name="post_info_button" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/shape_regular_line_rect</item>
+        <item name="android:textAppearance">@style/TextAppearance.UniVoice.body4Semi</item>
+        <item name="android:textColor">@color/gray_800</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">6dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
 </resources>
