@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 툴바 -->
+    <style name="App.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.UniVoice.title4Regular</item>
+        <item name="android:textColor">@color/font_B01</item>
+    </style>
+</resources>
