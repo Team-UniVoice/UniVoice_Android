@@ -17,8 +17,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".feature.quickscan.QuickScanCompleteActivity"
-            android:exported="true">
+            android:name=".feature.login.WelcomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.login.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.entry.EntryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".feature.quickscan.QuickScanActivity"
@@ -29,12 +39,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".feature.quickscan.QuickScanCompleteActivity"
+            android:exported="true">
+
         <activity
             android:name=".feature.MainActivity"
-            android:exported="true"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:exported="false"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".feature.example.xml.ExampleActivity"
             android:exported="false"
