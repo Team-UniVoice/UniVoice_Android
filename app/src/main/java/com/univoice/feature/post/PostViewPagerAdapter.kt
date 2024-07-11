@@ -1,10 +1,14 @@
 package com.univoice.feature.post
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
+import com.univoice.core_ui.view.ItemDiffCallback
 
-class PostViewPagerAdapter(private val items: List<String>) :
-    RecyclerView.Adapter<PostViewPagerViewHolder>() {
+class PostViewPagerAdapter :
+    ListAdapter<String, PostViewPagerViewHolder>(
+        PostItemDiffCallback
+    ) {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -16,10 +20,13 @@ class PostViewPagerAdapter(private val items: List<String>) :
         holder: PostViewPagerViewHolder,
         position: Int
     ) {
-        holder.bind(items[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int {
-        return items.size
+
+    companion object {
+        private val PostItemDiffCallback =
+            ItemDiffCallback<String>(onItemsTheSame = { old, new -> old == new },
+                onContentsTheSame = { old, new -> old == new })
     }
 }

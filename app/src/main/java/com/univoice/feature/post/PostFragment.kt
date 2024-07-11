@@ -33,9 +33,8 @@ class PostFragment : BindingFragment<FragmentPostBinding>(R.layout.fragment_post
 
     // Adapter 설정
     private fun initPostItemAdapter() {
-        val adapter = PostViewPagerAdapter(mockData.imageList)
-        binding.vpPostImage.adapter = adapter
-        binding.indicatorPostImage.setViewPager(binding.vpPostImage)
+        val adapter = PostViewPagerAdapter()
+        adapter.submitList(mockData.imageList)
     }
 
     companion object {
