@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@{quickScan.title}"
-            android:textAppearance="@style/TextAppearance.UniVoice.head4Bold"
+            android:textAppearance="@style/TextAppearance.UniVoice.head5_1Semi"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_quick_scan_header"
             tools:text="2024학년도 제 2학기\n교내장학금 신청안내" />
@@ -129,7 +129,7 @@
                 android:gravity="center"
                 android:padding="6dp"
                 android:text="@string/tv_quick_scan_subject"
-                android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
+                android:textAppearance="@style/TextAppearance.UniVoice.button4_1Semi"
                 android:textColor="@color/gray_800"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -170,7 +170,7 @@
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="6dp"
                 android:text="@string/tv_quick_scan_date"
-                android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
+                android:textAppearance="@style/TextAppearance.UniVoice.button4_1Semi"
                 android:textColor="@color/gray_800"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -209,7 +209,7 @@
                 android:gravity="center"
                 android:padding="6dp"
                 android:text="@string/tv_quick_scan_summary"
-                android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
+                android:textAppearance="@style/TextAppearance.UniVoice.button4_1Semi"
                 android:textColor="@color/gray_800"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
