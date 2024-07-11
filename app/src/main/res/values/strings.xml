@@ -21,4 +21,15 @@
     <string name="tv_sheet_title">가입된 계정이 없어요</string>
     <string name="tv_sheet_subtitle">입력하신 아이디와 비밀번호를 다시 확인해주세요</string>
 
+    <!-- 퀵스캔 -->
+    <string name="quick_scan_toolbar_title">읽지 않은 공지</string>
+    <string name="tv_quick_scan_subject">대상</string>
+    <string name="tv_quick_scan_date">일시</string>
+    <string name="tv_quick_scan_summary">요약</string>
+    <string name="btn_quick_scan_confirm">확인</string>
+
+    <!-- 퀵스캔 완료 -->
+    <string name="tv_quick_scan_complete">공지사항을 모두 확인했어요</string>
+    <string name="quick_scan_bookmark_icon_description">quick_scan_bookmark_icon</string>
+
 </resources>
