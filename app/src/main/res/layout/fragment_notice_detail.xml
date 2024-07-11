@@ -37,7 +37,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp">
 
                 <TextView
                     android:id="@+id/tv_notice_detail_title"
@@ -204,19 +205,6 @@
                     android:src="@drawable/sel_notice_detail_like"
                     app:layout_constraintEnd_toStartOf="@id/btn_notice_detail_bookmark"
                     app:layout_constraintTop_toTopOf="@id/tv_notice_detail_create_date" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/divider_notice_detail_end"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="89dp"
-                    app:dividerColor="@color/regular"
-                    app:dividerThickness="1dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btn_notice_detail_like" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
