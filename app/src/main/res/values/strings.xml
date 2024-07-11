@@ -16,4 +16,8 @@
     <string name="btn_login_confirm">확인</string>
     <string name="btn_welcome_confirm">유니보이스 홈 가기</string>
 
+    <!-- 로그인 바텀시트 -->
+    <string name="btn_sheet_close">닫기</string>
+    <string name="btn_sheet_signup">회원가입하기</string>
+
 </resources>

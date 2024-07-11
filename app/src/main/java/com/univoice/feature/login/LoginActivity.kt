@@ -22,8 +22,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         initToolbarClickListener()
         initConfirmBtnClickListener()
         initConfirmBtnIsEnabled()
-        initIdFocusChangeListener()
-        initPwdFocusChangeListener()
+        setupFocusChangeListeners()
     }
 
     private fun initConfirmBtnIsEnabled() {
@@ -73,15 +72,12 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         startActivity(intent)
     }
 
-    private fun initIdFocusChangeListener() {
-        initFocusChangeListener(binding.etLoginId, binding.viewIdDivider)
+    private fun setupFocusChangeListeners() {
+        setFocusChangeListener(binding.etLoginId, binding.viewIdDivider)
+        setFocusChangeListener(binding.etLoginPwd, binding.viewPwdDivider)
     }
 
-    private fun initPwdFocusChangeListener() {
-        initFocusChangeListener(binding.etLoginPwd, binding.viewPwdDivider)
-    }
-
-    private fun initFocusChangeListener(editText: EditText, dividerView: View) {
+    private fun setFocusChangeListener(editText: EditText, dividerView: View) {
         editText.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             val colorResId = if (hasFocus) R.color.mint_400 else R.color.regular
             dividerView.backgroundTintList =
