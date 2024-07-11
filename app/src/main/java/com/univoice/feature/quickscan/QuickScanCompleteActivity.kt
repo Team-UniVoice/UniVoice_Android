@@ -10,23 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class QuickScanCompleteActivity : BindingActivity<ActivityQuickScanCompleteBinding>(R.layout.activity_quick_scan_complete) {
     override fun initView() {
-        initToolbar()
-        initToolbarClickListener()
         initConfirmBtnClickListener()
-    }
-
-    private fun initToolbar() {
-        with(binding) {
-            setSupportActionBar(toolbar)
-            supportActionBar?.setDisplayShowTitleEnabled(false)
-            tvToolbarTitle.text = getString(R.string.quick_scan_toolbar_title)
-        }
-    }
-
-    private fun initToolbarClickListener() {
-        binding.toolbar.setNavigationOnClickListener {
-            finish()
-        }
     }
 
     private fun initConfirmBtnClickListener() {

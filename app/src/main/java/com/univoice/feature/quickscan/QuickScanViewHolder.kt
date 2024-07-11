@@ -15,8 +15,6 @@ class QuickScanViewHolder(
         with(binding) {
             quickScan = data
             executePendingBindings()
-        }
-        with(binding) {
             ivQuickScanBookmark.isSelected = data.isBookmark
             ivQuickScanBookmark.setOnClickListener {
                 onClick(data.id, !data.isBookmark)

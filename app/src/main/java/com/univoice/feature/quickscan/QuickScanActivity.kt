@@ -20,13 +20,14 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
     }
 
     private fun initAdapter() {
-        val adapter = QuickScanAdapter() {
+        QuickScanAdapter() {
             id, isBookmark -> viewModel.updateBookmark(id, isBookmark)
+        }.also {
+            binding.vpQuickScan.adapter = it
+            it.submitList(viewModel.mockQuickScanList)
+            initTabLayout()
+            initPageChangeCallback(it)
         }
-        binding.vpQuickScan.adapter = adapter
-        adapter.submitList(viewModel.mockQuickScanList)
-        initTabLayout()
-        initPageChangeCallback(adapter)
     }
 
     private fun initPageChangeCallback(adapter: QuickScanAdapter) {
@@ -62,24 +63,25 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
     }
 
     private fun initTabLayout() {
-        if (viewModel.mockQuickScanList.size == 1) {
-            binding.tabQuickScan.visibility = View.INVISIBLE
-        } else {
-            binding.tabQuickScan.visibility = View.VISIBLE
+        with(binding.tabQuickScan) {
+            if(viewModel.mockQuickScanList.size > 1) {
+                visibility = View.VISIBLE
+            } else {
+                visibility = View.INVISIBLE
+            }
+            TabLayoutMediator(this, binding.vpQuickScan) { _, _ -> }.attach()
         }
-        TabLayoutMediator(binding.tabQuickScan, binding.vpQuickScan) { _, _ -> }.attach()
     }
 
     private fun initToolbar() {
         with(binding) {
-            setSupportActionBar(toolbar)
+            setSupportActionBar(toolbarQuickScan)
             supportActionBar?.setDisplayShowTitleEnabled(false)
-            tvToolbarTitle.text = getString(R.string.quick_scan_toolbar_title)
         }
     }
 
     private fun initToolbarClickListener() {
-        binding.toolbar.setNavigationOnClickListener {
+        binding.toolbarQuickScan.setNavigationOnClickListener {
             finish()
         }
     }

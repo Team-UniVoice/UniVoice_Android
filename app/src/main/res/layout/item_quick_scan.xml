@@ -46,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{quickScan.councilName}"
-                    android:textAppearance="@style/TextAppearance.UniVoice.body2Semi"
+                    android:textAppearance="@style/TextAppearance.UniVoice.body3Semi"
                     android:textColor="@color/font_B01"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -83,7 +83,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_tv_quick_scan_view_count"
+                        android:id="@+id/tv_quick_scan_view_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{quickScan.viewCount}"
@@ -127,7 +127,7 @@
                 android:background="@drawable/shape_white_line_30_rect"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="대상"
+                android:text="@string/tv_quick_scan_subject"
                 android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
                 android:textColor="@color/gray_800"
                 app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +135,7 @@
 
             <TextView
                 android:id="@+id/tv_quick_scan_subject_content"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:text="@{quickScan.subject}"
@@ -163,9 +163,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_white_line_30_rect"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="6dp"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="일시"
+                android:text="@string/tv_quick_scan_date"
                 android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
                 android:textColor="@color/gray_800"
                 app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +175,7 @@
 
             <TextView
                 android:id="@+id/tv_quick_scan_date_content"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:text="@{quickScan.date}"
@@ -203,7 +205,7 @@
                 android:background="@drawable/shape_white_line_30_rect"
                 android:gravity="center"
                 android:padding="6dp"
-                android:text="요약"
+                android:text="@string/tv_quick_scan_summary"
                 android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
                 android:textColor="@color/gray_800"
                 app:layout_constraintStart_toStartOf="parent"
@@ -211,7 +213,7 @@
 
             <TextView
                 android:id="@+id/tv_quick_scan_summary_content"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:text="@{quickScan.summary}"
@@ -220,14 +222,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_quick_scan_summary"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="2024학년도 2학기 교내장학금 신청 안내드\n립니다. 반드시 확인하고 놓치지 마시기 바랍\n니다." />
+                tools:text="2024학년도 2학기 교내장학금 신청 안내드립니다. 반드시 확인하고 놓치지 마시기 바랍니다." />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/iv_quick_scan_bookmark"
             android:layout_width="48dp"
             android:layout_height="0dp"
-            android:contentDescription="quick_scan_bookmark_icon"
+            android:contentDescription="@string/quick_scan_bookmark_icon_description"
             android:src="@drawable/sel_quick_scan_bookmark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1"

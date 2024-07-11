@@ -24,7 +24,7 @@ class QuickScanAdapter(
     companion object {
         private val QuickScanDiffCallback =
             ItemDiffCallback<QuickScanEntity>(
-                onItemsTheSame = { old, new -> old.title == new.title },
+                onItemsTheSame = { old, new -> old.id == new.id },
                 onContentsTheSame = { old, new -> old == new })
     }
 }

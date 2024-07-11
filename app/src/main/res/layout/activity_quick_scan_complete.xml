@@ -7,64 +7,49 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature.quickscan.QuickScanActivity">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back"
-            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular">
-
-            <TextView
-                android:id="@+id/tv_toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/quick_scan_toolbar_title"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular" />
-
-        </androidx.appcompat.widget.Toolbar>
+        tools:context=".feature.quickscan.QuickScanCompleteActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingHorizontal="16dp"
-            android:paddingBottom="30dp"
+            android:paddingBottom="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/tv_quick_scan_complete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="공지사항을 모두 확인했어요"
+                android:layout_marginTop="200dp"
+                android:text="@string/tv_quick_scan_complete"
                 android:textAppearance="@style/TextAppearance.UniVoice.head4Bold"
-                app:layout_constraintBottom_toTopOf="@id/iv_quick_scan_avatar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/iv_quick_scan_avatar"
                 android:layout_width="200dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/ic_launcher_background"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/tv_quick_scan_complete" />
 
             <Button
                 android:id="@+id/btn_quick_scan_confirm"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="확인"
+                android:background="@drawable/shape_mint400_fill_40_rect"
+                android:text="@string/btn_quick_scan_confirm"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
