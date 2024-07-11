@@ -39,7 +39,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun initToolbarClickListener() {
-        binding.toolbarLogin.setNavigationOnClickListener {
+        binding.ibLoginToolbarIcon.setOnClickListener {
             finish()
         }
     }
