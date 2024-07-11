@@ -7,6 +7,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.internal.ViewUtils.hideKeyboard
 
 abstract class BindingActivity<T : ViewDataBinding>(
