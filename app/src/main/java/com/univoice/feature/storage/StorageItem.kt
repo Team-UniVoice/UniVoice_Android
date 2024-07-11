@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
@@ -38,7 +39,7 @@ import com.univoice.core_ui.theme.title4Semi
 import com.univoice.domain.entity.StorageEntity
 
 @Composable
-fun StorageItem(data: StorageEntity, onDismiss: () -> Unit) {
+fun StorageItem(data: StorageEntity) {
 
     Row(
         modifier = Modifier
@@ -50,7 +51,7 @@ fun StorageItem(data: StorageEntity, onDismiss: () -> Unit) {
     ) {
         Column {
             Text(
-                text = "공지사항",
+                text = stringResource(id = R.string.item_storage_header),
                 color = Font_B02,
                 style = cap4Regular,
                 modifier = Modifier
@@ -73,17 +74,18 @@ fun StorageItem(data: StorageEntity, onDismiss: () -> Unit) {
                     color = Font_B03,
                     style = cap3Regular
                 )
-                VerticalDivider(
+                Text(
                     color = Font_B03,
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
                         .height(12.dp),
-                    thickness = 1.dp
+                    text = stringResource(id = R.string.item_storage_vertical_divider),
+                    style = cap3Regular
                 )
                 Image(
                     modifier = Modifier.size(12.dp),
                     painter = painterResource(id = R.drawable.ic_storage_heart),
-                    contentDescription = "like"
+                    contentDescription = stringResource(id = R.string.item_storage_heart_icon_description)
                 )
                 Text(
                     modifier = Modifier.padding(start = 2.dp),
@@ -95,7 +97,7 @@ fun StorageItem(data: StorageEntity, onDismiss: () -> Unit) {
                 Image(
                     modifier = Modifier.size(12.dp),
                     painter = painterResource(id = R.drawable.ic_storage_heart),
-                    contentDescription = null
+                    contentDescription = stringResource(id = R.string.item_storage_view_icon_description)
                 )
                 Text(
                     modifier = Modifier.padding(start = 2.dp),
@@ -114,7 +116,7 @@ fun StorageItem(data: StorageEntity, onDismiss: () -> Unit) {
                 .crossfade(true)
                 .build(),
             placeholder = null,
-            contentDescription = "club image"
+            contentDescription = stringResource(id = R.string.item_storage_avatar_description)
         )
     }
 }
@@ -130,6 +132,6 @@ fun PreviewNoticeItem() {
             likeCount = 10,
             viewCount = 20,
             avatar = "https://avatars.githubusercontent.com/u/91470334?s=400&u=4a743fda141cf8a074022b515b0ce3286e6c8560&v=4"
-        ), onDismiss = {}
+        )
     )
 }

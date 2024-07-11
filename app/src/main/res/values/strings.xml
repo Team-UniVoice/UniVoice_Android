@@ -32,4 +32,19 @@
     <string name="tv_quick_scan_complete">공지사항을 모두 확인했어요</string>
     <string name="quick_scan_bookmark_icon_description">quick_scan_bookmark_icon</string>
 
+    <!-- 저장 -->
+    <string name="item_storage_header">공지사항</string>
+    <string name="item_storage_vertical_divider">|</string>
+    <string name="item_storage_heart_icon_description">좋아요 수</string>
+    <string name="item_storage_view_icon_description">조회수</string>
+    <string name="item_storage_avatar_description">학생회 이미지</string>
+    <string name="storage_toolbar_title">저장한 공지사항</string>
+
+    <!-- 시간 -->
+    <string name="feed_time_minute">분 전</string>
+    <string name="feed_time_hour">시간 전</string>
+    <string name="feed_time_day">일 전</string>
+    <string name="feed_time_week">주 전</string>
+    <string name="feed_time_month">달 전</string>
+    <string name="feed_time_year">년 전</string>
 </resources>

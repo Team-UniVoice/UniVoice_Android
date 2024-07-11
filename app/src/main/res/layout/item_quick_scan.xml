@@ -64,7 +64,6 @@
                         android:id="@+id/tv_quick_scan_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{quickScan.time}"
                         android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
                         android:textColor="@color/font_B04"
                         app:layout_constraintBottom_toBottomOf="parent"

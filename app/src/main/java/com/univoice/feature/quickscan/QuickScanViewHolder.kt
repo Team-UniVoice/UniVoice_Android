@@ -6,6 +6,7 @@ import coil.load
 import com.univoice.R
 import com.univoice.databinding.ItemQuickScanBinding
 import com.univoice.domain.entity.QuickScanEntity
+import com.univoice.feature.util.CalculateTime
 
 class QuickScanViewHolder(
     private val binding: ItemQuickScanBinding,
@@ -15,6 +16,7 @@ class QuickScanViewHolder(
         with(binding) {
             quickScan = data
             executePendingBindings()
+            tvQuickScanTime.text = CalculateTime(itemView.context).getCalculateTime(data.time)
             ivQuickScanBookmark.isSelected = data.isBookmark
             ivQuickScanBookmark.setOnClickListener {
                 onClick(data.id, !data.isBookmark)

@@ -2,7 +2,6 @@ package com.univoice.feature.storage
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -41,12 +41,9 @@ fun StorageScreen() {
             .background(color = Color.White)
             .padding(horizontal = 16.dp),
     ) {
-        Spacer(
-            modifier = Modifier.padding(vertical = 10.dp)
-        )
         Text(
-            modifier = Modifier.padding(vertical = 16.dp),
-            text = "저장한 공지사항",
+            modifier = Modifier.padding(top = 26.dp, bottom = 12.dp),
+            text = stringResource(id = R.string.storage_toolbar_title),
             color = Font_B01,
             style = head5Bold
         )
