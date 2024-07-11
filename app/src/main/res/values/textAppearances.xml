@@ -327,6 +327,11 @@
     <style name="TextAppearance.UniVoice.button4Regular">
         <item name="fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">12dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button4_1Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">12dp</item>
         <item name="android:letterSpacing">0.02</item>
     </style>
 </resources>

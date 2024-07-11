@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".feature.login.WelcomeActivity">
@@ -42,12 +41,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_login_confirm"
+                android:id="@+id/btn_welcome_confirm"
                 style="@style/LoginButtonWithoutShadow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_mint_fill_40_rect"
-                android:text="유니보이스 홈 가기"
+                android:background="@drawable/shape_mint400_fill_40_rect"
+                android:paddingVertical="15dp"
+                android:text="@string/btn_welcome_confirm"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
                 android:textColor="@color/font_W01"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

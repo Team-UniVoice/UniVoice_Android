@@ -19,7 +19,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private val viewModel by viewModels<LoginViewModel>()
 
     override fun initView() {
-        initToolbar()
         initToolbarClickListener()
         initConfirmBtnClickListener()
         initConfirmBtnIsEnabled()
@@ -40,16 +39,8 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         }
     }
 
-    private fun initToolbar() {
-        with(binding) {
-            setSupportActionBar(toolbar)
-            supportActionBar?.setDisplayShowTitleEnabled(false)
-            tvToolbarTitle.text = getString(R.string.login_toolbar_title)
-        }
-    }
-
     private fun initToolbarClickListener() {
-        binding.toolbar.setNavigationOnClickListener {
+        binding.toolbarLogin.setNavigationOnClickListener {
             finish()
         }
     }

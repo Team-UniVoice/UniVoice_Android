@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="16dp"
@@ -27,9 +26,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="18dp"
-            android:background="@drawable/shape_mint_fill_40_rect"
+            android:background="@drawable/shape_mint400_fill_40_rect"
             android:backgroundTint="@color/mint_400"
-            android:text="유니보이스 시작하기"
+            android:paddingVertical="15dp"
+            android:text="@string/btn_entry_signup"
             android:textColor="@color/font_W01"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="@id/btn_entry_login"
@@ -42,6 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_white_line_40_rect"
+            android:paddingVertical="15dp"
             android:text="로그인"
             android:textColor="@color/mint_600"
             app:layout_constraintBottom_toBottomOf="parent"

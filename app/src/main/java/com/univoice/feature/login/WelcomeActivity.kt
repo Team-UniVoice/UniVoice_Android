@@ -14,9 +14,8 @@ class WelcomeActivity : BindingActivity<ActivityWelcomeBinding>(R.layout.activit
     }
 
     private fun initConfirmBtnClickListener() {
-        binding.btnLoginConfirm.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        binding.btnWelcomeConfirm.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 }

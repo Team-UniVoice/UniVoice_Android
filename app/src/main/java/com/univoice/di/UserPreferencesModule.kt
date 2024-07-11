@@ -3,7 +3,7 @@ package com.univoice.di
 import android.content.Context
 import com.univoice.data.datasource.UserPreferencesDataSource
 import com.univoice.data.repositoryimpl.UserPreferencesRepositoryImpl
-import com.univoice.data_remote.datasourceimpl.UserPreferencesDataSourceImpl
+import com.univoice.data_local.UserPreferencesDataSourceImpl
 import com.univoice.domain.repository.UserPreferencesRepository
 import dagger.Module
 import dagger.Provides

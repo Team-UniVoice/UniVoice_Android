@@ -73,7 +73,7 @@
                 style="@style/LoginButtonWithoutShadow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_mint_fill_40_rect"
+                android:background="@drawable/shape_mint400_fill_40_rect"
                 android:text="회원가입하기"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"

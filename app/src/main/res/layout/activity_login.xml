@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".feature.login.LoginActivity">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +22,7 @@
                 android:id="@+id/tv_toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="start"
                 android:text="@string/login_toolbar_title"
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Regular" />
 
@@ -37,7 +36,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
+            app:layout_constraintTop_toBottomOf="@id/toolbar_login">
 
             <EditText
                 android:id="@+id/et_login_id"
@@ -47,7 +46,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="37dp"
                 android:background="@android:color/transparent"
-                android:hint="아이디"
+                android:hint="@string/et_login_id_hint"
                 android:inputType="text"
                 android:paddingBottom="13dp"
                 android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
@@ -74,7 +73,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="33dp"
                 android:background="@android:color/transparent"
-                android:hint="비밀번호"
+                android:hint="@string/et_login_pwd_hint"
                 android:inputType="textPassword"
                 android:paddingBottom="13dp"
                 android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
@@ -100,7 +99,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/sel_login_button"
                 android:enabled="false"
-                android:text="확인"
+                android:paddingVertical="17dp"
+                android:text="@string/btn_login_confirm"
                 android:textColor="@color/font_W01"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
