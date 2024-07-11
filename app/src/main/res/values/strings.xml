@@ -33,8 +33,8 @@
     <string name="quick_scan_bookmark_icon_description">quick_scan_bookmark_icon</string>
 
     <!--세부 공지사항-->
-    <string name="btn_post_target">대상</string>
-    <string name="btn_post_date">일시</string>
-    <string name="tv_post_views">조회수</string>
-    <string name="toolbar_post">학과 학생회</string>
+    <string name="btn_notice_detail_target">대상</string>
+    <string name="btn_notice_detail_date">일시</string>
+    <string name="tv_notice_detail_views">조회수</string>
+    <string name="toolbar_notice_detail">학과 학생회</string>
 </resources>

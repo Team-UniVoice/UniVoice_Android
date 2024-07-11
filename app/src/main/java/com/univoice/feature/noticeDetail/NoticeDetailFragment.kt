@@ -1,23 +1,23 @@
-package com.univoice.feature.post
+package com.univoice.feature.noticeDetail
 
 import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
-import com.univoice.databinding.FragmentPostBinding
+import com.univoice.databinding.FragmentNoticeDetailBinding
 
-class PostFragment : BindingFragment<FragmentPostBinding>(R.layout.fragment_post) {
+class NoticeDetailFragment : BindingFragment<FragmentNoticeDetailBinding>(R.layout.fragment_notice_detail) {
 
     override fun initView() {
         binding.model = mockData
         initLikeBtnClickListener()
         initBookMarkBtnClickListener()
-        initPostItemAdapter()
+        initNoticeDetailItemAdapter()
     }
 
     // 좋아요 버튼 클릭
     private fun initLikeBtnClickListener() {
         with(binding) {
-            btnPostLike.setOnClickListener {
-                btnPostLike.isSelected = !binding.btnPostLike.isSelected
+            btnNoticeDetailLike.setOnClickListener {
+                btnNoticeDetailLike.isSelected = !binding.btnNoticeDetailLike.isSelected
             }
         }
     }
@@ -25,20 +25,20 @@ class PostFragment : BindingFragment<FragmentPostBinding>(R.layout.fragment_post
     // 북마크 버튼 클릭
     private fun initBookMarkBtnClickListener() {
         with(binding) {
-            btnPostBookmark.setOnClickListener {
-                btnPostBookmark.isSelected = !binding.btnPostBookmark.isSelected
+            btnNoticeDetailBookmark.setOnClickListener {
+                btnNoticeDetailBookmark.isSelected = !binding.btnNoticeDetailBookmark.isSelected
             }
         }
     }
 
     // Adapter 설정
-    private fun initPostItemAdapter() {
-        val adapter = PostViewPagerAdapter()
+    private fun initNoticeDetailItemAdapter() {
+        val adapter = NoticeDetailAdapter()
         adapter.submitList(mockData.imageList)
     }
 
     companion object {
-        var mockData = PostModel(
+        var mockData = NoticeDetailModel(
             noticeId = 1,
             writeAffiliation = "학과 학생회",
             title = "2024 대학생 여름농활 준비 네트워크에서 주최하는 농촌봉사활동과 관련하여 학우분들의 문의가 많아 말씀드립니다.",

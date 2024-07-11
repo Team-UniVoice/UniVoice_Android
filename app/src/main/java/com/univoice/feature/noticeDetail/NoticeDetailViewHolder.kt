@@ -1,26 +1,26 @@
-package com.univoice.feature.post
+package com.univoice.feature.noticeDetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.univoice.databinding.ItemPostImageBinding
+import com.univoice.databinding.ItemNoticeDetailImageBinding
 
-class PostViewPagerViewHolder(private val binding: ItemPostImageBinding) :
+class NoticeDetailViewHolder(private val binding: ItemNoticeDetailImageBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(item: String) {
-        binding.ivPostContent.load(item)
+        binding.ivNoticeDetailContent.load(item)
     }
 
     companion object {
-        fun from(parent: ViewGroup): PostViewPagerViewHolder {
+        fun from(parent: ViewGroup): NoticeDetailViewHolder {
             val binding =
-                ItemPostImageBinding.inflate(
+                ItemNoticeDetailImageBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
-            return PostViewPagerViewHolder(binding)
+            return NoticeDetailViewHolder(binding)
         }
     }
 }

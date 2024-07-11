@@ -7,7 +7,7 @@
     </style>
 
     <!--게시물 버튼-->
-    <style name="post_info_button" parent="Widget.AppCompat.Button.Borderless">
+    <style name="notice_detail_info_button" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:background">@drawable/shape_white_line_50_rect</item>
         <item name="android:textAppearance">@style/TextAppearance.UniVoice.body4Semi</item>
         <item name="android:textColor">@color/gray_800</item>
@@ -18,7 +18,7 @@
     </style>
 
     <!--둥근 이미지-->
-    <style name="post_rounded_image">
+    <style name="notice_detail_rounded_image">
         <item name="cornerSize">13dp</item>
     </style>
 </resources>

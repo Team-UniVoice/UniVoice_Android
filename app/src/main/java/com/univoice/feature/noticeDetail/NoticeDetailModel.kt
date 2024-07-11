@@ -1,6 +1,6 @@
-package com.univoice.feature.post
+package com.univoice.feature.noticeDetail
 
-data class PostModel(
+data class NoticeDetailModel(
     val noticeId: Int,
     val writeAffiliation: String,
     val title: String,
