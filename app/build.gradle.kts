@@ -102,4 +102,6 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     androidTestImplementation(libs.compose.ui.test)
 
+    // Preference Datastore
+    implementation(libs.preference.datastore)
 }
