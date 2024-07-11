@@ -32,4 +32,9 @@
     <string name="tv_quick_scan_complete">공지사항을 모두 확인했어요</string>
     <string name="quick_scan_bookmark_icon_description">quick_scan_bookmark_icon</string>
 
+    <!--세부 공지사항-->
+    <string name="btn_notice_detail_target">대상</string>
+    <string name="btn_notice_detail_date">일시</string>
+    <string name="tv_notice_detail_views">조회수</string>
+    <string name="toolbar_notice_detail">학과 학생회</string>
 </resources>

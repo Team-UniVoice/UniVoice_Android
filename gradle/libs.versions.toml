@@ -40,6 +40,7 @@ timber = "5.0.1"
 coil = "2.5.0"
 viewPager = "1.1.0"
 glide = "4.15.1"
+circleindicator = "2.1.6"
 
 # Hilt
 dagger-hilt = "2.50"
@@ -92,6 +93,7 @@ timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "tim
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 viewPager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewPager"}
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide"}
+circleindicator = { group = "me.relex", name = "circleindicator", version.ref = "circleindicator" }
 
 # Hilt
 dagger-hilt = { module = "com.google.dagger:hilt-android", version.ref = "dagger-hilt" }
