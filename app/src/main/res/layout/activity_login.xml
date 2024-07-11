@@ -32,7 +32,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:text="@string/login_toolbar_title"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular" />
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular"
+                android:textColor="@color/font_B01" />
 
         </androidx.appcompat.widget.Toolbar>
 
