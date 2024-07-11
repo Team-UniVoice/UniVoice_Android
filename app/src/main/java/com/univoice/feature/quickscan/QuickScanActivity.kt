@@ -24,7 +24,7 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
 
     private fun unableTabMotion() {
         binding.tabQuickScan.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {}
+            override fun onTabSelected(tab: TabLayout.Tab) {}
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
 
@@ -37,8 +37,20 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
                 val tab = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(i)
                 val params = tab.layoutParams as ViewGroup.MarginLayoutParams
                 when (tabLayout.tabCount) {
-                    in 2..5 -> params.setMargins(0, 0, 8, 0)
-                    in 6..8 -> params.setMargins(0, 0, 6, 0)
+                    in MIN_TAB_COUNT_FOR_WIDE_MARGIN..MAX_TAB_COUNT_FOR_WIDE_MARGIN -> params.setMargins(
+                        0,
+                        0,
+                        8,
+                        0
+                    )
+
+                    in MIN_TAB_COUNT_FOR_MEDIUM_MARGIN..MAX_TAB_COUNT_FOR_MEDIUM_MARGIN -> params.setMargins(
+                        0,
+                        0,
+                        6,
+                        0
+                    )
+
                     else -> params.setMargins(0, 0, 4, 0)
                 }
                 tab.requestLayout()
@@ -70,9 +82,12 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
             ) {
                 if (currentState == ViewPager2.SCROLL_STATE_DRAGGING) {
                     if (currentPos == adapter.itemCount - 1 && position == adapter.itemCount - 1) {
-                        val intent =
-                            Intent(this@QuickScanActivity, QuickScanCompleteActivity::class.java)
-                        startActivity(intent)
+                        startActivity(
+                            Intent(
+                                this@QuickScanActivity,
+                                QuickScanCompleteActivity::class.java
+                            )
+                        )
                     }
                 }
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
@@ -105,6 +120,13 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
         binding.ibToolbarQuickScanIcon.setOnClickListener {
             finish()
         }
+    }
+
+    companion object {
+        const val MIN_TAB_COUNT_FOR_WIDE_MARGIN = 2
+        const val MAX_TAB_COUNT_FOR_WIDE_MARGIN = 5
+        const val MIN_TAB_COUNT_FOR_MEDIUM_MARGIN = 6
+        const val MAX_TAB_COUNT_FOR_MEDIUM_MARGIN = 8
     }
 
 }

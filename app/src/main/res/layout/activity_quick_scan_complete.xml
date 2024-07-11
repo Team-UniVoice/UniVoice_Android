@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_quick_scan_avatar"
+                android:id="@+id/iv_quick_scan_complete_avatar"
                 android:layout_width="200dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="32dp"
@@ -41,7 +41,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_quick_scan_complete" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_quick_scan_confirm"
+                android:id="@+id/btn_quick_scan_complete_confirm"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
