@@ -467,21 +467,16 @@ fun HomeQuickScanItem(data: QuickScanListEntity) {
                     .offset(x = 2.5.dp, y = (-6).dp)
             }
         ) {
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier.wrapContentSize()
-            ) {
-                Text(
-                    text = data.count.toString(),
-                    style = button2Semi,
-                    color = Font_W01,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(
-                        vertical = 2.dp,
-                        horizontal = 6.dp
-                    ),
-                )
-            }
+            Text(
+                text = data.count.toString(),
+                style = button2Semi,
+                color = Font_W01,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(
+                    vertical = 2.dp,
+                    horizontal = 6.dp
+                ),
+            )
         }
     }
     Spacer(Modifier.padding(bottom = 8.dp))
