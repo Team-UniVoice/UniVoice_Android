@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -214,10 +215,16 @@ fun HomeNoticeItem(index: Int, data: NoticeListEntity, lastIndex: Int) {
                 Modifier
                     .fillMaxWidth()
                     .padding(start = 4.dp, end = 4.dp, top = 8.dp, bottom = 12.dp)
+                    .clickable {
+                        // To-do : 추가해야 함
+                    }
             } else {
                 Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 4.dp, vertical = 12.dp)
+                    .clickable {
+                        // To-do : 추가해야 함
+                    }
             },
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -421,7 +428,10 @@ fun HomeQuickScanContent(homeViewModel: HomeViewModel) {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(95.dp),
+                    .width(95.dp)
+                    .clickable {
+                        // To-do : 추가해야 함
+                    },
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
