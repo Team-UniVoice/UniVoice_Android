@@ -27,15 +27,18 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_main_nav"
             android:layout_width="0dp"
-            android:layout_height="75dp"
+            android:layout_height="56dp"
             android:background="@color/font_W01"
             app:itemActiveIndicatorStyle="@null"
-            app:itemIconSize="28dp"
-            app:itemPaddingBottom="9dp"
-            app:itemPaddingTop="9dp"
+            app:itemPaddingBottom="8.5dp"
+            app:itemPaddingTop="8.5dp"
+            app:itemTextAppearanceActive="@style/TextAppearance.UniVoice.caption3Regular"
+            app:itemTextAppearanceInactive="@style/TextAppearance.UniVoice.caption3Regular"
+            app:itemTextColor="@color/font_B03"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/menu_main_nav" />
 
