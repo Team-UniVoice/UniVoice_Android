@@ -83,6 +83,12 @@
         <item name="android:textSize">20dp</item>
     </style>
 
+    <style name="TextAppearance.UniVoice.head5_1Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:lineHeight">29dp</item>
+    </style>
+
     <style name="TextAppearance.UniVoice.head6Bold">
         <item name="fontFamily">@font/pretendard_bold</item>
         <item name="android:textSize">18dp</item>
@@ -106,6 +112,7 @@
     <style name="TextAppearance.UniVoice.head7Semi">
         <item name="fontFamily">@font/pretendard_semibold</item>
         <item name="android:textSize">16dp</item>
+        <item name="android:lineHeight">26dp</item>
     </style>
 
     <style name="TextAppearance.UniVoice.head7Regular">
@@ -142,6 +149,7 @@
     <style name="TextAppearance.UniVoice.title2Regular">
         <item name="fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">20dp</item>
+        <item name="android:lineHeight">24dp</item>
     </style>
 
     <style name="TextAppearance.UniVoice.title3Bold">
@@ -152,6 +160,7 @@
     <style name="TextAppearance.UniVoice.title3Semi">
         <item name="fontFamily">@font/pretendard_semibold</item>
         <item name="android:textSize">18dp</item>
+        <item name="android:lineHeight">27dp</item>
     </style>
 
     <style name="TextAppearance.UniVoice.title3Regular">
@@ -205,6 +214,7 @@
         <item name="fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">14dp</item>
         <item name="android:lineHeight">21dp</item>
+        <item name="android:letterSpacing">0.01</item>
     </style>
 
     <style name="TextAppearance.UniVoice.body3Bold">
@@ -220,6 +230,7 @@
     <style name="TextAppearance.UniVoice.body3Regular">
         <item name="fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">13dp</item>
+        <item name="android:lineHeight">16dp</item>
     </style>
 
     <style name="TextAppearance.UniVoice.body4Bold">
@@ -316,5 +327,11 @@
     <style name="TextAppearance.UniVoice.button4Regular">
         <item name="fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">12dp</item>
+    </style>
+
+    <style name="TextAppearance.UniVoice.button4_1Semi">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:letterSpacing">0.02</item>
     </style>
 </resources>

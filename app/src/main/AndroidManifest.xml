@@ -17,14 +17,28 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".feature.MainActivity"
+            android:name=".feature.login.WelcomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.login.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.entry.EntryActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".feature.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".feature.example.xml.ExampleActivity"
             android:exported="false"
