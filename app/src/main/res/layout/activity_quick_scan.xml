@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".feature.quickscan.QuickScanActivity">
@@ -13,26 +12,33 @@
             android:id="@+id/toolbar_quick_scan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:contentInsetStart="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_back"
-            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular">
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/ib_toolbar_quick_scan_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back" />
 
             <TextView
-                android:id="@+id/tv_toolbar_title"
+                android:id="@+id/tv_toolbar_quick_scan_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:text="@string/quick_scan_toolbar_title"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular" />
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular"
+                android:textColor="@color/font_B01" />
 
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingHorizontal="16dp"
             android:paddingBottom="49dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,8 +49,10 @@
                 android:id="@+id/tab_quick_scan"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@android:color/transparent"
+                android:clickable="false"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

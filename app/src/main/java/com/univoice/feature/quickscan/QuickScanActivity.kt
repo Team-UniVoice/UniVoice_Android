@@ -2,8 +2,10 @@ package com.univoice.feature.quickscan
 
 import android.content.Intent
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
@@ -14,14 +16,40 @@ import dagger.hilt.android.AndroidEntryPoint
 class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.activity_quick_scan) {
     private val viewModel by viewModels<QuickScanViewModel>()
     override fun initView() {
-        initToolbar()
         initToolbarClickListener()
         initAdapter()
+        addMarginsToTabs(binding.tabQuickScan)
+        unableTabMotion()
+    }
+
+    private fun unableTabMotion() {
+        binding.tabQuickScan.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {}
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+
+        })
+    }
+
+    private fun addMarginsToTabs(tabLayout: TabLayout) {
+        tabLayout.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
+            for (i in 0 until tabLayout.tabCount - 1) {
+                val tab = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(i)
+                val params = tab.layoutParams as ViewGroup.MarginLayoutParams
+                when (tabLayout.tabCount) {
+                    in 2..5 -> params.setMargins(0, 0, 8, 0)
+                    in 6..8 -> params.setMargins(0, 0, 6, 0)
+                    else -> params.setMargins(0, 0, 4, 0)
+                }
+                tab.requestLayout()
+            }
+        }
+
     }
 
     private fun initAdapter() {
-        QuickScanAdapter() {
-            id, isBookmark -> viewModel.updateBookmark(id, isBookmark)
+        QuickScanAdapter() { id, isBookmark ->
+            viewModel.updateBookmark(id, isBookmark)
         }.also {
             binding.vpQuickScan.adapter = it
             it.submitList(viewModel.mockQuickScanList)
@@ -64,7 +92,7 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
 
     private fun initTabLayout() {
         with(binding.tabQuickScan) {
-            if(viewModel.mockQuickScanList.size > 1) {
+            if (viewModel.mockQuickScanList.size > 1) {
                 visibility = View.VISIBLE
             } else {
                 visibility = View.INVISIBLE
@@ -73,15 +101,8 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
         }
     }
 
-    private fun initToolbar() {
-        with(binding) {
-            setSupportActionBar(toolbarQuickScan)
-            supportActionBar?.setDisplayShowTitleEnabled(false)
-        }
-    }
-
     private fun initToolbarClickListener() {
-        binding.toolbarQuickScan.setNavigationOnClickListener {
+        binding.ibToolbarQuickScanIcon.setOnClickListener {
             finish()
         }
     }

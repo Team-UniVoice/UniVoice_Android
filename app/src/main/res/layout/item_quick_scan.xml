@@ -12,7 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingHorizontal="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_quick_scan_header"
@@ -142,6 +143,7 @@
                 android:textAppearance="@style/TextAppearance.UniVoice.body2Regular"
                 android:textColor="@color/font_B01"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_quick_scan_subject"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="2024-1학기 재학생" />
@@ -163,10 +165,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_white_line_30_rect"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="6dp"
                 android:gravity="center"
                 android:padding="6dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="6dp"
                 android:text="@string/tv_quick_scan_date"
                 android:textAppearance="@style/TextAppearance.UniVoice.button4Semi"
                 android:textColor="@color/gray_800"
@@ -182,6 +184,7 @@
                 android:textAppearance="@style/TextAppearance.UniVoice.body2Regular"
                 android:textColor="@color/font_B01"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_quick_scan_date"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="05/21(화) 14:00 ~ 06/20(목) 22:00" />
@@ -220,6 +223,7 @@
                 android:textAppearance="@style/TextAppearance.UniVoice.body2Regular"
                 android:textColor="@color/font_B01"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_quick_scan_summary"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="2024학년도 2학기 교내장학금 신청 안내드립니다. 반드시 확인하고 놓치지 마시기 바랍니다." />
