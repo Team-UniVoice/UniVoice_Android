@@ -29,16 +29,18 @@
             android:name=".feature.entry.EntryActivity"
             android:exported="true"
             android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".feature.quickscan.QuickScanActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".feature.quickscan.QuickScanActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".feature.quickscan.QuickScanCompleteActivity"
             android:exported="true"
