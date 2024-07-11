@@ -68,13 +68,12 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun navigateToWelcomeActivity() {
-        val intent = Intent(this, WelcomeActivity::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, WelcomeActivity::class.java))
     }
 
     private fun setupFocusChangeListeners() {
-        setFocusChangeListener(binding.etLoginId, binding.viewIdDivider)
-        setFocusChangeListener(binding.etLoginPwd, binding.viewPwdDivider)
+        setFocusChangeListener(binding.etLoginId, binding.viewLoginIdDivider)
+        setFocusChangeListener(binding.etLoginPwd, binding.viewLoginPwdDivider)
     }
 
     private fun setFocusChangeListener(editText: EditText, dividerView: View) {

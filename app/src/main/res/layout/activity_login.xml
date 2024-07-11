@@ -15,8 +15,7 @@
             app:contentInsetStart="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/ib_login_toolbar_icon"
@@ -66,7 +65,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
-                android:id="@+id/view_id_divider"
+                android:id="@+id/view_login_id_divider"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:background="@drawable/shape_regular_fill_30_rect"
@@ -90,10 +89,10 @@
                 android:textColorHint="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_id_divider" />
+                app:layout_constraintTop_toBottomOf="@id/view_login_id_divider" />
 
             <View
-                android:id="@+id/view_pwd_divider"
+                android:id="@+id/view_login_pwd_divider"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:background="@drawable/shape_regular_fill_30_rect"

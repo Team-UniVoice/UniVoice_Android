@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="200dp"
-                android:text="환영합니다!"
+                android:text="@string/tv_welcome_title"
                 android:textAppearance="@style/TextAppearance.UniVoice.title1Semi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
