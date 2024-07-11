@@ -8,7 +8,7 @@
 
     <!--게시물 버튼-->
     <style name="post_info_button" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@drawable/shape_regular_line_rect</item>
+        <item name="android:background">@drawable/shape_white_line_50_rect</item>
         <item name="android:textAppearance">@style/TextAppearance.UniVoice.body4Semi</item>
         <item name="android:textColor">@color/gray_800</item>
         <item name="android:paddingHorizontal">16dp</item>

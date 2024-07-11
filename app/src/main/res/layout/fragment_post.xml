@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_back"
-            app:title="@{model.wirteAffiliation}" />
+            app:title="@{model.writeAffiliation}" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
-                    android:background="@drawable/shape_regular_line_rect"
+                    android:background="@drawable/shape_white_line_50_rect"
                     android:clickable="false"
                     android:text="@string/btn_post_date"
                     app:layout_constraintStart_toStartOf="@id/btn_post_target"
@@ -145,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="16dp"
                     android:layout_marginTop="16dp"
-                    app:ci_drawable="@drawable/shape_post_fill_circle"
+                    app:ci_drawable="@drawable/shape_gray900_fill_circle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/vp_post_image" />
