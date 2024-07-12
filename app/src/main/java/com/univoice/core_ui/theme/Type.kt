@@ -110,6 +110,12 @@ val head5Regular =
         fontFamily = pretendardRegular,
         fontSize = 20.sp,
     )
+val head5_1Semi =
+    TextStyle(
+        fontFamily = pretendardSemiBold,
+        fontSize = 20.sp,
+        lineHeight = 29.sp,
+    )
 
 // Head6
 val head6Bold =
@@ -138,6 +144,7 @@ val head7Semi =
     TextStyle(
         fontFamily = pretendardSemiBold,
         fontSize = 16.sp,
+        lineHeight = 26.sp,
     )
 val head7Regular =
     TextStyle(
@@ -178,6 +185,7 @@ val title2Regular =
     TextStyle(
         fontFamily = pretendardRegular,
         fontSize = 20.sp,
+        lineHeight = 24.sp,
     )
 
 // Title3
@@ -190,6 +198,7 @@ val title3Semi =
     TextStyle(
         fontFamily = pretendardSemiBold,
         fontSize = 18.sp,
+        lineHeight = 27.sp,
     )
 val title3Regular =
     TextStyle(
@@ -249,6 +258,7 @@ val body2Regular =
         fontFamily = pretendardRegular,
         fontSize = 14.sp,
         lineHeight = 21.sp,
+        letterSpacing = 0.01.sp,
     )
 
 // Body3
@@ -266,6 +276,7 @@ val body3Regular =
     TextStyle(
         fontFamily = pretendardRegular,
         fontSize = 13.sp,
+        lineHeight = 16.sp,
     )
 
 // Body4
@@ -374,4 +385,10 @@ val button4Regular =
     TextStyle(
         fontFamily = pretendardRegular,
         fontSize = 12.sp,
+    )
+val button4_1Semi =
+    TextStyle(
+        fontFamily = pretendardSemiBold,
+        fontSize = 12.sp,
+        letterSpacing = 0.02.sp,
     )

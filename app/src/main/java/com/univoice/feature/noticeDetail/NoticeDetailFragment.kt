@@ -1,16 +1,25 @@
 package com.univoice.feature.noticeDetail
 
+import androidx.navigation.fragment.findNavController
 import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.databinding.FragmentNoticeDetailBinding
 
-class NoticeDetailFragment : BindingFragment<FragmentNoticeDetailBinding>(R.layout.fragment_notice_detail) {
+class NoticeDetailFragment :
+    BindingFragment<FragmentNoticeDetailBinding>(R.layout.fragment_notice_detail) {
 
     override fun initView() {
         binding.model = mockData
         initLikeBtnClickListener()
         initBookMarkBtnClickListener()
         initNoticeDetailItemAdapter()
+        initBackBtnClickListener()
+    }
+
+    private fun initBackBtnClickListener() {
+        binding.toolbarNoticeDetail.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     // 좋아요 버튼 클릭
