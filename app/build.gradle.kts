@@ -106,5 +106,4 @@ dependencies {
 
     // Preference Datastore
     implementation(libs.preference.datastore)
-    implementation(kotlin("script-runtime"))
 }
