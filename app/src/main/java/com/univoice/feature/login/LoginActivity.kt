@@ -28,7 +28,8 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun initPwdTransformation() {
-        binding.etLoginPwd.transformationMethod = BiggerDotPasswordTransformationMethod()
+        binding.etLoginPwd.transformationMethod =
+            BiggerDotPasswordTransformationMethod(applicationContext)
     }
 
     private fun initConfirmBtnIsEnabled() {

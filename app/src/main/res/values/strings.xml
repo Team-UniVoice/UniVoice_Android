@@ -23,6 +23,7 @@
     <string name="btn_entry_signup">유니보이스 시작하기</string>
     <string name="et_login_id_hint">아이디</string>
     <string name="et_login_pwd_hint">비밀번호</string>
+    <string name="login_pwd_mask">●</string>
     <string name="btn_login_confirm">확인</string>
     <string name="btn_welcome_confirm">유니보이스 홈 가기</string>
     <string name="tv_welcome_title">환영합니다!</string>
