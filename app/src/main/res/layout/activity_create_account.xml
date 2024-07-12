@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_create_account"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular"
+            app:navigationIcon="@drawable/ic_left_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_create_account_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="계정 생성"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_department_input_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_create_account">
+
+            <TextView
+                android:id="@+id/tv_create_account_explain"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="아이디와 비밀번호를\n설정해주세요"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="38dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_create_account_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="아이디 입력하기"
+                android:textColor="@color/font_B01"
+                android:textColorHint="@color/font_B04"
+                android:backgroundTint="@color/mint_400"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="131dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_create_account_explain" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_create_account_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="42dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginTop="-9dp"
+                android:text="중복확인"
+                android:background="@drawable/btn_radius_10dp_selector"
+                android:textAppearance="@style/TextAppearance.UniVoice.body2Semi"
+                android:textColor="@color/font_W01"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_create_account_id" />
+
+            <TextView
+                android:id="@+id/tv_create_account_id_explain"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="영문, 소문자, 숫자, 특수문자 사용 5~20자"
+                android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="123dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_create_account_id" />
+
+            <EditText
+                android:id="@+id/et_create_account_pw"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="비밀번호 설정하기"
+                android:textColor="@color/font_B01"
+                android:textColorHint="@color/font_B04"
+                android:backgroundTint="@color/mint_400"
+                android:layout_marginTop="21dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_create_account_id_explain" />
+
+            <TextView
+                android:id="@+id/tv_create_account_pw_explain"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="영문, 숫자, 특수문자 각각 1개 이상 포함 8~16자"
+                android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="123dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_create_account_pw" />
+
+            <EditText
+                android:id="@+id/et_create_account_pw_check"
+                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="비밀번호를 확인해주세요"
+                android:textColor="@color/font_B01"
+                android:textColorHint="@color/font_B04"
+                android:backgroundTint="@color/mint_400"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_create_account_pw" />
+
+            <TextView
+                android:id="@+id/tv_create_account_pw_check_explain"
+                android:visibility="gone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="비밀번호가 일치합니다"
+                android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
+                android:textColor="@color/mint_600"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="123dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_create_account_pw_check" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_create_account_next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="다음"
+                android:background="@drawable/btn_radius_40dp_selector"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
+                android:textColor="@color/white"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:enabled="false"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

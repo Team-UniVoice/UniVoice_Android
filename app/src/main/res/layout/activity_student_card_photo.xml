@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_student_card_photo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular"
+            app:navigationIcon="@drawable/ic_left_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_student_card_photo_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="학생증 인증"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_student_card_photo_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tb_student_card_photo">
+
+            <TextView
+                android:id="@+id/tv_student_card_photo_explain1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="학교 인증을 위해\n학생증 사진이 필요해요"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="56dp"
+                android:layout_marginEnd="38dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_student_card_photo_explain2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="실물 학생증 또는 모바일 학생증 이미지를 첨부해주세요\n승인까지 최대 24시간이 걸릴 수 있어요"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="17dp"
+                android:textColor="@color/font_B01"
+                android:textAppearance="@style/TextAppearance.UniVoice.body2Regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_student_card_photo_explain1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_student_card_photo_start"
+                android:layout_width="0dp"
+                android:layout_height="195dp"
+                android:text="클릭해서\n이미지 업로드 하기"
+                android:background="@drawable/bg_gray50_radius_10dp"
+                android:textColor="@color/gray_500"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_student_card_photo_explain2" />
+
+            <TextView
+                android:id="@+id/tv_student_card_photo_explain3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="이름, 학교, 학과, 전체 학번이 모두 보여야 해요\n주민등록번호가 있다면 가려주세요"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="109dp"
+                android:textColor="@color/font_B02"
+                android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_student_card_photo_start" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_student_card_photo_next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="다음"
+                android:background="@drawable/btn_radius_40dp_selector"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
+                android:textColor="@color/white"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+            <!--android:visibility="gone" -->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

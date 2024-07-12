@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="student_id_array">
+        <item>학번 선택하기</item>  <!--hint-->
+        <item>24학번</item>
+        <item>23학번</item>
+        <item>22학번</item>
+        <item>21학번</item>
+        <item>20학번</item>
+        <item>19학번</item>
+        <item>18학번</item>
+    </string-array>
+</resources>
