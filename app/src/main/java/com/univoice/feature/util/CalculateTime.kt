@@ -17,14 +17,19 @@ class CalculateTime(private val context: Context) {
         val daysDifference = ChronoUnit.DAYS.between(targetDate, currentDate)
 
         return when {
-            minutesDifference < 1 -> context.getString(R.string.feed_time_now)
-            hoursDifference < 1 -> "$minutesDifference${context.getString(R.string.feed_time_minute)}"
-            daysDifference < 1 -> "$hoursDifference${context.getString(R.string.feed_time_hour)}"
+            minutesDifference < TIME_THRESHOLD -> context.getString(R.string.feed_time_now)
+            hoursDifference < TIME_THRESHOLD -> "$minutesDifference${context.getString(R.string.feed_time_minute)}"
+            daysDifference < TIME_THRESHOLD -> "$hoursDifference${context.getString(R.string.feed_time_hour)}"
             else -> {
                 val desiredFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd")
                 return targetDate.format(desiredFormat)
             }
         }
     }
+
+    companion object {
+        private const val TIME_THRESHOLD = 1
+    }
+
 
 }
