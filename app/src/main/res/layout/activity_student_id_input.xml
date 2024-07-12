@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_student_id_input"
@@ -13,11 +12,11 @@
             android:id="@+id/tb_student_id_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular"
-            app:navigationIcon="@drawable/ic_left_arrow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_left_arrow"
+            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular">
 
             <TextView
                 android:id="@+id/tv_student_id_input_title"
@@ -32,41 +31,35 @@
             android:id="@+id/cl_student_id_input_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tb_student_id_input">
 
-
-        <TextView
+            <TextView
                 android:id="@+id/tv_student_id_input_explain"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="학번을 선택해주세요"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="38dp"
+                android:text="학번을 선택해주세요"
                 android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Spinner
+            <com.univoice.core_ui.view.CustomSpinner
                 android:id="@+id/sp_student_id"
+                style="@style/Widget.My.Spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:popupBackground="@drawable/student_id_spinner"
-                android:background="@android:color/transparent"
-                android:dropDownVerticalOffset="15dp"
-                android:lineHeight="20sp"
-                android:overlapAnchor="false"
                 android:textAppearance="@font/pretendard_regular"
                 android:textFontWeight="400"
                 android:textSize="16sp"
-                android:theme="@style/NoShadowPopupTheme"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,115 +69,115 @@
                 android:id="@+id/iv_student_id_input_sp_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
-                android:background="@color/mint_400"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toBottomOf="@id/sp_student_id"
+                android:background="@color/mint_400"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/sp_student_id" />
 
             <TextView
                 android:id="@+id/tv_student_id_input_department"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="학과"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="177dp"
+                android:text="학과"
                 android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
                 android:textColor="@color/font_B04"
-                app:layout_constraintTop_toBottomOf="@id/iv_student_id_input_sp_line"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/iv_student_id_input_sp_line" />
 
             <TextView
                 android:id="@+id/tv_student_id_input_department_selected"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="컴퓨터공학과"
                 android:layout_marginStart="21dp"
                 android:layout_marginTop="19dp"
                 android:layout_marginEnd="139dp"
+                android:lineHeight="20sp"
+                android:text="컴퓨터공학과"
                 android:textAppearance="@font/pretendard_regular"
+                android:textColor="@color/font_B01"
                 android:textFontWeight="600"
                 android:textSize="16sp"
-                android:lineHeight="20sp"
-                android:textColor="@color/font_B01"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_department"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_department" />
 
             <View
                 android:id="@+id/iv_student_id_input_department_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
-                android:background="@color/regular"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_department_selected"
+                android:background="@color/regular"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_department_selected" />
 
             <TextView
                 android:id="@+id/tv_student_id_input_school"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="학교"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="177dp"
+                android:text="학교"
                 android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
                 android:textColor="@color/font_B04"
-                app:layout_constraintTop_toBottomOf="@id/iv_student_id_input_department_line"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/iv_student_id_input_department_line" />
 
             <TextView
                 android:id="@+id/tv_student_id_input_school_selected"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="서울과학기술대학교"
                 android:layout_marginStart="21dp"
                 android:layout_marginTop="19dp"
                 android:layout_marginEnd="139dp"
+                android:lineHeight="20sp"
+                android:text="서울과학기술대학교"
                 android:textAppearance="@font/pretendard_regular"
+                android:textColor="@color/font_B01"
                 android:textFontWeight="600"
                 android:textSize="16sp"
-                android:lineHeight="20sp"
-                android:textColor="@color/font_B01"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_school"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_school" />
 
             <View
                 android:id="@+id/iv_student_id_input_school_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
-                android:background="@color/regular"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_school_selected"
+                android:background="@color/regular"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_school_selected" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_student_id_input_input_next"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="다음"
-                android:background="@drawable/btn_radius_40dp_selector"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
-                android:textColor="@color/white"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/btn_radius_40dp_selector"
+                android:enabled="false"
+                android:text="다음"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:enabled="false"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
