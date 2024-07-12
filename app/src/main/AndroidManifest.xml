@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -28,6 +33,10 @@
         <activity android:name=".feature.example.xml.DepartmentInputActivity"
             android:exported="false"/>
         <activity android:name=".feature.example.xml.StudentIdInputActivity"
+            android:exported="false"/>
+        <activity android:name=".feature.example.xml.StudentCardPhotoActivity"
+            android:exported="false"/>
+        <activity android:name=".feature.example.xml.NameInputActivity"
             android:exported="false"/>
         <activity
             android:name=".feature.MainActivity"

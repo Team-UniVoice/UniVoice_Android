@@ -96,7 +96,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="다음"
-                android:background="@drawable/btn_radius_40dp_selector"
+                android:background="@drawable/bg_mint400_radius_40dp"
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
                 android:textColor="@color/white"
                 android:layout_marginStart="16dp"
@@ -104,8 +104,8 @@
                 android:layout_marginBottom="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-            <!--android:visibility="gone" -->
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="gone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

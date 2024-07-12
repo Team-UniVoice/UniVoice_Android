@@ -1,5 +1,6 @@
 package com.univoice.feature.example.xml
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -16,6 +17,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class StudentIdInputActivity :
     BindingActivity<ActivityStudentIdInputBinding>(R.layout.activity_student_id_input) {
+
+    private var isSpinnerInitialized = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +49,13 @@ class StudentIdInputActivity :
                 position: Int,
                 id: Long
             ) {
-                val selectedItem = parent?.getItemAtPosition(position).toString()
-                Log.d("ExampleActivity", "Selected item: $selectedItem")
-                enableButton()
+                if (isSpinnerInitialized) {
+                    val selectedItem = parent?.getItemAtPosition(position).toString()
+                    Log.d("ExampleActivity", "Selected item: $selectedItem")
+                    enableButton()
+                } else {
+                    isSpinnerInitialized = true
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -57,7 +64,6 @@ class StudentIdInputActivity :
             }
         }
 
-        // Initially disable the button
         disableButton()
 
         val selectedSchool = intent.getStringExtra("selectedSchool")
@@ -65,6 +71,11 @@ class StudentIdInputActivity :
 
         binding.tvStudentIdInputSchoolSelected.text = selectedSchool
         binding.tvStudentIdInputDepartmentSelected.text = selectedDepartment
+
+        binding.btnStudentIdInputInputNext.setOnClickListener {
+            val intent = Intent(this, StudentCardPhotoActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun enableButton() {
