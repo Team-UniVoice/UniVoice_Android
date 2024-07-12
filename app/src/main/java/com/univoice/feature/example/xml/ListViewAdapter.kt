@@ -4,18 +4,15 @@ import android.content.Context
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableStringBuilder
-import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
-import android.text.style.TextAppearanceSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.univoice.R
 
-class SchoolAdapter(context: Context, private val resource: Int, private val items: List<String>, private var highlightText: String)
+class ListViewAdapter(context: Context, private val resource: Int, private val items: List<String>, private var highlightText: String)
     : ArrayAdapter<String>(context, resource, items) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {

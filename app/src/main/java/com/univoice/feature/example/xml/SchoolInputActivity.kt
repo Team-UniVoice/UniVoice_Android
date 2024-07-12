@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout.activity_school_input) {
 
-    private lateinit var adapter: SchoolAdapter
+    private lateinit var adapter: ListViewAdapter
     private val schoolList = listOf(
         "서울대학교", "서울과학기술대학교", "서울시립대학교", "서울여자대학교", "서울학교5", "서울학교6",
         "서울학교7", "서울학교8", "서울학교9", "서울학교10", "서울학교11", "서울학교12", "서울학교13",
@@ -37,9 +37,8 @@ class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout
     }
 
     private fun setupListView() {
-        adapter = SchoolAdapter(this, R.layout.listview_item, filteredList, highlightText)
+        adapter = ListViewAdapter(this, R.layout.listview_item, filteredList, highlightText)
         binding.lvSchoolInputSearchResults.adapter = adapter
-        // ListView의 높이를 제한하여 최대 4개의 학교명을 표시하도록 설정
         val layoutParams = binding.lvSchoolInputSearchResults.layoutParams
         layoutParams.height = resources.getDimensionPixelSize(R.dimen.dropdown_height)
         binding.lvSchoolInputSearchResults.layoutParams = layoutParams
