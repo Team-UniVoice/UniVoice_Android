@@ -19,8 +19,10 @@ class QuickScanViewHolder(
             tvQuickScanTime.text = CalculateTime(itemView.context).getCalculateTime(data.time)
             ivQuickScanBookmark.isSelected = data.isBookmark
             ivQuickScanBookmark.setOnClickListener {
+                val newBookmarkState = !data.isBookmark
                 onClick(data.id, !data.isBookmark)
-                ivQuickScanBookmark.isSelected = !data.isBookmark
+                ivQuickScanBookmark.isSelected = newBookmarkState
+                data.isBookmark = newBookmarkState
             }
         }
     }
