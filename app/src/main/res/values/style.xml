@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 툴바 -->
+    <style name="App.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.UniVoice.title4Regular</item>
+        <item name="android:textColor">@color/font_B01</item>
+    </style>
+
+    <!--게시물 버튼-->
+    <style name="notice_detail_info_button" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/shape_white_line_50_rect</item>
+        <item name="android:textAppearance">@style/TextAppearance.UniVoice.body4Semi</item>
+        <item name="android:textColor">@color/gray_800</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">6dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
+
+    <!--둥근 이미지-->
+    <style name="notice_detail_rounded_image">
+        <item name="cornerSize">13dp</item>
+    </style>
+</resources>

@@ -13,7 +13,9 @@ class WelcomeActivity : BindingActivity<ActivityWelcomeBinding>(R.layout.activit
 
     private fun initConfirmBtnClickListener() {
         binding.btnWelcomeConfirm.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }.let { startActivity(it) }
         }
     }
 }
