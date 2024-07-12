@@ -25,6 +25,18 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         initConfirmBtnIsEnabled()
         setupFocusChangeListeners()
         initPwdTransformation()
+        initEditTextFocus()
+    }
+
+    private fun initEditTextFocus() {
+        binding.etLoginId.requestFocus()
+        binding.etLoginPwd.isEnabled = false
+    }
+
+    private fun initToolbarClickListener() {
+        binding.ibLoginToolbarIcon.setOnClickListener {
+            finish()
+        }
     }
 
     private fun initPwdTransformation() {
@@ -35,8 +47,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private fun initConfirmBtnIsEnabled() {
         with(binding) {
             etLoginId.addTextChangedListener {
-                btnLoginConfirm.isEnabled =
-                    etLoginId.text.isNotEmpty() && etLoginPwd.text.isNotEmpty()
+                btnLoginConfirm.isEnabled = etLoginId.text.isNotEmpty()
             }
             etLoginPwd.addTextChangedListener {
                 btnLoginConfirm.isEnabled =
@@ -45,28 +56,28 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         }
     }
 
-    private fun initToolbarClickListener() {
-        binding.ibLoginToolbarIcon.setOnClickListener {
-            finish()
-        }
-    }
-
     private fun initConfirmBtnClickListener() {
         with(binding) {
             btnLoginConfirm.setOnClickListener {
                 if (btnLoginConfirm.isEnabled) {
-                    val userId = etLoginId.text.toString()
-                    val userPwd = etLoginPwd.text.toString()
-                    // 로그인 성공 여부에 따라 화면 이동
-                    lifecycleScope.launch {
-                        // 로그인 성공한 경우
-                        if (viewModel.loginState.value == true) {
-                            viewModel.saveUserCredentials(userId, userPwd)
-                            navigateToWelcomeActivity()
-                        }
-                        // 로그인 실패한 경우
-                        else {
-                            showBottomSheetFragment()
+                    if (etLoginPwd.text.isEmpty()) {
+                        etLoginPwd.isEnabled = true
+                        etLoginPwd.requestFocus()
+                        btnLoginConfirm.isEnabled = false
+                    } else {
+                        val userId = etLoginId.text.toString()
+                        val userPwd = etLoginPwd.text.toString()
+
+                        lifecycleScope.launch {
+                            // 로그인 성공 여부 확인
+                            if (viewModel.loginState.value == true) {
+                                // 사용자 인증 정보 저장
+                                viewModel.saveUserCredentials(userId, userPwd)
+                                navigateToWelcomeActivity()
+                            } else {
+                                // 로그인 실패 시
+                                showBottomSheetFragment()
+                            }
                         }
                     }
                 }

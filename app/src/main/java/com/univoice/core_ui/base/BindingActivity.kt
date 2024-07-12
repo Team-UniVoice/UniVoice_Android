@@ -1,5 +1,6 @@
 package com.univoice.core_ui.base
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
@@ -23,9 +24,4 @@ abstract class BindingActivity<T : ViewDataBinding>(
     }
 
     protected abstract fun initView()
-
-    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        hideKeyboard(currentFocus ?: View(this))
-        return super.dispatchTouchEvent(ev)
-    }
 }

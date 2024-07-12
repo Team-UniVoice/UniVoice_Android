@@ -50,4 +50,11 @@
     <string name="btn_notice_detail_date">일시</string>
     <string name="tv_notice_detail_views">조회수</string>
     <string name="toolbar_notice_detail">학과 학생회</string>
+    <!-- 저장 -->
+    <string name="storage_toolbar_title">저장한 공지사항</string>
+
+    <!-- 시간 -->
+    <string name="feed_time_now">지금</string>
+    <string name="feed_time_minute">분 전</string>
+    <string name="feed_time_hour">시간 전</string>
 </resources>

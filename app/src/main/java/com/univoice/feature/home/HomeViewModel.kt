@@ -41,8 +41,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "전체1",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,
@@ -50,8 +49,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "전체2",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = false,
@@ -59,8 +57,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "전체3",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,
@@ -68,8 +65,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "전체4",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,
@@ -77,8 +73,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "전체5",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = false,
@@ -86,8 +81,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "전체6",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,
@@ -95,8 +89,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "전체7",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = false,
@@ -104,8 +97,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "전체8",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,
@@ -113,8 +105,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "전체9",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,
@@ -122,8 +113,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "전체10",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,
@@ -131,8 +121,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "전체11",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = false,
@@ -145,8 +134,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "총학생회1",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,
@@ -154,8 +142,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "총학생회2",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = false,
@@ -163,8 +150,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "총학생회3",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,
@@ -172,8 +158,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "총학생회4",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,
@@ -181,8 +166,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "총학생회5",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = false,
@@ -199,8 +183,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "자연과학대학 학생회1",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,
@@ -208,8 +191,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "자연과학대학 학생회2",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = false,
@@ -217,8 +199,7 @@ class HomeViewModel : ViewModel() {
                 NoticeListEntity(
                     subTitle = "공지사항",
                     title = "자연과학대학 학생회3",
-                    startDate = "06/26",
-                    endDate = "07/01",
+                    date = "2024/07/12",
                     like = 10,
                     views = 8,
                     image = true,

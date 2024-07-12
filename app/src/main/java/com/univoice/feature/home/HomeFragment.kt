@@ -268,19 +268,14 @@ fun HomeNoticeItem(
                 Spacer(modifier = Modifier.padding(bottom = 6.dp))
                 Text(text = data.title, style = title4Semi, color = Font_B01)
                 Spacer(modifier = Modifier.weight(1f))
-                Row {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Text(
-                        text = data.startDate,
+                        text = data.date,
                         style = cap3Regular,
                         color = Font_B03
                     )
-                    Text(
-                        text = stringResource(R.string.text_home_date_tilde),
-                        style = cap3Regular,
-                        color = Font_B03,
-                        modifier = Modifier.padding(horizontal = 2.dp)
-                    )
-                    Text(text = data.endDate, style = cap3Regular, color = Font_B03)
                     Text(
                         text = stringResource(R.string.text_home_divider),
                         style = cap3Regular,
@@ -298,9 +293,11 @@ fun HomeNoticeItem(
                         color = Font_B03
                     )
                     Icon(
-                        painterResource(id = R.drawable.ic_home_like),
+                        painterResource(id = R.drawable.ic_home_views),
                         contentDescription = stringResource(R.string.description_home_notice_views_icon),
-                        modifier = Modifier.padding(start = 6.dp, end = 2.dp)
+                        modifier = Modifier
+                            .padding(start = 6.dp, end = 2.dp)
+                            .size(12.dp)
                     )
                     Text(
                         text = data.views.toString(),
