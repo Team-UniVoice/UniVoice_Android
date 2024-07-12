@@ -19,6 +19,9 @@
         android:name="com.univoice.feature.storage.StorageFragment"
         android:label="StorageFragment"
         tools:layout="@layout/fragment_storage">
+        <action
+            android:id="@+id/action_fragment_storage_to_fragment_notice_detail"
+            app:destination="@id/fragment_notice_detail" />
     </fragment>
     <fragment
         android:id="@+id/fragment_setting"
