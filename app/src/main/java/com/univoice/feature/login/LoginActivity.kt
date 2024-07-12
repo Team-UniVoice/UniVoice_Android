@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityLoginBinding
+import com.univoice.feature.util.BiggerDotPasswordTransformationMethod
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -23,6 +24,12 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         initConfirmBtnClickListener()
         initConfirmBtnIsEnabled()
         setupFocusChangeListeners()
+        initPwdTransformation()
+    }
+
+    private fun initPwdTransformation() {
+        binding.etLoginPwd.transformationMethod =
+            BiggerDotPasswordTransformationMethod(applicationContext)
     }
 
     private fun initConfirmBtnIsEnabled() {

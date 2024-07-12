@@ -38,10 +38,10 @@
         <activity
             android:name=".feature.quickscan.QuickScanActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".feature.quickscan.QuickScanCompleteActivity"
-            android:exported="true"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".feature.MainActivity"
