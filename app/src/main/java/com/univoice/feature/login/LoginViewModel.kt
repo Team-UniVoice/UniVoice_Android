@@ -33,7 +33,7 @@ class LoginViewModel @Inject constructor(
                 _userPwd.value = it
             }
         }
-        _loginState.value = false
+        _loginState.value = true
     }
 
     fun saveUserCredentials(userId: String, userPwd: String) {
