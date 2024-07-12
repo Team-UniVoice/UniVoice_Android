@@ -1,119 +1,53 @@
 package com.univoice.feature.example.xml
 
-import android.content.Intent
-import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+
+import android.util.Log
 import android.view.View
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import androidx.activity.viewModels
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
-import com.univoice.databinding.ActivityDepartmentInputBinding
+import com.univoice.core_ui.view.CustomSpinner
+import com.univoice.databinding.ActivityStudentIdInputBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ExampleActivity : BindingActivity<ActivityDepartmentInputBinding>(R.layout.activity_department_input) {
-    private lateinit var adapter: ListViewAdapter
-    private val departmentList = listOf(
-        "컴퓨터공학과", "컴퓨터학과"
-    )
-    private val filteredList = mutableListOf<String>()
-    private var departmentSelected = false
-    private var highlightText = ""
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initView()
-    }
-
+class ExampleActivity :
+    BindingActivity<ActivityStudentIdInputBinding>(R.layout.activity_student_id_input) {
+    private val viewModel by viewModels<ExampleViewModel>()
     override fun initView() {
-        setupEditTextListener()
-        setupListView()
-        setupNextButton()
-    }
-
-    private fun setupListView() {
-        adapter = ListViewAdapter(this, R.layout.listview_item, filteredList, highlightText)
-        binding.lvDepartmentInputSearchResults.adapter = adapter
-        val layoutParams = binding.lvDepartmentInputSearchResults.layoutParams
-        layoutParams.height = resources.getDimensionPixelSize(R.dimen.dropdown_height)
-        binding.lvDepartmentInputSearchResults.layoutParams = layoutParams
-
-        binding.lvDepartmentInputSearchResults.setOnItemClickListener { parent, view, position, id ->
-            val selectedDepartment = filteredList[position]
-            if (selectedDepartment == "...") return@setOnItemClickListener
-            binding.etDepartmentInputSearch.setText(selectedDepartment)
-            binding.lvDepartmentInputSearchResults.visibility = View.GONE
-            hideKeyboard()
-            departmentSelected = true
-            enableButton()
-        }
-    }
-
-    private fun setupEditTextListener() {
-        binding.etDepartmentInputSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val input = s.toString().trim()
-                highlightText = input
-                adapter.setHighlightText(input)
-                filterSchools(input)
-                binding.lvDepartmentInputSearchResults.visibility = View.VISIBLE // 드롭다운 표시
-                departmentSelected = false
-                disableButton()
+        val studentIdArray = resources.getStringArray(R.array.student_id_array)
+        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+            this, android.R.layout.simple_list_item_1, studentIdArray
+        )
+        binding.spStudentIdInput.adapter = arrayAdapter
+        binding.spStudentIdInput.setSpinnerEventsListener(object :
+            CustomSpinner.OnSpinnerEventsListener {
+            override fun onSpinnerOpened(spinner: Spinner?) {
+                binding.spStudentIdInput.isActivated = true
             }
 
-            override fun afterTextChanged(s: Editable?) {}
+            override fun onSpinnerClosed(spinner: Spinner?) {
+                binding.spStudentIdInput.isActivated = false
+            }
         })
 
-        binding.etDepartmentInputSearch.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                val input = binding.etDepartmentInputSearch.text.toString().trim()
-                highlightText = input
-                adapter.setHighlightText(input)
-                filterSchools(input)
-                binding.lvDepartmentInputSearchResults.visibility = View.VISIBLE
+        binding.spStudentIdInput.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedItem = parent?.getItemAtPosition(position).toString()
+                Log.d("ExampleActivity", "Selected item: $selectedItem")
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Log.d("ExampleActivity", "Nothing selected")
             }
         }
-    }
-
-    private fun setupNextButton() {
-        binding.btnDepartmentInputNext.setOnClickListener {
-            if (departmentSelected) {
-                val intent = Intent(this, StudentIdInputActivity::class.java)
-                startActivity(intent)
-            }
-        }
-    }
-
-    private fun enableButton() {
-        binding.btnDepartmentInputNext.isEnabled = true
-        binding.btnDepartmentInputNext.background = ContextCompat.getDrawable(this, R.drawable.bg_mint400_radius_40dp)
-    }
-
-    private fun disableButton() {
-        binding.btnDepartmentInputNext.isEnabled = false
-        binding.btnDepartmentInputNext.background = ContextCompat.getDrawable(this, R.drawable.bg_gray200_radius_40dp)
-    }
-
-    private fun filterSchools(query: String) {
-        filteredList.clear()
-        if (query.isNotEmpty()) {
-            val results = departmentList.filter { it.contains(query, ignoreCase = true) }
-                .sortedBy { it.replace(query, "", ignoreCase = true) }
-                .take(20)
-            filteredList.addAll(results)
-            if (results.size == 20) {
-                filteredList.add("...")
-            }
-        }
-        adapter.notifyDataSetChanged()
-    }
-
-    private fun hideKeyboard() {
-        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.etDepartmentInputSearch.windowToken, 0)
     }
 }

@@ -16,14 +16,23 @@
         android:theme="@style/Theme.UniVoice"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".feature.MainActivity"
-            android:exported="true"
-            android:screenOrientation="portrait">
+        <activity android:name=".feature.example.xml.SignUpActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".feature.example.xml.SchoolInputActivity"
+            android:exported="false"/>
+        <activity android:name=".feature.example.xml.DepartmentInputActivity"
+            android:exported="false"/>
+        <activity android:name=".feature.example.xml.StudentIdInputActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".feature.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".feature.example.xml.ExampleActivity"

@@ -85,7 +85,9 @@ class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout
     private fun setupNextButton() {
         binding.btnSchoolInputNext.setOnClickListener {
             if (schoolSelected) {
+                val selectedSchool = binding.etSchoolInputSearch.text.toString()
                 val intent = Intent(this, DepartmentInputActivity::class.java)
+                intent.putExtra("selectedSchool", selectedSchool)
                 startActivity(intent)
             }
         }

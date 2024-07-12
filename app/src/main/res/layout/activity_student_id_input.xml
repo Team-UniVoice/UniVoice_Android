@@ -50,18 +50,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.univoice.core_ui.view.CustomSpinner
-                android:id="@+id/sp_student_id"
+                android:id="@+id/sp_student_id_input"
                 style="@style/Widget.My.Spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:textAppearance="@font/pretendard_regular"
-                android:textFontWeight="400"
-                android:textSize="16sp"
+                android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_explain" />
 
@@ -70,12 +67,12 @@
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginEnd="16dp"
                 android:background="@color/mint_400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sp_student_id" />
+                app:layout_constraintTop_toBottomOf="@id/sp_student_id_input" />
 
             <TextView
                 android:id="@+id/tv_student_id_input_department"
@@ -99,7 +96,7 @@
                 android:layout_marginTop="19dp"
                 android:layout_marginEnd="139dp"
                 android:lineHeight="20sp"
-                android:text="컴퓨터공학과"
+                android:text="학과"
                 android:textAppearance="@font/pretendard_regular"
                 android:textColor="@color/font_B01"
                 android:textFontWeight="600"
@@ -142,7 +139,7 @@
                 android:layout_marginTop="19dp"
                 android:layout_marginEnd="139dp"
                 android:lineHeight="20sp"
-                android:text="서울과학기술대학교"
+                android:text="학교"
                 android:textAppearance="@font/pretendard_regular"
                 android:textColor="@color/font_B01"
                 android:textFontWeight="600"

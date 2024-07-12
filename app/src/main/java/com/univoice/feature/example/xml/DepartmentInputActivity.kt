@@ -17,14 +17,16 @@ import dagger.hilt.android.AndroidEntryPoint
 class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(R.layout.activity_department_input) {
     private lateinit var adapter: ListViewAdapter
     private val departmentList = listOf(
-        "컴퓨터공학과", "컴퓨터학과"
+        "컴퓨터공학과", "컴퓨터학과", "컴퓨터과학과", "컴퓨터과학", "컴퓨터교육과", "컴퓨터교육"
     )
     private val filteredList = mutableListOf<String>()
     private var departmentSelected = false
     private var highlightText = ""
+    private var selectedSchool: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        selectedSchool = intent.getStringExtra("selectedSchool")
         initView()
     }
 
@@ -60,7 +62,7 @@ class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(
                 val input = s.toString().trim()
                 highlightText = input
                 adapter.setHighlightText(input)
-                filterSchools(input)
+                filterDepartments(input)
                 binding.lvDepartmentInputSearchResults.visibility = View.VISIBLE // 드롭다운 표시
                 departmentSelected = false
                 disableButton()
@@ -74,7 +76,7 @@ class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(
                 val input = binding.etDepartmentInputSearch.text.toString().trim()
                 highlightText = input
                 adapter.setHighlightText(input)
-                filterSchools(input)
+                filterDepartments(input)
                 binding.lvDepartmentInputSearchResults.visibility = View.VISIBLE
             }
         }
@@ -83,7 +85,10 @@ class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(
     private fun setupNextButton() {
         binding.btnDepartmentInputNext.setOnClickListener {
             if (departmentSelected) {
+                val selectedDepartment = binding.etDepartmentInputSearch.text.toString()
                 val intent = Intent(this, StudentIdInputActivity::class.java)
+                intent.putExtra("selectedSchool", selectedSchool)
+                intent.putExtra("selectedDepartment", selectedDepartment)
                 startActivity(intent)
             }
         }
@@ -99,7 +104,7 @@ class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(
         binding.btnDepartmentInputNext.background = ContextCompat.getDrawable(this, R.drawable.bg_gray200_radius_40dp)
     }
 
-    private fun filterSchools(query: String) {
+    private fun filterDepartments(query: String) {
         filteredList.clear()
         if (query.isNotEmpty()) {
             val results = departmentList.filter { it.contains(query, ignoreCase = true) }
