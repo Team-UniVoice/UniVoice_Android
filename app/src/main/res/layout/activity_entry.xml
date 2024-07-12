@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="16dp"
-        android:paddingBottom="12dp"
+        android:paddingBottom="16dp"
         tools:context=".feature.entry.EntryActivity">
 
         <ImageView
@@ -25,7 +25,7 @@
             style="@style/LoginButtonWithoutShadow"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/shape_mint400_fill_40_rect"
             android:backgroundTint="@color/mint_400"
             android:paddingVertical="15dp"

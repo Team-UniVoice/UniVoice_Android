@@ -19,16 +19,6 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
         initToolbarClickListener()
         initAdapter()
         addMarginsToTabs(binding.tabQuickScan)
-        unableTabMotion()
-    }
-
-    private fun unableTabMotion() {
-        binding.tabQuickScan.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {}
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-
-        })
     }
 
     private fun addMarginsToTabs(tabLayout: TabLayout) {
@@ -112,7 +102,9 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
             } else {
                 visibility = View.INVISIBLE
             }
-            TabLayoutMediator(this, binding.vpQuickScan) { _, _ -> }.attach()
+            TabLayoutMediator(this, binding.vpQuickScan) { tab, position ->
+                tab.view.isClickable = false
+            }.attach()
         }
     }
 
