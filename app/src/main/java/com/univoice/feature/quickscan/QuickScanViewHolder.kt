@@ -16,7 +16,7 @@ class QuickScanViewHolder(
         with(binding) {
             quickScan = data
             executePendingBindings()
-            // tvQuickScanTime.text = CalculateTime(itemView.context).getCalculateTime(data.time)
+            tvQuickScanTime.text = CalculateTime(itemView.context).getCalculateTime(data.time)
             ivQuickScanBookmark.isSelected = data.isBookmark
             ivQuickScanBookmark.setOnClickListener {
                 onClick(data.id, !data.isBookmark)
