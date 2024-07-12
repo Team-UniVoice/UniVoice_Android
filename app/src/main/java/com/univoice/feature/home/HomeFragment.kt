@@ -1,5 +1,8 @@
 package com.univoice.feature.home
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -22,7 +25,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -51,13 +53,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.core_ui.component.SetStatusBarColor
@@ -83,18 +87,20 @@ import com.univoice.core_ui.theme.title4Semi
 import com.univoice.databinding.FragmentHomeBinding
 import com.univoice.domain.entity.NoticeListEntity
 import com.univoice.domain.entity.QuickScanListEntity
+import com.univoice.feature.quickscan.QuickScanActivity
 
 class HomeFragment :
     BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun initView() {
         binding.cvHome.setContent {
+            val navController = findNavController()
             UniVoiceAndroidTheme {
                 SetStatusBarColor(color = MaterialTheme.colorScheme.background)
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeRoute()
+                    HomeRoute(navController = navController)
                 }
             }
         }
@@ -102,11 +108,11 @@ class HomeFragment :
 }
 
 @Composable
-fun HomeRoute(homeViewModel: HomeViewModel = viewModel()) {
+fun HomeRoute(homeViewModel: HomeViewModel = viewModel(), navController: NavController) {
     if (false) {
         HomeEmptyScreen()
     } else {
-        HomeScreen(homeViewModel)
+        HomeScreen(homeViewModel, navController)
     }
 }
 
@@ -161,9 +167,10 @@ fun HomeEmptyScreen() {
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(homeViewModel: HomeViewModel) {
+fun HomeScreen(homeViewModel: HomeViewModel, navController: NavController) {
     var choiceNoticeIndex by remember { mutableIntStateOf(0) }
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -181,7 +188,7 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
                 .fillMaxSize(),
         ) {
             item {
-                HomeQuickScanContent(homeViewModel)
+                HomeQuickScanContent(homeViewModel, context)
             }
             stickyHeader {
                 HomeNoticeContent(
@@ -199,7 +206,8 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
                     HomeNoticeItem(
                         index,
                         data,
-                        homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData.lastIndex
+                        homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData.lastIndex,
+                        navController
                     )
                 }
             }
@@ -207,8 +215,14 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
     }
 }
 
+@SuppressLint("ResourceType")
 @Composable
-fun HomeNoticeItem(index: Int, data: NoticeListEntity, lastIndex: Int) {
+fun HomeNoticeItem(
+    index: Int,
+    data: NoticeListEntity,
+    lastIndex: Int,
+    navController: NavController
+) {
     Column(modifier = Modifier.padding(horizontal = 16.dp)) {
         Row(
             modifier = if (index == 0) {
@@ -217,6 +231,9 @@ fun HomeNoticeItem(index: Int, data: NoticeListEntity, lastIndex: Int) {
                     .padding(start = 4.dp, end = 4.dp, top = 8.dp, bottom = 12.dp)
                     .clickable {
                         // To-do : 추가해야 함
+                        navController.navigate(
+                            R.id.action_fragment_home_to_fragment_notice_detail
+                        )
                     }
             } else {
                 Modifier
@@ -224,6 +241,9 @@ fun HomeNoticeItem(index: Int, data: NoticeListEntity, lastIndex: Int) {
                     .padding(horizontal = 4.dp, vertical = 12.dp)
                     .clickable {
                         // To-do : 추가해야 함
+                        navController.navigate(
+                            R.id.action_fragment_home_to_fragment_notice_detail
+                        )
                     }
             },
             verticalAlignment = Alignment.CenterVertically
@@ -394,7 +414,7 @@ fun HomeNoticeContent(
 }
 
 @Composable
-fun HomeQuickScanContent(homeViewModel: HomeViewModel) {
+fun HomeQuickScanContent(homeViewModel: HomeViewModel, context: Context) {
     Box(
         modifier = Modifier.height(46.dp),
         contentAlignment = Alignment.Center
@@ -430,7 +450,7 @@ fun HomeQuickScanContent(homeViewModel: HomeViewModel) {
                     .fillMaxHeight()
                     .width(95.dp)
                     .clickable {
-                        // To-do : 추가해야 함
+                        context.startActivity(Intent(context, QuickScanActivity::class.java))
                     },
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
@@ -488,10 +508,10 @@ fun HomeQuickScanItem(data: QuickScanListEntity) {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HomePreview() {
-    UniVoiceAndroidTheme {
-        HomeRoute()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun HomePreview() {
+//    UniVoiceAndroidTheme {
+//        HomeRoute()
+//    }
+//}
