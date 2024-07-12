@@ -1,8 +1,11 @@
 package com.univoice.feature.login
 
+import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.view.View.OnFocusChangeListener
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -25,6 +28,18 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         initConfirmBtnIsEnabled()
         setupFocusChangeListeners()
         initPwdTransformation()
+        initEditTextFocus()
+    }
+
+    private fun initEditTextFocus() {
+        binding.etLoginId.requestFocus()
+        binding.etLoginPwd.isEnabled = false
+    }
+
+    private fun initToolbarClickListener() {
+        binding.ibLoginToolbarIcon.setOnClickListener {
+            finish()
+        }
     }
 
     private fun initPwdTransformation() {
@@ -35,19 +50,11 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private fun initConfirmBtnIsEnabled() {
         with(binding) {
             etLoginId.addTextChangedListener {
-                btnLoginConfirm.isEnabled =
-                    etLoginId.text.isNotEmpty() && etLoginPwd.text.isNotEmpty()
+                btnLoginConfirm.isEnabled = etLoginId.text.isNotEmpty()
             }
             etLoginPwd.addTextChangedListener {
-                btnLoginConfirm.isEnabled =
-                    etLoginId.text.isNotEmpty() && etLoginPwd.text.isNotEmpty()
+                btnLoginConfirm.isEnabled = etLoginId.text.isNotEmpty() && etLoginPwd.text.isNotEmpty()
             }
-        }
-    }
-
-    private fun initToolbarClickListener() {
-        binding.ibLoginToolbarIcon.setOnClickListener {
-            finish()
         }
     }
 
@@ -55,18 +62,26 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         with(binding) {
             btnLoginConfirm.setOnClickListener {
                 if (btnLoginConfirm.isEnabled) {
-                    val userId = etLoginId.text.toString()
-                    val userPwd = etLoginPwd.text.toString()
-                    // 로그인 성공 여부에 따라 화면 이동
-                    lifecycleScope.launch {
-                        // 로그인 성공한 경우
-                        if (viewModel.loginState.value == true) {
-                            viewModel.saveUserCredentials(userId, userPwd)
-                            navigateToWelcomeActivity()
-                        }
-                        // 로그인 실패한 경우
-                        else {
-                            showBottomSheetFragment()
+                    if (etLoginPwd.text.isEmpty()) {
+                        Log.d("LoginActivity", "etLoginPwd.text.isEmpty()")
+                        // 패스워드 입력란으로 포커스 이동
+                        etLoginPwd.isEnabled = true
+                        etLoginPwd.requestFocus()
+                        btnLoginConfirm.isEnabled = false
+                    } else {
+                        val userId = etLoginId.text.toString()
+                        val userPwd = etLoginPwd.text.toString()
+
+                        lifecycleScope.launch {
+                            // 로그인 성공 여부 확인
+                            if (viewModel.loginState.value == true) {
+                                // 사용자 인증 정보 저장
+                                viewModel.saveUserCredentials(userId, userPwd)
+                                navigateToWelcomeActivity()
+                            } else {
+                                // 로그인 실패 시
+                                showBottomSheetFragment()
+                            }
                         }
                     }
                 }
