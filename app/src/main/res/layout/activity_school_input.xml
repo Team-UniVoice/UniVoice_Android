@@ -55,10 +55,7 @@
                 android:layout_height="wrap_content"
                 android:hint="학교 이름 검색하기"
                 android:paddingBottom="13dp"
-                android:textAppearance="@font/pretendard_regular"
-                android:lineHeight="20sp"
-                android:textSize="16sp"
-                android:textFontWeight="400"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
                 android:textColor="@color/font_B01"
                 android:textColorHint="@color/font_B04"
                 android:backgroundTint="@color/mint_400"
@@ -68,6 +65,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_school_input_explain" />
+
+            <ListView
+                android:id="@+id/lv_school_input_search_results"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:maxHeight="160dp"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_school_input_search" />
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_school_input_next"

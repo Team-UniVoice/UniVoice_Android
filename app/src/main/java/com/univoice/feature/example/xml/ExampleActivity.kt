@@ -1,124 +1,122 @@
 package com.univoice.feature.example.xml
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.MotionEvent
+import android.content.Intent
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
-import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.ListPopupWindow
-import android.widget.PopupWindow
-import android.widget.Spinner
-import android.widget.TextView
-import androidx.activity.viewModels
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContentProviderCompat.requireContext
+import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
-import com.univoice.core_ui.util.context.toast
-import com.univoice.core_ui.view.UiState
-import com.univoice.databinding.ActivityExampleBinding
-import com.univoice.databinding.ActivityStudentIdInputBinding
-import com.univoice.databinding.BottomSheetLayoutBinding
+import com.univoice.databinding.ActivitySchoolInputBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class ExampleActivity : BindingActivity<ActivityStudentIdInputBinding>(R.layout.activity_student_id_input) {
-    private val viewModel by viewModels<ExampleViewModel>()
-    private var spinnerPopupWindow: ListPopupWindow? = null
-    private var spinnerPopupWindow2: Boolean =  false
+class ExampleActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout.activity_school_input) {
+
+    private lateinit var adapter: SchoolAdapter
+    private val schoolList = listOf(
+        "서울대학교", "서울과학기술대학교", "서울시립대학교", "서울여자대학교", "서울학교5", "서울학교6",
+        "서울학교7", "서울학교8", "서울학교9", "서울학교10", "서울학교11", "서울학교12", "서울학교13",
+        "서울학교14", "서울학교15", "서울학교16", "서울학교17", "서울학교18", "서울학교19", "서울학교20", "서울학교21"
+    )
+    private val filteredList = mutableListOf<String>()
+    private var schoolSelected = false
+    private var highlightText = ""
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initView()
+    }
+
     override fun initView() {
-        viewModel.getExampleRecyclerview(2)
-        val studentIdArray = resources.getStringArray(R.array.student_id_array)
-        setSpinner(binding.spStudentId, studentIdArray,binding.clStudentIdInput)
+        setupEditTextListener()
+        setupListView()
+        setupNextButton()
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    private fun setSpinner(spinner: Spinner, array: Array<String>, constraintLayout: ConstraintLayout) {
-        val adapter = CustomSpinnerAdapter2(this, array.toMutableList())
-        spinner.adapter = adapter
-        spinner.setSelection(0)  // 스피너 초기값 = hint
+    private fun setupListView() {
+        adapter = SchoolAdapter(this, R.layout.listview_item, filteredList, highlightText)
+        binding.lvSchoolInputSearchResults.adapter = adapter
+        val layoutParams = binding.lvSchoolInputSearchResults.layoutParams
+        layoutParams.height = resources.getDimensionPixelSize(R.dimen.dropdown_height)
+        binding.lvSchoolInputSearchResults.layoutParams = layoutParams
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                (view as? TextView)?.setTextColor(if (position == 0) getColor(R.color.font_B04) else getColor(R.color.black))
+        binding.lvSchoolInputSearchResults.setOnItemClickListener { parent, view, position, id ->
+            val selectedSchool = filteredList[position]
+            if (selectedSchool == "...") return@setOnItemClickListener
+            binding.etSchoolInputSearch.setText(selectedSchool)
+            binding.lvSchoolInputSearchResults.visibility = View.GONE
+            hideKeyboard()
+            schoolSelected = true
+            enableButton()
+        }
+    }
+
+    private fun setupEditTextListener() {
+        binding.etSchoolInputSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val input = s.toString().trim()
+                highlightText = input
+                adapter.setHighlightText(input)
+                filterSchools(input)
+                binding.lvSchoolInputSearchResults.visibility = View.VISIBLE // 드롭다운 표시
+                schoolSelected = false
+                disableButton()
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        binding.etSchoolInputSearch.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                val input = binding.etSchoolInputSearch.text.toString().trim()
+                highlightText = input
+                adapter.setHighlightText(input)
+                filterSchools(input)
+                binding.lvSchoolInputSearchResults.visibility = View.VISIBLE
             }
         }
+    }
 
-        spinner.setOnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
-                toggleSpinnerIcon(spinner)
+    private fun setupNextButton() {
+        binding.btnSchoolInputNext.setOnClickListener {
+            if (schoolSelected) {
+                val intent = Intent(this, DepartmentInputActivity::class.java)
+                startActivity(intent)
             }
-            false
-        }
-
-
-
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    private fun toggleSpinnerIcon(spinner: Spinner) {
-        val icon = spinner.findViewById<ImageView>(R.id.spinner_icon)
-        println(spinnerPopupWindow2)
-        spinnerPopupWindow2!=spinnerPopupWindow2
-        println(spinnerPopupWindow2)
-        if (spinnerPopupWindow?.isShowing == true) {
-            println("닫힘")
-            icon?.setImageResource(R.drawable.ic_spinner_down)
-
-        } else {
-            println("열림")
-            icon?.setImageResource(R.drawable.ic_spinner_up)
         }
     }
 
-    private fun updateSpinnerIcon(spinner: Spinner, isOpen: Boolean) {
-        val icon = spinner.findViewById<ImageView>(R.id.spinner_icon)
-        icon?.setImageResource(if (isOpen) R.drawable.ic_spinner_up else R.drawable.ic_spinner_down)
+    private fun enableButton() {
+        binding.btnSchoolInputNext.isEnabled = true
+        binding.btnSchoolInputNext.background = ContextCompat.getDrawable(this, R.drawable.bg_mint400_radius_40dp)
     }
-}
 
+    private fun disableButton() {
+        binding.btnSchoolInputNext.isEnabled = false
+        binding.btnSchoolInputNext.background = ContextCompat.getDrawable(this, R.drawable.bg_gray200_radius_40dp)
+    }
 
-class CustomSpinnerAdapter2(context: Context, private val items: List<String>) : ArrayAdapter<String>(context, 0, items) {
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.custom_spinner, parent, false)
-        val textView = view.findViewById<TextView>(R.id.spinner_text)
-        textView?.text = if (position == 0) items[position] else items[position + 1] // 0번째 아이템을 힌트로 사용
-
-        if (position == 0) {
-            textView?.setTextColor(context.getColor(R.color.font_B04)) // 초기 텍스트 색상 회색
-        } else {
-            textView?.setTextColor(context.getColor(R.color.black)) // 선택된 후 텍스트 색상 검정색
+    private fun filterSchools(query: String) {
+        filteredList.clear()
+        if (query.isNotEmpty()) {
+            val results = schoolList.filter { it.contains(query, ignoreCase = true) }
+                .sortedBy { it.replace(query, "", ignoreCase = true) }
+                .take(20)
+            filteredList.addAll(results)
+            if (results.size == 20) {
+                filteredList.add("...")
+            }
         }
-        return view
+        adapter.notifyDataSetChanged()
     }
 
-    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.spinner_item, parent, false)
-        val textView = view.findViewById<TextView>(R.id.text1)
-        textView?.text = items[position + 1] // position + 1로 아이템을 가져옴
-        return view
-    }
-
-    override fun getCount(): Int {
-        // hint 항목을 제외한 실제 항목의 개수를 반환
-        return super.getCount() - 1
-    }
-
-    override fun getItem(position: Int): String? {
-        // 첫 번째 항목(힌트)를 제외한 나머지 항목을 반환
-        return if (position == 0) null else items[position]
+    private fun hideKeyboard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.etSchoolInputSearch.windowToken, 0)
     }
 }
