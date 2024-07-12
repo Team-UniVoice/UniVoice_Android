@@ -22,7 +22,7 @@
                 android:id="@+id/tv_quick_scan_complete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="239dp"
                 android:text="@string/tv_quick_scan_complete"
                 android:textAppearance="@style/TextAppearance.UniVoice.head4Bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -30,11 +30,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_quick_scan_complete_avatar"
-                android:layout_width="200dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="32dp"
-                android:src="@drawable/ic_launcher_background"
+                android:id="@+id/iv_quick_scan_complete_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/ic_quick_scan_complete_icon"
                 app:layout_constraintDimensionRatio="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
