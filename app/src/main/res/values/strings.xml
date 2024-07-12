@@ -51,11 +51,6 @@
     <string name="tv_notice_detail_views">조회수</string>
     <string name="toolbar_notice_detail">학과 학생회</string>
     <!-- 저장 -->
-    <string name="item_storage_header">공지사항</string>
-    <string name="item_storage_vertical_divider">|</string>
-    <string name="item_storage_heart_icon_description">좋아요 수</string>
-    <string name="item_storage_view_icon_description">조회수</string>
-    <string name="item_storage_avatar_description">학생회 이미지</string>
     <string name="storage_toolbar_title">저장한 공지사항</string>
 
     <!-- 시간 -->

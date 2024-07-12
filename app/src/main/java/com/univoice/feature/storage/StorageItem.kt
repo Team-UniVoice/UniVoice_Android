@@ -34,10 +34,10 @@ import com.univoice.core_ui.theme.Regular
 import com.univoice.core_ui.theme.cap3Regular
 import com.univoice.core_ui.theme.cap4Regular
 import com.univoice.core_ui.theme.title4Semi
-import com.univoice.domain.entity.StorageEntity
+import com.univoice.domain.entity.NoticeListEntity
 
 @Composable
-fun StorageItem(data: StorageEntity) {
+fun StorageItem(data: NoticeListEntity) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -48,7 +48,7 @@ fun StorageItem(data: StorageEntity) {
     ) {
         Column {
             Text(
-                text = stringResource(id = R.string.item_storage_header),
+                text = data.subTitle,
                 color = Font_B02,
                 style = cap4Regular,
                 modifier = Modifier
@@ -76,31 +76,31 @@ fun StorageItem(data: StorageEntity) {
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
                         .height(12.dp),
-                    text = stringResource(id = R.string.item_storage_vertical_divider),
+                    text = stringResource(id = R.string.text_home_divider),
                     style = cap3Regular
                 )
                 Image(
                     modifier = Modifier.size(12.dp),
-                    painter = painterResource(id = R.drawable.ic_storage_heart),
-                    contentDescription = stringResource(id = R.string.item_storage_heart_icon_description)
+                    painter = painterResource(id = R.drawable.ic_home_like),
+                    contentDescription = stringResource(id = R.string.description_home_notice_like_icon)
                 )
                 Text(
                     modifier = Modifier.padding(start = 2.dp),
                     color = Font_B03,
                     style = cap3Regular,
-                    text = data.likeCount.toString()
+                    text = data.like.toString()
                 )
                 Spacer(modifier = Modifier.width(6.dp))
                 Image(
                     modifier = Modifier.size(12.dp),
-                    painter = painterResource(id = R.drawable.ic_storage_heart),
-                    contentDescription = stringResource(id = R.string.item_storage_view_icon_description)
+                    painter = painterResource(id = R.drawable.ic_home_views),
+                    contentDescription = stringResource(id = R.string.description_home_notice_views_icon)
                 )
                 Text(
                     modifier = Modifier.padding(start = 2.dp),
                     color = Font_B03,
                     style = cap3Regular,
-                    text = data.viewCount.toString()
+                    text = data.views.toString()
                 )
             }
         }
@@ -109,11 +109,11 @@ fun StorageItem(data: StorageEntity) {
                 .size(58.dp)
                 .clip(RoundedCornerShape(5.dp)),
             model = ImageRequest.Builder(LocalContext.current)
-                .data(data.avatar)
+                .data(data.image)
                 .crossfade(true)
                 .build(),
             placeholder = null,
-            contentDescription = stringResource(id = R.string.item_storage_avatar_description)
+            contentDescription = stringResource(id = R.string.description_home_logo_img)
         )
     }
 }
@@ -122,13 +122,13 @@ fun StorageItem(data: StorageEntity) {
 @Composable
 fun PreviewNoticeItem() {
     StorageItem(
-        data = StorageEntity(
-            id = 1,
-            title = "명절 귀향 버스 수요 조사",
-            date = "06/26 ~ 06/26",
-            likeCount = 10,
-            viewCount = 20,
-            avatar = "https://avatars.githubusercontent.com/u/91470334?s=400&u=4a743fda141cf8a074022b515b0ce3286e6c8560&v=4"
+        data = NoticeListEntity(
+            subTitle = "공지사항",
+            title = "전체1",
+            date = "2024/07/12",
+            like = 10,
+            views = 8,
+            image = true
         )
     )
 }

@@ -1,11 +1,8 @@
 package com.univoice.feature.login
 
-import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.view.View.OnFocusChangeListener
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -53,7 +50,8 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                 btnLoginConfirm.isEnabled = etLoginId.text.isNotEmpty()
             }
             etLoginPwd.addTextChangedListener {
-                btnLoginConfirm.isEnabled = etLoginId.text.isNotEmpty() && etLoginPwd.text.isNotEmpty()
+                btnLoginConfirm.isEnabled =
+                    etLoginId.text.isNotEmpty() && etLoginPwd.text.isNotEmpty()
             }
         }
     }
@@ -63,8 +61,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
             btnLoginConfirm.setOnClickListener {
                 if (btnLoginConfirm.isEnabled) {
                     if (etLoginPwd.text.isEmpty()) {
-                        Log.d("LoginActivity", "etLoginPwd.text.isEmpty()")
-                        // 패스워드 입력란으로 포커스 이동
                         etLoginPwd.isEnabled = true
                         etLoginPwd.requestFocus()
                         btnLoginConfirm.isEnabled = false

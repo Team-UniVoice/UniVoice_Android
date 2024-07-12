@@ -55,7 +55,7 @@ fun StorageScreen(navController: NavController) {
         )
         LazyColumn {
             items(viewModel.mockStorageList.size) { index ->
-                val storage = viewModel.mockStorageList[index]
+                val data = viewModel.mockStorageList[index]
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -65,7 +65,7 @@ fun StorageScreen(navController: NavController) {
                             )
                         }
                 ) {
-                    StorageItem(storage)
+                    StorageItem(data)
                     HorizontalDivider(
                         color = Regular,
                         thickness = 1.dp,
