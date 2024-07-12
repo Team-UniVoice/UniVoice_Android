@@ -20,7 +20,7 @@ class CalculateTime(private val context: Context) {
         val yearsDifference = ChronoUnit.YEARS.between(targetDate, currentDate)
 
         return when {
-            minutesDifference < 1 -> context.getString(R.string.feed_time_minute)
+            minutesDifference < 1 -> context.getString(R.string.feed_time_now)
             hoursDifference < 1 -> "$minutesDifference${context.getString(R.string.feed_time_minute)}"
             daysDifference < 1 -> "$hoursDifference${context.getString(R.string.feed_time_hour)}"
             weeksDifference < 1 -> "$daysDifference${context.getString(R.string.feed_time_day)}"
