@@ -31,9 +31,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -75,6 +78,7 @@ import com.univoice.core_ui.theme.Gray800
 import com.univoice.core_ui.theme.Mint400
 import com.univoice.core_ui.theme.Regular
 import com.univoice.core_ui.theme.UniVoiceAndroidTheme
+import com.univoice.core_ui.theme.White
 import com.univoice.core_ui.theme.body3Semi
 import com.univoice.core_ui.theme.body4Regular
 import com.univoice.core_ui.theme.button2Semi
@@ -181,33 +185,53 @@ fun HomeScreen(homeViewModel: HomeViewModel, navController: NavController) {
             )
         }
     ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .padding(innerPadding)
-                .nestedScroll(scrollBehavior.nestedScrollConnection)
-                .fillMaxSize(),
-        ) {
-            item {
-                HomeQuickScanContent(homeViewModel, context)
-            }
-            stickyHeader {
-                HomeNoticeContent(
-                    homeViewModel = homeViewModel,
-                    choiceNoticeIndex = choiceNoticeIndex,
-                    onNoticeClick = { choiceNoticeIndex = it }
-                )
-            }
-            if (homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData.isEmpty()) {
+        Box {
+            LazyColumn(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .nestedScroll(scrollBehavior.nestedScrollConnection)
+                    .fillMaxSize(),
+            ) {
                 item {
-                    HomeNoticeEmptyContent()
+                    HomeQuickScanContent(homeViewModel, context)
                 }
-            } else {
-                itemsIndexed(homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData) { index, data ->
-                    HomeNoticeItem(
-                        index,
-                        data,
-                        homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData.lastIndex,
-                        navController
+                stickyHeader {
+                    HomeNoticeContent(
+                        homeViewModel = homeViewModel,
+                        choiceNoticeIndex = choiceNoticeIndex,
+                        onNoticeClick = { choiceNoticeIndex = it }
+                    )
+                }
+                if (homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData.isEmpty()) {
+                    item {
+                        HomeNoticeEmptyContent()
+                    }
+                } else {
+                    itemsIndexed(homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData) { index, data ->
+                        HomeNoticeItem(
+                            index,
+                            data,
+                            homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData.lastIndex,
+                            navController
+                        )
+                    }
+                }
+            }
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.Bottom
+            ) {
+                FloatingActionButton(
+                    onClick = { navController.navigate(R.id.action_fragment_home_to_fragment_notice_post) },
+                    containerColor = Mint400,
+                    shape = CircleShape,
+                    modifier = Modifier.padding(end = 10.dp, bottom = 10.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.Add,
+                        contentDescription = stringResource(R.string.btn_home_notice_post),
+                        tint = White,
                     )
                 }
             }
@@ -230,7 +254,6 @@ fun HomeNoticeItem(
                     .fillMaxWidth()
                     .padding(start = 4.dp, end = 4.dp, top = 8.dp, bottom = 12.dp)
                     .clickable {
-                        // To-do : 추가해야 함
                         navController.navigate(
                             R.id.action_fragment_home_to_fragment_notice_detail
                         )
@@ -240,7 +263,6 @@ fun HomeNoticeItem(
                     .fillMaxWidth()
                     .padding(horizontal = 4.dp, vertical = 12.dp)
                     .clickable {
-                        // To-do : 추가해야 함
                         navController.navigate(
                             R.id.action_fragment_home_to_fragment_notice_detail
                         )
