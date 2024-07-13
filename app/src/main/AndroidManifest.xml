@@ -42,6 +42,8 @@
             android:exported="false"/>
         <activity android:name=".feature.example.xml.StudentCardCheckActivity"
             android:exported="false"/>
+        <activity android:name=".feature.example.xml.CheckInfoActivity"
+            android:exported="false"/>
         <activity
             android:name=".feature.MainActivity"
             android:exported="true"

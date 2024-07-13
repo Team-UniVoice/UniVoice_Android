@@ -1,5 +1,6 @@
 package com.univoice.feature.example.xml
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,7 @@ class SignupBottomSheetFragment : BottomSheetDialogFragment() {
         binding.checkboxBottomSheetUse.setOnClickListener { updateAgreeButtonState() }
 
         binding.btnBottomSheetAgree.setOnClickListener {
+            startActivity(Intent(requireContext(), CheckInfoActivity::class.java))
             dismiss()
         }
     }
