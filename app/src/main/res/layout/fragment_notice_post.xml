@@ -119,21 +119,17 @@
                         android:id="@+id/rv_notice_post_image"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/item_notice_post_image" />
-
-                    <Space
-                        android:id="@+id/space_notice_post_option_second"
-                        android:layout_width="match_parent"
-                        android:layout_height="16dp"
-                        android:visibility="gone" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/layout_notice_post_option_target"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="16dp"
                         android:background="@drawable/shape_regular_line_16_rect"
                         android:clickable="true"
                         android:visibility="gone">
@@ -178,17 +174,12 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <Space
-                        android:id="@+id/space_notice_post_option_third"
-                        android:layout_width="match_parent"
-                        android:layout_height="16dp"
-                        android:visibility="gone" />
-
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/layout_notice_post_option_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="16dp"
                         android:background="@drawable/shape_regular_line_16_rect"
                         android:visibility="gone">
 
@@ -256,7 +247,7 @@
 
                     <Space
                         android:layout_width="match_parent"
-                        android:layout_height="68dp" />
+                        android:layout_height="52dp" />
 
                 </LinearLayout>
 
