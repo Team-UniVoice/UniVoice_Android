@@ -93,7 +93,7 @@
                 android:layout_marginStart="42dp"
                 android:layout_marginEnd="18dp"
                 android:text="@string/btn_create_account_check"
-                android:enabled="true"
+                android:enabled="false"
                 android:background="@drawable/sel_createaccount_button"
                 android:textAppearance="@style/TextAppearance.UniVoice.body2Semi"
                 android:textColor="@color/font_W01"
@@ -161,20 +161,22 @@
 
             <EditText
                 android:id="@+id/et_create_account_pw_check"
-                android:visibility="invisible"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/et_create_account_pwd_check"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="16dp"
+                android:paddingBottom="13dp"
                 android:background="@android:color/transparent"
+                android:backgroundTint="@color/mint_400"
+                android:hint="@string/et_create_account_pwd_check"
                 android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
                 android:textColor="@color/font_B01"
                 android:textColorHint="@color/font_B04"
-                android:backgroundTint="@color/mint_400"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_create_account_pw" />
 
             <View
@@ -192,7 +194,7 @@
 
             <TextView
                 android:id="@+id/tv_create_account_pw_check_explain"
-                android:visibility="gone"
+                android:visibility="invisible"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/tv_create_account_pwd_check"
@@ -211,7 +213,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_create_account_next"
-                android:background="@drawable/btn_radius_40dp_selector"
+                android:background="@drawable/sel_signup_button"
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
                 android:textColor="@color/white"
                 android:layout_marginStart="16dp"

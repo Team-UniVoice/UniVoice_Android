@@ -48,4 +48,5 @@
     <color name="regular">#FFE5E5EC</color>
     <color name="black">#FF111111</color>
     <color name="white">#FFFFFF</color>
+    <color name="red">#FF3D3D</color>
 </resources>

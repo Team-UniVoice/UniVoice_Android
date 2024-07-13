@@ -1,5 +1,7 @@
 package com.univoice.feature.example.xml
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import androidx.core.content.ContextCompat
@@ -11,11 +13,24 @@ import com.univoice.feature.util.setupToolbarClickListener
 
 class CreateAccountActivity :
     BindingActivity<ActivityCreateAccountBinding>(R.layout.activity_create_account) {
+
+    private var isIdValid = false
+    private var isIdUnique = false
+    private var isPasswordValid = false
+
     override fun initView() {
         setupToolbarClickListener(binding.ibToolbarCreateAccountIcon)
         initPwdTransformation()
         setupFocusChangeListeners()
+        initEditTextIdInput()
+        setupIdValidation()
+        setupDuplicateCheckButton()
+        setupPasswordValidation()
+    }
 
+    private fun initEditTextIdInput() {
+        binding.etCreateAccountId.requestFocus()
+        binding.etCreateAccountPw.isEnabled = false
     }
 
     private fun initPwdTransformation() {
@@ -42,5 +57,174 @@ class CreateAccountActivity :
             dividerView.backgroundTintList =
                 ContextCompat.getColorStateList(this@CreateAccountActivity, colorResId)
         }
+    }
+
+    private fun setupIdValidation() {
+        binding.etCreateAccountId.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                val id = s.toString()
+                when {
+                    id.isEmpty() -> {
+                        binding.tvCreateAccountIdExplain.setText(R.string.tv_create_account_id)
+                        binding.tvCreateAccountIdExplain.setTextColor(
+                            ContextCompat.getColor(this@CreateAccountActivity, R.color.black)
+                        )
+                        binding.btnCreateAccountId.isEnabled = false
+                        isIdValid = false
+                    }
+                    !isValidId(id) -> {
+                        binding.tvCreateAccountIdExplain.setText(R.string.tv_create_account_id)
+                        binding.tvCreateAccountIdExplain.setTextColor(
+                            ContextCompat.getColor(this@CreateAccountActivity, R.color.black)
+                        )
+                        binding.btnCreateAccountId.isEnabled = false
+                        isIdValid = false
+                    }
+                    else -> {
+                        binding.tvCreateAccountIdExplain.setText(R.string.tv_create_account_id)
+                        binding.tvCreateAccountIdExplain.setTextColor(
+                            ContextCompat.getColor(this@CreateAccountActivity, R.color.blue_400)
+                        )
+                        binding.btnCreateAccountId.isEnabled = true
+                        isIdValid = true
+                    }
+                }
+                updateNextButtonState()
+            }
+        })
+    }
+
+    private fun isValidId(id: String): Boolean {
+        val regex = "^[a-z0-9!@#\$%^&*]{5,20}$"
+        return id.matches(regex.toRegex())
+    }
+
+    private fun setupDuplicateCheckButton() {
+        binding.btnCreateAccountId.setOnClickListener {
+            val id = binding.etCreateAccountId.text.toString()
+            if (checkDuplicateId(id)) {
+                binding.tvCreateAccountIdExplain.text = "사용 가능한 아이디입니다."
+                binding.tvCreateAccountIdExplain.setTextColor(
+                    ContextCompat.getColor(this@CreateAccountActivity, R.color.mint_400)
+                )
+                binding.btnCreateAccountId.isEnabled = false
+                binding.etCreateAccountPw.isEnabled = true
+                binding.etCreateAccountPw.requestFocus()
+                isIdUnique = true
+            } else {
+                binding.tvCreateAccountIdExplain.text = "사용 불가능한 아이디입니다."
+                binding.tvCreateAccountIdExplain.setTextColor(
+                    ContextCompat.getColor(this@CreateAccountActivity, R.color.red)
+                )
+                binding.btnCreateAccountId.isEnabled = true
+                isIdUnique = false
+            }
+            updateNextButtonState()
+        }
+
+        binding.etCreateAccountId.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.tvCreateAccountIdExplain.setText(R.string.tv_create_account_id)
+                binding.tvCreateAccountIdExplain.setTextColor(
+                    ContextCompat.getColor(this@CreateAccountActivity, R.color.black)
+                )
+                binding.viewCreateAccountIdDivider.backgroundTintList =
+                    ContextCompat.getColorStateList(this@CreateAccountActivity, R.color.mint_400)
+            } else {
+                binding.viewCreateAccountIdDivider.backgroundTintList =
+                    ContextCompat.getColorStateList(this@CreateAccountActivity, R.color.regular)
+            }
+        }
+    }
+
+    private fun checkDuplicateId(id: String): Boolean {
+        val existingIds = listOf(
+            "user1", "user2", "user3", "user4", "user5"
+        )
+        return !existingIds.contains(id)
+    }
+
+    private fun setupPasswordValidation() {
+        binding.etCreateAccountPw.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                val password = s.toString()
+                if (isValidPassword(password)) {
+                    binding.tvCreateAccountPwExplain.setTextColor(
+                        ContextCompat.getColor(this@CreateAccountActivity, R.color.blue_400)
+                    )
+                    isPasswordValid = true
+                } else {
+                    binding.tvCreateAccountPwExplain.setTextColor(
+                        ContextCompat.getColor(this@CreateAccountActivity, R.color.red)
+                    )
+                    isPasswordValid = false
+                }
+                updateNextButtonState()
+            }
+        })
+
+        binding.btnCreateAccountNext.setOnClickListener {
+            if (binding.btnCreateAccountNext.isEnabled) {
+                binding.btnCreateAccountNext.isEnabled = false
+                binding.btnCreateAccountNext.text = "다음"
+                binding.etCreateAccountPwCheck.visibility = View.VISIBLE
+                binding.viewCreateAccountPwCheckDivider.visibility = View.VISIBLE
+                binding.tvCreateAccountPwExplain.visibility = View.INVISIBLE
+                binding.etCreateAccountPwCheck.requestFocus()
+            }
+        }
+
+        binding.etCreateAccountPwCheck.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                val password = binding.etCreateAccountPw.text.toString()
+                val confirmPassword = s.toString()
+                if (password == confirmPassword) {
+                    binding.tvCreateAccountPwCheckExplain.visibility = View.VISIBLE
+                    binding.btnCreateAccountNext.isEnabled = true
+                } else {
+                    binding.tvCreateAccountPwCheckExplain.visibility = View.GONE
+                    binding.btnCreateAccountNext.isEnabled = false
+                }
+            }
+        })
+
+        binding.etCreateAccountPw.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.viewCreateAccountPwDivider.backgroundTintList =
+                    ContextCompat.getColorStateList(this@CreateAccountActivity, R.color.mint_400)
+                binding.viewCreateAccountIdDivider.backgroundTintList =
+                    ContextCompat.getColorStateList(this@CreateAccountActivity, R.color.regular)
+            } else {
+                binding.viewCreateAccountPwDivider.backgroundTintList =
+                    ContextCompat.getColorStateList(this@CreateAccountActivity, R.color.regular)
+            }
+        }
+
+        binding.etCreateAccountPwCheck.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.viewCreateAccountPwCheckDivider.backgroundTintList =
+                    ContextCompat.getColorStateList(this@CreateAccountActivity, R.color.mint_400)
+                binding.viewCreateAccountPwDivider.backgroundTintList =
+                    ContextCompat.getColorStateList(this@CreateAccountActivity, R.color.regular)
+            } else {
+                binding.viewCreateAccountPwCheckDivider.backgroundTintList =
+                    ContextCompat.getColorStateList(this@CreateAccountActivity, R.color.regular)
+            }
+        }
+    }
+
+    private fun isValidPassword(password: String): Boolean {
+        val regex = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#\$%^&*]).{8,16}$"
+        return password.matches(regex.toRegex())
+    }
+
+    private fun updateNextButtonState() {
+        binding.btnCreateAccountNext.isEnabled = isIdValid && isIdUnique && isPasswordValid
     }
 }
