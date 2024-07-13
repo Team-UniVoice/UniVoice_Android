@@ -13,22 +13,34 @@
         <action
             android:id="@+id/action_fragment_home_to_fragment_notice_detail"
             app:destination="@id/fragment_notice_detail" />
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_notice_post"
+            app:destination="@id/fragment_notice_post" />
     </fragment>
     <fragment
         android:id="@+id/fragment_storage"
         android:name="com.univoice.feature.storage.StorageFragment"
         android:label="StorageFragment"
-        tools:layout="@layout/fragment_storage">
-    </fragment>
+        tools:layout="@layout/fragment_storage" />
     <fragment
         android:id="@+id/fragment_setting"
         android:name="com.univoice.feature.setting.SettingFragment"
         android:label="SettingFragment"
-        tools:layout="@layout/fragment_setting">
-    </fragment>
+        tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/fragment_notice_detail"
         android:name="com.univoice.feature.noticeDetail.NoticeDetailFragment"
         android:label="NoticeDetailFragment"
-        tools:layout="@layout/fragment_notice_detail"/>
+        tools:layout="@layout/fragment_notice_detail" />
+    <fragment
+        android:id="@+id/fragment_notice_post"
+        android:name="com.univoice.feature.noticePost.NoticePostFragment"
+        android:label="NoticePostFragment"
+        tools:layout="@layout/fragment_notice_post">
+        <action
+            android:id="@+id/action_fragment_notice_post_to_fragment_home"
+            app:destination="@id/fragment_home"
+            app:popUpTo="@id/fragment_home"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
