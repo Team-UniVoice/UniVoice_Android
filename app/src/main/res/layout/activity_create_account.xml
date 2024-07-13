@@ -94,7 +94,8 @@
                 android:layout_marginEnd="18dp"
                 android:layout_marginTop="-9dp"
                 android:text="중복확인"
-                android:background="@drawable/btn_radius_10dp_selector"
+                android:enabled="true"
+                android:background="@drawable/sel_createaccount_button"
                 android:textAppearance="@style/TextAppearance.UniVoice.body2Semi"
                 android:textColor="@color/font_W01"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -164,6 +165,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="비밀번호를 확인해주세요"
+                android:background="@android:color/transparent"
+                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
                 android:textColor="@color/font_B01"
                 android:textColorHint="@color/font_B04"
                 android:backgroundTint="@color/mint_400"
@@ -173,6 +176,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_create_account_pw" />
+
+            <View
+                android:id="@+id/view_create_account_pw_check_divider"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/shape_regular_fill_30_rect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_create_account_pw_check" />
 
             <TextView
                 android:id="@+id/tv_create_account_pw_check_explain"

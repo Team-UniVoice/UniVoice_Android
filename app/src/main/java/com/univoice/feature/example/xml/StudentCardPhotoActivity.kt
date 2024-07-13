@@ -65,15 +65,19 @@ class StudentCardPhotoActivity :
                     val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
                     val drawable = BitmapDrawable(resources, bitmap)
                     binding.btnStudentCardPhotoStart.background = drawable
+                    binding.btnStudentCardPhotoStart.text = ""
                     binding.btnStudentCardPhotoNext.visibility = View.VISIBLE
                     binding.btnStudentCardPhotoNext.setOnClickListener {
-                        val intent = Intent(this, NameInputActivity::class.java)
+                        val intent = Intent(this, NameInputActivity::class.java).apply {
+                            putExtra("selectedImageUri", selectedImageUri.toString())
+                        }
                         startActivity(intent)
                     }
                 }
             }
         }
-    }
+
+}
 
     private fun allPermissionsGranted(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

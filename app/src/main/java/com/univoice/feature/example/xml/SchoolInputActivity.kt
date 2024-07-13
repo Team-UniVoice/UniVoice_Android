@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivitySchoolInputBinding
+import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,9 +32,15 @@ class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout
     }
 
     override fun initView() {
+        setupToolbarClickListener(binding.ibToolbarSchoolInputIcon)
+        initEditTextSchoolInput()
         setupEditTextListener()
         setupListView()
         setupNextButton()
+    }
+
+    private fun initEditTextSchoolInput() {
+        binding.etSchoolInputSearch.requestFocus()
     }
 
     private fun setupListView() {

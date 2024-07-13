@@ -36,6 +36,13 @@ class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(
         setupNextButton()
     }
 
+<<<<<<< Updated upstream
+=======
+    private fun initEditTextDepartmentInput() {
+        binding.etDepartmentInputSearch.requestFocus()
+    }
+
+>>>>>>> Stashed changes
     private fun setupListView() {
         adapter = ListViewAdapter(this, R.layout.listview_item, filteredList, highlightText)
         binding.lvDepartmentInputSearchResults.adapter = adapter
