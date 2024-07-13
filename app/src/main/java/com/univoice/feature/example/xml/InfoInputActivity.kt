@@ -18,13 +18,8 @@ class InfoInputActivity : BindingActivity<ActivityInfoInputBinding>(R.layout.act
 
     private var selectedImageUri: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        selectedImageUri = intent.getStringExtra("selectedImageUri")
-        initView()
-    }
-
     override fun initView() {
+        selectedImageUri = intent.getStringExtra("selectedImageUri")
         setupToolbarClickListener(binding.ibToolbarNameInputIcon)
         setupFocusChangeListeners()
         initEditTextNameInput()
