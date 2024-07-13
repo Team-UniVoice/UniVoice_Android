@@ -68,4 +68,14 @@
     <string name="tv_student_card_name">이름</string>
     <string name="tv_student_card_id">학번</string>
     <string name="btn_student_card_next">네, 일치해요</string>
+    <string name="tb_create_account">계정 생성</string>
+    <string name="tv_create_account_explain">아이디와 비밀번호를\n설정해주세요</string>
+    <string name="et_create_account_id">아이디 입력하기</string>
+    <string name="btn_create_account_check">중복확인</string>
+    <string name="tv_create_account_id">영문, 소문자, 숫자, 특수문자 사용 5~20자</string>
+    <string name="et_create_account_pwd">비밀번호 설정하기</string>
+    <string name="tv_create_account_pwd">영문, 숫자, 특수문자 각각 1개 이상 포함 8~16자</string>
+    <string name="et_create_account_pwd_check">비밀번호를 확인해주세요</string>
+    <string name="tv_create_account_pwd_check">비밀번호가 일치합니다</string>
+    <string name="btn_create_account_next">다음</string>
 </resources>
