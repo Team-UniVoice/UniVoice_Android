@@ -18,6 +18,7 @@
     <string name="description_home_notice_like_icon">공지사항 좋아요</string>
     <string name="description_home_notice_views_icon">공지사항 조회수</string>
     <string name="btn_home_notice_post">공지사항 작성 Floating Action Button</string>
+    <string name="btn_home_floating_action_btn">작성하기</string>
 
     <!-- 로그인 -->
     <string name="login_toolbar_title">로그인</string>
