@@ -40,7 +40,7 @@ class HomeViewModel : ViewModel() {
             noticeData = listOf(
                 NoticeListEntity(
                     subTitle = "공지사항",
-                    title = "전체1",
+                    title = "전체1 동해물과백두산이마르고닳도록하느님이보우하사우리나라만세무궁화삼천리화려강산대한사람대한으로길이보전하세",
                     startDate = "06/26",
                     endDate = "07/01",
                     like = 10,
@@ -58,12 +58,12 @@ class HomeViewModel : ViewModel() {
                 ),
                 NoticeListEntity(
                     subTitle = "공지사항",
-                    title = "전체3",
+                    title = "전체3 동해물과백두산이마르고닳도록하느님이보우하사우리나라만세무궁화삼천리화려강산대한사람대한으로길이보전하세 동해물과백두산이마르고닳도록하느님이보우하사우리나라만세무궁화삼천리화려강산대한사람대한으로길이보전하세",
                     startDate = "06/26",
                     endDate = "07/01",
                     like = 10,
                     views = 8,
-                    image = true,
+                    image = false,
                 ),
                 NoticeListEntity(
                     subTitle = "공지사항",
