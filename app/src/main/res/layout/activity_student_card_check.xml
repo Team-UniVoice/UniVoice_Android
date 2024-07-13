@@ -9,17 +9,25 @@
         android:background="@color/white">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_student_card_check"
+            android:id="@+id/toolbar_student_card_check"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular"
-            app:navigationIcon="@drawable/ic_left_arrow"
+            android:layout_marginStart="4dp"
+            app:contentInsetStart="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular">
+
+            <ImageButton
+                android:id="@+id/ib_toolbar_student_card_check_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back" />
 
             <TextView
-                android:id="@+id/tv_student_card_photo_check"
+                android:id="@+id/tv_toolbar_student_card_check_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="학생증 인증"
@@ -34,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_student_card_check">
+            app:layout_constraintTop_toBottomOf="@id/toolbar_student_card_check">
 
             <TextView
                 android:id="@+id/tv_student_card_check_explain"
