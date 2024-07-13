@@ -1,132 +1,161 @@
 package com.univoice.feature.example.xml
 
 import android.content.Intent
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.view.inputmethod.InputMethodManager
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityDepartmentInputBinding
+import com.univoice.databinding.ItemBottomButtonBinding
+import com.univoice.feature.example.xml.SchoolInputActivity.Companion.MAX_SIZE
+import com.univoice.feature.example.xml.SchoolInputActivity.Companion.SCHOOL_KEY
+import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(R.layout.activity_department_input) {
+class DepartmentInputActivity :
+    BindingActivity<ActivityDepartmentInputBinding>(R.layout.activity_department_input) {
+
+    private val viewModel by viewModels<DepartmentInputViewModel>()
     private lateinit var adapter: ListViewAdapter
-    private val departmentList = listOf(
-        "컴퓨터공학과", "컴퓨터학과", "컴퓨터과학과", "컴퓨터과학", "컴퓨터교육과", "컴퓨터교육"
-    )
     private val filteredList = mutableListOf<String>()
     private var departmentSelected = false
     private var highlightText = ""
-    private var selectedSchool: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        selectedSchool = intent.getStringExtra("selectedSchool")
-        initView()
-    }
+    private lateinit var itemSignupButtonBinding: ItemBottomButtonBinding
 
     override fun initView() {
-        setupEditTextListener()
+        setupToolbar()
+        initFocus()
+        initAdapter()
         setupListView()
         setupNextButton()
+        setupEditTextListener()
     }
 
-<<<<<<< Updated upstream
-=======
-    private fun initEditTextDepartmentInput() {
+    private fun setupToolbar() {
+        setupToolbarClickListener(binding.ibToolbarDepartmentInputIcon)
+    }
+
+    private fun initFocus() {
         binding.etDepartmentInputSearch.requestFocus()
     }
 
->>>>>>> Stashed changes
-    private fun setupListView() {
+    private fun initAdapter() {
         adapter = ListViewAdapter(this, R.layout.listview_item, filteredList, highlightText)
         binding.lvDepartmentInputSearchResults.adapter = adapter
-        val layoutParams = binding.lvDepartmentInputSearchResults.layoutParams
-        layoutParams.height = resources.getDimensionPixelSize(R.dimen.dropdown_height)
-        binding.lvDepartmentInputSearchResults.layoutParams = layoutParams
+    }
 
-        binding.lvDepartmentInputSearchResults.setOnItemClickListener { parent, view, position, id ->
-            val selectedDepartment = filteredList[position]
-            if (selectedDepartment == "...") return@setOnItemClickListener
-            binding.etDepartmentInputSearch.setText(selectedDepartment)
-            binding.lvDepartmentInputSearchResults.visibility = View.GONE
-            hideKeyboard()
-            departmentSelected = true
-            enableButton()
+    private fun setupListView() {
+        binding.lvDepartmentInputSearchResults.apply {
+            layoutParams.height = resources.getDimensionPixelSize(R.dimen.dropdown_height)
+            setOnItemClickListener { _, _, position, _ ->
+                val selectedDepartment = filteredList[position]
+                if (selectedDepartment == context.getString(R.string.tv_ellipse)) return@setOnItemClickListener
+
+                binding.etDepartmentInputSearch.setText(selectedDepartment)
+                binding.etDepartmentInputSearch.setSelection(selectedDepartment.length)
+                visibility = View.GONE
+                departmentSelected = true
+                enableButton()
+            }
         }
     }
 
     private fun setupEditTextListener() {
-        binding.etDepartmentInputSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        binding.etDepartmentInputSearch.apply {
+            addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val input = s.toString().trim()
-                highlightText = input
-                adapter.setHighlightText(input)
-                filterDepartments(input)
-                binding.lvDepartmentInputSearchResults.visibility = View.VISIBLE // 드롭다운 표시
-                departmentSelected = false
-                disableButton()
-            }
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    val input = s.toString().trim()
+                    highlightText = input
+                    adapter.setHighlightText(input)
+                    filterDepartments(input)
+                    binding.lvDepartmentInputSearchResults.visibility = View.VISIBLE
+                    departmentSelected = false
+                    disableButton()
+                }
 
-            override fun afterTextChanged(s: Editable?) {}
-        })
+                override fun afterTextChanged(s: Editable?) {}
+            })
 
-        binding.etDepartmentInputSearch.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                val input = binding.etDepartmentInputSearch.text.toString().trim()
-                highlightText = input
-                adapter.setHighlightText(input)
-                filterDepartments(input)
-                binding.lvDepartmentInputSearchResults.visibility = View.VISIBLE
+            setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    text.toString().trim().also {
+                        highlightText = it
+                        adapter.setHighlightText(it)
+                        filterDepartments(it)
+                    }
+                    binding.lvDepartmentInputSearchResults.visibility = View.VISIBLE
+                }
             }
         }
     }
 
     private fun setupNextButton() {
-        binding.btnDepartmentInputNext.setOnClickListener {
+        itemSignupButtonBinding = ItemBottomButtonBinding.bind(binding.root)
+        disableButton()
+        itemSignupButtonBinding.btnSignupNext.setOnClickListener {
             if (departmentSelected) {
                 val selectedDepartment = binding.etDepartmentInputSearch.text.toString()
-                val intent = Intent(this, StudentIdInputActivity::class.java)
-                intent.putExtra("selectedSchool", selectedSchool)
-                intent.putExtra("selectedDepartment", selectedDepartment)
-                startActivity(intent)
+                val selectedSchool = intent.getStringExtra(SCHOOL_KEY)
+                navigateToStudentIdInput(selectedSchool, selectedDepartment)
             }
         }
     }
 
+    private fun navigateToStudentIdInput(selectedSchool: String?, selectedDepartment: String) {
+        Intent(this, StudentIdInputActivity::class.java).apply {
+            putExtra(SCHOOL_KEY, selectedSchool)
+            putExtra(DEPARTMENT_KEY, selectedDepartment)
+            startActivity(this)
+        }
+    }
+
     private fun enableButton() {
-        binding.btnDepartmentInputNext.isEnabled = true
-        binding.btnDepartmentInputNext.background = ContextCompat.getDrawable(this, R.drawable.bg_mint400_radius_40dp)
+        with(itemSignupButtonBinding.btnSignupNext) {
+            isEnabled = true
+            background = ContextCompat.getDrawable(
+                this@DepartmentInputActivity,
+                R.drawable.shape_mint400_fill_40_rect
+            )
+        }
     }
 
     private fun disableButton() {
-        binding.btnDepartmentInputNext.isEnabled = false
-        binding.btnDepartmentInputNext.background = ContextCompat.getDrawable(this, R.drawable.bg_gray200_radius_40dp)
+        with(itemSignupButtonBinding.btnSignupNext) {
+            isEnabled = false
+            background = ContextCompat.getDrawable(
+                this@DepartmentInputActivity,
+                R.drawable.shape_gray200_fill_40_rect
+            )
+        }
     }
 
     private fun filterDepartments(query: String) {
         filteredList.clear()
         if (query.isNotEmpty()) {
-            val results = departmentList.filter { it.contains(query, ignoreCase = true) }
+            val results = viewModel.mockDepartmentList
+                .filter { it.contains(query, ignoreCase = true) }
                 .sortedBy { it.replace(query, "", ignoreCase = true) }
-                .take(20)
             filteredList.addAll(results)
-            if (results.size == 20) {
+            if (filteredList.size > MAX_SIZE) {
                 filteredList.add("...")
             }
         }
         adapter.notifyDataSetChanged()
     }
 
-    private fun hideKeyboard() {
-        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.etDepartmentInputSearch.windowToken, 0)
+    companion object {
+        const val DEPARTMENT_KEY = "selectedDepartment"
     }
 }

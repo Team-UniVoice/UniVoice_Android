@@ -35,9 +35,7 @@ class CustomSpinner @JvmOverloads constructor(
         // register that the Spinner was opened so we have a status
         // indicator for when the container holding this Spinner may lose focus
         mOpenInitiated = true
-        if (mListener != null) {
-            mListener!!.onSpinnerOpened(this)
-        }
+        mListener?.onSpinnerClosed(this)
         return super.performClick()
     }
 

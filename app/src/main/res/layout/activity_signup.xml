@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -43,50 +42,46 @@
             android:id="@+id/cl_signup_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_signup">
 
             <TextView
                 android:id="@+id/tv_signup_explain"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="회원가입을 위해서는\n몇 가지 개인정보가 필요해요"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="56dp"
-                android:layout_marginEnd="38dp"
+                android:text="회원가입을 위해서는\n몇 가지 개인정보가 필요해요"
                 android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_uni"
                 android:layout_marginTop="52dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/ic_uni"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_signup_explain" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_signup_start"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="회원가입 시작하기"
-                android:background="@drawable/bg_mint400_radius_40dp"
+                android:background="@drawable/shape_mint400_fill_40_rect"
+                android:paddingVertical="19dp"
+                android:text="@string/btn_signup_start"
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
                 android:textColor="@color/white"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

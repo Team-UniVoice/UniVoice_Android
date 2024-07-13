@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityStudentCardPhotoBinding
+import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,15 +25,19 @@ class StudentCardPhotoActivity :
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     private lateinit var pickImagesLauncher: ActivityResultLauncher<Intent>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initView()
+    override fun initView() {
+        setupToolbar()
         setupPermissions()
         setupImagePicker()
+        uploadBtnClickListener()
     }
 
-    override fun initView() {
-        binding.btnStudentCardPhotoStart.setOnClickListener {
+    private fun setupToolbar() {
+        setupToolbarClickListener(binding.ibToolbarStudentCardPhotoIcon)
+    }
+
+    private fun uploadBtnClickListener() {
+        binding.btnStudentCardPhotoUpload.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
             } else {
@@ -61,23 +66,23 @@ class StudentCardPhotoActivity :
         ) { result ->
             if (result.resultCode == RESULT_OK) {
                 val selectedImageUri: Uri? = result.data?.data
-                if (selectedImageUri != null) {
-                    val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
+                selectedImageUri?.let {
+                    val bitmap =
+                        MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
                     val drawable = BitmapDrawable(resources, bitmap)
-                    binding.btnStudentCardPhotoStart.background = drawable
-                    binding.btnStudentCardPhotoStart.text = ""
-                    binding.btnStudentCardPhotoNext.visibility = View.VISIBLE
-                    binding.btnStudentCardPhotoNext.setOnClickListener {
-                        val intent = Intent(this, NameInputActivity::class.java).apply {
-                            putExtra("selectedImageUri", selectedImageUri.toString())
+                    with(binding) {
+                        btnStudentCardPhotoUpload.background = drawable
+                        btnStudentCardPhotoUpload.text = ""
+                        btnStudentCardPhotoNext.visibility = View.VISIBLE
+                        btnStudentCardPhotoNext.setOnClickListener {
+                            navigateToNameInput(selectedImageUri)
                         }
-                        startActivity(intent)
                     }
                 }
             }
         }
 
-}
+    }
 
     private fun allPermissionsGranted(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -94,5 +99,16 @@ class StudentCardPhotoActivity :
     private fun pickImageFromGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         pickImagesLauncher.launch(intent)
+    }
+
+    private fun navigateToNameInput(selectedImageUri: Uri) {
+        Intent(this, NameInputActivity::class.java).apply {
+            putExtra(IMAGE_KEY, selectedImageUri.toString())
+            startActivity(this)
+        }
+    }
+
+    companion object {
+        const val IMAGE_KEY = "selectedImageUri"
     }
 }

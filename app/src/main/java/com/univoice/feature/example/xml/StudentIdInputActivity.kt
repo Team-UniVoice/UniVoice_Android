@@ -1,8 +1,6 @@
 package com.univoice.feature.example.xml
 
 import android.content.Intent
-import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -12,6 +10,10 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.core_ui.view.CustomSpinner
 import com.univoice.databinding.ActivityStudentIdInputBinding
+import com.univoice.databinding.ItemBottomButtonBinding
+import com.univoice.feature.example.xml.DepartmentInputActivity.Companion.DEPARTMENT_KEY
+import com.univoice.feature.example.xml.SchoolInputActivity.Companion.SCHOOL_KEY
+import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,72 +21,117 @@ class StudentIdInputActivity :
     BindingActivity<ActivityStudentIdInputBinding>(R.layout.activity_student_id_input) {
 
     private var isSpinnerInitialized = false
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initView()
-    }
+    private lateinit var itemSignupButtonBinding: ItemBottomButtonBinding
 
     override fun initView() {
+        setupToolbar()
+        initFocus()
+        setupSpinner()
+        setupNextButton()
+        setupTextViews()
+        disableButton()
+    }
+
+    private fun setupToolbar() {
+        setupToolbarClickListener(binding.ibToolbarStudentIdInputIcon)
+    }
+
+    private fun initFocus() {
+        with(binding.spStudentIdInput) {
+            requestFocus()
+            // 스피너가 펼쳐진 상태이도록
+            post { performClick() }
+        }
+    }
+
+    private fun setupSpinner() {
+        initSpinnerAdapter()
+        setSpinnerListeners()
+    }
+
+    private fun initSpinnerAdapter() {
         val studentIdArray = resources.getStringArray(R.array.student_id_array)
-        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
-            this, android.R.layout.simple_list_item_1, studentIdArray
-        )
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, studentIdArray)
         binding.spStudentIdInput.adapter = arrayAdapter
-        binding.spStudentIdInput.setSpinnerEventsListener(object :
-            CustomSpinner.OnSpinnerEventsListener {
-            override fun onSpinnerOpened(spinner: Spinner?) {
-                binding.spStudentIdInput.isActivated = true
-            }
+    }
 
-            override fun onSpinnerClosed(spinner: Spinner?) {
-                binding.spStudentIdInput.isActivated = false
-            }
-        })
+    private fun setSpinnerListeners() {
+        with(binding.spStudentIdInput) {
+            setSpinnerEventsListener(object : CustomSpinner.OnSpinnerEventsListener {
+                override fun onSpinnerOpened(spinner: Spinner?) {
+                    isActivated = true
+                }
 
-        binding.spStudentIdInput.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                if (isSpinnerInitialized) {
-                    val selectedItem = parent?.getItemAtPosition(position).toString()
-                    Log.d("ExampleActivity", "Selected item: $selectedItem")
-                    enableButton()
-                } else {
-                    isSpinnerInitialized = true
+                override fun onSpinnerClosed(spinner: Spinner?) {
+                    isActivated = false
+                }
+            })
+
+            onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    if (isSpinnerInitialized) {
+                        enableButton()
+                    } else {
+                        isSpinnerInitialized = true
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    disableButton()
                 }
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                Log.d("ExampleActivity", "Nothing selected")
-                disableButton()
-            }
         }
+    }
 
-        disableButton()
+    private fun setupNextButton() {
+        itemSignupButtonBinding = ItemBottomButtonBinding.bind(binding.root)
+        itemSignupButtonBinding.btnSignupNext.setOnClickListener {
+            navigateToStudentInfoCheck()
+        }
+    }
 
-        val selectedSchool = intent.getStringExtra("selectedSchool")
-        val selectedDepartment = intent.getStringExtra("selectedDepartment")
+    private fun navigateToStudentInfoCheck() {
+        Intent(this, StudentInfoCheckActivity::class.java).apply {
+            putExtra(SCHOOL_KEY, intent.getStringExtra(SCHOOL_KEY))
+            putExtra(DEPARTMENT_KEY, intent.getStringExtra(DEPARTMENT_KEY))
+            putExtra(ID_KEY, binding.spStudentIdInput.selectedItem.toString())
+            startActivity(this)
+        }
+    }
 
-        binding.tvStudentIdInputSchoolSelected.text = selectedSchool
-        binding.tvStudentIdInputDepartmentSelected.text = selectedDepartment
-
-        binding.btnStudentIdInputInputNext.setOnClickListener {
-            val intent = Intent(this, StudentCardPhotoActivity::class.java)
-            startActivity(intent)
+    private fun setupTextViews() {
+        with(binding) {
+            tvStudentIdInputSchoolSelected.text = intent.getStringExtra(SCHOOL_KEY)
+            tvStudentIdInputDepartmentSelected.text = intent.getStringExtra(DEPARTMENT_KEY)
         }
     }
 
     private fun enableButton() {
-        binding.btnStudentIdInputInputNext.isEnabled = true
-        binding.btnStudentIdInputInputNext.background = ContextCompat.getDrawable(this, R.drawable.bg_mint400_radius_40dp)
+        with(itemSignupButtonBinding.btnSignupNext) {
+            isEnabled = true
+            background = ContextCompat.getDrawable(
+                this@StudentIdInputActivity,
+                R.drawable.shape_mint400_fill_40_rect
+            )
+        }
     }
 
     private fun disableButton() {
-        binding.btnStudentIdInputInputNext.isEnabled = false
-        binding.btnStudentIdInputInputNext.background = ContextCompat.getDrawable(this, R.drawable.bg_gray200_radius_40dp)
+        with(itemSignupButtonBinding.btnSignupNext) {
+            isEnabled = false
+            background = ContextCompat.getDrawable(
+                this@StudentIdInputActivity,
+                R.drawable.shape_gray200_fill_40_rect
+            )
+        }
+    }
+
+    companion object {
+        const val ID_KEY = "selectedId"
     }
 }
