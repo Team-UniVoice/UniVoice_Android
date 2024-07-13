@@ -12,6 +12,8 @@ import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.RoundedBitmapDrawable
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityStudentCardPhotoBinding
@@ -69,7 +71,9 @@ class StudentCardPhotoActivity :
                 selectedImageUri?.let {
                     val bitmap =
                         MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
-                    val drawable = BitmapDrawable(resources, bitmap)
+                    val drawable = RoundedBitmapDrawableFactory.create(resources, bitmap).apply {
+                        cornerRadius = 10f * resources.displayMetrics.density
+                    }
                     with(binding) {
                         btnStudentCardPhotoUpload.background = drawable
                         btnStudentCardPhotoUpload.text = ""
