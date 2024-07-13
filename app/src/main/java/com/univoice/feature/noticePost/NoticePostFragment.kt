@@ -69,6 +69,10 @@ class NoticePostFragment :
         binding.rvNoticePostImage.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvNoticePostImage.adapter = imageAdapter
+
+        if (binding.rvNoticePostImage.itemDecorationCount == 0) {
+            binding.rvNoticePostImage.addItemDecoration(NoticePostImageItemDecorator(requireContext()))
+        }
     }
 
     private fun initPhotoBtnClickListener() {
