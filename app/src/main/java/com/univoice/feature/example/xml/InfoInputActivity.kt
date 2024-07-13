@@ -8,13 +8,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
-import com.univoice.databinding.ActivityNameInputBinding
+import com.univoice.databinding.ActivityInfoInputBinding
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class NameInputActivity : BindingActivity<ActivityNameInputBinding>(R.layout.activity_info_input) {
+class InfoInputActivity : BindingActivity<ActivityInfoInputBinding>(R.layout.activity_info_input) {
 
     private var selectedImageUri: String? = null
 
@@ -61,7 +61,7 @@ class NameInputActivity : BindingActivity<ActivityNameInputBinding>(R.layout.act
                     else {
                         val userName = etNameInputName.text.toString()
                         val userStudentId = etNameInputStudentId.text.toString()
-                        val intent = Intent(this@NameInputActivity, StudentCardCheckActivity::class.java).apply {
+                        val intent = Intent(this@InfoInputActivity, StudentCardCheckActivity::class.java).apply {
                             putExtra("userName", userName)
                             putExtra("userStudentId", userStudentId)
                             putExtra("selectedImageUri", selectedImageUri)
@@ -82,7 +82,7 @@ class NameInputActivity : BindingActivity<ActivityNameInputBinding>(R.layout.act
         editText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             val colorResId = if (hasFocus) R.color.mint_400 else R.color.regular
             dividerView.backgroundTintList =
-                ContextCompat.getColorStateList(this@NameInputActivity, colorResId)
+                ContextCompat.getColorStateList(this@InfoInputActivity, colorResId)
         }
     }
 }

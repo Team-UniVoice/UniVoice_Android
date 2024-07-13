@@ -63,4 +63,9 @@
     <string name="ed_info_name">이름</string>
     <string name="et_info_student_id">전체 학번 ex. 2024123455</string>
     <string name="btn_info_next">다음</string>
+    <string name="tb_card_check">학생증 인증</string>
+    <string name="tv_student_card_explain">학생증에 기재된 이름, 학번과\n입력한 정보가 일치하나요?</string>
+    <string name="tv_student_card_name">이름</string>
+    <string name="tv_student_card_id">학번</string>
+    <string name="btn_student_card_next">네, 일치해요</string>
 </resources>

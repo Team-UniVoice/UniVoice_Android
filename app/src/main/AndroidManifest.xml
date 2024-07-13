@@ -36,7 +36,7 @@
             android:exported="false"/>
         <activity android:name=".feature.example.xml.StudentCardPhotoActivity"
             android:exported="false"/>
-        <activity android:name=".feature.example.xml.NameInputActivity"
+        <activity android:name=".feature.example.xml.InfoInputActivity"
             android:exported="false"/>
         <activity android:name=".feature.example.xml.CreateAccountActivity"
             android:exported="false"/>

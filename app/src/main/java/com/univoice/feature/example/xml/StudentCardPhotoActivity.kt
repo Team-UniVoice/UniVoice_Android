@@ -68,7 +68,7 @@ class StudentCardPhotoActivity :
                     binding.btnStudentCardPhotoStart.text = ""
                     binding.btnStudentCardPhotoNext.visibility = View.VISIBLE
                     binding.btnStudentCardPhotoNext.setOnClickListener {
-                        val intent = Intent(this, NameInputActivity::class.java).apply {
+                        val intent = Intent(this, InfoInputActivity::class.java).apply {
                             putExtra("selectedImageUri", selectedImageUri.toString())
                         }
                         startActivity(intent)
