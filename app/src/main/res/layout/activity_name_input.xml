@@ -9,17 +9,25 @@
         android:background="@color/white">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_name_input"
+            android:id="@+id/toolbar_name_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular"
-            app:navigationIcon="@drawable/ic_left_arrow"
+            android:layout_marginStart="4dp"
+            app:contentInsetStart="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular">
+
+            <ImageButton
+                android:id="@+id/ib_toolbar_name_input_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back" />
 
             <TextView
-                android:id="@+id/tv_name_input_title"
+                android:id="@+id/tv_toolbar_name_input_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="학생증 인증"
@@ -31,82 +39,116 @@
             android:id="@+id/cl_name_input_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_name_input">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_name_input"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:id="@+id/tv_name_input_explain"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="이름과 학번을 적어주세요"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="38dp"
+                android:text="이름과 학번을 적어주세요"
                 android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_name_input_explain_detail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="학생증에 기재된 것과 동일해야 해요"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="17dp"
+                android:text="학생증에 기재된 것과 동일해야 해요"
                 android:textAppearance="@style/TextAppearance.UniVoice.body2Regular"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_name_input_explain" />
 
             <EditText
                 android:id="@+id/et_name_input_name"
+                style="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/transparent"
                 android:hint="이름"
+                android:inputType="text"
+                android:paddingBottom="13dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
                 android:textColor="@color/font_B01"
                 android:textColorHint="@color/font_B04"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/et_mint_gray"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_name_input_explain_detail" />
+
+            <View
+                android:id="@+id/view_name_input_name_divider"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/shape_regular_fill_30_rect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_name_input_name" />
 
             <EditText
                 android:id="@+id/et_name_input_student_id"
+                style="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="전체 학번 ex. 2024123456"
-                android:textColor="@color/font_B01"
-                android:textColorHint="@color/font_B04"
-                android:layout_marginTop="30dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/et_mint_gray"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/transparent"
+                android:hint="전체 학번 ex. 2024123455"
+                android:inputType="textPassword"
+                android:paddingBottom="13dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
+                android:textColor="@color/font_B01"
+                android:textColorHint="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_name_input_name" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_name_input_name_divider" />
+
+            <View
+                android:id="@+id/view_name_input_student_id_divider"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/shape_regular_fill_30_rect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_name_input_student_id" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_name_input_next"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="다음"
-                android:background="@drawable/btn_radius_40dp_selector"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
-                android:textColor="@color/white"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/btn_radius_40dp_selector"
+                android:enabled="false"
+                android:text="다음"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:enabled="false"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
