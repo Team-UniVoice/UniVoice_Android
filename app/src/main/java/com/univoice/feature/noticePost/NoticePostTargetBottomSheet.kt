@@ -54,7 +54,7 @@ class NoticePostTargetBottomSheet(private val targetText: String? = null) :
     private fun initCheckBtnClickListener() {
         binding.btnBottomsheetNoticePostTargetCheck.setOnClickListener {
             binding.etBottomsheetNoticePostTarget.text.toString().also {
-                if (it.isNotEmpty()) {
+                if (it.trim().isNotEmpty()) {
                     setFragmentResult(NOTICE_POST_TARGET_BOTTOM_SHEET_ARGS, Bundle().apply {
                         putString(NOTICE_POST_TARGET_BOTTOM_SHEET_ARGS_CONTENT, it)
                     })
