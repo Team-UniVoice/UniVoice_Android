@@ -17,6 +17,7 @@ class CreateAccountActivity :
     private var isIdValid = false
     private var isIdUnique = false
     private var isPasswordValid = false
+    private var isPasswordConfirmed = false
 
     override fun initView() {
         setupToolbarClickListener(binding.ibToolbarCreateAccountIcon)
@@ -168,7 +169,11 @@ class CreateAccountActivity :
         })
 
         binding.btnCreateAccountNext.setOnClickListener {
-            if (binding.btnCreateAccountNext.isEnabled) {
+            if (isPasswordConfirmed) {
+                showBottomSheet()
+            } else if (binding.etCreateAccountPwCheck.visibility == View.VISIBLE) {
+                validatePasswordConfirmation()
+            } else {
                 binding.btnCreateAccountNext.isEnabled = false
                 binding.btnCreateAccountNext.text = "다음"
                 binding.etCreateAccountPwCheck.visibility = View.VISIBLE
@@ -182,15 +187,7 @@ class CreateAccountActivity :
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                val password = binding.etCreateAccountPw.text.toString()
-                val confirmPassword = s.toString()
-                if (password == confirmPassword) {
-                    binding.tvCreateAccountPwCheckExplain.visibility = View.VISIBLE
-                    binding.btnCreateAccountNext.isEnabled = true
-                } else {
-                    binding.tvCreateAccountPwCheckExplain.visibility = View.GONE
-                    binding.btnCreateAccountNext.isEnabled = false
-                }
+                validatePasswordConfirmation()
             }
         })
 
@@ -226,5 +223,18 @@ class CreateAccountActivity :
 
     private fun updateNextButtonState() {
         binding.btnCreateAccountNext.isEnabled = isIdValid && isIdUnique && isPasswordValid
+    }
+
+    private fun validatePasswordConfirmation() {
+        val password = binding.etCreateAccountPw.text.toString()
+        val confirmPassword = binding.etCreateAccountPwCheck.text.toString()
+        isPasswordConfirmed = password == confirmPassword
+        binding.tvCreateAccountPwCheckExplain.visibility = if (isPasswordConfirmed) View.VISIBLE else View.GONE
+        binding.btnCreateAccountNext.isEnabled = isPasswordConfirmed
+    }
+
+    private fun showBottomSheet() {
+        val bottomSheetFragment = SignupBottomSheetFragment()
+        bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
     }
 }

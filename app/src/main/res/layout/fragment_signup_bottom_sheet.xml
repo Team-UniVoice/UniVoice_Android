@@ -7,7 +7,7 @@
         android:id="@+id/cl_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_white_radius_25dp"
+        style="AppBottomSheetDialogTheme"
         android:paddingHorizontal="16dp"
         android:paddingBottom="32dp">
 
