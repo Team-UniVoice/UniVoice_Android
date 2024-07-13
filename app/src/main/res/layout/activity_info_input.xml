@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,7 +29,7 @@
                 android:id="@+id/tv_toolbar_name_input_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="학생증 인증"
+                android:text="@string/tb_student_check"
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Regular" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -52,7 +51,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="38dp"
-                android:text="이름과 학번을 적어주세요"
+                android:text="@string/tv_info_title"
                 android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +64,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="17dp"
-                android:text="학생증에 기재된 것과 동일해야 해요"
+                android:text="@string/tv_info_explain"
                 android:textAppearance="@style/TextAppearance.UniVoice.body2Regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +79,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:paddingStart="5dp"
                 android:background="@android:color/transparent"
-                android:hint="이름"
+                android:hint="@string/ed_info_name"
                 android:inputType="text"
                 android:paddingBottom="13dp"
                 android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
@@ -110,7 +109,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@android:color/transparent"
                 android:paddingStart="5dp"
-                android:hint="전체 학번 ex. 2024123455"
+                android:hint="@string/et_info_student_id"
                 android:paddingBottom="13dp"
                 android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
                 android:textColor="@color/font_B01"
@@ -139,7 +138,7 @@
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/sel_signup_button"
                 android:enabled="false"
-                android:text="다음"
+                android:text="@string/btn_info_next"
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"

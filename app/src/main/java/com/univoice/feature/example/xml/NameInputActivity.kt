@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class NameInputActivity : BindingActivity<ActivityNameInputBinding>(R.layout.activity_name_input) {
+class NameInputActivity : BindingActivity<ActivityNameInputBinding>(R.layout.activity_info_input) {
 
     private var selectedImageUri: String? = null
 
