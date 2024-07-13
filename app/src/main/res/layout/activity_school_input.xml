@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -9,17 +8,25 @@
         android:background="@color/white">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_school_input"
+            android:id="@+id/toolbar_school_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular"
-            app:navigationIcon="@drawable/ic_left_arrow"
+            android:layout_marginStart="4dp"
+            app:contentInsetStart="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular">
+
+            <ImageButton
+                android:id="@+id/ib_toolbar_school_input_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back" />
 
             <TextView
-                android:id="@+id/tv_school_input_title"
+                android:id="@+id/tv_toolbar_school_input_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="개인정보입력"
@@ -34,7 +41,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_school_input">
+            app:layout_constraintTop_toBottomOf="@id/toolbar_school_input">
 
             <TextView
                 android:id="@+id/tv_school_input_explain"
@@ -51,20 +58,34 @@
 
             <EditText
                 android:id="@+id/et_school_input_search"
+                style="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="학교 이름 검색하기"
-                android:paddingBottom="13dp"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
-                android:textColor="@color/font_B01"
-                android:textColorHint="@color/font_B04"
-                android:backgroundTint="@color/mint_400"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:background="@android:color/transparent"
+                android:hint="학교 이름 검색하기"
+                android:inputType="text"
+                android:paddingBottom="13dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
+                android:textColor="@color/font_B01"
+                android:textColorHint="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_school_input_explain" />
+
+            <View
+                android:id="@+id/view_school_input_divider"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/shape_mint400_fill_30_rect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_school_input_search" />
 
             <ListView
                 android:id="@+id/lv_school_input_search_results"
@@ -78,7 +99,7 @@
                 android:dividerHeight="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_school_input_search" />
+                app:layout_constraintTop_toBottomOf="@id/view_school_input_divider" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_school_input_next"
