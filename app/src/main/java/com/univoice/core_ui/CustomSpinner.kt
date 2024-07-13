@@ -72,5 +72,6 @@ class CustomSpinner @JvmOverloads constructor(
     fun hasBeenOpened(): Boolean {
         return mOpenInitiated
     }
+
 }
 

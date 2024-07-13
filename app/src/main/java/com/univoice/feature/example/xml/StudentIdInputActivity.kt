@@ -40,7 +40,7 @@ class StudentIdInputActivity :
         with(binding.spStudentIdInput) {
             requestFocus()
             // 스피너가 펼쳐진 상태이도록
-            post { performClick() }
+            // post { performClick() }
         }
     }
 

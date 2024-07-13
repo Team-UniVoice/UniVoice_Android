@@ -74,7 +74,7 @@
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="0dp"
-                android:background="@color/mint_400"
+                android:background="@drawable/shape_mint400_fill_40_rect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/sp_student_id_input" />
@@ -109,7 +109,7 @@
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="11dp"
-                android:background="@color/regular"
+                android:background="@drawable/shape_regular_fill_30_rect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_department_selected" />
@@ -146,7 +146,7 @@
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="11dp"
-                android:background="@color/regular"
+                android:background="@drawable/shape_regular_fill_30_rect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_school_selected" />
