@@ -150,9 +150,9 @@ class DepartmentInputActivity :
             val results = viewModel.mockDepartmentList
                 .filter { it.contains(query, ignoreCase = true) }
                 .sortedBy { it.replace(query, "", ignoreCase = true) }
-            filteredList.addAll(results)
-            if (filteredList.size > MAX_SIZE) {
-                filteredList.add("...")
+            filteredList.addAll(results.take(MAX_SIZE))
+            if (results.size > MAX_SIZE) {
+                filteredList.add(applicationContext.getString(R.string.tv_ellipse))
             }
         }
         adapter.notifyDataSetChanged()
