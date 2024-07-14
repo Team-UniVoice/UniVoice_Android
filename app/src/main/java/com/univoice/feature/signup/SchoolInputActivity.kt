@@ -55,7 +55,7 @@ class SchoolInputActivity :
             val selectedSchool = filteredList[position]
             if (selectedSchool == applicationContext.getString(R.string.tv_ellipse)) return@setOnItemClickListener
             binding.etSchoolInputSearch.setText(selectedSchool)
-            binding.etSchoolInputSearch.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi)
+            binding.etSchoolInputSearch.setSelection(selectedSchool.length)
             binding.rvSchoolInputSearchResults.visibility = View.GONE
             schoolSelected = true
             enableButton()
