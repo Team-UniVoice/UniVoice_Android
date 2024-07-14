@@ -1,15 +1,22 @@
 package com.univoice.feature.example.xml
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
+import com.univoice.core_ui.theme.head7Regular
+import com.univoice.core_ui.theme.title4Semi
 import com.univoice.core_ui.view.CustomSpinner
 import com.univoice.databinding.ActivityStudentIdInputBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,9 +34,30 @@ class StudentIdInputActivity :
 
     override fun initView() {
         val studentIdArray = resources.getStringArray(R.array.student_id_array)
-        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+        val arrayAdapter: ArrayAdapter<String> = object : ArrayAdapter<String>(
             this, android.R.layout.simple_list_item_1, studentIdArray
-        )
+        ) {
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getDropDownView(position, convertView, parent)
+                if (position == 0) {
+                    view.visibility = View.GONE
+                    view.layoutParams = ViewGroup.LayoutParams(0, 1)
+                } else {
+                    view.visibility = View.VISIBLE
+                    view.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                }
+                return view
+            }
+
+
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent)
+                if (position == 0) {
+                    (view as TextView).setTextColor(ContextCompat.getColor(context, R.color.font_B04))
+                }
+                return view
+            }
+        }
         binding.spStudentIdInput.adapter = arrayAdapter
         binding.spStudentIdInput.setSpinnerEventsListener(object :
             CustomSpinner.OnSpinnerEventsListener {
