@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="white">#FFFFFFFF</color>
     <!-- Gray Scale -->
     <color name="gray_900">#FF111111</color>
     <color name="gray_800">#FF333333</color>

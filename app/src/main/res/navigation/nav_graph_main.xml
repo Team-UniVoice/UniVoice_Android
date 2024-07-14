@@ -10,12 +10,18 @@
         android:name="com.univoice.feature.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_notice_detail"
+            app:destination="@id/fragment_notice_detail" />
     </fragment>
     <fragment
         android:id="@+id/fragment_storage"
         android:name="com.univoice.feature.storage.StorageFragment"
         android:label="StorageFragment"
         tools:layout="@layout/fragment_storage">
+        <action
+            android:id="@+id/action_fragment_storage_to_fragment_notice_detail"
+            app:destination="@id/fragment_notice_detail" />
     </fragment>
     <fragment
         android:id="@+id/fragment_setting"
@@ -23,4 +29,9 @@
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting">
     </fragment>
+    <fragment
+        android:id="@+id/fragment_notice_detail"
+        android:name="com.univoice.feature.noticeDetail.NoticeDetailFragment"
+        android:label="NoticeDetailFragment"
+        tools:layout="@layout/fragment_notice_detail"/>
 </navigation>

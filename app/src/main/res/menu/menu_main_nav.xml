@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/fragment_home"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_nav_home"
         android:title="@string/menu_item_home" />
     <item
         android:id="@+id/fragment_storage"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_nav_storage"
         android:title="@string/menu_item_storage" />
     <item
         android:id="@+id/fragment_setting"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_nav_setting"
         android:title="@string/menu_item_setting" />
 </menu>
