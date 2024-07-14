@@ -58,7 +58,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:dropDownVerticalOffset="13dp"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
+                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
                 android:theme="@style/NoShadowPopupTheme"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

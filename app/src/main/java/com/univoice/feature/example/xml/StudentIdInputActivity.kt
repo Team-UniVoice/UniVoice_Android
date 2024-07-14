@@ -1,8 +1,6 @@
 package com.univoice.feature.example.xml
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,11 +10,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
-import com.univoice.core_ui.theme.head7Regular
-import com.univoice.core_ui.theme.title4Semi
 import com.univoice.core_ui.view.CustomSpinner
 import com.univoice.databinding.ActivityStudentIdInputBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,11 +21,6 @@ class StudentIdInputActivity :
     BindingActivity<ActivityStudentIdInputBinding>(R.layout.activity_student_id_input) {
 
     private var isSpinnerInitialized = false
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initView()
-    }
 
     override fun initView() {
         val studentIdArray = resources.getStringArray(R.array.student_id_array)
@@ -48,7 +38,6 @@ class StudentIdInputActivity :
                 }
                 return view
             }
-
 
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent)
@@ -103,6 +92,10 @@ class StudentIdInputActivity :
         binding.btnStudentIdInputInputNext.setOnClickListener {
             val intent = Intent(this, StudentCardPhotoActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.spStudentIdInput.post {
+            binding.spStudentIdInput.performClick()
         }
     }
 
