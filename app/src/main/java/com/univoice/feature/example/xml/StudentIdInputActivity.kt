@@ -1,7 +1,6 @@
 package com.univoice.feature.example.xml
 
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +28,8 @@ class StudentIdInputActivity :
         ) {
             override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getDropDownView(position, convertView, parent)
+                val textView = view as TextView
+                textView.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi) //드롭다운 아이템 폰트 (나중에 바꿔주기 !)
                 if (position == 0) {
                     view.visibility = View.GONE
                     view.layoutParams = ViewGroup.LayoutParams(0, 1)
@@ -41,8 +42,13 @@ class StudentIdInputActivity :
 
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent)
+                val textView = view as TextView
+                if (position == binding.spStudentIdInput.selectedItemPosition) {
+                    textView.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi) //선택 했을때 폰트
+                }
                 if (position == 0) {
-                    (view as TextView).setTextColor(ContextCompat.getColor(context, R.color.font_B04))
+                    textView.setTextAppearance(R.style.TextAppearance_UniVoice_head7Regular) //선택 안했을때 힌트 글자 폰트랑 색
+                    textView.setTextColor(ContextCompat.getColor(context, R.color.font_B04))
                 }
                 return view
             }
@@ -73,6 +79,8 @@ class StudentIdInputActivity :
                 } else {
                     isSpinnerInitialized = true
                 }
+                // Spinner 선택 항목 업데이트
+                (parent?.adapter as? ArrayAdapter<*>)?.notifyDataSetChanged()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
