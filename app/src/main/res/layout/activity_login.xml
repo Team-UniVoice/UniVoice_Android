@@ -8,33 +8,9 @@
         android:layout_height="match_parent"
         tools:context=".feature.login.LoginActivity">
 
-        <androidx.appcompat.widget.Toolbar
+        <include
             android:id="@+id/toolbar_login"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:contentInsetStart="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/ib_login_toolbar_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_back" />
-
-            <TextView
-                android:id="@+id/tv_login_toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:text="@string/login_toolbar_title"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular"
-                android:textColor="@color/font_B01" />
-
-        </androidx.appcompat.widget.Toolbar>
+            layout="@layout/item_toolbar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

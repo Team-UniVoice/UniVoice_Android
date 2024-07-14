@@ -25,6 +25,7 @@
     <string name="btn_student_card_photo_next">다음</string>
     <string name="tv_ellipse">...</string>
     <string name="tv_toolbar_signup_title">회원가입</string>
+
     <!-- home -->
     <string name="text_home_empty">아직 학생회가 등록되어 있지 않아,\n공지사항을 확인할 수 없어요.</string>
     <string name="btn_home_apply">학생회 등록 신청하기</string>
@@ -69,6 +70,7 @@
     <string name="btn_notice_detail_date">일시</string>
     <string name="tv_notice_detail_views">조회수</string>
     <string name="toolbar_notice_detail">학과 학생회</string>
+
     <!-- 저장 -->
     <string name="storage_toolbar_title">저장한 공지사항</string>
 
@@ -76,4 +78,9 @@
     <string name="feed_time_now">지금</string>
     <string name="feed_time_minute">분 전</string>
     <string name="feed_time_hour">시간 전</string>
+
+    <!-- 바텀 네비게이션 -->
+    <string name="menu_item_home">홈</string>
+    <string name="menu_item_storage">저장</string>
+    <string name="menu_item_setting">설정</string>
 </resources>

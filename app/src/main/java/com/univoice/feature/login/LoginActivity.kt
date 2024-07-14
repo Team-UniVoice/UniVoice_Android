@@ -12,6 +12,7 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityLoginBinding
 import com.univoice.feature.util.BiggerDotPasswordTransformationMethod
+import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -20,7 +21,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private val viewModel by viewModels<LoginViewModel>()
 
     override fun initView() {
-        initToolbarClickListener()
+        setupToolbar()
         initConfirmBtnClickListener()
         initConfirmBtnIsEnabled()
         setupFocusChangeListeners()
@@ -33,9 +34,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         binding.etLoginPwd.isEnabled = false
     }
 
-    private fun initToolbarClickListener() {
-        binding.ibLoginToolbarIcon.setOnClickListener {
-            finish()
+    private fun setupToolbar() {
+        with(binding.toolbarLogin) {
+            tvToolbarTitle.text = applicationContext.getString(R.string.login_toolbar_title)
+            setupToolbarClickListener(ibToolbarIcon)
         }
     }
 
