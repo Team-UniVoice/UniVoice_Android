@@ -102,8 +102,9 @@ class StudentCardPhotoActivity :
     }
 
     private fun pickImageFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        pickImagesLauncher.launch(intent)
+        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
+            pickImagesLauncher.launch(this)
+        }
     }
 
     private fun navigateToNameInput(selectedImageUri: Uri) {

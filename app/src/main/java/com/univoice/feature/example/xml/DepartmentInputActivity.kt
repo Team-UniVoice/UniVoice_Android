@@ -19,7 +19,7 @@ class DepartmentInputActivity :
     BindingActivity<ActivityDepartmentInputBinding>(R.layout.activity_department_input) {
 
     private val viewModel by viewModels<DepartmentInputViewModel>()
-    private lateinit var adapter: ListViewAdapter
+    private lateinit var adapter: SignUpListAdapter
     private val filteredList = mutableListOf<String>()
     private var departmentSelected = false
     private var highlightText = ""
@@ -46,7 +46,7 @@ class DepartmentInputActivity :
     }
 
     private fun initAdapter() {
-        adapter = ListViewAdapter(this, R.layout.listview_item, filteredList, highlightText)
+        adapter = SignUpListAdapter(this, R.layout.item_signup_list, filteredList, highlightText)
         binding.lvDepartmentInputSearchResults.adapter = adapter
     }
 

@@ -17,7 +17,7 @@ class SchoolInputActivity :
     BindingActivity<ActivitySchoolInputBinding>(R.layout.activity_school_input) {
 
     private val viewModel by viewModels<SchoolInputViewModel>()
-    private lateinit var adapter: ListViewAdapter
+    private lateinit var adapter: SignUpListAdapter
     private val filteredList = mutableListOf<String>()
     private var schoolSelected = false
     private var highlightText = ""
@@ -44,7 +44,7 @@ class SchoolInputActivity :
     }
 
     private fun initAdapter() {
-        adapter = ListViewAdapter(this, R.layout.listview_item, filteredList, highlightText)
+        adapter = SignUpListAdapter(this, R.layout.item_signup_list, filteredList, highlightText)
         binding.lvSchoolInputSearchResults.adapter = adapter
     }
 

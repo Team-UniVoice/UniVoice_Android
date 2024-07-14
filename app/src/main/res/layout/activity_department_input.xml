@@ -70,7 +70,8 @@
                 android:maxHeight="160dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_department_input_search" />
+                app:layout_constraintTop_toBottomOf="@id/et_department_input_search"
+                tools:listitem="@layout/item_signup_list" />
 
             <include
                 android:id="@+id/btn_department_input_next"

@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.univoice.R
 
-class ListViewAdapter(context: Context, private val resource: Int, private val items: List<String>, private var highlightText: String)
+class SignUpListAdapter(context: Context, private val resource: Int, private val items: List<String>, private var highlightText: String)
     : ArrayAdapter<String>(context, resource, items) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
