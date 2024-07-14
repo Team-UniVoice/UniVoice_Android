@@ -1,4 +1,4 @@
-package com.univoice.feature.example.xml
+package com.univoice.feature.signup
 
 import android.content.Intent
 import android.text.Editable
@@ -6,11 +6,12 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityDepartmentInputBinding
-import com.univoice.feature.example.xml.SchoolInputActivity.Companion.MAX_SIZE
-import com.univoice.feature.example.xml.SchoolInputActivity.Companion.SCHOOL_KEY
+import com.univoice.feature.signup.SchoolInputActivity.Companion.MAX_SIZE
+import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,21 +20,20 @@ class DepartmentInputActivity :
     BindingActivity<ActivityDepartmentInputBinding>(R.layout.activity_department_input) {
 
     private val viewModel by viewModels<DepartmentInputViewModel>()
-    private lateinit var adapter: SignUpListAdapter
+    private lateinit var adapter: SchoolDepartmentListAdapter
     private val filteredList = mutableListOf<String>()
     private var departmentSelected = false
     private var highlightText = ""
 
     override fun initView() {
-        setupToolbar()
+        initToolbar()
         initFocus()
         initAdapter()
-        setupListView()
         setupNextButton()
         setupEditTextListener()
     }
 
-    private fun setupToolbar() {
+    private fun initToolbar() {
         with(binding.toolbarDepartmentInput) {
             tvToolbarTitle.text =
                 applicationContext.getString(R.string.tv_toolbar_personal_information_title)
@@ -46,60 +46,62 @@ class DepartmentInputActivity :
     }
 
     private fun initAdapter() {
-        adapter = SignUpListAdapter(this, R.layout.item_signup_list, filteredList, highlightText)
-        binding.lvDepartmentInputSearchResults.adapter = adapter
-    }
+        adapter = SchoolDepartmentListAdapter(this, highlightText)
+        binding.rvDepartmentInputSearchResults.layoutManager = LinearLayoutManager(this)
+        binding.rvDepartmentInputSearchResults.adapter = adapter
 
-    private fun setupListView() {
-        binding.lvDepartmentInputSearchResults.apply {
-            layoutParams.height = resources.getDimensionPixelSize(R.dimen.dropdown_height)
-            setOnItemClickListener { _, _, position, _ ->
-                val selectedDepartment = filteredList[position]
-                if (selectedDepartment == context.getString(R.string.tv_ellipse)) return@setOnItemClickListener
+        adapter.submitList(filteredList)
+        adapter.setHighlightText(highlightText)
 
-                binding.etDepartmentInputSearch.setText(selectedDepartment)
-                binding.etDepartmentInputSearch.setSelection(selectedDepartment.length)
-                visibility = View.GONE
-                departmentSelected = true
-                enableButton()
-            }
+        adapter.setOnItemClickListener { position ->
+            handleDepartmentSelection(position)
         }
     }
 
+    private fun handleDepartmentSelection(position: Int) {
+        val selectedDepartment = filteredList[position]
+        if (selectedDepartment == applicationContext.getString(R.string.tv_ellipse)) return
+        binding.etDepartmentInputSearch.setText(selectedDepartment)
+        binding.etDepartmentInputSearch.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi)
+        binding.rvDepartmentInputSearchResults.visibility = View.GONE
+        departmentSelected = true
+        enableButton()
+    }
+
     private fun setupEditTextListener() {
-        binding.etDepartmentInputSearch.apply {
-            addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
+        binding.etDepartmentInputSearch.addTextChangedListener(createTextWatcher())
+        binding.etDepartmentInputSearch.setOnFocusChangeListener { _, hasFocus -> handleEditTextFocusChange(hasFocus) }
+    }
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    val input = s.toString().trim()
-                    highlightText = input
-                    adapter.setHighlightText(input)
-                    filterDepartments(input)
-                    binding.lvDepartmentInputSearchResults.visibility = View.VISIBLE
-                    departmentSelected = false
-                    disableButton()
-                }
+    private fun createTextWatcher(): TextWatcher {
+        return object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-                override fun afterTextChanged(s: Editable?) {}
-            })
-
-            setOnFocusChangeListener { _, hasFocus ->
-                if (hasFocus) {
-                    text.toString().trim().also {
-                        highlightText = it
-                        adapter.setHighlightText(it)
-                        filterDepartments(it)
-                    }
-                    binding.lvDepartmentInputSearchResults.visibility = View.VISIBLE
-                }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                handleTextChanged(s.toString())
             }
+
+            override fun afterTextChanged(s: Editable?) {}
+        }
+    }
+
+    private fun handleTextChanged(input: String) {
+        val trimmedInput = input.trim()
+        highlightText = trimmedInput
+        adapter.setHighlightText(trimmedInput)
+        filterDepartments(trimmedInput)
+        binding.rvDepartmentInputSearchResults.visibility = View.VISIBLE // 드롭다운 표시
+        departmentSelected = false
+        disableButton()
+    }
+
+    private fun handleEditTextFocusChange(hasFocus: Boolean) {
+        if (hasFocus) {
+            val input = binding.etDepartmentInputSearch.text.toString().trim()
+            highlightText = input
+            adapter.setHighlightText(input)
+            filterDepartments(input)
+            binding.rvDepartmentInputSearchResults.visibility = View.VISIBLE
         }
     }
 

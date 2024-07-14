@@ -1,17 +1,16 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.content.Intent
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.core.content.ContextCompat
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.core_ui.view.CustomSpinner
 import com.univoice.databinding.ActivityStudentIdInputBinding
-import com.univoice.feature.example.xml.DepartmentInputActivity.Companion.DEPARTMENT_KEY
-import com.univoice.feature.example.xml.SchoolInputActivity.Companion.SCHOOL_KEY
+import com.univoice.feature.signup.DepartmentInputActivity.Companion.DEPARTMENT_KEY
+import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,38 +21,18 @@ class StudentIdInputActivity :
     private var isSpinnerInitialized = false
 
     override fun initView() {
+        initToolbar()
         setupSpinner()
         disableButton()
-        loadIntentData()
-        setupNextButtonClickListener()
-
-        binding.spStudentIdInput.post {
-            binding.spStudentIdInput.performClick()
-        }
-    }
-
-    private fun setupSpinner() {
-        setupToolbar()
-        initFocus()
-        setupSpinner()
-        setupNextButton()
         setupTextViews()
-        disableButton()
+        setupNextButton()
     }
 
-    private fun setupToolbar() {
+    private fun initToolbar() {
         with(binding.toolbarStudentIdInput) {
             tvToolbarTitle.text =
                 applicationContext.getString(R.string.tv_toolbar_personal_information_title)
             setupToolbarClickListener(ibToolbarIcon)
-        }
-    }
-
-    private fun initFocus() {
-        with(binding.spStudentIdInput) {
-            requestFocus()
-            // 스피너가 펼쳐진 상태이도록
-            // post { performClick() }
         }
     }
 
@@ -64,7 +43,8 @@ class StudentIdInputActivity :
 
     private fun initSpinnerAdapter() {
         val studentIdArray = resources.getStringArray(R.array.student_id_array)
-        val arrayAdapter = CustomSpinnerAdapter(this, android.R.layout.simple_list_item_1, studentIdArray)
+        val arrayAdapter =
+            CustomSpinnerAdapter(this, android.R.layout.simple_list_item_1, studentIdArray)
         binding.spStudentIdInput.adapter = arrayAdapter
     }
 

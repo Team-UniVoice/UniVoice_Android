@@ -1,12 +1,12 @@
-package com.univoice.feature.example.xml
+package com.univoice.feature.signup
 
 import android.content.Intent
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityStudentInfoCheckBinding
-import com.univoice.feature.example.xml.DepartmentInputActivity.Companion.DEPARTMENT_KEY
-import com.univoice.feature.example.xml.SchoolInputActivity.Companion.SCHOOL_KEY
-import com.univoice.feature.example.xml.StudentIdInputActivity.Companion.ID_KEY
+import com.univoice.feature.signup.DepartmentInputActivity.Companion.DEPARTMENT_KEY
+import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
+import com.univoice.feature.signup.StudentIdInputActivity.Companion.ID_KEY
 import com.univoice.feature.util.setupToolbarClickListener
 
 class StudentInfoCheckActivity :

@@ -52,6 +52,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_department_input_explain" />
 
+            <View
+                android:id="@+id/view_department_input_divider"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:background="@drawable/shape_mint400_fill_30_rect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_department_input_search" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_department_input_search_results"
                 android:layout_width="0dp"

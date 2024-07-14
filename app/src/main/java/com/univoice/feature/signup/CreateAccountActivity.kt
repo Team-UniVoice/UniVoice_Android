@@ -1,4 +1,4 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -25,13 +25,20 @@ class CreateAccountActivity :
     }
 
     override fun initView() {
-        setupToolbarClickListener(binding.ibToolbarCreateAccountIcon)
+        initToolbar()
         initPwdTransformation()
         setupFocusChangeListeners()
         initEditTextIdInput()
         setupIdValidation()
         setupDuplicateCheckButton()
         setupPasswordValidation()
+    }
+
+    private fun initToolbar() {
+        with(binding.toolbarCreateAccount) {
+            tvToolbarTitle.text = applicationContext.getString(R.string.tb_create_account)
+            setupToolbarClickListener(ibToolbarIcon)
+        }
     }
 
     private fun initEditTextIdInput() {
@@ -96,7 +103,12 @@ class CreateAccountActivity :
     private fun setIdInvalid(messageResId: Int, colorResId: Int) {
         with(binding) {
             tvCreateAccountIdExplain.setText(messageResId)
-            tvCreateAccountIdExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, colorResId))
+            tvCreateAccountIdExplain.setTextColor(
+                ContextCompat.getColor(
+                    this@CreateAccountActivity,
+                    colorResId
+                )
+            )
             btnCreateAccountId.isEnabled = false
         }
         isIdValid = false
@@ -105,7 +117,12 @@ class CreateAccountActivity :
     private fun setIdValid(messageResId: Int, colorResId: Int) {
         with(binding) {
             tvCreateAccountIdExplain.setText(messageResId)
-            tvCreateAccountIdExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, colorResId))
+            tvCreateAccountIdExplain.setTextColor(
+                ContextCompat.getColor(
+                    this@CreateAccountActivity,
+                    colorResId
+                )
+            )
             btnCreateAccountId.isEnabled = true
         }
         isIdValid = true
@@ -136,7 +153,12 @@ class CreateAccountActivity :
         with(binding) {
             if (hasFocus) {
                 tvCreateAccountIdExplain.setText(R.string.tv_create_account_id_input)
-                tvCreateAccountIdExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, R.color.black))
+                tvCreateAccountIdExplain.setTextColor(
+                    ContextCompat.getColor(
+                        this@CreateAccountActivity,
+                        R.color.black
+                    )
+                )
                 updateDividerColor(viewCreateAccountIdDivider, R.color.mint_400)
             } else {
                 updateDividerColor(viewCreateAccountIdDivider, R.color.regular)
@@ -147,7 +169,12 @@ class CreateAccountActivity :
     private fun setIdUnique(messageResId: Int, colorResId: Int) {
         with(binding) {
             tvCreateAccountIdExplain.setText(messageResId)
-            tvCreateAccountIdExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, colorResId))
+            tvCreateAccountIdExplain.setTextColor(
+                ContextCompat.getColor(
+                    this@CreateAccountActivity,
+                    colorResId
+                )
+            )
             btnCreateAccountId.isEnabled = false
             etCreateAccountPw.isEnabled = true
             etCreateAccountPw.requestFocus()
@@ -158,7 +185,12 @@ class CreateAccountActivity :
     private fun setIdNotUnique(messageResId: Int, colorResId: Int) {
         with(binding) {
             tvCreateAccountIdExplain.setText(messageResId)
-            tvCreateAccountIdExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, colorResId))
+            tvCreateAccountIdExplain.setTextColor(
+                ContextCompat.getColor(
+                    this@CreateAccountActivity,
+                    colorResId
+                )
+            )
             btnCreateAccountId.isEnabled = true
         }
         isIdUnique = false
@@ -173,7 +205,7 @@ class CreateAccountActivity :
         with(binding) {
             etCreateAccountPw.addTextChangedListener(createPasswordTextWatcher())
             etCreateAccountPwCheck.addTextChangedListener(createPasswordConfirmationTextWatcher())
-            btnCreateAccountNext.setOnClickListener { handleNextButtonClick() }
+            btnCreateAccountNext.btnSignupNext.setOnClickListener { handleNextButtonClick() }
         }
         setupPasswordFocusChangeListeners()
     }
@@ -198,12 +230,22 @@ class CreateAccountActivity :
     }
 
     private fun setPasswordValid(colorResId: Int) {
-        binding.tvCreateAccountPwExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, colorResId))
+        binding.tvCreateAccountPwExplain.setTextColor(
+            ContextCompat.getColor(
+                this@CreateAccountActivity,
+                colorResId
+            )
+        )
         isPasswordValid = true
     }
 
     private fun setPasswordInvalid(colorResId: Int) {
-        binding.tvCreateAccountPwExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, colorResId))
+        binding.tvCreateAccountPwExplain.setTextColor(
+            ContextCompat.getColor(
+                this@CreateAccountActivity,
+                colorResId
+            )
+        )
         isPasswordValid = false
     }
 
@@ -223,12 +265,22 @@ class CreateAccountActivity :
             val confirmPassword = etCreateAccountPwCheck.text.toString()
             if (password == confirmPassword) {
                 tvCreateAccountPwCheckExplain.setText(R.string.password_match)
-                tvCreateAccountPwCheckExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, R.color.mint_600))
+                tvCreateAccountPwCheckExplain.setTextColor(
+                    ContextCompat.getColor(
+                        this@CreateAccountActivity,
+                        R.color.mint_600
+                    )
+                )
                 tvCreateAccountPwCheckExplain.visibility = View.VISIBLE
                 isPasswordConfirmed = true
             } else {
                 tvCreateAccountPwCheckExplain.setText(R.string.password_mismatch)
-                tvCreateAccountPwCheckExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, R.color.red))
+                tvCreateAccountPwCheckExplain.setTextColor(
+                    ContextCompat.getColor(
+                        this@CreateAccountActivity,
+                        R.color.red
+                    )
+                )
                 tvCreateAccountPwCheckExplain.visibility = View.VISIBLE
                 isPasswordConfirmed = false
             }
@@ -238,8 +290,16 @@ class CreateAccountActivity :
 
     private fun setupPasswordFocusChangeListeners() {
         with(binding) {
-            etCreateAccountPw.setOnFocusChangeListener { _, hasFocus -> handlePasswordFocusChange(hasFocus) }
-            etCreateAccountPwCheck.setOnFocusChangeListener { _, hasFocus -> handlePasswordCheckFocusChange(hasFocus) }
+            etCreateAccountPw.setOnFocusChangeListener { _, hasFocus ->
+                handlePasswordFocusChange(
+                    hasFocus
+                )
+            }
+            etCreateAccountPwCheck.setOnFocusChangeListener { _, hasFocus ->
+                handlePasswordCheckFocusChange(
+                    hasFocus
+                )
+            }
         }
     }
 
@@ -279,8 +339,9 @@ class CreateAccountActivity :
 
     private fun showPasswordConfirmation() {
         with(binding) {
-            btnCreateAccountNext.isEnabled = false
-            btnCreateAccountNext.text = getString(R.string.btn_create_account_next_twice)
+            btnCreateAccountNext.btnSignupNext.isEnabled = false
+            btnCreateAccountNext.btnSignupNext.text =
+                getString(R.string.btn_create_account_next_twice)
             etCreateAccountPwCheck.visibility = View.VISIBLE
             viewCreateAccountPwCheckDivider.visibility = View.VISIBLE
             tvCreateAccountPwExplain.visibility = View.INVISIBLE
@@ -290,7 +351,8 @@ class CreateAccountActivity :
 
     private fun updateNextButtonState() {
         with(binding) {
-            btnCreateAccountNext.isEnabled = isIdValid && isIdUnique && isPasswordValid && (etCreateAccountPwCheck.visibility != View.VISIBLE || isPasswordConfirmed)
+            btnCreateAccountNext.btnSignupNext.isEnabled =
+                isIdValid && isIdUnique && isPasswordValid && (etCreateAccountPwCheck.visibility != View.VISIBLE || isPasswordConfirmed)
         }
     }
 

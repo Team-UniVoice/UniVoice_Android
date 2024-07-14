@@ -7,71 +7,47 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <androidx.appcompat.widget.Toolbar
+        <include
             android:id="@+id/toolbar_create_account"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            app:contentInsetStart="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular">
-
-            <ImageButton
-                android:id="@+id/ib_toolbar_create_account_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_back" />
-
-            <TextView
-                android:id="@+id/tv_toolbar_create_account_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tb_create_account"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular" />
-
-        </androidx.appcompat.widget.Toolbar>
+            layout="@layout/item_toolbar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_department_input_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_create_account">
 
             <TextView
                 android:id="@+id/tv_create_account_explain"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/tv_create_account_explain"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="38dp"
+                android:text="@string/tv_create_account_explain"
                 android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/et_create_account_id"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/et_create_account_id"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="131dp"
                 android:background="@android:color/transparent"
+                android:backgroundTint="@color/mint_400"
+                android:hint="@string/et_create_account_id"
                 android:paddingBottom="13dp"
-                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
                 android:textColor="@color/font_B01"
                 android:textColorHint="@color/font_B04"
-                android:backgroundTint="@color/mint_400"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="131dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_create_account_explain" />
 
             <View
@@ -79,67 +55,59 @@
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="131dp"
+                android:layout_marginEnd="42dp"
                 android:background="@drawable/shape_regular_fill_30_rect"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_create_account_id"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_create_account_id" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_create_account_id"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="42dp"
-                android:layout_marginEnd="18dp"
-                android:text="@string/btn_create_account_check"
-                android:enabled="false"
                 android:background="@drawable/sel_createaccount_button"
+                android:enabled="false"
+                android:paddingVertical="12dp"
+                android:text="@string/btn_create_account_check"
                 android:textAppearance="@style/TextAppearance.UniVoice.body2Semi"
                 android:textColor="@color/font_W01"
                 app:layout_constraintBottom_toBottomOf="@+id/et_create_account_id"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/et_create_account_id" />
+                app:layout_constraintTop_toTopOf="@id/et_create_account_id" />
 
             <TextView
                 android:id="@+id/tv_create_account_id_explain"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="@string/tv_create_account_id"
                 android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
                 android:textColor="@color/black"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="123dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_create_account_id" />
 
             <EditText
                 android:id="@+id/et_create_account_pw"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/et_create_account_pwd"
+                android:layout_marginTop="21dp"
                 android:background="@android:color/transparent"
+                android:backgroundTint="@color/mint_400"
+                android:hint="@string/et_create_account_pwd"
                 android:paddingBottom="13dp"
-                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
                 android:textColor="@color/font_B01"
                 android:textColorHint="@color/font_B04"
-                android:backgroundTint="@color/mint_400"
-                android:layout_marginTop="21dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_create_account_id_explain" />
 
             <View
                 android:id="@+id/view_create_account_pw_divider"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:background="@drawable/shape_regular_fill_30_rect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -149,80 +117,58 @@
                 android:id="@+id/tv_create_account_pw_explain"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="@string/tv_create_account_pwd"
                 android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
                 android:textColor="@color/black"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="123dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_create_account_pw" />
 
             <EditText
                 android:id="@+id/et_create_account_pw_check"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="16dp"
-                android:paddingBottom="13dp"
+                android:layout_marginTop="21dp"
                 android:background="@android:color/transparent"
                 android:backgroundTint="@color/mint_400"
                 android:hint="@string/et_create_account_pwd_check"
-                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
+                android:paddingBottom="13dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
                 android:textColor="@color/font_B01"
                 android:textColorHint="@color/font_B04"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_create_account_pw" />
+                app:layout_constraintTop_toBottomOf="@id/tv_create_account_pw_explain" />
 
             <View
                 android:id="@+id/view_create_account_pw_check_divider"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
-                android:visibility="invisible"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:background="@drawable/shape_regular_fill_30_rect"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_create_account_pw_check" />
 
             <TextView
                 android:id="@+id/tv_create_account_pw_check_explain"
-                android:visibility="invisible"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="@string/tv_create_account_pwd_check"
                 android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
                 android:textColor="@color/mint_600"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="123dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_create_account_pw_check" />
 
 
-            <androidx.appcompat.widget.AppCompatButton
+            <include
                 android:id="@+id/btn_create_account_next"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_create_account_next"
-                android:background="@drawable/sel_signup_button"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
-                android:textColor="@color/white"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:enabled="false"/>
+                layout="@layout/item_bottom_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

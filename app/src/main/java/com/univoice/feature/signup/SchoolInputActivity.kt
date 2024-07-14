@@ -1,4 +1,4 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.content.Intent
 import android.text.Editable
@@ -18,24 +18,20 @@ class SchoolInputActivity :
     BindingActivity<ActivitySchoolInputBinding>(R.layout.activity_school_input) {
 
     private val viewModel by viewModels<SchoolInputViewModel>()
-    private lateinit var adapter: SignUpListAdapter
+    private lateinit var adapter: SchoolDepartmentListAdapter
     private val filteredList = mutableListOf<String>()
     private var schoolSelected = false
     private var highlightText = ""
 
     override fun initView() {
-        setupToolbarClickListener(binding.ibToolbarSchoolInputIcon)
-        initEditTextSchoolInput()
-        setupEditTextListener()
-        setupRecyclerView()
-        setupToolbar()
+        initToolbar()
         initFocus()
         initAdapter()
-        setupListView()
+        setupEditTextListener()
         setupNextButton()
     }
 
-    private fun setupToolbar() {
+    private fun initToolbar() {
         with(binding.toolbarSchoolInput) {
             tvToolbarTitle.text =
                 applicationContext.getString(R.string.tv_toolbar_personal_information_title)
@@ -47,7 +43,7 @@ class SchoolInputActivity :
         binding.etSchoolInputSearch.requestFocus()
     }
 
-    private fun setupRecyclerView() {
+    private fun initAdapter() {
         adapter = SchoolDepartmentListAdapter(this, highlightText)
         binding.rvSchoolInputSearchResults.layoutManager = LinearLayoutManager(this)
         binding.rvSchoolInputSearchResults.adapter = adapter
@@ -97,7 +93,7 @@ class SchoolInputActivity :
                         adapter.setHighlightText(it)
                         filterSchools(it)
                     }
-                    binding.lvSchoolInputSearchResults.visibility = View.VISIBLE
+                    binding.rvSchoolInputSearchResults.visibility = View.VISIBLE
                 }
             }
         }

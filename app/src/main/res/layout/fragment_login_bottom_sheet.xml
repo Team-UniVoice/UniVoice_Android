@@ -9,7 +9,7 @@
         android:background="@drawable/shape_white_fill_top25_rect"
         android:paddingHorizontal="16dp"
         android:paddingTop="14dp"
-        android:paddingBottom="36dp"
+        android:paddingBottom="31dp"
         app:layout_behavior="com.google.android.material.bottom-sheet.BottomSheetBehavior"
         tools:context=".feature.login.LoginBottomSheetFragment">
 
@@ -49,7 +49,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="41dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_sheet_subtitle">
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_gray200_fill_40_rect"
-                android:paddingVertical="15dp"
+                android:paddingVertical="19dp"
                 android:text="@string/btn_sheet_close"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toStartOf="@id/btn_sheet_signup"
@@ -75,7 +75,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_mint400_fill_40_rect"
-                android:paddingVertical="15dp"
+                android:paddingVertical="19dp"
                 android:text="@string/btn_sheet_signup"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
