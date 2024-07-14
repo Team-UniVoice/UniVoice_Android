@@ -22,9 +22,7 @@ class CustomSpinner @JvmOverloads constructor(
 
     override fun performClick(): Boolean {
         mOpenInitiated = true
-        if (mListener != null) {
-            mListener!!.onSpinnerOpened(this)
-        }
+        mListener?.onSpinnerOpened(this)
         return super.performClick()
     }
 
@@ -48,9 +46,7 @@ class CustomSpinner @JvmOverloads constructor(
      */
     fun performClosedEvent() {
         mOpenInitiated = false
-        if (mListener != null) {
-            mListener!!.onSpinnerClosed(this)
-        }
+        mListener?.onSpinnerClosed(this)
     }
 
     /**

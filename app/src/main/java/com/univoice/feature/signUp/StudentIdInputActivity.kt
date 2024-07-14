@@ -1,13 +1,10 @@
-package com.univoice.feature.example.xml
+package com.univoice.feature.signUp
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
@@ -22,41 +19,21 @@ class StudentIdInputActivity :
     private var isSpinnerInitialized = false
 
     override fun initView() {
-        val studentIdArray = resources.getStringArray(R.array.student_id_array)
-        val arrayAdapter: ArrayAdapter<String> = object : ArrayAdapter<String>(
-            this, android.R.layout.simple_list_item_1, studentIdArray
-        ) {
-            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = super.getDropDownView(position, convertView, parent)
-                val textView = view as TextView
-                textView.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi) //드롭다운 아이템 폰트 (나중에 바꿔주기 !)
-                if (position == 0) {
-                    view.visibility = View.GONE
-                    view.layoutParams = ViewGroup.LayoutParams(0, 1)
-                } else {
-                    view.visibility = View.VISIBLE
-                    view.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-                }
-                return view
-            }
+        setupSpinner()
+        disableButton()
+        loadIntentData()
+        setupNextButtonClickListener()
 
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = super.getView(position, convertView, parent)
-                val textView = view as TextView
-                textView.setPadding(21, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
-                if (position == binding.spStudentIdInput.selectedItemPosition) {
-                    textView.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi) //선택 했을때 폰트
-                }
-                if (position == 0) {
-                    textView.setTextAppearance(R.style.TextAppearance_UniVoice_head7Regular) //선택 안했을때 힌트 글자 폰트랑 색
-                    textView.setTextColor(ContextCompat.getColor(context, R.color.font_B04))
-                }
-                return view
-            }
+        binding.spStudentIdInput.post {
+            binding.spStudentIdInput.performClick()
         }
+    }
+
+    private fun setupSpinner() {
+        val studentIdArray = resources.getStringArray(R.array.student_id_array)
+        val arrayAdapter = CustomSpinnerAdapter(this, android.R.layout.simple_list_item_1, studentIdArray)
         binding.spStudentIdInput.adapter = arrayAdapter
-        binding.spStudentIdInput.setSpinnerEventsListener(object :
-            CustomSpinner.OnSpinnerEventsListener {
+        binding.spStudentIdInput.setSpinnerEventsListener(object : CustomSpinner.OnSpinnerEventsListener {
             override fun onSpinnerOpened(spinner: Spinner?) {
                 binding.spStudentIdInput.isActivated = true
             }
@@ -74,37 +51,31 @@ class StudentIdInputActivity :
                 id: Long
             ) {
                 if (isSpinnerInitialized) {
-                    val selectedItem = parent?.getItemAtPosition(position).toString()
-                    Log.d("ExampleActivity", "Selected item: $selectedItem")
                     enableButton()
                 } else {
                     isSpinnerInitialized = true
                 }
-                // Spinner 선택 항목 업데이트
                 (parent?.adapter as? ArrayAdapter<*>)?.notifyDataSetChanged()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                Log.d("ExampleActivity", "Nothing selected")
                 disableButton()
             }
         }
+    }
 
-        disableButton()
-
+    private fun loadIntentData() {
         val selectedSchool = intent.getStringExtra("selectedSchool")
         val selectedDepartment = intent.getStringExtra("selectedDepartment")
 
         binding.tvStudentIdInputSchoolSelected.text = selectedSchool
         binding.tvStudentIdInputDepartmentSelected.text = selectedDepartment
+    }
 
+    private fun setupNextButtonClickListener() {
         binding.btnStudentIdInputInputNext.setOnClickListener {
             val intent = Intent(this, StudentCardPhotoActivity::class.java)
             startActivity(intent)
-        }
-
-        binding.spStudentIdInput.post {
-            binding.spStudentIdInput.performClick()
         }
     }
 

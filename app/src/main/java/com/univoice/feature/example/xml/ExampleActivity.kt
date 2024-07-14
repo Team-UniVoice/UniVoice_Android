@@ -1,53 +1,39 @@
 package com.univoice.feature.example.xml
 
-
-import android.util.Log
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
-import com.univoice.core_ui.view.CustomSpinner
-import com.univoice.databinding.ActivityStudentIdInputBinding
+import com.univoice.core_ui.util.context.toast
+import com.univoice.core_ui.view.UiState
+import com.univoice.databinding.ActivityExampleBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class ExampleActivity :
-    BindingActivity<ActivityStudentIdInputBinding>(R.layout.activity_student_id_input) {
+class ExampleActivity : BindingActivity<ActivityExampleBinding>(R.layout.activity_example) {
     private val viewModel by viewModels<ExampleViewModel>()
+
     override fun initView() {
-        val studentIdArray = resources.getStringArray(R.array.student_id_array)
-        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
-            this, android.R.layout.simple_list_item_1, studentIdArray
-        )
-        binding.spStudentIdInput.adapter = arrayAdapter
-        binding.spStudentIdInput.setSpinnerEventsListener(object :
-            CustomSpinner.OnSpinnerEventsListener {
-            override fun onSpinnerOpened(spinner: Spinner?) {
-                binding.spStudentIdInput.isActivated = true
-            }
+        viewModel.getExampleRecyclerview(2)
+        collectExample()
+    }
 
-            override fun onSpinnerClosed(spinner: Spinner?) {
-                binding.spStudentIdInput.isActivated = false
-            }
-        })
+    private fun collectExample() {
+        viewModel.getExampleState.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+                is UiState.Success -> {
+                    binding.rvExample.adapter = ExampleAdapter(click = { _, _ ->
+                    }).apply { submitList(it.data) }
+                    toast("성공")
+                }
 
-        binding.spStudentIdInput.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val selectedItem = parent?.getItemAtPosition(position).toString()
-                Log.d("ExampleActivity", "Selected item: $selectedItem")
+                is UiState.Empty -> Unit
+                is UiState.Failure -> toast(it.toString())
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                Log.d("ExampleActivity", "Nothing selected")
-            }
-        }
+        }.launchIn(lifecycleScope)
     }
 }

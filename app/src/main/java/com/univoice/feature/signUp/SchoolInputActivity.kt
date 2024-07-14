@@ -1,13 +1,10 @@
-package com.univoice.feature.example.xml
+package com.univoice.feature.signUp
 
 import android.content.Intent
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity

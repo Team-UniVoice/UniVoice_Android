@@ -28,7 +28,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".feature.example.xml.SignUpActivity"
+            android:name=".feature.signUp.SignUpActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -41,35 +41,35 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.example.xml.SchoolInputActivity"
+            android:name=".feature.signUp.SchoolInputActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.example.xml.DepartmentInputActivity"
+            android:name=".feature.signUp.DepartmentInputActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.example.xml.StudentIdInputActivity"
+            android:name=".feature.signUp.StudentIdInputActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.example.xml.StudentCardPhotoActivity"
+            android:name=".feature.signUp.StudentCardPhotoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.example.xml.InfoInputActivity"
+            android:name=".feature.signUp.InfoInputActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.example.xml.CreateAccountActivity"
+            android:name=".feature.signUp.CreateAccountActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.example.xml.StudentCardCheckActivity"
+            android:name=".feature.signUp.StudentCardCheckActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.example.xml.CheckInfoActivity"
+            android:name=".feature.signUp.CheckInfoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
