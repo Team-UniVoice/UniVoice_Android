@@ -10,7 +10,6 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.core_ui.view.CustomSpinner
 import com.univoice.databinding.ActivityStudentIdInputBinding
-import com.univoice.databinding.ItemBottomButtonBinding
 import com.univoice.feature.example.xml.DepartmentInputActivity.Companion.DEPARTMENT_KEY
 import com.univoice.feature.example.xml.SchoolInputActivity.Companion.SCHOOL_KEY
 import com.univoice.feature.util.setupToolbarClickListener
@@ -21,7 +20,6 @@ class StudentIdInputActivity :
     BindingActivity<ActivityStudentIdInputBinding>(R.layout.activity_student_id_input) {
 
     private var isSpinnerInitialized = false
-    private lateinit var itemSignupButtonBinding: ItemBottomButtonBinding
 
     override fun initView() {
         setupToolbar()
@@ -33,7 +31,11 @@ class StudentIdInputActivity :
     }
 
     private fun setupToolbar() {
-        setupToolbarClickListener(binding.ibToolbarStudentIdInputIcon)
+        with(binding.toolbarStudentIdInput) {
+            tvToolbarTitle.text =
+                applicationContext.getString(R.string.tv_toolbar_personal_information_title)
+            setupToolbarClickListener(ibToolbarIcon)
+        }
     }
 
     private fun initFocus() {
@@ -89,8 +91,7 @@ class StudentIdInputActivity :
     }
 
     private fun setupNextButton() {
-        itemSignupButtonBinding = ItemBottomButtonBinding.bind(binding.root)
-        itemSignupButtonBinding.btnSignupNext.setOnClickListener {
+        binding.btnStudentIdInputNext.btnSignupNext.setOnClickListener {
             navigateToStudentInfoCheck()
         }
     }
@@ -112,7 +113,7 @@ class StudentIdInputActivity :
     }
 
     private fun enableButton() {
-        with(itemSignupButtonBinding.btnSignupNext) {
+        with(binding.btnStudentIdInputNext.btnSignupNext) {
             isEnabled = true
             background = ContextCompat.getDrawable(
                 this@StudentIdInputActivity,
@@ -122,7 +123,7 @@ class StudentIdInputActivity :
     }
 
     private fun disableButton() {
-        with(itemSignupButtonBinding.btnSignupNext) {
+        with(binding.btnStudentIdInputNext.btnSignupNext) {
             isEnabled = false
             background = ContextCompat.getDrawable(
                 this@StudentIdInputActivity,

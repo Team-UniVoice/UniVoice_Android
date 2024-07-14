@@ -7,35 +7,12 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <androidx.appcompat.widget.Toolbar
+        <include
             android:id="@+id/toolbar_school_input"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            app:contentInsetStart="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular">
-
-            <ImageButton
-                android:id="@+id/ib_toolbar_school_input_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_back" />
-
-            <TextView
-                android:id="@+id/tv_toolbar_school_input_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_toolbar_school_input_title"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular" />
-
-        </androidx.appcompat.widget.Toolbar>
+            layout="@layout/item_toolbar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_school_input_bottom"
+            android:id="@+id/layout_school_input_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingHorizontal="16dp"

@@ -3,16 +3,13 @@ package com.univoice.feature.example.xml
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.RoundedBitmapDrawable
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
@@ -35,7 +32,11 @@ class StudentCardPhotoActivity :
     }
 
     private fun setupToolbar() {
-        setupToolbarClickListener(binding.ibToolbarStudentCardPhotoIcon)
+        with(binding.toolbarStudentCardPhoto) {
+            tvToolbarTitle.text =
+                applicationContext.getString(R.string.tv_toolbar_student_card_photo_title)
+            setupToolbarClickListener(ibToolbarIcon)
+        }
     }
 
     private fun uploadBtnClickListener() {

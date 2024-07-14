@@ -65,12 +65,10 @@
     <string name="tv_signup_btn_next">다음</string>
     <string name="et_department_input_search_hint">학과 검색하기</string>
     <string name="tv_department_input_explain">학과를 입력해주세요</string>
-    <string name="tv_toolbar_department_input_title">개인정보입력</string>
-    <string name="tv_toolbar_school_input_title">개인정보입력</string>
+    <string name="tv_toolbar_personal_information_title">개인정보입력</string>
     <string name="tv_student_id_input_explain">학번을 선택해주세요</string>
     <string name="tv_student_id_input_school">학교</string>
     <string name="tv_student_info_check_explain">입력하신 정보가 맞나요?</string>
-    <string name="tv_toolbar_student_info_check_title">개인정보입력</string>
     <string name="tv_student_info_check_id">학번</string>
     <string name="tv_student_info_check_department">학과</string>
     <string name="tv_student_info_check_school">학교</string>
@@ -83,4 +81,5 @@
     <string name="tv_student_card_photo_explain4">• 주민등록번호가 있다면 가려주세요</string>
     <string name="btn_student_card_photo_next">다음</string>
     <string name="tv_ellipse">...</string>
+    <string name="tv_toolbar_signup_title">회원가입</string>
 </resources>

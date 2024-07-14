@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivitySchoolInputBinding
-import com.univoice.databinding.ItemBottomButtonBinding
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +21,6 @@ class SchoolInputActivity :
     private val filteredList = mutableListOf<String>()
     private var schoolSelected = false
     private var highlightText = ""
-    private lateinit var itemSignupButtonBinding: ItemBottomButtonBinding
 
     override fun initView() {
         setupToolbar()
@@ -34,7 +32,11 @@ class SchoolInputActivity :
     }
 
     private fun setupToolbar() {
-        setupToolbarClickListener(binding.ibToolbarSchoolInputIcon)
+        with(binding.toolbarSchoolInput) {
+            tvToolbarTitle.text =
+                applicationContext.getString(R.string.tv_toolbar_personal_information_title)
+            setupToolbarClickListener(ibToolbarIcon)
+        }
     }
 
     private fun initFocus() {
@@ -101,12 +103,13 @@ class SchoolInputActivity :
     }
 
     private fun setupNextButton() {
-        itemSignupButtonBinding = ItemBottomButtonBinding.bind(binding.root)
         disableButton()
-        itemSignupButtonBinding.btnSignupNext.setOnClickListener {
-            if (schoolSelected) {
-                val selectedSchool = binding.etSchoolInputSearch.text.toString()
-                navigateToDepartmentInput(selectedSchool)
+        with(binding) {
+            btnSchoolInputNext.btnSignupNext.setOnClickListener {
+                if (schoolSelected) {
+                    val selectedSchool = etSchoolInputSearch.text.toString()
+                    navigateToDepartmentInput(selectedSchool)
+                }
             }
         }
     }
@@ -119,14 +122,14 @@ class SchoolInputActivity :
     }
 
     private fun enableButton() {
-        with(itemSignupButtonBinding.btnSignupNext) {
+        with(binding.btnSchoolInputNext.btnSignupNext) {
             isEnabled = true
             background = ContextCompat.getDrawable(context, R.drawable.shape_mint400_fill_40_rect)
         }
     }
 
     private fun disableButton() {
-        with(itemSignupButtonBinding.btnSignupNext) {
+        with(binding.btnSchoolInputNext.btnSignupNext) {
             isEnabled = false
             background = ContextCompat.getDrawable(context, R.drawable.shape_gray200_fill_40_rect)
         }
