@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_student_card_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:contentInsetStart="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular">
+
+            <ImageButton
+                android:id="@+id/ib_toolbar_student_card_check_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/tv_toolbar_student_card_check_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tb_card_check"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_student_card_photo_check"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_student_card_check">
+
+            <TextView
+                android:id="@+id/tv_student_card_check_explain"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_student_card_explain"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="17dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_student_card_check_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                tools:src="@drawable/example_studentcard"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_student_card_check_explain" />
+
+            <TextView
+                android:id="@+id/tv_student_card_check_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="@string/tv_student_card_name"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="139dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_student_card_check_photo" />
+
+            <View
+                android:id="@+id/iv_student_card_check_name_line"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:background="@drawable/shape_regular_fill_30_rect"
+                android:layout_marginTop="11dp"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_student_card_check_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_student_card_check_student_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="@string/tv_student_card_id"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="139dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_student_card_check_name_line" />
+
+            <View
+                android:id="@+id/iv_student_card_check_line"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:background="@drawable/shape_regular_fill_30_rect"
+                android:layout_marginTop="11dp"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_student_card_check_student_id"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_student_card_next"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_student_card_next"
+                android:background="@drawable/sel_signup_button"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="12dp"
+                style="@style/LoginButtonWithoutShadow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

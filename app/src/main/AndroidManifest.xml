@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".UniVoiceApp"
@@ -26,25 +28,60 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".feature.entry.EntryActivity"
+            android:name=".feature.signUp.SignUpActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".feature.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.signUp.SchoolInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.signUp.DepartmentInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.signUp.StudentIdInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.signUp.StudentCardPhotoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.signUp.InfoInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.signUp.CreateAccountActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.signUp.StudentCardCheckActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.signUp.CheckInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".feature.quickscan.QuickScanActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".feature.quickscan.QuickScanCompleteActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.MainActivity"
+            android:name=".feature.entry.EntryActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

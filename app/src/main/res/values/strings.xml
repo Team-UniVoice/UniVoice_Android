@@ -57,4 +57,43 @@
     <string name="feed_time_now">지금</string>
     <string name="feed_time_minute">분 전</string>
     <string name="feed_time_hour">시간 전</string>
+
+    <!-- 회원가입 -->
+    <string name="tb_student_check">학생증 인증</string>
+    <string name="tv_info_title">이름과 학번을 적어주세요</string>
+    <string name="tv_info_explain">학생증에 기재된 것과 동일해야 해요</string>
+    <string name="ed_info_name">이름</string>
+    <string name="et_info_student_id">전체 학번 ex. 2024123455</string>
+    <string name="btn_info_next">다음</string>
+    <string name="tb_card_check">학생증 인증</string>
+    <string name="tv_student_card_explain">학생증에 기재된 이름, 학번과\n입력한 정보가 일치하나요?</string>
+    <string name="tv_student_card_name">이름</string>
+    <string name="tv_student_card_id">학번</string>
+    <string name="btn_student_card_next">네, 일치해요</string>
+    <string name="tb_create_account">계정 생성</string>
+    <string name="tv_create_account_explain">아이디와 비밀번호를\n설정해주세요</string>
+    <string name="et_create_account_id">아이디 입력하기</string>
+    <string name="btn_create_account_check">중복확인</string>
+    <string name="tv_create_account_id">영문, 소문자, 숫자, 특수문자 사용 5~20자</string>
+    <string name="et_create_account_pwd">비밀번호 설정하기</string>
+    <string name="tv_create_account_pwd">영문, 숫자, 특수문자 각각 1개 이상 포함 8~16자</string>
+    <string name="et_create_account_pwd_check">비밀번호를 확인해주세요</string>
+    <string name="tv_create_account_pwd_check">비밀번호가 일치합니다</string>
+    <string name="btn_create_account_next">확인</string>
+    <string name="tv_create_account_id_input">아이디를 입력하세요</string>
+    <string name="tv_create_account_id_explain">사용 가능한 아이디입니다.</string>
+    <string name="tv_create_account_id_unavailable">사용 불가능한 아이디입니다.</string>
+    <string name="tv_create_account_pw_explain">비밀번호를 입력하세요</string>
+    <string name="tv_create_account_pw_check_explain">비밀번호가 일치합니다</string>
+    <string name="btn_create_account_next_twice">다음</string>
+    <string name="btn_create_account_id">아이디 중복 확인</string>
+    <string name="btn_create_account_pw_check">비밀번호 확인</string>
+    <string name="password_match">비밀번호가 일치합니다</string>
+    <string name="password_mismatch">비밀번호가 일치하지 않습니다</string>
+    <string name="tv_bottom_sheet_agree">약관동의</string>
+    <string name="cb_bottom_sheet_all_agree">전체동의하기</string>
+    <string name="cb_bottom_sheet_service">서비스 이용약관 (필수)</string>
+    <string name="cb_bottom_sheet_personal">개인정보 수집 및 이용 동의 (필수)</string>
+    <string name="btn_bottom_sheet_ok">확인</string>
+
 </resources>
