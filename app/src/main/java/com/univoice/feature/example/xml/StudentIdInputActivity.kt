@@ -43,6 +43,7 @@ class StudentIdInputActivity :
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent)
                 val textView = view as TextView
+                textView.setPadding(21, textView.paddingTop, textView.paddingRight, textView.paddingBottom)
                 if (position == binding.spStudentIdInput.selectedItemPosition) {
                     textView.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi) //선택 했을때 폰트
                 }
