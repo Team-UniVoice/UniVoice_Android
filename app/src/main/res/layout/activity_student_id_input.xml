@@ -50,7 +50,6 @@
                 android:id="@+id/iv_student_id_input_sp_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
-                android:layout_marginTop="0dp"
                 android:background="@drawable/shape_mint400_fill_40_rect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

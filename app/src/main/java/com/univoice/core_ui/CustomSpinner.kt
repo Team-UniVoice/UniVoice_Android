@@ -10,32 +10,19 @@ class CustomSpinner @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : AppCompatSpinner(context, attrs, defStyleAttr) {
-    /**
-     * An interface which a client of this Spinner could use to receive
-     * open/closed events for this Spinner.
-     */
+
     interface OnSpinnerEventsListener {
-        /**
-         * Callback triggered when the spinner was opened.
-         */
         fun onSpinnerOpened(spinner: Spinner?)
 
-        /**
-         * Callback triggered when the spinner was closed.
-         */
         fun onSpinnerClosed(spinner: Spinner?)
     }
 
     private var mListener: OnSpinnerEventsListener? = null
     private var mOpenInitiated = false
 
-
-    // implement the Spinner constructors that you need
     override fun performClick(): Boolean {
-        // register that the Spinner was opened so we have a status
-        // indicator for when the container holding this Spinner may lose focus
         mOpenInitiated = true
-        mListener?.onSpinnerClosed(this)
+        mListener?.onSpinnerOpened(this)
         return super.performClick()
     }
 
@@ -70,6 +57,5 @@ class CustomSpinner @JvmOverloads constructor(
     fun hasBeenOpened(): Boolean {
         return mOpenInitiated
     }
-
 }
 

@@ -1,4 +1,4 @@
-package com.univoice.feature.example.xml
+package com.univoice.feature.signUp
 
 import android.content.Intent
 import android.view.View
@@ -22,6 +22,17 @@ class StudentIdInputActivity :
     private var isSpinnerInitialized = false
 
     override fun initView() {
+        setupSpinner()
+        disableButton()
+        loadIntentData()
+        setupNextButtonClickListener()
+
+        binding.spStudentIdInput.post {
+            binding.spStudentIdInput.performClick()
+        }
+    }
+
+    private fun setupSpinner() {
         setupToolbar()
         initFocus()
         setupSpinner()
@@ -53,7 +64,7 @@ class StudentIdInputActivity :
 
     private fun initSpinnerAdapter() {
         val studentIdArray = resources.getStringArray(R.array.student_id_array)
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, studentIdArray)
+        val arrayAdapter = CustomSpinnerAdapter(this, android.R.layout.simple_list_item_1, studentIdArray)
         binding.spStudentIdInput.adapter = arrayAdapter
     }
 

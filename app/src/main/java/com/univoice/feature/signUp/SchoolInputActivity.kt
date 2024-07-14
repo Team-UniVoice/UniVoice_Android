@@ -1,4 +1,4 @@
-package com.univoice.feature.example.xml
+package com.univoice.feature.signUp
 
 import android.content.Intent
 import android.text.Editable
@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivitySchoolInputBinding
@@ -23,12 +24,15 @@ class SchoolInputActivity :
     private var highlightText = ""
 
     override fun initView() {
+        setupToolbarClickListener(binding.ibToolbarSchoolInputIcon)
+        initEditTextSchoolInput()
+        setupEditTextListener()
+        setupRecyclerView()
         setupToolbar()
         initFocus()
         initAdapter()
         setupListView()
         setupNextButton()
-        setupEditTextListener()
     }
 
     private fun setupToolbar() {
@@ -43,25 +47,22 @@ class SchoolInputActivity :
         binding.etSchoolInputSearch.requestFocus()
     }
 
-    private fun initAdapter() {
-        adapter = SignUpListAdapter(this, R.layout.item_signup_list, filteredList, highlightText)
-        binding.lvSchoolInputSearchResults.adapter = adapter
-    }
+    private fun setupRecyclerView() {
+        adapter = SchoolDepartmentListAdapter(this, highlightText)
+        binding.rvSchoolInputSearchResults.layoutManager = LinearLayoutManager(this)
+        binding.rvSchoolInputSearchResults.adapter = adapter
 
-    private fun setupListView() {
-        binding.lvSchoolInputSearchResults.apply {
-            layoutParams.height = resources.getDimensionPixelSize(R.dimen.dropdown_height)
+        adapter.submitList(filteredList)
+        adapter.setHighlightText(highlightText)
 
-            setOnItemClickListener { _, _, position, _ ->
-                val selectedSchool = filteredList[position]
-                if (selectedSchool == context.getString(R.string.tv_ellipse)) return@setOnItemClickListener
-
-                binding.etSchoolInputSearch.setText(selectedSchool)
-                binding.etSchoolInputSearch.setSelection(selectedSchool.length)
-                visibility = View.GONE
-                schoolSelected = true
-                enableButton()
-            }
+        adapter.setOnItemClickListener { position ->
+            val selectedSchool = filteredList[position]
+            if (selectedSchool == "...") return@setOnItemClickListener
+            binding.etSchoolInputSearch.setText(selectedSchool)
+            binding.etSchoolInputSearch.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi)
+            binding.rvSchoolInputSearchResults.visibility = View.GONE
+            schoolSelected = true
+            enableButton()
         }
     }
 
@@ -81,7 +82,7 @@ class SchoolInputActivity :
                     highlightText = input
                     adapter.setHighlightText(input)
                     filterSchools(input)
-                    binding.lvSchoolInputSearchResults.visibility = View.VISIBLE
+                    binding.rvSchoolInputSearchResults.visibility = View.VISIBLE
                     schoolSelected = false
                     disableButton()
                 }
@@ -146,7 +147,7 @@ class SchoolInputActivity :
                 filteredList.add(applicationContext.getString(R.string.tv_ellipse))
             }
         }
-        adapter.notifyDataSetChanged()
+        adapter.submitList(filteredList)
     }
 
     companion object {

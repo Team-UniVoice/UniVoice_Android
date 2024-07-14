@@ -60,16 +60,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_school_input_search" />
 
-            <ListView
-                android:id="@+id/lv_school_input_search_results"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_school_input_search_results"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dropdown_height"
                 android:layout_marginTop="0dp"
-                android:divider="@null"
-                android:dividerHeight="0dp"
-                android:maxHeight="160dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view_school_input_divider" />
 
             <include

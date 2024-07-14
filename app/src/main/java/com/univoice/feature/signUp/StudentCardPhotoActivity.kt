@@ -1,4 +1,4 @@
-package com.univoice.feature.example.xml
+package com.univoice.feature.signUp
 
 import android.Manifest
 import android.content.Intent

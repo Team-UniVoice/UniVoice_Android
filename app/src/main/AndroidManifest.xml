@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UniVoice"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31" >
+        tools:targetApi="31">
         <activity
             android:name=".feature.login.WelcomeActivity"
             android:exported="false"
@@ -37,6 +37,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".feature.example.xml.SignUpActivity"
+            android:exported="true" />
         <activity
             android:name=".feature.example.xml.StudentInfoCheckActivity"
             android:exported="false"
@@ -84,7 +86,7 @@
         <activity
             android:name=".feature.MainActivity"
             android:exported="false"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".feature.quickscan.QuickScanActivity"
@@ -92,6 +94,10 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".feature.quickscan.QuickScanCompleteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
