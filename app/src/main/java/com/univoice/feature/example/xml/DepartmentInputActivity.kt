@@ -20,18 +20,14 @@ class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(
     private val departmentList = listOf(
         "컴퓨터공학과", "컴퓨터학과", "컴퓨터과학과", "컴퓨터과학", "컴퓨터교육과", "컴퓨터교육"
     )
+
     private val filteredList = mutableListOf<String>()
     private var departmentSelected = false
     private var highlightText = ""
     private var selectedSchool: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        selectedSchool = intent.getStringExtra("selectedSchool")
-        initView()
-    }
-
     override fun initView() {
+        selectedSchool = intent.getStringExtra("selectedSchool")
         setupEditTextListener()
         setupRecyclerView()
         setupNextButton()
@@ -55,7 +51,6 @@ class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(
             binding.etDepartmentInputSearch.setText(selectedDepartment)
             binding.etDepartmentInputSearch.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi)
             binding.rvDepartmentInputSearchResults.visibility = View.GONE
-            hideKeyboard()
             departmentSelected = true
             enableButton()
         }
@@ -124,8 +119,4 @@ class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(
         adapter.submitList(filteredList)
     }
 
-    private fun hideKeyboard() {
-        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.etDepartmentInputSearch.windowToken, 0)
-    }
 }

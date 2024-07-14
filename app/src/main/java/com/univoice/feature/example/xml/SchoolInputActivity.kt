@@ -28,11 +28,6 @@ class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout
     private var schoolSelected = false
     private var highlightText = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initView()
-    }
-
     override fun initView() {
         setupToolbarClickListener(binding.ibToolbarSchoolInputIcon)
         initEditTextSchoolInput()
@@ -59,7 +54,6 @@ class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout
             binding.etSchoolInputSearch.setText(selectedSchool)
             binding.etSchoolInputSearch.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi)
             binding.rvSchoolInputSearchResults.visibility = View.GONE
-            hideKeyboard()
             schoolSelected = true
             enableButton()
         }
@@ -127,8 +121,4 @@ class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout
         adapter.submitList(filteredList)
     }
 
-    private fun hideKeyboard() {
-        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.etSchoolInputSearch.windowToken, 0)
-    }
 }
