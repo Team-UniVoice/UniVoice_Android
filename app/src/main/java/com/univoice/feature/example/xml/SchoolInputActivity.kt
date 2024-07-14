@@ -7,6 +7,8 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivitySchoolInputBinding
@@ -16,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout.activity_school_input) {
 
-    private lateinit var adapter: ListViewAdapter
+    private lateinit var adapter: SchoolDepartmentListAdapter
     private val schoolList = listOf(
         "서울대학교", "서울과학기술대학교", "서울시립대학교", "서울여자대학교", "서울학교5", "서울학교6",
         "서울학교7", "서울학교8", "서울학교9", "서울학교10", "서울학교11", "서울학교12", "서울학교13",
@@ -35,7 +37,7 @@ class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout
         setupToolbarClickListener(binding.ibToolbarSchoolInputIcon)
         initEditTextSchoolInput()
         setupEditTextListener()
-        setupListView()
+        setupRecyclerView()
         setupNextButton()
     }
 
@@ -43,18 +45,20 @@ class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout
         binding.etSchoolInputSearch.requestFocus()
     }
 
-    private fun setupListView() {
-        adapter = ListViewAdapter(this, R.layout.listview_item, filteredList, highlightText)
-        binding.lvSchoolInputSearchResults.adapter = adapter
-        val layoutParams = binding.lvSchoolInputSearchResults.layoutParams
-        layoutParams.height = resources.getDimensionPixelSize(R.dimen.dropdown_height)
-        binding.lvSchoolInputSearchResults.layoutParams = layoutParams
+    private fun setupRecyclerView() {
+        adapter = SchoolDepartmentListAdapter(this, highlightText)
+        binding.rvSchoolInputSearchResults.layoutManager = LinearLayoutManager(this)
+        binding.rvSchoolInputSearchResults.adapter = adapter
 
-        binding.lvSchoolInputSearchResults.setOnItemClickListener { parent, view, position, id ->
+        adapter.submitList(filteredList)
+        adapter.setHighlightText(highlightText)
+
+        adapter.setOnItemClickListener { position ->
             val selectedSchool = filteredList[position]
             if (selectedSchool == "...") return@setOnItemClickListener
             binding.etSchoolInputSearch.setText(selectedSchool)
-            binding.lvSchoolInputSearchResults.visibility = View.GONE
+            binding.etSchoolInputSearch.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi)
+            binding.rvSchoolInputSearchResults.visibility = View.GONE
             hideKeyboard()
             schoolSelected = true
             enableButton()
@@ -70,7 +74,7 @@ class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout
                 highlightText = input
                 adapter.setHighlightText(input)
                 filterSchools(input)
-                binding.lvSchoolInputSearchResults.visibility = View.VISIBLE // 드롭다운 표시
+                binding.rvSchoolInputSearchResults.visibility = View.VISIBLE // 드롭다운 표시
                 schoolSelected = false
                 disableButton()
             }
@@ -84,7 +88,7 @@ class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout
                 highlightText = input
                 adapter.setHighlightText(input)
                 filterSchools(input)
-                binding.lvSchoolInputSearchResults.visibility = View.VISIBLE
+                binding.rvSchoolInputSearchResults.visibility = View.VISIBLE
             }
         }
     }
@@ -115,13 +119,12 @@ class SchoolInputActivity : BindingActivity<ActivitySchoolInputBinding>(R.layout
         if (query.isNotEmpty()) {
             val results = schoolList.filter { it.contains(query, ignoreCase = true) }
                 .sortedBy { it.replace(query, "", ignoreCase = true) }
-                .take(20)
             filteredList.addAll(results)
-            if (results.size == 20) {
-                filteredList.add("...")
+            if (results.size > 4) {
+                binding.rvSchoolInputSearchResults.layoutParams.height = resources.getDimensionPixelSize(R.dimen.dropdown_height)
             }
         }
-        adapter.notifyDataSetChanged()
+        adapter.submitList(filteredList)
     }
 
     private fun hideKeyboard() {

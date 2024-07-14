@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:hint="학과 검색하기"
                 android:paddingBottom="11dp"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
+                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
                 android:textColor="@color/font_B01"
                 android:textColorHint="@color/font_B04"
                 android:backgroundTint="@color/mint_400"
@@ -66,16 +66,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_department_input_explain" />
 
-            <ListView
-                android:id="@+id/lv_department_input_search_results"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_department_input_search_results"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dropdown_height"
                 android:layout_marginTop="0dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:maxHeight="160dp"
-                android:divider="@null"
-                android:dividerHeight="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_department_input_search" />
