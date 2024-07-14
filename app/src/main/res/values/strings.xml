@@ -57,6 +57,8 @@
     <string name="feed_time_now">지금</string>
     <string name="feed_time_minute">분 전</string>
     <string name="feed_time_hour">시간 전</string>
+
+    <!-- 회원가입 -->
     <string name="tb_student_check">학생증 인증</string>
     <string name="tv_info_title">이름과 학번을 적어주세요</string>
     <string name="tv_info_explain">학생증에 기재된 것과 동일해야 해요</string>
@@ -78,4 +80,5 @@
     <string name="et_create_account_pwd_check">비밀번호를 확인해주세요</string>
     <string name="tv_create_account_pwd_check">비밀번호가 일치합니다</string>
     <string name="btn_create_account_next">확인</string>
+
 </resources>

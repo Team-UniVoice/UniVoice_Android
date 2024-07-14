@@ -2,12 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".UniVoiceApp"
@@ -21,34 +18,63 @@
         android:theme="@style/Theme.UniVoice"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity android:name=".feature.example.xml.SignUpActivity"
-            android:exported="true">
+        <activity
+            android:name=".feature.login.WelcomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.login.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.entry.EntryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.example.xml.SchoolInputActivity"
-            android:exported="false"/>
-        <activity android:name=".feature.example.xml.DepartmentInputActivity"
-            android:exported="false"/>
-        <activity android:name=".feature.example.xml.StudentIdInputActivity"
-            android:exported="false"/>
-        <activity android:name=".feature.example.xml.StudentCardPhotoActivity"
-            android:exported="false"/>
-        <activity android:name=".feature.example.xml.InfoInputActivity"
-            android:exported="false"/>
-        <activity android:name=".feature.example.xml.CreateAccountActivity"
-            android:exported="false"/>
-        <activity android:name=".feature.example.xml.StudentCardCheckActivity"
-            android:exported="false"/>
-        <activity android:name=".feature.example.xml.CheckInfoActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".feature.example.xml.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.example.xml.SchoolInputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.example.xml.DepartmentInputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.example.xml.StudentIdInputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.example.xml.StudentCardPhotoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.example.xml.InfoInputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.example.xml.CreateAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.example.xml.StudentCardCheckActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.example.xml.CheckInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature.quickscan.QuickScanActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.quickscan.QuickScanCompleteActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".feature.MainActivity"
-            android:exported="true"
-            android:screenOrientation="portrait">
-        </activity>
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".feature.example.xml.ExampleActivity"
             android:exported="false"
