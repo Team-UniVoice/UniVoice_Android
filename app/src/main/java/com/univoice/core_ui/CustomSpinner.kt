@@ -59,9 +59,7 @@ class CustomSpinner @JvmOverloads constructor(
      */
     fun performClosedEvent() {
         mOpenInitiated = false
-        if (mListener != null) {
-            mListener!!.onSpinnerClosed(this)
-        }
+        mListener?.onSpinnerClosed(this)
     }
 
     /**

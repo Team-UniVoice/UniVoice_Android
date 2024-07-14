@@ -31,7 +31,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="56dp"
-                android:text="회원가입을 위해서는\n몇 가지 개인정보가 필요해요"
+                android:text="@string/tv_signup_explain"
                 android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

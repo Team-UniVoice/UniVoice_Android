@@ -61,7 +61,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="학과"
+                android:text="@string/tv_signup_id"
                 android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
                 android:textColor="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +79,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_id"
-                tools:text="학과" />
+                tools:text="@string/tv_signup_id" />
 
             <View
                 android:id="@+id/iv_student_id_input_department_line"
@@ -96,7 +96,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="@string/tv_student_id_input_school"
+                android:text="@string/tv_signup_school"
                 android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
                 android:textColor="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -116,7 +116,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_school"
-                tools:text="학교" />
+                tools:text="@string/tv_signup_school" />
 
             <View
                 android:id="@+id/iv_student_id_input_school_line"
