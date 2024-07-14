@@ -37,67 +37,62 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.example.xml.SignUpActivity"
-            android:exported="true" />
-        <activity
-            android:name=".feature.example.xml.StudentInfoCheckActivity"
-            android:exported="false"
-            android:theme="@style/Theme.UniVoice" />
-        <activity
-            android:name=".feature.example.xml.SignUpActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".feature.example.xml.SchoolInputActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".feature.example.xml.DepartmentInputActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".feature.example.xml.StudentIdInputActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".feature.example.xml.StudentCardPhotoActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".feature.example.xml.NameInputActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".feature.example.xml.CreateAccountActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".feature.example.xml.StudentCardCheckActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".feature.MainActivity"
-            android:exported="false"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".feature.quickscan.QuickScanActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".feature.quickscan.QuickScanCompleteActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.MainActivity"
+            android:name=".feature.signup.SignUpActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.signup.StudentInfoCheckActivity"
+            android:exported="false"
+            android:theme="@style/Theme.UniVoice" />
+        <activity
+            android:name=".feature.signup.SchoolInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.signup.DepartmentInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.signup.StudentIdInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.signup.StudentCardPhotoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.signup.InfoInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.signup.CreateAccountActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".feature.signup.CheckInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.signup.StudentCardCheckActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.quickscan.QuickScanActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".feature.quickscan.QuickScanCompleteActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

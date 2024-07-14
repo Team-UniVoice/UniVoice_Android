@@ -1,4 +1,4 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.content.Intent
 import com.univoice.R
@@ -47,8 +47,8 @@ class SignupBottomSheetFragment :
     }
 
     private fun handleAgreeButtonClick() {
-        startActivity(Intent(requireContext(), CheckInfoActivity::class.java))
         dismiss()
+        startActivity(Intent(requireContext(), CheckInfoActivity::class.java))
     }
 
     private fun updateAgreeButtonState() {

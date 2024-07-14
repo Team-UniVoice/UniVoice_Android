@@ -1,4 +1,4 @@
-package com.univoice.feature.example.xml
+package com.univoice.feature.signup
 
 import androidx.lifecycle.ViewModel
 

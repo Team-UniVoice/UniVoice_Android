@@ -1,30 +1,10 @@
 <resources>
     <string name="app_name">UniVoice</string>
 
-    <!-- 회원가입 -->
-    <string name="tv_signup_explain">회원가입을 위해서는\n몇 가지 개인정보가 필요해요</string>
-    <string name="btn_signup_start">회원가입 시작하기</string>
-    <string name="tv_school_input_explain">학교를 입력해주세요</string>
-    <string name="et_school_input_search_hint">학교 이름 검색하기</string>
-    <string name="tv_signup_btn_next">다음</string>
-    <string name="et_department_input_search_hint">학과 검색하기</string>
-    <string name="tv_department_input_explain">학과를 입력해주세요</string>
-    <string name="tv_toolbar_personal_information_title">개인정보입력</string>
-    <string name="tv_student_id_input_explain">학번을 선택해주세요</string>
-    <string name="tv_signup_school">학교</string>
-    <string name="tv_student_info_check_explain">입력하신 정보가 맞나요?</string>
-    <string name="tv_signup_id">학번</string>
-    <string name="tv_signup_department">학과</string>
-    <string name="btn_student_info_check_confirm">네,맞아요</string>
-    <string name="tv_toolbar_student_card_photo_title">학생증 인증</string>
-    <string name="tv_student_card_photo_explain1">학교 인증을 위해\n학생증 사진이 필요해요</string>
-    <string name="tv_student_card_photo_explain2">실물 학생증 또는 모바일 학생증 이미지를 첨부해주세요\n승인까지 최대 24시간이 걸릴 수 있어요</string>
-    <string name="btn_student_card_photo_start">클릭해서\n이미지 업로드 하기</string>
-    <string name="tv_student_card_photo_explain3">• 이름, 학교, 학과, 전체 학번이 모두 보여야 해요</string>
-    <string name="tv_student_card_photo_explain4">• 주민등록번호가 있다면 가려주세요</string>
-    <string name="btn_student_card_photo_next">다음</string>
-    <string name="tv_ellipse">...</string>
-    <string name="tv_toolbar_signup_title">회원가입</string>
+    <!-- 바텀 네비게이션 -->
+    <string name="menu_item_home">홈</string>
+    <string name="menu_item_storage">저장</string>
+    <string name="menu_item_setting">설정</string>
 
     <!-- home -->
     <string name="text_home_empty">아직 학생회가 등록되어 있지 않아,\n공지사항을 확인할 수 없어요.</string>
@@ -80,6 +60,29 @@
     <string name="feed_time_hour">시간 전</string>
 
     <!-- 회원가입 -->
+    <string name="tv_signup_explain">회원가입을 위해서는\n몇 가지 개인정보가 필요해요</string>
+    <string name="btn_signup_start">회원가입 시작하기</string>
+    <string name="tv_school_input_explain">학교를 입력해주세요</string>
+    <string name="et_school_input_search_hint">학교 이름 검색하기</string>
+    <string name="tv_signup_btn_next">다음</string>
+    <string name="et_department_input_search_hint">학과 검색하기</string>
+    <string name="tv_department_input_explain">학과를 입력해주세요</string>
+    <string name="tv_toolbar_personal_information_title">개인정보입력</string>
+    <string name="tv_student_id_input_explain">학번을 선택해주세요</string>
+    <string name="tv_signup_school">학교</string>
+    <string name="tv_student_info_check_explain">입력하신 정보가 맞나요?</string>
+    <string name="tv_signup_id">학번</string>
+    <string name="tv_signup_department">학과</string>
+    <string name="btn_student_info_check_confirm">네,맞아요</string>
+    <string name="tv_toolbar_student_card_photo_title">학생증 인증</string>
+    <string name="tv_student_card_photo_explain1">학교 인증을 위해\n학생증 사진이 필요해요</string>
+    <string name="tv_student_card_photo_explain2">실물 학생증 또는 모바일 학생증 이미지를 첨부해주세요\n승인까지 최대 24시간이 걸릴 수 있어요</string>
+    <string name="btn_student_card_photo_start">클릭해서\n이미지 업로드 하기</string>
+    <string name="tv_student_card_photo_explain3">• 이름, 학교, 학과, 전체 학번이 모두 보여야 해요</string>
+    <string name="tv_student_card_photo_explain4">• 주민등록번호가 있다면 가려주세요</string>
+    <string name="btn_student_card_photo_next">다음</string>
+    <string name="tv_ellipse">...</string>
+    <string name="tv_toolbar_signup_title">회원가입</string>
     <string name="tb_student_check">학생증 인증</string>
     <string name="tv_info_title">이름과 학번을 적어주세요</string>
     <string name="tv_info_explain">학생증에 기재된 것과 동일해야 해요</string>
@@ -116,5 +119,8 @@
     <string name="cb_bottom_sheet_service">서비스 이용약관 (필수)</string>
     <string name="cb_bottom_sheet_personal">개인정보 수집 및 이용 동의 (필수)</string>
     <string name="btn_bottom_sheet_ok">확인</string>
+    <string name="btn_check_info_start">처음으로 돌아가기</string>
+    <string name="tv_check_info_wait">학교 인증이 완료된 이후에 유니보이스를 이용할 수 있어요\n승인까지 최대 24시간이 걸릴 수 있어요</string>
+    <string name="tv_check_info_explain">유니보이스가 회원님의 정보를\n확인하고 있어요</string>
 
 </resources>

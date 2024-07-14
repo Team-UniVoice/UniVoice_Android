@@ -1,40 +1,51 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityDepartmentInputBinding
+import com.univoice.feature.signup.SchoolInputActivity.Companion.MAX_SIZE
+import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
+import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(R.layout.activity_department_input) {
-    private lateinit var adapter: SchoolDepartmentListAdapter
-    private val departmentList = listOf(
-        "컴퓨터공학과", "컴퓨터학과", "컴퓨터과학과", "컴퓨터과학", "컴퓨터교육과", "컴퓨터교육"
-    )
+class DepartmentInputActivity :
+    BindingActivity<ActivityDepartmentInputBinding>(R.layout.activity_department_input) {
 
+    private val viewModel by viewModels<DepartmentInputViewModel>()
+    private lateinit var adapter: SchoolDepartmentListAdapter
     private val filteredList = mutableListOf<String>()
     private var departmentSelected = false
     private var highlightText = ""
-    private var selectedSchool: String? = null
 
     override fun initView() {
-        selectedSchool = intent.getStringExtra("selectedSchool")
-        setupEditTextListener()
-        setupRecyclerView()
+        initToolbar()
+        initFocus()
+        initAdapter()
         setupNextButton()
+        setupEditTextListener()
     }
 
-    private fun initEditTextDepartmentInput() {
+    private fun initToolbar() {
+        with(binding.toolbarDepartmentInput) {
+            tvToolbarTitle.text =
+                applicationContext.getString(R.string.tv_toolbar_personal_information_title)
+            setupToolbarClickListener(ibToolbarIcon)
+        }
+    }
+
+    private fun initFocus() {
         binding.etDepartmentInputSearch.requestFocus()
     }
 
-    private fun setupRecyclerView() {
+    private fun initAdapter() {
         adapter = SchoolDepartmentListAdapter(this, highlightText)
         binding.rvDepartmentInputSearchResults.layoutManager = LinearLayoutManager(this)
         binding.rvDepartmentInputSearchResults.adapter = adapter
@@ -49,7 +60,7 @@ class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(
 
     private fun handleDepartmentSelection(position: Int) {
         val selectedDepartment = filteredList[position]
-        if (selectedDepartment == "...") return
+        if (selectedDepartment == applicationContext.getString(R.string.tv_ellipse)) return
         binding.etDepartmentInputSearch.setText(selectedDepartment)
         binding.etDepartmentInputSearch.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi)
         binding.rvDepartmentInputSearchResults.visibility = View.GONE
@@ -95,46 +106,61 @@ class DepartmentInputActivity : BindingActivity<ActivityDepartmentInputBinding>(
     }
 
     private fun setupNextButton() {
-        binding.btnDepartmentInputNext.setOnClickListener {
-            if (departmentSelected) {
-                proceedToNextScreen()
+        disableButton()
+        with(binding) {
+            btnDepartmentInputNext.btnSignupNext.setOnClickListener {
+                if (departmentSelected) {
+                    val selectedDepartment = etDepartmentInputSearch.text.toString()
+                    val selectedSchool = intent.getStringExtra(SCHOOL_KEY)
+                    navigateToStudentIdInput(selectedSchool, selectedDepartment)
+                }
             }
         }
     }
 
-    private fun proceedToNextScreen() {
-        val selectedDepartment = binding.etDepartmentInputSearch.text.toString()
-        val intent = Intent(this, StudentIdInputActivity::class.java).apply {
-            putExtra("selectedSchool", selectedSchool)
-            putExtra("selectedDepartment", selectedDepartment)
+    private fun navigateToStudentIdInput(selectedSchool: String?, selectedDepartment: String) {
+        Intent(this, StudentIdInputActivity::class.java).apply {
+            putExtra(SCHOOL_KEY, selectedSchool)
+            putExtra(DEPARTMENT_KEY, selectedDepartment)
+            startActivity(this)
         }
-        startActivity(intent)
     }
 
     private fun enableButton() {
-        binding.btnDepartmentInputNext.isEnabled = true
-        binding.btnDepartmentInputNext.background = ContextCompat.getDrawable(this, R.drawable.bg_mint400_radius_40dp)
+        with(binding.btnDepartmentInputNext.btnSignupNext) {
+            isEnabled = true
+            background = ContextCompat.getDrawable(
+                this@DepartmentInputActivity,
+                R.drawable.shape_mint400_fill_40_rect
+            )
+        }
     }
 
     private fun disableButton() {
-        binding.btnDepartmentInputNext.isEnabled = false
-        binding.btnDepartmentInputNext.background = ContextCompat.getDrawable(this, R.drawable.bg_gray200_radius_40dp)
+        with(binding.btnDepartmentInputNext.btnSignupNext) {
+            isEnabled = false
+            background = ContextCompat.getDrawable(
+                this@DepartmentInputActivity,
+                R.drawable.shape_gray200_fill_40_rect
+            )
+        }
     }
 
     private fun filterDepartments(query: String) {
         filteredList.clear()
         if (query.isNotEmpty()) {
-            val results = departmentList.filter { it.contains(query, ignoreCase = true) }
+            val results = viewModel.mockDepartmentList
+                .filter { it.contains(query, ignoreCase = true) }
                 .sortedBy { it.replace(query, "", ignoreCase = true) }
-            filteredList.addAll(results)
-            adjustRecyclerViewHeight(results.size)
+            filteredList.addAll(results.take(MAX_SIZE))
+            if (results.size > MAX_SIZE) {
+                filteredList.add(applicationContext.getString(R.string.tv_ellipse))
+            }
         }
-        adapter.submitList(filteredList)
+        adapter.notifyDataSetChanged()
     }
 
-    private fun adjustRecyclerViewHeight(resultsSize: Int) {
-        if (resultsSize > 4) {
-            binding.rvDepartmentInputSearchResults.layoutParams.height = resources.getDimensionPixelSize(R.dimen.dropdown_height)
-        }
+    companion object {
+        const val DEPARTMENT_KEY = "selectedDepartment"
     }
 }

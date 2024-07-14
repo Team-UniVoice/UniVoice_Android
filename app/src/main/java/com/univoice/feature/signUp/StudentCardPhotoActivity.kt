@@ -1,4 +1,4 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.Manifest
 import android.content.Intent
@@ -25,13 +25,13 @@ class StudentCardPhotoActivity :
     private lateinit var pickImagesLauncher: ActivityResultLauncher<Intent>
 
     override fun initView() {
-        setupToolbar()
+        initToolbar()
         setupPermissions()
         setupImagePicker()
         uploadBtnClickListener()
     }
 
-    private fun setupToolbar() {
+    private fun initToolbar() {
         with(binding.toolbarStudentCardPhoto) {
             tvToolbarTitle.text =
                 applicationContext.getString(R.string.tv_toolbar_student_card_photo_title)
@@ -80,7 +80,7 @@ class StudentCardPhotoActivity :
                         btnStudentCardPhotoUpload.text = ""
                         btnStudentCardPhotoNext.visibility = View.VISIBLE
                         btnStudentCardPhotoNext.setOnClickListener {
-                            navigateToNameInput(selectedImageUri)
+                            navigateToInfoInput(selectedImageUri)
                         }
                     }
                 }
@@ -107,8 +107,8 @@ class StudentCardPhotoActivity :
         }
     }
 
-    private fun navigateToNameInput(selectedImageUri: Uri) {
-        Intent(this, NameInputActivity::class.java).apply {
+    private fun navigateToInfoInput(selectedImageUri: Uri) {
+        Intent(this, InfoInputActivity::class.java).apply {
             putExtra(IMAGE_KEY, selectedImageUri.toString())
             startActivity(this)
         }

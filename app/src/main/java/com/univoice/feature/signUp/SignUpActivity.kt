@@ -1,4 +1,4 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.content.Intent
 import com.univoice.R
