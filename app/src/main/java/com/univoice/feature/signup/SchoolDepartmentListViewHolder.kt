@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.univoice.R
 
-class SignupListViewHolder(itemView: View, private val itemClickListener: ((Int) -> Unit)?) :
+class SchoolDepartmentListViewHolder(itemView: View, private val itemClickListener: ((Int) -> Unit)?) :
     RecyclerView.ViewHolder(itemView) {
     val textView: TextView = itemView.findViewById(R.id.tv_listview_item)
 

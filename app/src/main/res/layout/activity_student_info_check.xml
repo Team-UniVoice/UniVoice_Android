@@ -35,7 +35,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_student_info_check_id"
+                android:id="@+id/tv_student_id_input_id"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -56,11 +56,11 @@
                 android:textColor="@color/font_B01"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_id"
+                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_id"
                 tools:text="학번" />
 
             <View
-                android:id="@+id/iv_student_info_check_id_line"
+                android:id="@+id/view_student_info_check_id_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="11dp"
@@ -79,7 +79,7 @@
                 android:textColor="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_id_selected" />
+                app:layout_constraintTop_toBottomOf="@id/view_student_info_check_id_line" />
 
             <TextView
                 android:id="@+id/tv_student_info_check_department_selected"
@@ -95,7 +95,7 @@
                 tools:text="학과" />
 
             <View
-                android:id="@+id/iv_student_info_check_department_line"
+                android:id="@+id/view_student_info_check_department_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="11dp"
@@ -109,12 +109,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="@string/tv_signup_department"
+                android:text="@string/tv_signup_school"
                 android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
                 android:textColor="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_department_selected" />
+                app:layout_constraintTop_toBottomOf="@id/view_student_info_check_department_line" />
 
             <TextView
                 android:id="@+id/tv_student_info_check_school_selected"
@@ -127,10 +127,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_school"
-                tools:text="학과" />
+                tools:text="학교" />
 
             <View
-                android:id="@+id/iv_student_info_check_school_line"
+                android:id="@+id/view_student_info_check_school_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="11dp"

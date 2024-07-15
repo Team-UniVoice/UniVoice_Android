@@ -109,12 +109,12 @@ class StudentCardPhotoActivity :
 
     private fun navigateToInfoInput(selectedImageUri: Uri) {
         Intent(this, InfoInputActivity::class.java).apply {
-            putExtra(IMAGE_KEY, selectedImageUri.toString())
+            putExtra(USER_IMAGE_KEY, selectedImageUri.toString())
             startActivity(this)
         }
     }
 
     companion object {
-        const val IMAGE_KEY = "selectedImageUri"
+        const val USER_IMAGE_KEY = "selectedImageUri"
     }
 }

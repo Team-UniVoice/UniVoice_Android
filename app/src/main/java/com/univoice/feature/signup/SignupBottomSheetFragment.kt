@@ -16,7 +16,7 @@ class SignupBottomSheetFragment :
         with(binding) {
             cbBottomSheetAgreeAll.setOnClickListener { handleAgreeAllClick() }
             cbBottomSheetService.setOnClickListener { handleServiceCheckBoxClick() }
-            cbBottomSheetUse.setOnClickListener { handleUseCheckBoxClick() }
+            cbBottomSheetUse.setOnClickListener { handleServiceCheckBoxClick() }
             btnBottomSheetAgree.setOnClickListener { handleAgreeButtonClick() }
         }
     }
@@ -31,10 +31,6 @@ class SignupBottomSheetFragment :
     }
 
     private fun handleServiceCheckBoxClick() {
-        handleIndividualCheckBoxClick()
-    }
-
-    private fun handleUseCheckBoxClick() {
         handleIndividualCheckBoxClick()
     }
 

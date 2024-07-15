@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.ListAdapter
 import com.univoice.R
 
 class SchoolDepartmentListAdapter(private val context: Context, private var highlightText: String) :
-    ListAdapter<String, SignupListViewHolder>(SchoolDepartmentDiffCallback()) {
+    ListAdapter<String, SchoolDepartmentListViewHolder>(SchoolDepartmentDiffCallback()) {
 
     private var itemClickListener: ((Int) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SignupListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SchoolDepartmentListViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_signup_list, parent, false)
-        return SignupListViewHolder(view, itemClickListener)
+        return SchoolDepartmentListViewHolder(view, itemClickListener)
     }
 
-    override fun onBindViewHolder(holder: SignupListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SchoolDepartmentListViewHolder, position: Int) {
         val schoolName = getItem(position)
         val spannable = SpannableStringBuilder(schoolName)
 

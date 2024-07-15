@@ -6,7 +6,7 @@ import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityStudentInfoCheckBinding
 import com.univoice.feature.signup.DepartmentInputActivity.Companion.DEPARTMENT_KEY
 import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
-import com.univoice.feature.signup.StudentIdInputActivity.Companion.ID_KEY
+import com.univoice.feature.signup.StudentIdInputActivity.Companion.USER_ID_KEY
 import com.univoice.feature.util.setupToolbarClickListener
 
 class StudentInfoCheckActivity :
@@ -33,7 +33,7 @@ class StudentInfoCheckActivity :
 
     private fun initTextViews() {
         with(binding) {
-            tvStudentInfoCheckIdSelected.text = intent.getStringExtra(ID_KEY)
+            tvStudentInfoCheckIdSelected.text = intent.getStringExtra(USER_ID_KEY)
             tvStudentInfoCheckDepartmentSelected.text = intent.getStringExtra(DEPARTMENT_KEY)
             tvStudentInfoCheckSchoolSelected.text = intent.getStringExtra(SCHOOL_KEY)
         }

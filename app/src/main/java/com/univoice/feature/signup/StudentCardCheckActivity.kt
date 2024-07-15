@@ -5,9 +5,9 @@ import android.net.Uri
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityStudentCardCheckBinding
-import com.univoice.feature.signup.InfoInputActivity.Companion.NAME_KEY
-import com.univoice.feature.signup.StudentCardPhotoActivity.Companion.IMAGE_KEY
-import com.univoice.feature.signup.StudentIdInputActivity.Companion.ID_KEY
+import com.univoice.feature.signup.InfoInputActivity.Companion.USER_NAME_KEY
+import com.univoice.feature.signup.StudentCardPhotoActivity.Companion.USER_IMAGE_KEY
+import com.univoice.feature.signup.StudentIdInputActivity.Companion.USER_ID_KEY
 import com.univoice.feature.util.setupToolbarClickListener
 
 class StudentCardCheckActivity :
@@ -15,7 +15,7 @@ class StudentCardCheckActivity :
 
     override fun initView() {
         initToolbar()
-        loadUserData()
+        initUserData()
         setupNextButtonClickListener()
     }
 
@@ -26,10 +26,10 @@ class StudentCardCheckActivity :
         }
     }
 
-    private fun loadUserData() {
-        val userName = intent.getStringExtra(NAME_KEY) ?: ""
-        val userStudentId = intent.getStringExtra(ID_KEY) ?: ""
-        val imageUriString = intent.getStringExtra(IMAGE_KEY) ?: ""
+    private fun initUserData() {
+        val userName = intent.getStringExtra(USER_NAME_KEY) ?: ""
+        val userStudentId = intent.getStringExtra(USER_ID_KEY) ?: ""
+        val imageUriString = intent.getStringExtra(USER_IMAGE_KEY) ?: ""
         val imageUri = Uri.parse(imageUriString)
 
         binding.tvStudentCardCheckName.text = userName
@@ -38,7 +38,7 @@ class StudentCardCheckActivity :
     }
 
     private fun setupNextButtonClickListener() {
-        binding.btnStudentCardNext.setOnClickListener {
+        binding.btnStudentCardCheckNext.setOnClickListener {
             val intent = Intent(this, CreateAccountActivity::class.java)
             startActivity(intent)
         }

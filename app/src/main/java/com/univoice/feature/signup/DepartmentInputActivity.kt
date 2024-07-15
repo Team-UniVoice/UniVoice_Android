@@ -27,8 +27,8 @@ class DepartmentInputActivity :
 
     override fun initView() {
         initToolbar()
-        initFocus()
-        initAdapter()
+        initEditTextFocus()
+        initSchoolDepartmentListAdapter()
         setupNextButton()
         setupEditTextListener()
     }
@@ -41,11 +41,11 @@ class DepartmentInputActivity :
         }
     }
 
-    private fun initFocus() {
+    private fun initEditTextFocus() {
         binding.etDepartmentInputSearch.requestFocus()
     }
 
-    private fun initAdapter() {
+    private fun initSchoolDepartmentListAdapter() {
         adapter = SchoolDepartmentListAdapter(this, highlightText)
         binding.rvDepartmentInputSearchResults.layoutManager = LinearLayoutManager(this)
         binding.rvDepartmentInputSearchResults.adapter = adapter
@@ -112,13 +112,15 @@ class DepartmentInputActivity :
                 if (departmentSelected) {
                     val selectedDepartment = etDepartmentInputSearch.text.toString()
                     val selectedSchool = intent.getStringExtra(SCHOOL_KEY)
-                    navigateToStudentIdInput(selectedSchool, selectedDepartment)
+                    selectedSchool?.let {
+                        navigateToStudentIdInput(selectedSchool, selectedDepartment)
+                    }
                 }
             }
         }
     }
 
-    private fun navigateToStudentIdInput(selectedSchool: String?, selectedDepartment: String) {
+    private fun navigateToStudentIdInput(selectedSchool: String, selectedDepartment: String) {
         Intent(this, StudentIdInputActivity::class.java).apply {
             putExtra(SCHOOL_KEY, selectedSchool)
             putExtra(DEPARTMENT_KEY, selectedDepartment)
@@ -157,7 +159,7 @@ class DepartmentInputActivity :
                 filteredList.add(applicationContext.getString(R.string.tv_ellipse))
             }
         }
-        adapter.notifyDataSetChanged()
+        adapter.submitList(filteredList)
     }
 
     companion object {

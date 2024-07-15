@@ -21,7 +21,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private val viewModel by viewModels<LoginViewModel>()
 
     override fun initView() {
-        setupToolbar()
+        initToolbar()
         initConfirmBtnClickListener()
         initConfirmBtnIsEnabled()
         setupFocusChangeListeners()
@@ -34,7 +34,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
         binding.etLoginPwd.isEnabled = false
     }
 
-    private fun setupToolbar() {
+    private fun initToolbar() {
         with(binding.toolbarLogin) {
             tvToolbarTitle.text = applicationContext.getString(R.string.login_toolbar_title)
             setupToolbarClickListener(ibToolbarIcon)

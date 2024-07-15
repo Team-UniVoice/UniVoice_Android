@@ -48,7 +48,7 @@
         <activity
             android:name=".feature.signup.StudentInfoCheckActivity"
             android:exported="false"
-            android:theme="@style/Theme.UniVoice" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".feature.signup.SchoolInputActivity"
             android:exported="false"

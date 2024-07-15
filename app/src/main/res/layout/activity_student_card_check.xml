@@ -58,7 +58,7 @@
                 tools:text="@string/tv_student_card_name" />
 
             <View
-                android:id="@+id/iv_student_card_check_name_line"
+                android:id="@+id/view_student_card_check_name_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="11dp"
@@ -76,11 +76,11 @@
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/iv_student_card_check_name_line"
+                app:layout_constraintTop_toTopOf="@+id/view_student_card_check_name_line"
                 tools:text="@string/tv_student_card_id" />
 
             <View
-                android:id="@+id/iv_student_card_check_line"
+                android:id="@+id/view_student_card_check_id_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="11dp"
@@ -90,7 +90,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_student_card_check_student_id" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_student_card_next"
+                android:id="@+id/btn_student_card_check_next"
                 style="@style/LoginButtonWithoutShadow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

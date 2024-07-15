@@ -25,8 +25,8 @@ class SchoolInputActivity :
 
     override fun initView() {
         initToolbar()
-        initFocus()
-        initAdapter()
+        initEditTextFocus()
+        initSchoolDepartmentListAdapter()
         setupEditTextListener()
         setupNextButton()
     }
@@ -39,11 +39,11 @@ class SchoolInputActivity :
         }
     }
 
-    private fun initFocus() {
+    private fun initEditTextFocus() {
         binding.etSchoolInputSearch.requestFocus()
     }
 
-    private fun initAdapter() {
+    private fun initSchoolDepartmentListAdapter() {
         adapter = SchoolDepartmentListAdapter(this, highlightText)
         binding.rvSchoolInputSearchResults.layoutManager = LinearLayoutManager(this)
         binding.rvSchoolInputSearchResults.adapter = adapter

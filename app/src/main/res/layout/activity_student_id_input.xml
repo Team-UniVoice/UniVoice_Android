@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_explain" />
 
             <View
-                android:id="@+id/iv_student_id_input_sp_line"
+                android:id="@+id/view_student_id_input_sp_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:background="@drawable/shape_mint400_fill_40_rect"
@@ -56,7 +56,7 @@
                 app:layout_constraintTop_toBottomOf="@id/sp_student_id_input" />
 
             <TextView
-                android:id="@+id/tv_student_info_check_id"
+                android:id="@+id/tv_student_id_input_id"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -65,7 +65,7 @@
                 android:textColor="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_student_id_input_sp_line" />
+                app:layout_constraintTop_toBottomOf="@id/view_student_id_input_sp_line" />
 
             <TextView
                 android:id="@+id/tv_student_id_input_department_selected"
@@ -77,11 +77,11 @@
                 android:textColor="@color/font_B01"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_id"
+                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_id"
                 tools:text="@string/tv_signup_id" />
 
             <View
-                android:id="@+id/iv_student_id_input_department_line"
+                android:id="@+id/view_student_id_input_id_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="11dp"
@@ -100,7 +100,7 @@
                 android:textColor="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_student_id_input_department_line" />
+                app:layout_constraintTop_toBottomOf="@id/view_student_id_input_id_line" />
 
             <TextView
                 android:id="@+id/tv_student_id_input_school_selected"
@@ -118,7 +118,7 @@
                 tools:text="@string/tv_signup_school" />
 
             <View
-                android:id="@+id/iv_student_id_input_school_line"
+                android:id="@+id/view_student_id_input_school_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="11dp"
