@@ -20,7 +20,7 @@ class HomeViewModel : ViewModel() {
         QuickScanListEntity(
             name = "경영대학\n학생회",
             image = "",
-            count = 5
+            count = 0
         ),
         QuickScanListEntity(
             name = "인문대학\n학생회",
