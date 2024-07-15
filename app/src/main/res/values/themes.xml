@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.UniVoice" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
@@ -20,7 +20,18 @@
         <item name="android:colorBackground">@android:color/transparent</item>
     </style>
 
+    <style name="TransparentKeyboardBottomSheetDialogFragment" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
     <style name="LoginButtonWithoutShadow" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textAppearance">@style/TextAppearance.UniVoice.title4Bold</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerRadius8" parent="">
+        <item name="cornerSize">8dp</item>
     </style>
 </resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_regular_line_20_rect"
+        app:layout_behavior="com.google.android.material.bottom-sheet.BottomSheetBehavior">
+
+        <TextView
+            android:id="@+id/tv_bottomsheet_notice_post_target_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/btn_notice_post_target"
+            android:textAppearance="@style/TextAppearance.UniVoice.title3Semi"
+            android:textColor="@color/font_B01"
+            app:layout_constraintBottom_toTopOf="@id/et_bottomsheet_notice_post_target"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_bottomsheet_notice_post_target_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="14dp"
+            android:clickable="true"
+            android:src="@drawable/ic_bottomsheet_notice_post_target_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_bottomsheet_notice_post_target"
+            style="@style/EditTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/shape_regular_line_4_rect"
+            android:hint="@string/et_bottomsheet_notice_post_target_hint"
+            android:padding="16dp"
+            android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
+            android:textColor="@color/font_B01"
+            android:textColorHint="@color/font_B04"
+            app:layout_constraintBottom_toTopOf="@id/btn_bottomsheet_notice_post_target_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_bottomsheet_notice_post_target_title" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_bottomsheet_notice_post_target_check"
+            style="@style/LoginButtonWithoutShadow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/shape_mint400_fill_24_rect"
+            android:paddingVertical="12dp"
+            android:text="@string/btn_login_confirm"
+            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_bottomsheet_notice_post_target" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
