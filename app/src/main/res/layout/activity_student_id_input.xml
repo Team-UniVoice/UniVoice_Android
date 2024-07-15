@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:theme="@style/NoShadowPopupTheme"
+                android:dropDownVerticalOffset="13dp"
                 android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
