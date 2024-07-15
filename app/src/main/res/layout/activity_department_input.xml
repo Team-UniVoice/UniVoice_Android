@@ -45,7 +45,7 @@
                 android:hint="@string/et_department_input_search_hint"
                 android:inputType="text"
                 android:paddingBottom="13dp"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
+                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
                 android:textColor="@color/font_B01"
                 android:textColorHint="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"

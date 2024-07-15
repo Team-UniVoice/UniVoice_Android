@@ -26,6 +26,10 @@ class StudentIdInputActivity :
         disableButton()
         setupTextViews()
         setupNextButton()
+
+        binding.spStudentIdInput.post {
+            binding.spStudentIdInput.performClick()
+        }
     }
 
     private fun initToolbar() {
