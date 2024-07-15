@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/shape_mint400_fill_40_rect" android:state_checked="true" />
+    <item android:drawable="@drawable/shape_gray200_fill_40_rect" />
+</selector>

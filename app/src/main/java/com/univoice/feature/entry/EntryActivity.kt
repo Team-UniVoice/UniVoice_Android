@@ -5,10 +5,18 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityEntryBinding
 import com.univoice.feature.login.LoginActivity
+import com.univoice.feature.signup.SignUpActivity
 
 class EntryActivity : BindingActivity<ActivityEntryBinding>(R.layout.activity_entry) {
     override fun initView() {
         initLoginBtnClickListener()
+        initSignupBtnClickListener()
+    }
+
+    private fun initSignupBtnClickListener() {
+        binding.btnEntrySignup.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
     }
 
     private fun initLoginBtnClickListener() {
