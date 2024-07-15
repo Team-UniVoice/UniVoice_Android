@@ -63,7 +63,6 @@ class DepartmentInputActivity :
         if (selectedDepartment == applicationContext.getString(R.string.tv_ellipse)) return
         binding.etDepartmentInputSearch.setText(selectedDepartment)
         binding.etDepartmentInputSearch.setSelection(selectedDepartment.length)
-        binding.etDepartmentInputSearch.setTextAppearance(R.style.TextAppearance_UniVoice_title4Semi)
         binding.rvDepartmentInputSearchResults.visibility = View.GONE
         departmentSelected = true
         enableButton()

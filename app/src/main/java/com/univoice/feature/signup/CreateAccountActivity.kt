@@ -93,8 +93,8 @@ class CreateAccountActivity :
 
     private fun validateId(id: String) {
         when {
-            id.isEmpty() -> setIdInvalid(R.string.tv_create_account_id_input, R.color.black)
-            !isValidId(id) -> setIdInvalid(R.string.tv_create_account_id_input, R.color.black)
+            id.isEmpty() -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
+            !isValidId(id) -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
             else -> setIdValid(R.string.tv_create_account_id_explain, R.color.blue_400)
         }
         updateNextButtonState()
@@ -152,7 +152,7 @@ class CreateAccountActivity :
     private fun handleIdFocusChange(hasFocus: Boolean) {
         with(binding) {
             if (hasFocus) {
-                tvCreateAccountIdExplain.setText(R.string.tv_create_account_id_input)
+                tvCreateAccountIdExplain.setText(R.string.tv_create_account_id)
                 tvCreateAccountIdExplain.setTextColor(
                     ContextCompat.getColor(
                         this@CreateAccountActivity,

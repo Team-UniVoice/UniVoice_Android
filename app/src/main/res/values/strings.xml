@@ -104,7 +104,6 @@
     <string name="et_create_account_pwd_check">비밀번호를 확인해주세요</string>
     <string name="tv_create_account_pwd_check">비밀번호가 일치합니다</string>
     <string name="btn_create_account_next">확인</string>
-    <string name="tv_create_account_id_input">아이디를 입력하세요</string>
     <string name="tv_create_account_id_explain">사용 가능한 아이디입니다.</string>
     <string name="tv_create_account_id_unavailable">사용 불가능한 아이디입니다.</string>
     <string name="tv_create_account_pw_explain">비밀번호를 입력하세요</string>
