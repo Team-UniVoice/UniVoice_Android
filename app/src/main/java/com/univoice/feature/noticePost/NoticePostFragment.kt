@@ -155,12 +155,14 @@ class NoticePostFragment :
     }
 
     private fun setApplyBtnEnable() {
-        if (binding.etNoticePostTitle.text.isNotEmpty() && binding.etNoticePostContent.text.isNotEmpty()) {
-            binding.btnToolbarNoticePostApply.setBackgroundResource(R.drawable.shape_mint400_fill_20_rect)
-            binding.btnToolbarNoticePostApply.isEnabled = true
-        } else {
-            binding.btnToolbarNoticePostApply.setBackgroundResource(R.drawable.shape_gray200_fill_20_rect)
-            binding.btnToolbarNoticePostApply.isEnabled = false
+        with(binding) {
+            if (etNoticePostTitle.text.isNotEmpty() && etNoticePostContent.text.isNotEmpty()) {
+                btnToolbarNoticePostApply.setBackgroundResource(R.drawable.shape_mint400_fill_20_rect)
+                btnToolbarNoticePostApply.isEnabled = true
+            } else {
+                btnToolbarNoticePostApply.setBackgroundResource(R.drawable.shape_gray200_fill_20_rect)
+                btnToolbarNoticePostApply.isEnabled = false
+            }
         }
     }
 
