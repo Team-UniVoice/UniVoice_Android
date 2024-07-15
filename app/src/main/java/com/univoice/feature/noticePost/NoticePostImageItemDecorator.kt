@@ -17,13 +17,15 @@ class NoticePostImageItemDecorator(val context: Context) : RecyclerView.ItemDeco
         val position = parent.getChildAdapterPosition(view)
         val itemCount = parent.adapter?.itemCount ?: 0
 
-        if (position == 0) {
-            outRect.left = context.pxToDp(16)
-            outRect.right = context.pxToDp(12)
-        } else if (position == itemCount - 1) {
-            outRect.right = context.pxToDp(16)
-        } else {
-            outRect.right = context.pxToDp(12)
+        when (position) {
+            0 -> {
+                outRect.left = context.pxToDp(16)
+                outRect.right = context.pxToDp(12)
+            }
+
+            itemCount - 1 -> outRect.right = context.pxToDp(16)
+
+            else -> outRect.right = context.pxToDp(12)
         }
     }
 }
