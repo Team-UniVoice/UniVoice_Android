@@ -216,6 +216,7 @@ class CreateAccountActivity :
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
                 validatePassword(s.toString())
+                validatePasswordConfirmation()
             }
         }
     }
@@ -263,24 +264,16 @@ class CreateAccountActivity :
         with(binding) {
             val password = etCreateAccountPw.text.toString()
             val confirmPassword = etCreateAccountPwCheck.text.toString()
-            if (password == confirmPassword) {
+            if (confirmPassword.isEmpty()) {
+                tvCreateAccountPwCheckExplain.visibility = View.INVISIBLE
+            } else if (password == confirmPassword) {
                 tvCreateAccountPwCheckExplain.setText(R.string.password_match)
-                tvCreateAccountPwCheckExplain.setTextColor(
-                    ContextCompat.getColor(
-                        this@CreateAccountActivity,
-                        R.color.mint_600
-                    )
-                )
+                tvCreateAccountPwCheckExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, R.color.mint_600))
                 tvCreateAccountPwCheckExplain.visibility = View.VISIBLE
                 isPasswordConfirmed = true
             } else {
                 tvCreateAccountPwCheckExplain.setText(R.string.password_mismatch)
-                tvCreateAccountPwCheckExplain.setTextColor(
-                    ContextCompat.getColor(
-                        this@CreateAccountActivity,
-                        R.color.red
-                    )
-                )
+                tvCreateAccountPwCheckExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, R.color.red))
                 tvCreateAccountPwCheckExplain.visibility = View.VISIBLE
                 isPasswordConfirmed = false
             }
