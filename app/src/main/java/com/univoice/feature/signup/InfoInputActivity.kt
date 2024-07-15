@@ -1,4 +1,4 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.content.Intent
 import android.view.View
@@ -8,6 +8,8 @@ import androidx.core.widget.addTextChangedListener
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityInfoInputBinding
+import com.univoice.feature.signup.StudentCardPhotoActivity.Companion.USER_IMAGE_KEY
+import com.univoice.feature.signup.StudentIdInputActivity.Companion.USER_ID_KEY
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,29 +17,33 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class InfoInputActivity : BindingActivity<ActivityInfoInputBinding>(R.layout.activity_info_input) {
 
-    private var selectedImageUri: String? = null
-
     override fun initView() {
-        selectedImageUri = intent.getStringExtra("selectedImageUri")
-        setupToolbarClickListener(binding.ibToolbarNameInputIcon)
+        initToolbar()
         setupFocusChangeListeners()
         initEditTextNameInput()
         initConfirmBtnIsEnabled()
         initConfirmBtnClickListener()
     }
 
+    private fun initToolbar() {
+        with(binding.toolbarNameInput) {
+            tvToolbarTitle.text = applicationContext.getString(R.string.tb_card_check)
+            setupToolbarClickListener(ibToolbarIcon)
+        }
+    }
+
     private fun initEditTextNameInput() {
         binding.etNameInputName.requestFocus()
-        binding.etNameInputStudentId.isEnabled=false
+        binding.etNameInputStudentId.isEnabled = false
     }
 
     private fun initConfirmBtnIsEnabled() {
         with(binding) {
             etNameInputName.addTextChangedListener {
-                btnNameInputNext.isEnabled = etNameInputName.text.isNotEmpty()
+                btnNameInputNext.btnSignupNext.isEnabled = etNameInputName.text.isNotEmpty()
             }
             etNameInputStudentId.addTextChangedListener {
-                btnNameInputNext.isEnabled =
+                btnNameInputNext.btnSignupNext.isEnabled =
                     etNameInputName.text.isNotEmpty() && etNameInputStudentId.text.isNotEmpty()
             }
         }
@@ -45,25 +51,26 @@ class InfoInputActivity : BindingActivity<ActivityInfoInputBinding>(R.layout.act
 
     private fun initConfirmBtnClickListener() {
         with(binding) {
-            btnNameInputNext.setOnClickListener {
-                if (btnNameInputNext.isEnabled) {
+            btnNameInputNext.btnSignupNext.setOnClickListener {
+                if (btnNameInputNext.btnSignupNext.isEnabled) {
                     if (etNameInputStudentId.text.isEmpty()) {
                         etNameInputStudentId.isEnabled = true
                         etNameInputStudentId.requestFocus()
-                        btnNameInputNext.isEnabled = false
-                    }
-                    else {
-                        val userName = etNameInputName.text.toString()
-                        val userStudentId = etNameInputStudentId.text.toString()
-                        val intent = Intent(this@InfoInputActivity, StudentCardCheckActivity::class.java).apply {
-                            putExtra("userName", userName)
-                            putExtra("userStudentId", userStudentId)
-                            putExtra("selectedImageUri", selectedImageUri)
-                        }
-                        startActivity(intent)
+                        btnNameInputNext.btnSignupNext.isEnabled = false
+                    } else {
+                        navigateToStudentCardCheck()
                     }
                 }
             }
+        }
+    }
+
+    private fun navigateToStudentCardCheck() {
+        Intent(this, StudentCardCheckActivity::class.java).apply {
+            putExtra(USER_NAME_KEY, binding.etNameInputName.text.toString())
+            putExtra(USER_ID_KEY, binding.etNameInputStudentId.text.toString())
+            putExtra(USER_IMAGE_KEY, intent.getStringExtra(USER_IMAGE_KEY))
+            startActivity(this)
         }
     }
 
@@ -78,5 +85,9 @@ class InfoInputActivity : BindingActivity<ActivityInfoInputBinding>(R.layout.act
             dividerView.backgroundTintList =
                 ContextCompat.getColorStateList(this@InfoInputActivity, colorResId)
         }
+    }
+
+    companion object {
+        const val USER_NAME_KEY = "userName"
     }
 }

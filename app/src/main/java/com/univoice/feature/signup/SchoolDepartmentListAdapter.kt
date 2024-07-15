@@ -1,4 +1,4 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.content.Context
 import android.graphics.Typeface
@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.ListAdapter
 import com.univoice.R
 
 class SchoolDepartmentListAdapter(private val context: Context, private var highlightText: String) :
-    ListAdapter<String, SchoolDepartmentViewHolder>(SchoolDepartmentDiffCallback()) {
+    ListAdapter<String, SchoolDepartmentListViewHolder>(SchoolDepartmentDiffCallback()) {
 
     private var itemClickListener: ((Int) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SchoolDepartmentViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.listview_item, parent, false)
-        return SchoolDepartmentViewHolder(view, itemClickListener)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SchoolDepartmentListViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.item_signup_list, parent, false)
+        return SchoolDepartmentListViewHolder(view, itemClickListener)
     }
 
-    override fun onBindViewHolder(holder: SchoolDepartmentViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SchoolDepartmentListViewHolder, position: Int) {
         val schoolName = getItem(position)
         val spannable = SpannableStringBuilder(schoolName)
 
@@ -35,7 +35,11 @@ class SchoolDepartmentListAdapter(private val context: Context, private var high
                     endIndex,
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
-                startIndex = schoolName.indexOf(highlightText, startIndex + highlightText.length, ignoreCase = true)
+                startIndex = schoolName.indexOf(
+                    highlightText,
+                    startIndex + highlightText.length,
+                    ignoreCase = true
+                )
             }
         }
 

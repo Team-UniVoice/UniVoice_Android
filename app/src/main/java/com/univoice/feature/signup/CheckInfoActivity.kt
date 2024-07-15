@@ -1,6 +1,7 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.content.Intent
+import androidx.compose.ui.input.key.Key.Companion.I
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityCheckInfoBinding
@@ -15,7 +16,10 @@ class CheckInfoActivity :
 
     private fun initButtonClickListener() {
         binding.btnCheckInfoStart.setOnClickListener {
-            startActivity(Intent(this, EntryActivity::class.java))
+            Intent(this, EntryActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(this)
+            }
         }
     }
 }

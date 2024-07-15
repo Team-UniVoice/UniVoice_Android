@@ -1,20 +1,20 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityStudentCardPhotoBinding
+import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,15 +24,23 @@ class StudentCardPhotoActivity :
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
     private lateinit var pickImagesLauncher: ActivityResultLauncher<Intent>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initView()
+    override fun initView() {
+        initToolbar()
         setupPermissions()
         setupImagePicker()
+        uploadBtnClickListener()
     }
 
-    override fun initView() {
-        binding.btnStudentCardPhotoStart.setOnClickListener {
+    private fun initToolbar() {
+        with(binding.toolbarStudentCardPhoto) {
+            tvToolbarTitle.text =
+                applicationContext.getString(R.string.tv_toolbar_student_card_photo_title)
+            setupToolbarClickListener(ibToolbarIcon)
+        }
+    }
+
+    private fun uploadBtnClickListener() {
+        binding.btnStudentCardPhotoUpload.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
             } else {
@@ -61,23 +69,25 @@ class StudentCardPhotoActivity :
         ) { result ->
             if (result.resultCode == RESULT_OK) {
                 val selectedImageUri: Uri? = result.data?.data
-                if (selectedImageUri != null) {
-                    val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
-                    val drawable = BitmapDrawable(resources, bitmap)
-                    binding.btnStudentCardPhotoStart.background = drawable
-                    binding.btnStudentCardPhotoStart.text = ""
-                    binding.btnStudentCardPhotoNext.visibility = View.VISIBLE
-                    binding.btnStudentCardPhotoNext.setOnClickListener {
-                        val intent = Intent(this, InfoInputActivity::class.java).apply {
-                            putExtra("selectedImageUri", selectedImageUri.toString())
+                selectedImageUri?.let {
+                    val bitmap =
+                        MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
+                    val drawable = RoundedBitmapDrawableFactory.create(resources, bitmap).apply {
+                        cornerRadius = 10f * resources.displayMetrics.density
+                    }
+                    with(binding) {
+                        btnStudentCardPhotoUpload.background = drawable
+                        btnStudentCardPhotoUpload.text = ""
+                        btnStudentCardPhotoNext.visibility = View.VISIBLE
+                        btnStudentCardPhotoNext.setOnClickListener {
+                            navigateToInfoInput(selectedImageUri)
                         }
-                        startActivity(intent)
                     }
                 }
             }
         }
 
-}
+    }
 
     private fun allPermissionsGranted(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -92,7 +102,19 @@ class StudentCardPhotoActivity :
     }
 
     private fun pickImageFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        pickImagesLauncher.launch(intent)
+        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
+            pickImagesLauncher.launch(this)
+        }
+    }
+
+    private fun navigateToInfoInput(selectedImageUri: Uri) {
+        Intent(this, InfoInputActivity::class.java).apply {
+            putExtra(USER_IMAGE_KEY, selectedImageUri.toString())
+            startActivity(this)
+        }
+    }
+
+    companion object {
+        const val USER_IMAGE_KEY = "selectedImageUri"
     }
 }

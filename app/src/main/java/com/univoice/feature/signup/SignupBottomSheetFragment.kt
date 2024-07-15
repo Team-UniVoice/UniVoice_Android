@@ -1,4 +1,4 @@
-package com.univoice.feature.signUp
+package com.univoice.feature.signup
 
 import android.content.Intent
 import com.univoice.R
@@ -16,7 +16,7 @@ class SignupBottomSheetFragment :
         with(binding) {
             cbBottomSheetAgreeAll.setOnClickListener { handleAgreeAllClick() }
             cbBottomSheetService.setOnClickListener { handleServiceCheckBoxClick() }
-            cbBottomSheetUse.setOnClickListener { handleUseCheckBoxClick() }
+            cbBottomSheetUse.setOnClickListener { handleServiceCheckBoxClick() }
             btnBottomSheetAgree.setOnClickListener { handleAgreeButtonClick() }
         }
     }
@@ -34,10 +34,6 @@ class SignupBottomSheetFragment :
         handleIndividualCheckBoxClick()
     }
 
-    private fun handleUseCheckBoxClick() {
-        handleIndividualCheckBoxClick()
-    }
-
     private fun handleIndividualCheckBoxClick() {
         with(binding) {
             val allChecked = cbBottomSheetService.isChecked && cbBottomSheetUse.isChecked
@@ -47,8 +43,8 @@ class SignupBottomSheetFragment :
     }
 
     private fun handleAgreeButtonClick() {
-        startActivity(Intent(requireContext(), CheckInfoActivity::class.java))
         dismiss()
+        startActivity(Intent(requireContext(), CheckInfoActivity::class.java))
     }
 
     private fun updateAgreeButtonState() {

@@ -28,11 +28,12 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".feature.signUp.SignUpActivity"
+            android:name=".feature.entry.EntryActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -41,47 +42,57 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.signUp.SchoolInputActivity"
+            android:name=".feature.signup.SignUpActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.signUp.DepartmentInputActivity"
+            android:name=".feature.signup.StudentInfoCheckActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.signUp.StudentIdInputActivity"
+            android:name=".feature.signup.SchoolInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.signup.DepartmentInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.signup.StudentIdInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.signup.StudentCardPhotoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.signup.InfoInputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.signup.CreateAccountActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".feature.signup.CheckInfoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".feature.signUp.StudentCardPhotoActivity"
+            android:name=".feature.signup.StudentCardCheckActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".feature.signUp.InfoInputActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".feature.signUp.CreateAccountActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".feature.signUp.StudentCardCheckActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".feature.signUp.CheckInfoActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".feature.quickscan.QuickScanActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".feature.quickscan.QuickScanCompleteActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".feature.entry.EntryActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

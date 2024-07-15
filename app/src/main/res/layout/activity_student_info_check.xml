@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_student_id_input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        tools:context=".feature.signup.StudentInfoCheckActivity">
 
         <include
-            android:id="@+id/toolbar_student_id_input"
+            android:id="@+id/toolbar_student_info_check"
             layout="@layout/item_toolbar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_student_id_input_bottom"
+            android:id="@+id/layout_student_info_check_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingHorizontal="16dp"
@@ -22,53 +21,33 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_student_id_input">
+            app:layout_constraintTop_toBottomOf="@id/toolbar_student_info_check">
 
             <TextView
-                android:id="@+id/tv_student_id_input_explain"
+                android:id="@+id/tv_student_info_check_explain"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="@string/tv_student_id_input_explain"
+                android:text="@string/tv_student_info_check_explain"
                 android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.univoice.core_ui.view.CustomSpinner
-                android:id="@+id/sp_student_id_input"
-                style="@style/Widget.My.Spinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_explain" />
-
-            <View
-                android:id="@+id/view_student_id_input_sp_line"
-                android:layout_width="0dp"
-                android:layout_height="3dp"
-                android:background="@drawable/shape_mint400_fill_40_rect"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sp_student_id_input" />
-
             <TextView
                 android:id="@+id/tv_student_id_input_id"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/tv_signup_id"
                 android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
                 android:textColor="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_student_id_input_sp_line" />
+                app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_explain" />
 
             <TextView
-                android:id="@+id/tv_student_id_input_department_selected"
+                android:id="@+id/tv_student_info_check_id_selected"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -78,20 +57,55 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_id"
-                tools:text="@string/tv_signup_id" />
+                tools:text="학번" />
 
             <View
-                android:id="@+id/view_student_id_input_id_line"
+                android:id="@+id/view_student_info_check_id_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="11dp"
                 android:background="@drawable/shape_regular_fill_30_rect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_department_selected" />
+                app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_id_selected" />
 
             <TextView
-                android:id="@+id/tv_student_id_input_school"
+                android:id="@+id/tv_student_info_check_department"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/tv_signup_department"
+                android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+                android:textColor="@color/font_B04"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_student_info_check_id_line" />
+
+            <TextView
+                android:id="@+id/tv_student_info_check_department_selected"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
+                android:textColor="@color/font_B01"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_department"
+                tools:text="학과" />
+
+            <View
+                android:id="@+id/view_student_info_check_department_line"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/shape_regular_fill_30_rect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_department_selected" />
+
+            <TextView
+                android:id="@+id/tv_student_info_check_school"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -100,38 +114,46 @@
                 android:textColor="@color/font_B04"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_student_id_input_id_line" />
+                app:layout_constraintTop_toBottomOf="@id/view_student_info_check_department_line" />
 
             <TextView
-                android:id="@+id/tv_student_id_input_school_selected"
+                android:id="@+id/tv_student_info_check_school_selected"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="16dp"
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
                 android:textColor="@color/font_B01"
-                android:textFontWeight="600"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_school"
-                tools:text="@string/tv_signup_school" />
+                app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_school"
+                tools:text="학교" />
 
             <View
-                android:id="@+id/view_student_id_input_school_line"
+                android:id="@+id/view_student_info_check_school_line"
                 android:layout_width="0dp"
                 android:layout_height="3dp"
                 android:layout_marginTop="11dp"
                 android:background="@drawable/shape_regular_fill_30_rect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_student_id_input_school_selected" />
+                app:layout_constraintTop_toBottomOf="@id/tv_student_info_check_school_selected" />
 
-            <include
-                android:id="@+id/btn_student_id_input_next"
-                layout="@layout/item_bottom_button" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_student_info_check_confirm"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_mint400_fill_40_rect"
+                android:paddingVertical="19dp"
+                android:text="@string/btn_student_info_check_confirm"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

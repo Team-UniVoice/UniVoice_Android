@@ -8,63 +8,58 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_department_input"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:titleTextAppearance="@style/TextAppearance.UniVoice.title4Regular"
-            app:navigationIcon="@drawable/ic_left_arrow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/tv_department_input_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="개인정보입력"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular" />
-
-        </androidx.appcompat.widget.Toolbar>
+        <include
+            android:id="@+id/toolbar_department_input"
+            layout="@layout/item_toolbar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_department_input_bottom"
+            android:id="@+id/layout_department_input_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tb_department_input">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_department_input">
 
             <TextView
                 android:id="@+id/tv_department_input_explain"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="학과를 입력해주세요"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="38dp"
+                android:text="@string/tv_department_input_explain"
                 android:textAppearance="@style/TextAppearance.UniVoice.title2Semi"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/et_department_input_search"
+                style="@style/EditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="학과 검색하기"
-                android:paddingBottom="11dp"
-                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/et_department_input_search_hint"
+                android:inputType="text"
+                android:paddingBottom="13dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Semi"
                 android:textColor="@color/font_B01"
                 android:textColorHint="@color/font_B04"
-                android:backgroundTint="@color/mint_400"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_department_input_explain" />
+
+            <View
+                android:id="@+id/view_department_input_divider"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:background="@drawable/shape_mint400_fill_30_rect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_department_input_search" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_department_input_search_results"
@@ -74,24 +69,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_department_input_search" />
+                app:layout_constraintTop_toBottomOf="@id/et_department_input_search"
+                tools:listitem="@layout/item_signup_list" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <include
                 android:id="@+id/btn_department_input_next"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="다음"
-                android:background="@drawable/btn_radius_40dp_selector"
-                android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
-                android:textColor="@color/white"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:enabled="false"/>
+                layout="@layout/item_bottom_button" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
