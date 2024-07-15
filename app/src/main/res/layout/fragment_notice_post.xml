@@ -67,11 +67,13 @@
 
                 <EditText
                     android:id="@+id/et_notice_post_title"
+                    style="@style/EditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:background="@null"
                     android:hint="@string/et_notice_post_title_hint"
+                    android:maxLength="100"
                     android:singleLine="true"
                     android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
                     android:textColor="@color/font_B01"
@@ -91,6 +93,7 @@
 
                 <EditText
                     android:id="@+id/et_notice_post_content"
+                    style="@style/EditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
