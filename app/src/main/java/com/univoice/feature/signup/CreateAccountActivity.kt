@@ -93,8 +93,8 @@ class CreateAccountActivity :
 
     private fun validateId(id: String) {
         when {
-            id.isEmpty() -> setIdInvalid(R.string.tv_create_account_id_input, R.color.black)
-            !isValidId(id) -> setIdInvalid(R.string.tv_create_account_id_input, R.color.black)
+            id.isEmpty() -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
+            !isValidId(id) -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
             else -> setIdValid(R.string.tv_create_account_id_explain, R.color.blue_400)
         }
         updateNextButtonState()
@@ -152,7 +152,7 @@ class CreateAccountActivity :
     private fun handleIdFocusChange(hasFocus: Boolean) {
         with(binding) {
             if (hasFocus) {
-                tvCreateAccountIdExplain.setText(R.string.tv_create_account_id_input)
+                tvCreateAccountIdExplain.setText(R.string.tv_create_account_id)
                 tvCreateAccountIdExplain.setTextColor(
                     ContextCompat.getColor(
                         this@CreateAccountActivity,
@@ -216,6 +216,7 @@ class CreateAccountActivity :
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
                 validatePassword(s.toString())
+                validatePasswordConfirmation()
             }
         }
     }
@@ -263,24 +264,16 @@ class CreateAccountActivity :
         with(binding) {
             val password = etCreateAccountPw.text.toString()
             val confirmPassword = etCreateAccountPwCheck.text.toString()
-            if (password == confirmPassword) {
+            if (confirmPassword.isEmpty()) {
+                tvCreateAccountPwCheckExplain.visibility = View.INVISIBLE
+            } else if (password == confirmPassword) {
                 tvCreateAccountPwCheckExplain.setText(R.string.password_match)
-                tvCreateAccountPwCheckExplain.setTextColor(
-                    ContextCompat.getColor(
-                        this@CreateAccountActivity,
-                        R.color.mint_600
-                    )
-                )
+                tvCreateAccountPwCheckExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, R.color.mint_600))
                 tvCreateAccountPwCheckExplain.visibility = View.VISIBLE
                 isPasswordConfirmed = true
             } else {
                 tvCreateAccountPwCheckExplain.setText(R.string.password_mismatch)
-                tvCreateAccountPwCheckExplain.setTextColor(
-                    ContextCompat.getColor(
-                        this@CreateAccountActivity,
-                        R.color.red
-                    )
-                )
+                tvCreateAccountPwCheckExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, R.color.red))
                 tvCreateAccountPwCheckExplain.visibility = View.VISIBLE
                 isPasswordConfirmed = false
             }
