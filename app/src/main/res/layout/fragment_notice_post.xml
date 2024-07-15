@@ -56,15 +56,14 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:fillViewport="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layout_notice_post_options"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_notice_post">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
                 <EditText
                     android:id="@+id/et_notice_post_title"
@@ -73,11 +72,11 @@
                     android:layout_margin="16dp"
                     android:background="@null"
                     android:hint="@string/et_notice_post_title_hint"
-                    android:maxLines="3"
                     android:singleLine="true"
                     android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
                     android:textColor="@color/font_B01"
                     android:textColorHint="@color/font_B03"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="2024년 총학생회 겨울 잠바 디자인 공모전 안내드립니다." />
 
                 <com.google.android.material.divider.MaterialDivider
@@ -87,172 +86,170 @@
                     app:dividerColor="@color/regular"
                     app:dividerInsetEnd="16dp"
                     app:dividerInsetStart="16dp"
-                    app:dividerThickness="1dp" />
+                    app:dividerThickness="1dp"
+                    app:layout_constraintTop_toBottomOf="@id/et_notice_post_title" />
 
                 <EditText
                     android:id="@+id/et_notice_post_content"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="12dp"
-                    android:layout_weight="1"
-                    android:background="@null"
+                    android:background="@color/mint_400"
                     android:gravity="top"
                     android:hint="@string/et_notice_post_content_hint"
                     android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
                     android:textColor="@color/font_B01"
                     android:textColorHint="@color/font_B03"
-                    tools:text="안녕하십니까, 일만 이천 학우 여러분.\n홍익대학교 제58대 총학생회 개화 | 開花입니다.\n\n\n2024학년도 홍익대학교만의 겨울잠바 디자인을 제작하기 위해 겨울잠바 디자인 공모전을 진행합니다.\n\n\n✅접수 기간: 2024.06.21(금)~2024.07.11(목) 17시까지\n✅신청링크: https://zrr.kr/chVv\n✅공모 내용: 홍익대학교 서울캠퍼스 겨울잠바 디자인(숏패딩 or 롱패딩)\n✅심사 기준: 구글폼을 통한 투표(추후 공지)\n✅당선자 혜택\n-1등: 학교 겨울잠바 무료 지급, 돌체구스토 캡슐 커피머신 인피시니마 + 스타벅스GIFT\n-2등: 학교 겨울잠바 무료 지급\n-3등~5등: 데스커 라운지 이용 상품권\n\n\n※1등으로 선정된 디자인을 통해 홍익대학교 겨울잠바 공동구매를 진행할 예정입니다.\n※2024학년도 1학기 학생회비 납부 완료 여부 및 개인정보 제공 동의 완료 여부가 확인된 홍익대학교 서울캠퍼스 재학생에한하여 상품이 전달될 예정입니다.\n\n\n기타 문의사항은 카카오톡 채널 @'홍익대학교 총학생회'로 연락주시기 바랍니다.\n\n\nBlossom For Winter\n개화ㅣ開花" />
+                    app:layout_constraintTop_toBottomOf="@id/divider_notice_post" />
 
-                <LinearLayout
-                    android:id="@+id/layout_notice_post_options"
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/layout_notice_post_options"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:paddingTop="40dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_notice_post_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_notice_post_image" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_notice_post_option_target"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/shape_regular_line_16_rect"
+                android:clickable="true"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_notice_post_option_target_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/btn_notice_post_target"
+                    android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                    android:textColor="@color/font_B01"
+                    app:layout_constraintBottom_toTopOf="@id/tv_notice_post_option_target_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_notice_post_option_target_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_notice_post_delete"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_notice_post_option_target_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:orientation="vertical"
-                    android:paddingTop="40dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/font_B01"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_target_title"
+                    tools:text="소프트웨어공학과 1, 2학년 학생들" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_notice_post_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/item_notice_post_image" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layout_notice_post_option_target"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/shape_regular_line_16_rect"
-                        android:clickable="true"
-                        android:visibility="gone">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_notice_post_option_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/shape_regular_line_16_rect"
+                android:visibility="gone">
 
-                        <TextView
-                            android:id="@+id/tv_notice_post_option_target_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="6dp"
-                            android:text="@string/btn_notice_post_target"
-                            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                            android:textColor="@color/font_B01"
-                            app:layout_constraintBottom_toTopOf="@id/tv_notice_post_option_target_content"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tv_notice_post_option_date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/btn_notice_post_date"
+                    android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                    android:textColor="@color/font_B01"
+                    app:layout_constraintBottom_toTopOf="@id/tv_notice_post_option_date_start"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/iv_notice_post_option_target_delete"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:clickable="true"
-                            android:src="@drawable/ic_notice_post_delete"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/iv_notice_post_option_date_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_notice_post_delete"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/tv_notice_post_option_target_content"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textColor="@color/font_B01"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_target_title"
-                            tools:text="소프트웨어공학과 1, 2학년 학생들" />
+                <TextView
+                    android:id="@+id/tv_notice_post_option_date_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
+                    android:textColor="@color/font_B01"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
+                    tools:text="2024년 06월 12일\n오후 6시" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_notice_post_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_notice_post_option_date_start"
+                    app:layout_constraintEnd_toStartOf="@id/tv_notice_post_option_date_end"
+                    app:layout_constraintStart_toEndOf="@id/tv_notice_post_option_date_start"
+                    app:layout_constraintTop_toTopOf="@id/tv_notice_post_option_date_start" />
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layout_notice_post_option_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="@drawable/shape_regular_line_16_rect"
-                        android:visibility="gone">
+                <TextView
+                    android:id="@+id/tv_notice_post_option_date_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
+                    android:textColor="@color/font_B01"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
+                    tools:text="2024년 06월 13일\n오후 6시" />
 
-                        <TextView
-                            android:id="@+id/tv_notice_post_option_date_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="6dp"
-                            android:text="@string/btn_notice_post_date"
-                            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                            android:textColor="@color/font_B01"
-                            app:layout_constraintBottom_toTopOf="@id/tv_notice_post_option_date_start"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <ImageView
-                            android:id="@+id/iv_notice_post_option_date_delete"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:clickable="true"
-                            android:src="@drawable/ic_notice_post_delete"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="52dp" />
 
-                        <TextView
-                            android:id="@+id/tv_notice_post_option_date_start"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
-                            android:textColor="@color/font_B01"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
-                            tools:text="2024년 06월 12일\n오후 6시" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_notice_post_arrow"
-                            app:layout_constraintBottom_toBottomOf="@id/tv_notice_post_option_date_start"
-                            app:layout_constraintEnd_toStartOf="@id/tv_notice_post_option_date_end"
-                            app:layout_constraintStart_toEndOf="@id/tv_notice_post_option_date_start"
-                            app:layout_constraintTop_toTopOf="@id/tv_notice_post_option_date_start" />
-
-                        <TextView
-                            android:id="@+id/tv_notice_post_option_date_end"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
-                            android:textColor="@color/font_B01"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
-                            tools:text="2024년 06월 13일\n오후 6시" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </ScrollView>
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
