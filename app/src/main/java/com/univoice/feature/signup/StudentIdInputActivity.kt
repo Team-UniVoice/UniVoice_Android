@@ -23,16 +23,9 @@ class StudentIdInputActivity :
     override fun initView() {
         initToolbar()
         setupSpinner()
-        initSpinnerFocus()
         disableButton()
         setupTextViews()
         setupNextButton()
-    }
-
-    private  fun initSpinnerFocus(){
-        binding.spStudentIdInput.post {
-            binding.spStudentIdInput.performClick()
-        }
     }
 
     private fun initToolbar() {
