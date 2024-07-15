@@ -55,8 +55,7 @@
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:fillViewport="true"
-            app:layout_constraintBottom_toTopOf="@id/layout_notice_post_options"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_notice_post">
@@ -67,11 +66,14 @@
 
                 <EditText
                     android:id="@+id/et_notice_post_title"
+                    style="@style/EditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    android:layout_marginHorizontal="16dp"
                     android:background="@null"
                     android:hint="@string/et_notice_post_title_hint"
+                    android:maxLength="100"
+                    android:paddingVertical="16dp"
                     android:singleLine="true"
                     android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
                     android:textColor="@color/font_B01"
@@ -91,165 +93,167 @@
 
                 <EditText
                     android:id="@+id/et_notice_post_content"
+                    style="@style/EditTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="12dp"
-                    android:background="@color/mint_400"
+                    android:background="@null"
                     android:gravity="top"
                     android:hint="@string/et_notice_post_content_hint"
+                    android:minHeight="100dp"
                     android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
                     android:textColor="@color/font_B01"
                     android:textColorHint="@color/font_B03"
                     app:layout_constraintTop_toBottomOf="@id/divider_notice_post" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
-
-        <LinearLayout
-            android:id="@+id/layout_notice_post_options"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="bottom"
-            android:orientation="vertical"
-            android:paddingTop="40dp"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_notice_post_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_notice_post_image" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_notice_post_option_target"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/shape_regular_line_16_rect"
-                android:clickable="true"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/tv_notice_post_option_target_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="@string/btn_notice_post_target"
-                    android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                    android:textColor="@color/font_B01"
-                    app:layout_constraintBottom_toTopOf="@id/tv_notice_post_option_target_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/iv_notice_post_option_target_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:clickable="true"
-                    android:src="@drawable/ic_notice_post_delete"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_notice_post_option_target_content"
+                <LinearLayout
+                    android:id="@+id/layout_notice_post_options"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:textColor="@color/font_B01"
+                    android:orientation="vertical"
+                    android:paddingTop="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_target_title"
-                    tools:text="소프트웨어공학과 1, 2학년 학생들" />
+                    app:layout_constraintTop_toBottomOf="@id/et_notice_post_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_notice_post_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_notice_post_image" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_notice_post_option_target"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/shape_regular_line_16_rect"
+                        android:clickable="true"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_target_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="6dp"
+                            android:text="@string/btn_notice_post_target"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintBottom_toTopOf="@id/tv_notice_post_option_target_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_notice_post_option_target_delete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:clickable="true"
+                            android:src="@drawable/ic_notice_post_delete"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_target_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_target_title"
+                            tools:text="소프트웨어공학과 1, 2학년 학생들" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_notice_post_option_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/shape_regular_line_16_rect"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_date_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="6dp"
+                            android:text="@string/btn_notice_post_date"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintBottom_toTopOf="@id/tv_notice_post_option_date_start"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_notice_post_option_date_delete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:clickable="true"
+                            android:src="@drawable/ic_notice_post_delete"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_date_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
+                            tools:text="2024년 06월 12일\n오후 6시" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_notice_post_arrow"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_notice_post_option_date_start"
+                            app:layout_constraintEnd_toStartOf="@id/tv_notice_post_option_date_end"
+                            app:layout_constraintStart_toEndOf="@id/tv_notice_post_option_date_start"
+                            app:layout_constraintTop_toTopOf="@id/tv_notice_post_option_date_start" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_date_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
+                            tools:text="2024년 06월 13일\n오후 6시" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp" />
+
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_notice_post_option_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/shape_regular_line_16_rect"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/tv_notice_post_option_date_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="6dp"
-                    android:text="@string/btn_notice_post_date"
-                    android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                    android:textColor="@color/font_B01"
-                    app:layout_constraintBottom_toTopOf="@id/tv_notice_post_option_date_start"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/iv_notice_post_option_date_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:clickable="true"
-                    android:src="@drawable/ic_notice_post_delete"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_notice_post_option_date_start"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
-                    android:textColor="@color/font_B01"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
-                    tools:text="2024년 06월 12일\n오후 6시" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_notice_post_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_notice_post_option_date_start"
-                    app:layout_constraintEnd_toStartOf="@id/tv_notice_post_option_date_end"
-                    app:layout_constraintStart_toEndOf="@id/tv_notice_post_option_date_start"
-                    app:layout_constraintTop_toTopOf="@id/tv_notice_post_option_date_start" />
-
-                <TextView
-                    android:id="@+id/tv_notice_post_option_date_end"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
-                    android:textColor="@color/font_B01"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
-                    tools:text="2024년 06월 13일\n오후 6시" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="52dp" />
-
-        </LinearLayout>
+        </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
