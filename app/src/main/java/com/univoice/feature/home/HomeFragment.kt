@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -59,7 +58,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -292,19 +290,14 @@ fun HomeNoticeItem(
                         overflow = TextOverflow.Ellipsis,
                     )
                     Spacer(modifier = Modifier.weight(1f))
-                    Row {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         Text(
-                            text = data.startDate,
+                            text = data.date,
                             style = cap3Regular,
                             color = Font_B03
                         )
-                        Text(
-                            text = stringResource(R.string.text_home_date_tilde),
-                            style = cap3Regular,
-                            color = Font_B03,
-                            modifier = Modifier.padding(horizontal = 2.dp)
-                        )
-                        Text(text = data.endDate, style = cap3Regular, color = Font_B03)
                         Text(
                             text = stringResource(R.string.text_home_divider),
                             style = cap3Regular,
@@ -322,9 +315,11 @@ fun HomeNoticeItem(
                             color = Font_B03
                         )
                         Icon(
-                            painterResource(id = R.drawable.ic_home_like),
+                            painterResource(id = R.drawable.ic_home_views),
                             contentDescription = stringResource(R.string.description_home_notice_views_icon),
-                            modifier = Modifier.padding(start = 6.dp, end = 2.dp)
+                            modifier = Modifier
+                                .padding(start = 6.dp, end = 2.dp)
+                                .size(12.dp)
                         )
                         Text(
                             text = data.views.toString(),
@@ -332,62 +327,6 @@ fun HomeNoticeItem(
                             color = Font_B03,
                         )
                     }
-            Column(
-                modifier = Modifier.height(62.dp)
-            ) {
-                Surface(
-                    border = BorderStroke(width = 1.dp, color = Regular),
-                    shape = RoundedCornerShape(30.dp)
-                ) {
-                    Text(
-                        text = data.subTitle,
-                        style = cap4Regular,
-                        color = Font_B02,
-                        modifier = Modifier.padding(
-                            horizontal = 6.dp,
-                            vertical = 2.dp
-                        )
-                    )
-                }
-                Spacer(modifier = Modifier.padding(bottom = 6.dp))
-                Text(text = data.title, style = title4Semi, color = Font_B01)
-                Spacer(modifier = Modifier.weight(1f))
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = data.date,
-                        style = cap3Regular,
-                        color = Font_B03
-                    )
-                    Text(
-                        text = stringResource(R.string.text_home_divider),
-                        style = cap3Regular,
-                        color = Font_B03,
-                        modifier = Modifier.padding(horizontal = 8.dp)
-                    )
-                    Icon(
-                        painterResource(id = R.drawable.ic_home_like),
-                        contentDescription = stringResource(R.string.description_home_notice_like_icon),
-                        modifier = Modifier.padding(end = 2.dp)
-                    )
-                    Text(
-                        text = data.like.toString(),
-                        style = cap3Regular,
-                        color = Font_B03
-                    )
-                    Icon(
-                        painterResource(id = R.drawable.ic_home_views),
-                        contentDescription = stringResource(R.string.description_home_notice_views_icon),
-                        modifier = Modifier
-                            .padding(start = 6.dp, end = 2.dp)
-                            .size(12.dp)
-                    )
-                    Text(
-                        text = data.views.toString(),
-                        style = cap3Regular,
-                        color = Font_B03,
-                    )
                 }
             }
             Box {
