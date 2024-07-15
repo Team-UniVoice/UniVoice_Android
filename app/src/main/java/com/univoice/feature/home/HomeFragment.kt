@@ -7,6 +7,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,7 +17,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -67,6 +67,7 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.core_ui.component.SetStatusBarColor
 import com.univoice.core_ui.theme.Blue300
+import com.univoice.core_ui.theme.Blue50
 import com.univoice.core_ui.theme.Font_B01
 import com.univoice.core_ui.theme.Font_B02
 import com.univoice.core_ui.theme.Font_B03
@@ -448,21 +449,14 @@ fun HomeQuickScanContent(homeViewModel: HomeViewModel, context: Context) {
             modifier = Modifier.padding(start = 16.dp)
         )
     }
-    Spacer(modifier = Modifier.padding(bottom = 10.dp))
-    Text(
-        text = stringResource(R.string.text_home_quick_scan_title),
-        style = head5Bold,
-        color = Font_B01,
-        modifier = Modifier.padding(start = 16.dp)
-    )
-    Spacer(modifier = Modifier.padding(bottom = 11.dp))
+    Spacer(modifier = Modifier.padding(bottom = 6.dp))
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically,
-        contentPadding = PaddingValues(horizontal = 4.dp, vertical = 6.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
     ) {
         items(
             items = homeViewModel.mockQuickScanList,
@@ -470,13 +464,14 @@ fun HomeQuickScanContent(homeViewModel: HomeViewModel, context: Context) {
         ) { data ->
             Column(
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .width(95.dp)
+                    .width(97.dp)
+                    .height(132.dp)
                     .clickable {
                         context.startActivity(Intent(context, QuickScanActivity::class.java))
-                    },
+                    }
+                    .background(Blue50, RoundedCornerShape(20.dp)),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Center,
             ) {
                 HomeQuickScanItem(data)
             }
@@ -496,11 +491,14 @@ fun HomeQuickScanItem(data: QuickScanListEntity) {
                 .size(68.dp)
                 .aspectRatio(1f)
                 .clip(CircleShape)
+                .border(1.dp, Regular)
         )
         Surface(
             color = Blue300,
             shape = CircleShape,
-            modifier = if (data.count.toString().length == 1) {
+            modifier = if (data.count < 1) {
+                Modifier.size(0.dp)
+            } else if (data.count.toString().length == 1) {
                 Modifier
                     .align(Alignment.TopEnd)
                     .offset(x = (-4.5).dp, y = (-6).dp)
