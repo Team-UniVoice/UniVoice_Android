@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.bundles.androidx)
     implementation(libs.androidx.lifecycle)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.core.splashscreen)
 
     // Navigation
     implementation(libs.bundles.navigation)
@@ -106,4 +107,10 @@ dependencies {
 
     // Preference Datastore
     implementation(libs.preference.datastore)
+
+    // Lottie
+    implementation(libs.lottie)
+
+    // Splash
+    implementation(libs.splash)
 }

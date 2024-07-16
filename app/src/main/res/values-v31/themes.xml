@@ -1,0 +1,8 @@
+<resources>
+    <style name="Theme.UniVoice.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@raw/lottie_splash</item>
+        <item name="windowSplashScreenAnimationDuration">3000</item>
+    </style>
+</resources>
