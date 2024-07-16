@@ -2,6 +2,7 @@ package com.univoice.feature.noticePost
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.view.View
@@ -17,6 +18,7 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.core_ui.util.context.showPermissionAppSettingsDialog
 import com.univoice.databinding.FragmentNoticePostBinding
+import com.univoice.feature.MainActivity
 
 class NoticePostFragment :
     BindingFragment<FragmentNoticePostBinding>(R.layout.fragment_notice_post) {
@@ -148,9 +150,13 @@ class NoticePostFragment :
 
     private fun initApplyBtnClickListener() {
         binding.btnToolbarNoticePostApply.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_fragment_notice_post_to_fragment_home,
-            )
+//            findNavController().navigate(
+//                R.id.action_fragment_notice_post_to_fragment_home,
+//            )
+            Intent(requireContext(), NoticePostApplyActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(this)
+            }
         }
     }
 
