@@ -1,20 +1,27 @@
 package com.univoice.feature
 
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Handler
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.airbnb.lottie.LottieAnimationView
+import com.univoice.R
+import com.univoice.core_ui.base.BindingActivity
+import com.univoice.databinding.ActivitySplashBinding
+import com.univoice.feature.entry.EntryActivity
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BindingActivity<ActivitySplashBinding>(R.layout.activity_splash){
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initView() {
         installSplashScreen()
         navigateToMainActivity()
     }
 
     private fun navigateToMainActivity() {
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
+        var lodingImage = binding.ivSplashLottie 
+        lodingImage.playAnimation()
+        Handler().postDelayed({
+            startActivity(Intent(this, EntryActivity::class.java))
+            finish()
+        }, 3000)
     }
 }

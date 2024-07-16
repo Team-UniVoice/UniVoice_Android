@@ -29,6 +29,7 @@
             android:name=".feature.login.WelcomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".feature.login.LoginActivity"
             android:exported="false"
@@ -36,12 +37,12 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".feature.SplashActivity"
+            android:name=".feature.entry.EntryActivity"
             android:exported="false"
-            android:theme="@style/Theme.UniVoice.Splash"/>
+            android:screenOrientation="portrait" />
 
         <activity
-            android:name=".feature.entry.EntryActivity"
+            android:name=".feature.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
