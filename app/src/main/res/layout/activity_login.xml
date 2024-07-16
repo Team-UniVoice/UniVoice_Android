@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/sel_login_button"
                 android:enabled="false"
-                android:paddingVertical="17dp"
+                android:paddingVertical="19dp"
                 android:text="@string/btn_login_confirm"
                 android:textColor="@color/font_W01"
                 app:layout_constraintBottom_toBottomOf="parent"
