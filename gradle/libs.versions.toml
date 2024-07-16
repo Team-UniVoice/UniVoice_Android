@@ -59,7 +59,10 @@ accompanist-systemuicontroller = "0.17.0"
 preference-datastore = "1.0.0"
 
 # lottie
-lottie="6.0.0"
+lottie = "6.0.0"
+
+# splash
+splash = "1.0.1"
 
 
 [libraries]
@@ -128,7 +131,12 @@ accompanist-systemuicontroller = { group = "com.google.accompanist", name = "acc
 
 # Preference Datastore
 preference-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "preference-datastore" }
+
+# Lottie
 lottie = {group = "com.airbnb.android", name = "lottie", version.ref = "lottie"}
+
+# Splash
+splash = {group = "androidx.core", name = "core-splashscreen", version.ref = "splash"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

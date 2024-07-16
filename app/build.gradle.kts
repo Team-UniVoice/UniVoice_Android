@@ -107,5 +107,10 @@ dependencies {
 
     // Preference Datastore
     implementation(libs.preference.datastore)
+
+    // Lottie
     implementation(libs.lottie)
+
+    // Splash
+    implementation(libs.splash)
 }

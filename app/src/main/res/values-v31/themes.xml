@@ -1,6 +1,4 @@
 <resources>
     <style name="Theme.UniVoice.Splash" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowSplashScreenBackground">@color/font_W01</item> <!--배경색상-->
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_background</item> <!--아이콘-->
     </style>
 </resources>
