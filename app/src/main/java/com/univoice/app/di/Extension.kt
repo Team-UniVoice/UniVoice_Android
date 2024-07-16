@@ -1,4 +1,4 @@
-package com.univoice.di
+package com.univoice.app.di
 
 fun String?.isJsonObject(): Boolean = this?.startsWith("{") == true && this.endsWith("}")
 fun String?.isJsonArray(): Boolean = this?.startsWith("[") == true && this.endsWith("]")
