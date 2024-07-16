@@ -1,0 +1,4 @@
+<resources>
+    <style name="Theme.UniVoice.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+</resources>

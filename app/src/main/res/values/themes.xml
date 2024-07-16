@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.UniVoice" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
@@ -33,5 +33,12 @@
 
     <style name="ShapeAppearanceOverlay.App.CornerRadius8" parent="">
         <item name="cornerSize">8dp</item>
+    </style>
+
+    <!--Splash-->
+    <style name="Theme.UniVoice.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="windowSplashScreenAnimationDuration">3000</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.UniVoice</item>
     </style>
 </resources>
