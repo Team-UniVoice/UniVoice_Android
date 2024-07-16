@@ -77,6 +77,7 @@ import com.univoice.core_ui.theme.Gray800
 import com.univoice.core_ui.theme.Mint400
 import com.univoice.core_ui.theme.Regular
 import com.univoice.core_ui.theme.UniVoiceAndroidTheme
+import com.univoice.core_ui.theme.White
 import com.univoice.core_ui.theme.body3Semi
 import com.univoice.core_ui.theme.body4Regular
 import com.univoice.core_ui.theme.button2Semi
@@ -106,7 +107,7 @@ class HomeFragment :
                 SetStatusBarColor(color = MaterialTheme.colorScheme.background)
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = White
                 ) {
                     HomeRoute(navController = navController)
                 }
