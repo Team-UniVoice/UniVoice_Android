@@ -26,12 +26,17 @@ class CreateAccountActivity :
 
     override fun initView() {
         initToolbar()
+        initDisableButton()
         initPwdTransformation()
         setupFocusChangeListeners()
         initEditTextIdInput()
         setupIdValidation()
         setupDuplicateCheckButton()
         setupPasswordValidation()
+    }
+
+    private fun initDisableButton() {
+        binding.btnCreateAccountNext.btnSignupNext.isEnabled = false
     }
 
     private fun initToolbar() {
