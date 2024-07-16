@@ -17,6 +17,17 @@
         <item name="android:minWidth">0dp</item>
     </style>
 
+    <!--일시 선택 버튼-->
+    <style name="date_day_button" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/sel_date_day_button</item>
+        <item name="android:textAppearance">@style/TextAppearance.UniVoice.button3Regular</item>
+        <item name="android:textColor">@drawable/sel_date_day_text</item>
+        <item name="android:paddingHorizontal">12dp</item>
+        <item name="android:paddingVertical">4dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
+
     <!--둥근 이미지-->
     <style name="notice_detail_rounded_image">
         <item name="cornerSize">13dp</item>
