@@ -17,7 +17,7 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
     private val viewModel by viewModels<QuickScanViewModel>()
     override fun initView() {
         initToolbarClickListener()
-        initAdapter()
+        initQuickScanAdapter()
         addMarginsToTabs(binding.tabQuickScan)
     }
 
@@ -49,7 +49,7 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
 
     }
 
-    private fun initAdapter() {
+    private fun initQuickScanAdapter() {
         QuickScanAdapter() { id, isBookmark ->
             viewModel.updateBookmark(id, isBookmark)
         }.also {
