@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".feature.login.LoginActivity">
+
+        <include
+            android:id="@+id/toolbar_login"
+            layout="@layout/item_toolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_login">
+
+            <EditText
+                android:id="@+id/et_login_id"
+                style="@style/EditTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="37dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/et_login_id_hint"
+                android:inputType="text"
+                android:paddingBottom="13dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
+                android:textColor="@color/font_B01"
+                android:textColorHint="@color/font_B04"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view_login_id_divider"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:background="@drawable/shape_regular_fill_30_rect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_login_id" />
+
+            <EditText
+                android:id="@+id/et_login_pwd"
+                style="@style/EditTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="33dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/et_login_pwd_hint"
+                android:inputType="textPassword"
+                android:paddingBottom="13dp"
+                android:textAppearance="@style/TextAppearance.UniVoice.head7Regular"
+                android:textColor="@color/font_B01"
+                android:textColorHint="@color/font_B04"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_login_id_divider" />
+
+            <View
+                android:id="@+id/view_login_pwd_divider"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:background="@drawable/shape_regular_fill_30_rect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_login_pwd" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_login_confirm"
+                style="@style/LoginButtonWithoutShadow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sel_login_button"
+                android:enabled="false"
+                android:paddingVertical="17dp"
+                android:text="@string/btn_login_confirm"
+                android:textColor="@color/font_W01"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

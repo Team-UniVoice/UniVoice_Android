@@ -83,6 +83,7 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.viewPager2)
     implementation(libs.glide)
+    implementation(libs.circleindicator)
 
     // Hilt
     implementation(libs.dagger.hilt)
@@ -102,5 +103,8 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.hilt.navigation.compose)
     androidTestImplementation(libs.compose.ui.test)
+    implementation(libs.accompanist.systemuicontroller)
 
+    // Preference Datastore
+    implementation(libs.preference.datastore)
 }

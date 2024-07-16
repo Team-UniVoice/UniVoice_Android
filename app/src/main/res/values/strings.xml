@@ -6,4 +6,132 @@
     <string name="menu_item_storage">저장</string>
     <string name="menu_item_setting">설정</string>
 
+    <!-- 홈 -->
+    <string name="text_home_empty">아직 학생회가 등록되어 있지 않아,\n공지사항을 확인할 수 없어요.</string>
+    <string name="btn_home_apply">학생회 등록 신청하기</string>
+    <string name="text_home_quick_scan_title">퀵 스캔</string>
+    <string name="text_home_notice_title">공지사항</string>
+    <string name="text_home_notice_empty">등록된 공지사항이 없어요</string>
+    <string name="text_home_date_tilde">~</string>
+    <string name="text_home_divider">|</string>
+    <string name="description_home_logo_img">로고</string>
+    <string name="description_home_notice_like_icon">공지사항 좋아요</string>
+    <string name="description_home_notice_views_icon">공지사항 조회수</string>
+    <string name="btn_home_notice_post">공지사항 작성 Floating Action Button</string>
+    <string name="btn_home_floating_action_btn">작성하기</string>
+
+    <!-- 로그인 -->
+    <string name="login_toolbar_title">로그인</string>
+    <string name="btn_entry_signup">유니보이스 시작하기</string>
+    <string name="et_login_id_hint">아이디</string>
+    <string name="et_login_pwd_hint">비밀번호</string>
+    <string name="login_pwd_mask">●</string>
+    <string name="btn_login_confirm">확인</string>
+    <string name="btn_welcome_confirm">유니보이스 홈 가기</string>
+    <string name="tv_welcome_title">환영합니다!</string>
+
+    <!-- 로그인 바텀시트 -->
+    <string name="btn_sheet_close">닫기</string>
+    <string name="btn_sheet_signup">회원가입하기</string>
+    <string name="tv_sheet_title">가입된 계정이 없어요</string>
+    <string name="tv_sheet_subtitle">입력하신 아이디와 비밀번호를 다시 확인해주세요</string>
+
+    <!-- 퀵스캔 -->
+    <string name="quick_scan_toolbar_title">읽지 않은 공지</string>
+    <string name="tv_quick_scan_subject">대상</string>
+    <string name="tv_quick_scan_date">일시</string>
+    <string name="tv_quick_scan_summary">요약</string>
+    <string name="btn_quick_scan_confirm">확인</string>
+
+    <!-- 퀵스캔 완료 -->
+    <string name="tv_quick_scan_complete">공지사항을 모두 확인했어요</string>
+    <string name="quick_scan_bookmark_icon_description">quick_scan_bookmark_icon</string>
+
+    <!--세부 공지사항 -->
+    <string name="btn_notice_detail_target">대상</string>
+    <string name="btn_notice_detail_date">일시</string>
+    <string name="tv_notice_detail_views">조회수</string>
+
+    <!-- 공지사항 작성 -->
+    <string name="toolbar_notice_detail">학과 학생회</string>
+    <string name="toolbar_notice_post_title">공지사항 작성</string>
+    <string name="et_notice_post_content_hint">내용을 입력하세요.</string>
+    <string name="btn_notice_post_appbar_registration">등록</string>
+    <string name="et_notice_post_title_hint">제목</string>
+    <string name="btn_notice_post_photo">사진</string>
+    <string name="btn_notice_post_target">대상</string>
+    <string name="btn_notice_post_date">일시</string>
+    <string name="et_bottomsheet_notice_post_target_hint">행사 대상을 입력해주세요.</string>
+
+    <!-- 저장 -->
+    <string name="storage_toolbar_title">저장한 공지사항</string>
+
+    <!-- 시간 -->
+    <string name="feed_time_now">지금</string>
+    <string name="feed_time_minute">분 전</string>
+    <string name="feed_time_hour">시간 전</string>
+
+    <!-- 회원가입 -->
+    <string name="tv_signup_explain">회원가입을 위해서는\n몇 가지 개인정보가 필요해요</string>
+    <string name="btn_signup_start">회원가입 시작하기</string>
+    <string name="tv_school_input_explain">학교를 입력해주세요</string>
+    <string name="et_school_input_search_hint">학교 이름 검색하기</string>
+    <string name="tv_signup_btn_next">다음</string>
+    <string name="et_department_input_search_hint">학과 검색하기</string>
+    <string name="tv_department_input_explain">학과를 입력해주세요</string>
+    <string name="tv_toolbar_personal_information_title">개인정보입력</string>
+    <string name="tv_student_id_input_explain">학번을 선택해주세요</string>
+    <string name="tv_signup_school">학교</string>
+    <string name="tv_student_info_check_explain">입력하신 정보가 맞나요?</string>
+    <string name="tv_signup_id">학번</string>
+    <string name="tv_signup_department">학과</string>
+    <string name="btn_student_info_check_confirm">네,맞아요</string>
+    <string name="tv_toolbar_student_card_photo_title">학생증 인증</string>
+    <string name="tv_student_card_photo_explain1">학교 인증을 위해\n학생증 사진이 필요해요</string>
+    <string name="tv_student_card_photo_explain2">실물 학생증 또는 모바일 학생증 이미지를 첨부해주세요\n승인까지 최대 24시간이 걸릴 수 있어요</string>
+    <string name="btn_student_card_photo_start">클릭해서\n이미지 업로드 하기</string>
+    <string name="tv_student_card_photo_explain3">• 이름, 학교, 학과, 전체 학번이 모두 보여야 해요</string>
+    <string name="tv_student_card_photo_explain4">• 주민등록번호가 있다면 가려주세요</string>
+    <string name="btn_student_card_photo_next">다음</string>
+    <string name="tv_ellipse">...</string>
+    <string name="tv_toolbar_signup_title">회원가입</string>
+    <string name="tb_student_check">학생증 인증</string>
+    <string name="tv_info_title">이름과 학번을 적어주세요</string>
+    <string name="tv_info_explain">학생증에 기재된 것과 동일해야 해요</string>
+    <string name="ed_info_name">이름</string>
+    <string name="et_info_student_id">전체 학번 ex. 2024123455</string>
+    <string name="btn_info_next">다음</string>
+    <string name="tb_card_check">학생증 인증</string>
+    <string name="tv_student_card_explain">학생증에 기재된 이름, 학번과\n입력한 정보가 일치하나요?</string>
+    <string name="tv_student_card_name">이름</string>
+    <string name="tv_student_card_id">학번</string>
+    <string name="btn_student_card_next">네, 일치해요</string>
+    <string name="tb_create_account">계정 생성</string>
+    <string name="tv_create_account_explain">아이디와 비밀번호를\n설정해주세요</string>
+    <string name="et_create_account_id">아이디 입력하기</string>
+    <string name="btn_create_account_check">중복확인</string>
+    <string name="tv_create_account_id">영문, 소문자, 숫자, 특수문자 사용 5~20자</string>
+    <string name="et_create_account_pwd">비밀번호 설정하기</string>
+    <string name="tv_create_account_pwd">영문, 숫자, 특수문자 각각 1개 이상 포함 8~16자</string>
+    <string name="et_create_account_pwd_check">비밀번호를 확인해주세요</string>
+    <string name="tv_create_account_pwd_check">비밀번호가 일치합니다</string>
+    <string name="btn_create_account_next">확인</string>
+    <string name="tv_create_account_id_explain">사용 가능한 아이디입니다.</string>
+    <string name="tv_create_account_id_unavailable">사용 불가능한 아이디입니다.</string>
+    <string name="tv_create_account_pw_explain">비밀번호를 입력하세요</string>
+    <string name="tv_create_account_pw_check_explain">비밀번호가 일치합니다</string>
+    <string name="btn_create_account_next_twice">다음</string>
+    <string name="btn_create_account_id">아이디 중복 확인</string>
+    <string name="btn_create_account_pw_check">비밀번호 확인</string>
+    <string name="password_match">비밀번호가 일치합니다</string>
+    <string name="password_mismatch">비밀번호가 일치하지 않습니다</string>
+    <string name="tv_bottom_sheet_agree">약관동의</string>
+    <string name="cb_bottom_sheet_all_agree">전체동의하기</string>
+    <string name="cb_bottom_sheet_service">서비스 이용약관 (필수)</string>
+    <string name="cb_bottom_sheet_personal">개인정보 수집 및 이용 동의 (필수)</string>
+    <string name="btn_bottom_sheet_ok">확인</string>
+    <string name="btn_check_info_start">처음으로 돌아가기</string>
+    <string name="tv_check_info_wait">학교 인증이 완료된 이후에 유니보이스를 이용할 수 있어요\n승인까지 최대 24시간이 걸릴 수 있어요</string>
+    <string name="tv_check_info_explain">유니보이스가 회원님의 정보를\n확인하고 있어요</string>
+
 </resources>
