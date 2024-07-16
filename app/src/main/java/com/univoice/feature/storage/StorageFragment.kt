@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,18 +23,31 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
+import com.univoice.core_ui.component.SetStatusBarColor
 import com.univoice.core_ui.theme.Font_B01
 import com.univoice.core_ui.theme.Regular
 import com.univoice.core_ui.theme.UniVoiceAndroidTheme
+import com.univoice.core_ui.theme.White
 import com.univoice.core_ui.theme.head5Bold
 import com.univoice.databinding.FragmentStorageBinding
 
 class StorageFragment : BindingFragment<FragmentStorageBinding>(R.layout.fragment_storage) {
     override fun initView() {
+        initComposeView()
+    }
+
+    private fun initComposeView() {
         binding.cvStorage.setContent {
             val navController = findNavController()
+
             UniVoiceAndroidTheme {
-                StorageScreen(navController = navController)
+                SetStatusBarColor(color = MaterialTheme.colorScheme.background)
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = White
+                ) {
+                    StorageScreen(navController = navController)
+                }
             }
         }
     }
