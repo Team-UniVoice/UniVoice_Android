@@ -1,11 +1,11 @@
 package com.univoice.feature.home
 
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.univoice.databinding.ItemNoticeBinding
 import com.univoice.domain.entity.NoticeListEntity
+import com.univoice.feature.util.CalculateDate
 
 class HomeNoticeViewHolder(
     private val binding: ItemNoticeBinding,
@@ -14,7 +14,7 @@ class HomeNoticeViewHolder(
     fun bind(data: NoticeListEntity) {
         with(binding) {
             tvItemNoticeTitle.text = data.title
-            tvItemNoticeDate.text = data.date
+            tvItemNoticeDate.text = CalculateDate().getCalculateDate(data.date)
             tvItemNoticeLike.text = data.like.toString()
             tvItemNoticeViews.text = data.views.toString()
             ivItemNoticeThumbnail.load(data.image) {
