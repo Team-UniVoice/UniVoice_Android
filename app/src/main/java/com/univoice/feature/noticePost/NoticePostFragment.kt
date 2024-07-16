@@ -150,9 +150,6 @@ class NoticePostFragment :
 
     private fun initApplyBtnClickListener() {
         binding.btnToolbarNoticePostApply.setOnClickListener {
-//            findNavController().navigate(
-//                R.id.action_fragment_notice_post_to_fragment_home,
-//            )
             Intent(requireContext(), NoticePostApplyActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(this)

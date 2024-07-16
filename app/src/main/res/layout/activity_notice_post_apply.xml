@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/shape_mint400_fill_40_rect"
             android:paddingVertical="19dp"
-            android:text="확인"
+            android:text="@string/btn_notice_post_apply_confirm"
             android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
             android:textColor="@color/white"
             android:visibility="invisible"
