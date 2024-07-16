@@ -38,4 +38,12 @@ class LoginViewModel @Inject constructor(
             userInfoRepository.saveUserAccessToken(accessToken)
         }
     }
+
+    fun getCheckLogin() = userInfoRepository.getCheckLogin()
+
+    fun saveCheckLogin(checkLogin: Boolean) {
+        viewModelScope.launch {
+            userInfoRepository.saveCheckLogin(checkLogin)
+        }
+    }
 }

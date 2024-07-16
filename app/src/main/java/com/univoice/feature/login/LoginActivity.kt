@@ -18,13 +18,14 @@ import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @AndroidEntryPoint
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
     private val loginViewModel by viewModels<LoginViewModel>()
 
     override fun initView() {
+        loginViewModel.saveCheckLogin(false)
+
         initToolbar()
         initConfirmBtnClickListener()
         initConfirmBtnIsEnabled()
@@ -37,18 +38,15 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private fun setupPostLoginObserve() {
         loginViewModel.postLoginState.flowWithLifecycle(lifecycle).onEach {
             when (it) {
-                is UiState.Loading -> Timber.tag("here").d("로딩중!")
+                is UiState.Loading -> Unit
                 is UiState.Success -> {
-                    Timber.tag("here").d("성공!")
                     loginViewModel.saveUserAccessToken(it.data)
+                    loginViewModel.saveCheckLogin(true)
                     navigateToWelcomeActivity()
                 }
 
-                is UiState.Empty -> Timber.tag("here").d("비어있음!")
-                is UiState.Failure -> {
-                    Timber.tag("here").d("실패!")
-                    showBottomSheetFragment()
-                }
+                is UiState.Empty -> Unit
+                is UiState.Failure -> showBottomSheetFragment()
             }
         }.launchIn(lifecycleScope)
     }

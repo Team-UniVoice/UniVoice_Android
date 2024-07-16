@@ -14,4 +14,13 @@ class UserInfoRepositoryImpl @Inject constructor(
     }
 
     override fun getUserAccessToken(): Flow<String?> = dataSource.getUserAccessToken()
+
+    override suspend fun saveCheckLogin(checkLogin: Boolean) {
+        dataSource.saveCheckLogin(checkLogin)
+    }
+
+    override fun getCheckLogin(): Flow<Boolean> = dataSource.getCheckLogin()
+
+    override suspend fun clear() = dataSource.clear()
+
 }

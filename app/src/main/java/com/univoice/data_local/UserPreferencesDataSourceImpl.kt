@@ -2,6 +2,7 @@ package com.univoice.data_local
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.univoice.data.datasource.UserPreferencesDataSource
@@ -13,7 +14,8 @@ class UserPreferencesDataSourceImpl @Inject constructor
     (
     private val dataStore: DataStore<Preferences>
 ) : UserPreferencesDataSource {
-    private val USER_ACCESSTOKEN = stringPreferencesKey("USER_ACCESSTOKEN")
+    private val USER_ACCESSTOKEN = stringPreferencesKey("user_accesstoken")
+    private val CHECK_LOGIN = booleanPreferencesKey("check_login")
 
     override suspend fun saveUserAccessToken(accessToken: String) {
         dataStore.edit { preferences ->
@@ -25,9 +27,20 @@ class UserPreferencesDataSourceImpl @Inject constructor
         preferences[USER_ACCESSTOKEN]
     }
 
+    override suspend fun saveCheckLogin(checkLogin: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[CHECK_LOGIN] = checkLogin
+        }
+    }
+
+    override fun getCheckLogin(): Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[CHECK_LOGIN] ?: false
+    }
+
     override suspend fun clear() {
         dataStore.edit { preferences ->
             preferences.remove(USER_ACCESSTOKEN)
+            preferences.remove(CHECK_LOGIN)
         }
     }
 }
