@@ -18,11 +18,16 @@ import dagger.hilt.android.AndroidEntryPoint
 class InfoInputActivity : BindingActivity<ActivityInfoInputBinding>(R.layout.activity_info_input) {
 
     override fun initView() {
+        disableNextButton()
         initToolbar()
         setupFocusChangeListeners()
         initEditTextNameInput()
         initConfirmBtnIsEnabled()
         initConfirmBtnClickListener()
+    }
+
+    private fun disableNextButton() {
+        binding.btnNameInputNext.btnSignupNext.isEnabled = false
     }
 
     private fun initToolbar() {
