@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_notice_post"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:contentInsetStart="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/ib_toolbar_notice_post_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:id="@+id/tv_toolbar_notice_post_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/toolbar_notice_post_title"
+                android:textAppearance="@style/TextAppearance.UniVoice.title4Regular"
+                android:textColor="@color/font_B01" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_toolbar_notice_post_apply"
+                style="@style/LoginButtonWithoutShadow"
+                android:layout_width="39dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/shape_gray200_fill_20_rect"
+                android:enabled="false"
+                android:text="@string/btn_notice_post_appbar_registration"
+                android:textAppearance="@style/TextAppearance.UniVoice.button3Semi"
+                android:textColor="@color/white" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_notice_post">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_notice_post_title"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@null"
+                    android:hint="@string/et_notice_post_title_hint"
+                    android:maxLength="100"
+                    android:paddingVertical="16dp"
+                    android:singleLine="true"
+                    android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+                    android:textColor="@color/font_B01"
+                    android:textColorHint="@color/font_B03"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="2024년 총학생회 겨울 잠바 디자인 공모전 안내드립니다." />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider_notice_post"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:dividerColor="@color/regular"
+                    app:dividerInsetEnd="16dp"
+                    app:dividerInsetStart="16dp"
+                    app:dividerThickness="1dp"
+                    app:layout_constraintTop_toBottomOf="@id/et_notice_post_title" />
+
+                <EditText
+                    android:id="@+id/et_notice_post_content"
+                    style="@style/EditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="@string/et_notice_post_content_hint"
+                    android:minHeight="100dp"
+                    android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
+                    android:textColor="@color/font_B01"
+                    android:textColorHint="@color/font_B03"
+                    app:layout_constraintTop_toBottomOf="@id/divider_notice_post" />
+
+                <LinearLayout
+                    android:id="@+id/layout_notice_post_options"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_notice_post_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_notice_post_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_notice_post_image" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_notice_post_option_target"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/shape_regular_line_16_rect"
+                        android:clickable="true"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_target_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="6dp"
+                            android:text="@string/btn_notice_post_target"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintBottom_toTopOf="@id/tv_notice_post_option_target_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_notice_post_option_target_delete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:clickable="true"
+                            android:src="@drawable/ic_notice_post_delete"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_target_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_target_title"
+                            tools:text="소프트웨어공학과 1, 2학년 학생들" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_notice_post_option_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/shape_regular_line_16_rect"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_date_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="6dp"
+                            android:text="@string/btn_notice_post_date"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintBottom_toTopOf="@id/tv_notice_post_option_date_start"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_notice_post_option_date_delete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:clickable="true"
+                            android:src="@drawable/ic_notice_post_delete"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_date_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
+                            tools:text="2024년 06월 12일\n오후 6시" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_notice_post_arrow"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_notice_post_option_date_start"
+                            app:layout_constraintEnd_toStartOf="@id/tv_notice_post_option_date_end"
+                            app:layout_constraintStart_toEndOf="@id/tv_notice_post_option_date_start"
+                            app:layout_constraintTop_toTopOf="@id/tv_notice_post_option_date_start" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_date_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
+                            tools:text="2024년 06월 13일\n오후 6시" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/shape_gradient_fill_rect"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:id="@+id/layout_notice_post_photo_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shpae_mint50_fill_40_rect"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_notice_post_photo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_notice_post_photo"
+                    android:textAppearance="@style/TextAppearance.UniVoice.button4Regular"
+                    android:textColor="@color/mint_900" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_notice_post_target_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/shpae_mint50_fill_40_rect"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_notice_post_photo_btn"
+                app:layout_constraintStart_toEndOf="@id/layout_notice_post_photo_btn">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_notice_post_target" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_notice_post_target"
+                    android:textAppearance="@style/TextAppearance.UniVoice.button4Regular"
+                    android:textColor="@color/mint_900" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_notice_post_date_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/shpae_mint50_fill_40_rect"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_notice_post_photo_btn"
+                app:layout_constraintStart_toEndOf="@id/layout_notice_post_target_btn">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_notice_post_date" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_notice_post_date"
+                    android:textAppearance="@style/TextAppearance.UniVoice.button4Regular"
+                    android:textColor="@color/mint_900" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

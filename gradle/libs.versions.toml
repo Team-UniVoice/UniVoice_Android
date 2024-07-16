@@ -17,6 +17,7 @@ fragment = "1.8.1"
 constraintlayout = "2.1.4"
 lifecycle = "2.8.2"
 lifecycle-runtime-ktx = "2.8.2"
+core-splashscreen = "1.0.1"
 
 # Navigation
 navigation = "2.7.7"
@@ -57,6 +58,12 @@ accompanist-systemuicontroller = "0.17.0"
 # Preference Datastore
 preference-datastore = "1.0.0"
 
+# lottie
+lottie = "6.0.0"
+
+# splash
+splash = "1.0.1"
+
 
 [libraries]
 # AndroidX
@@ -67,6 +74,7 @@ androidx-fragment = { group = "androidx.fragment", name = "fragment-ktx", versio
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "core-splashscreen" }
 
 # Navigation
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
@@ -124,6 +132,11 @@ accompanist-systemuicontroller = { group = "com.google.accompanist", name = "acc
 # Preference Datastore
 preference-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "preference-datastore" }
 
+# Lottie
+lottie = {group = "com.airbnb.android", name = "lottie", version.ref = "lottie"}
+
+# Splash
+splash = {group = "androidx.core", name = "core-splashscreen", version.ref = "splash"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -135,7 +148,7 @@ dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hil
 
 
 [bundles]
-androidx = ["androidx-core-ktx", "androidx-constraintlayout", "androidx-appcompat", "androidx-activity", "androidx-fragment"]
+androidx = ["androidx-core-ktx", "androidx-constraintlayout", "androidx-appcompat", "androidx-activity", "androidx-fragment", "androidx-core-splashscreen"]
 okhttp = ["okhttp3", "okhttp-logging-interceptor"]
 retrofit = ["retrofit2", "retrofit2-kotlin-serialization-converter"]
 navigation = ["androidx-navigation-fragment", "androidx-navigation-ui"]

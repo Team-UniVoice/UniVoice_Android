@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_bottom_sheet"
+        style="AppBottomSheetDialogTheme"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="32dp">
+
+        <ImageView
+            android:id="@+id/iv_bottom_sheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/ic_handle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_bottom_sheet_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@string/tv_bottom_sheet_agree"
+            android:textAppearance="@style/TextAppearance.UniVoice.title1Semi"
+            android:textColor="@color/font_B01"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_bottom_sheet" />
+
+        <CheckBox
+            android:id="@+id/cb_bottom_sheet_agree_all"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:button="@android:color/transparent"
+            android:drawableStart="@drawable/checkbox_selector"
+            android:drawablePadding="12dp"
+            android:lineHeight="20sp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="@string/cb_bottom_sheet_all_agree"
+            android:textAppearance="@font/pretendard_regular"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_bottom_sheet_title" />
+
+        <CheckBox
+            android:id="@+id/cb_bottom_sheet_service"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:button="@android:color/transparent"
+            android:drawableStart="@drawable/checkbox_selector"
+            android:drawableEnd="@drawable/ic_signup_right_arrow"
+            android:drawablePadding="12dp"
+            android:lineHeight="20sp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="@string/cb_bottom_sheet_service"
+            android:textAppearance="@font/pretendard_regular"
+            android:textFontWeight="400"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cb_bottom_sheet_agree_all" />
+
+        <CheckBox
+            android:id="@+id/cb_bottom_sheet_use"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:button="@android:color/transparent"
+            android:drawableStart="@drawable/checkbox_selector"
+            android:drawableEnd="@drawable/ic_signup_right_arrow"
+            android:drawablePadding="12dp"
+            android:lineHeight="20sp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="@string/cb_bottom_sheet_personal"
+            android:textAppearance="@font/pretendard_regular"
+            android:textFontWeight="400"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cb_bottom_sheet_service" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_bottom_sheet_agree"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/sel_signup_button"
+            android:enabled="false"
+            android:paddingVertical="19dp"
+            android:text="@string/btn_bottom_sheet_ok"
+            android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cb_bottom_sheet_use" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

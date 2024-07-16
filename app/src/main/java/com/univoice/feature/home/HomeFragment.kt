@@ -7,6 +7,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,7 +17,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -58,6 +58,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -66,6 +67,7 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.core_ui.component.SetStatusBarColor
 import com.univoice.core_ui.theme.Blue300
+import com.univoice.core_ui.theme.Blue50
 import com.univoice.core_ui.theme.Font_B01
 import com.univoice.core_ui.theme.Font_B02
 import com.univoice.core_ui.theme.Font_B03
@@ -92,8 +94,14 @@ import com.univoice.feature.quickscan.QuickScanActivity
 class HomeFragment :
     BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun initView() {
+        initPostBtnClickListener()
+        initComposeView()
+    }
+
+    private fun initComposeView() {
         binding.cvHome.setContent {
             val navController = findNavController()
+
             UniVoiceAndroidTheme {
                 SetStatusBarColor(color = MaterialTheme.colorScheme.background)
                 Surface(
@@ -103,6 +111,12 @@ class HomeFragment :
                     HomeRoute(navController = navController)
                 }
             }
+        }
+    }
+
+    private fun initPostBtnClickListener() {
+        binding.btnHomePost.setOnClickListener {
+            findNavController().navigate(R.id.action_fragment_home_to_fragment_notice_post)
         }
     }
 }
@@ -181,34 +195,36 @@ fun HomeScreen(homeViewModel: HomeViewModel, navController: NavController) {
             )
         }
     ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier
-                .padding(innerPadding)
-                .nestedScroll(scrollBehavior.nestedScrollConnection)
-                .fillMaxSize(),
-        ) {
-            item {
-                HomeQuickScanContent(homeViewModel, context)
-            }
-            stickyHeader {
-                HomeNoticeContent(
-                    homeViewModel = homeViewModel,
-                    choiceNoticeIndex = choiceNoticeIndex,
-                    onNoticeClick = { choiceNoticeIndex = it }
-                )
-            }
-            if (homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData.isEmpty()) {
+        Box {
+            LazyColumn(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .nestedScroll(scrollBehavior.nestedScrollConnection)
+                    .fillMaxSize(),
+            ) {
                 item {
-                    HomeNoticeEmptyContent()
+                    HomeQuickScanContent(homeViewModel, context)
                 }
-            } else {
-                itemsIndexed(homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData) { index, data ->
-                    HomeNoticeItem(
-                        index,
-                        data,
-                        homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData.lastIndex,
-                        navController
+                stickyHeader {
+                    HomeNoticeContent(
+                        homeViewModel = homeViewModel,
+                        choiceNoticeIndex = choiceNoticeIndex,
+                        onNoticeClick = { choiceNoticeIndex = it }
                     )
+                }
+                if (homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData.isEmpty()) {
+                    item {
+                        HomeNoticeEmptyContent()
+                    }
+                } else {
+                    itemsIndexed(homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData) { index, data ->
+                        HomeNoticeItem(
+                            index,
+                            data,
+                            homeViewModel.mockNoticeList[choiceNoticeIndex].noticeData.lastIndex,
+                            navController
+                        )
+                    }
                 }
             }
         }
@@ -230,7 +246,6 @@ fun HomeNoticeItem(
                     .fillMaxWidth()
                     .padding(start = 4.dp, end = 4.dp, top = 8.dp, bottom = 12.dp)
                     .clickable {
-                        // To-do : 추가해야 함
                         navController.navigate(
                             R.id.action_fragment_home_to_fragment_notice_detail
                         )
@@ -240,84 +255,90 @@ fun HomeNoticeItem(
                     .fillMaxWidth()
                     .padding(horizontal = 4.dp, vertical = 12.dp)
                     .clickable {
-                        // To-do : 추가해야 함
                         navController.navigate(
                             R.id.action_fragment_home_to_fragment_notice_detail
                         )
                     }
             },
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Column(
-                modifier = Modifier.height(62.dp)
-            ) {
-                Surface(
-                    border = BorderStroke(width = 1.dp, color = Regular),
-                    shape = RoundedCornerShape(30.dp)
+            Box(modifier = Modifier.weight(1f)) {
+                Column(
+                    modifier = Modifier.height(62.dp)
                 ) {
-                    Text(
-                        text = data.subTitle,
-                        style = cap4Regular,
-                        color = Font_B02,
-                        modifier = Modifier.padding(
-                            horizontal = 6.dp,
-                            vertical = 2.dp
+                    Surface(
+                        border = BorderStroke(width = 1.dp, color = Regular),
+                        shape = RoundedCornerShape(30.dp),
+                    ) {
+                        Text(
+                            text = data.subTitle,
+                            style = cap4Regular,
+                            color = Font_B02,
+                            modifier = Modifier.padding(
+                                horizontal = 6.dp,
+                                vertical = 2.dp
+                            )
                         )
-                    )
-                }
-                Spacer(modifier = Modifier.padding(bottom = 6.dp))
-                Text(text = data.title, style = title4Semi, color = Font_B01)
-                Spacer(modifier = Modifier.weight(1f))
-                Row {
+                    }
+                    Spacer(modifier = Modifier.padding(bottom = 6.dp))
                     Text(
-                        text = data.startDate,
-                        style = cap3Regular,
-                        color = Font_B03
+                        text = data.title,
+                        style = title4Semi,
+                        color = Font_B01,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
                     )
-                    Text(
-                        text = stringResource(R.string.text_home_date_tilde),
-                        style = cap3Regular,
-                        color = Font_B03,
-                        modifier = Modifier.padding(horizontal = 2.dp)
-                    )
-                    Text(text = data.endDate, style = cap3Regular, color = Font_B03)
-                    Text(
-                        text = stringResource(R.string.text_home_divider),
-                        style = cap3Regular,
-                        color = Font_B03,
-                        modifier = Modifier.padding(horizontal = 8.dp)
-                    )
-                    Icon(
-                        painterResource(id = R.drawable.ic_home_like),
-                        contentDescription = stringResource(R.string.description_home_notice_like_icon),
-                        modifier = Modifier.padding(end = 2.dp)
-                    )
-                    Text(
-                        text = data.like.toString(),
-                        style = cap3Regular,
-                        color = Font_B03
-                    )
-                    Icon(
-                        painterResource(id = R.drawable.ic_home_like),
-                        contentDescription = stringResource(R.string.description_home_notice_views_icon),
-                        modifier = Modifier.padding(start = 6.dp, end = 2.dp)
-                    )
-                    Text(
-                        text = data.views.toString(),
-                        style = cap3Regular,
-                        color = Font_B03,
-                    )
+                    Spacer(modifier = Modifier.weight(1f))
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = data.date,
+                            style = cap3Regular,
+                            color = Font_B03
+                        )
+                        Text(
+                            text = stringResource(R.string.text_home_divider),
+                            style = cap3Regular,
+                            color = Font_B03,
+                            modifier = Modifier.padding(horizontal = 8.dp)
+                        )
+                        Icon(
+                            painterResource(id = R.drawable.ic_home_like),
+                            contentDescription = stringResource(R.string.description_home_notice_like_icon),
+                            modifier = Modifier.padding(end = 2.dp)
+                        )
+                        Text(
+                            text = data.like.toString(),
+                            style = cap3Regular,
+                            color = Font_B03
+                        )
+                        Icon(
+                            painterResource(id = R.drawable.ic_home_views),
+                            contentDescription = stringResource(R.string.description_home_notice_views_icon),
+                            modifier = Modifier
+                                .padding(start = 6.dp, end = 2.dp)
+                                .size(12.dp)
+                        )
+                        Text(
+                            text = data.views.toString(),
+                            style = cap3Regular,
+                            color = Font_B03,
+                        )
+                    }
                 }
             }
-            Spacer(modifier = Modifier.weight(1f))
-            if (data.image) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_background),
-                    contentDescription = stringResource(R.string.text_home_notice_title),
-                    modifier = Modifier
-                        .size(58.dp)
-                        .clip(RoundedCornerShape(5.dp)),
-                )
+            Box {
+                if (data.image) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_launcher_background),
+                        contentDescription = stringResource(R.string.text_home_notice_title),
+                        modifier = Modifier
+                            .size(66.dp)
+                            .clip(RoundedCornerShape(5.dp)),
+                    )
+                }
             }
         }
         HorizontalDivider(
@@ -425,21 +446,14 @@ fun HomeQuickScanContent(homeViewModel: HomeViewModel, context: Context) {
             modifier = Modifier.padding(start = 16.dp)
         )
     }
-    Spacer(modifier = Modifier.padding(bottom = 10.dp))
-    Text(
-        text = stringResource(R.string.text_home_quick_scan_title),
-        style = head5Bold,
-        color = Font_B01,
-        modifier = Modifier.padding(start = 16.dp)
-    )
-    Spacer(modifier = Modifier.padding(bottom = 11.dp))
+    Spacer(modifier = Modifier.padding(bottom = 6.dp))
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically,
-        contentPadding = PaddingValues(horizontal = 4.dp, vertical = 6.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
     ) {
         items(
             items = homeViewModel.mockQuickScanList,
@@ -447,13 +461,14 @@ fun HomeQuickScanContent(homeViewModel: HomeViewModel, context: Context) {
         ) { data ->
             Column(
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .width(95.dp)
+                    .width(97.dp)
+                    .height(132.dp)
                     .clickable {
                         context.startActivity(Intent(context, QuickScanActivity::class.java))
-                    },
+                    }
+                    .background(Blue50, RoundedCornerShape(20.dp)),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Center,
             ) {
                 HomeQuickScanItem(data)
             }
@@ -473,11 +488,14 @@ fun HomeQuickScanItem(data: QuickScanListEntity) {
                 .size(68.dp)
                 .aspectRatio(1f)
                 .clip(CircleShape)
+                .border(1.dp, Regular)
         )
         Surface(
             color = Blue300,
             shape = CircleShape,
-            modifier = if (data.count.toString().length == 1) {
+            modifier = if (data.count < 1) {
+                Modifier.size(0.dp)
+            } else if (data.count.toString().length == 1) {
                 Modifier
                     .align(Alignment.TopEnd)
                     .offset(x = (-4.5).dp, y = (-6).dp)

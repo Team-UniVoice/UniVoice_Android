@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         app:contentInsetStart="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,6 +20,7 @@
             android:id="@+id/ib_toolbar_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_back" />
 
@@ -24,10 +28,9 @@
             android:id="@+id/tv_toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ffffffff"
             android:textAppearance="@style/TextAppearance.UniVoice.title4Regular"
             android:textColor="@color/font_B01" />
 
     </androidx.appcompat.widget.Toolbar>
 
-</merge>
+</layout>
