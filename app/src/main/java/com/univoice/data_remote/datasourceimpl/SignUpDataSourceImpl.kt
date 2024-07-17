@@ -2,6 +2,7 @@ package com.univoice.data_remote.datasourceimpl
 
 import com.univoice.data.datasource.SignUpDataSource
 import com.univoice.data.dto.BaseResponse
+import com.univoice.data.dto.request.RequestCheckEmailDto
 import com.univoice.data.dto.request.RequestDepartmentDto
 import com.univoice.data_remote.api.SignUpApiService
 import javax.inject.Inject
@@ -14,4 +15,7 @@ class SignUpDataSourceImpl @Inject constructor(
 
     override suspend fun postDepartments(requestDepartmentDto: RequestDepartmentDto): BaseResponse<List<String>> =
         signUpApiService.postDepartments(requestDepartmentDto)
+
+    override suspend fun postEmail(requestCheckEmailDto: RequestCheckEmailDto): BaseResponse<List<String>> =
+        signUpApiService.postEmail(requestCheckEmailDto)
 }
