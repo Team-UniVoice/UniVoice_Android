@@ -25,7 +25,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.activity_quick_scan) {
     private val viewModel by viewModels<QuickScanViewModel>()
-    private val debouncer = Debouncer<Boolean>()
+    private val debouncer = Debouncer<Int>()
     override fun initView() {
         initToolbarClickListener()
         initPostQuickScanList()
@@ -103,11 +103,11 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
         if(image != null) {
             val adapter = QuickScanAdapter(image) { id, isChecked ->
                 if(isChecked) {
-                    debouncer.setDelay(isChecked, 1000L) {
+                    debouncer.setDelay(id, 1000L) {
                         viewModel.postQuickScanSave(id)
                     }
                 } else {
-                    debouncer.setDelay(isChecked, 1000L) {
+                    debouncer.setDelay(id, 1000L) {
                         viewModel.postQuickScanCancel(id)
                     }
                 }
