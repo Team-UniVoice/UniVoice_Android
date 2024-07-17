@@ -65,7 +65,8 @@ class NoticePostFragment :
         initOptionTargetClickListener()
         initOptionTargetDeleteBtnClickListener()
         initPostDateClickListener()
-
+        initSetDateClickListener()
+        initCloseClickListener()
     }
 
     private fun initPostDateClickListener() {
@@ -73,11 +74,28 @@ class NoticePostFragment :
             val startDate: Calendar = Calendar.getInstance()
             val timeBottomSheetFragment = TimeBottomSheetFragment(startDate, 12)
             timeBottomSheetFragment.show(parentFragmentManager, timeBottomSheetFragment.tag)
-            initSetText()
+            initSetDateText()
         }
     }
 
-    private fun initSetText() {
+    private fun initSetDateClickListener(){
+        binding.layoutNoticePostOptionDate.setOnClickListener {
+            val startDate: Calendar = Calendar.getInstance()
+            val timeBottomSheetFragment = TimeBottomSheetFragment(startDate, 12)
+            timeBottomSheetFragment.show(parentFragmentManager, timeBottomSheetFragment.tag)
+            initSetDateText()
+        }
+    }
+
+    private fun initCloseClickListener(){
+        with(binding){
+            ivNoticePostOptionDateDelete.setOnClickListener {
+                layoutNoticePostOptionDate.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun initSetDateText() {
         setFragmentResultListener(TIME_PICKER_KEY) { _, bundle ->
             val setStartDate = bundle.getString(SET_START_DATE, "")
             val setEndDate = bundle.getString(SET_END_DATE, "")
