@@ -5,16 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.univoice.core_ui.view.ItemDiffCallback
 import com.univoice.databinding.ItemQuickScanBinding
-import com.univoice.domain.entity.QuickScanEntity
+import com.univoice.domain.entity.QuickScanListEntity
 
 class QuickScanAdapter(
-    private val onClick: (Int, Boolean) -> Unit
-) : ListAdapter<QuickScanEntity, QuickScanViewHolder>(
+    private val onClick: (QuickScanListEntity, Int) -> Unit = { _, _ -> },
+) : ListAdapter<QuickScanListEntity, QuickScanViewHolder>(
     QuickScanDiffCallback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuickScanViewHolder {
-        val binding = ItemQuickScanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return QuickScanViewHolder(binding, onClick)
+        val binding =
+            ItemQuickScanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return QuickScanViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: QuickScanViewHolder, position: Int) {
@@ -23,7 +24,7 @@ class QuickScanAdapter(
 
     companion object {
         private val QuickScanDiffCallback =
-            ItemDiffCallback<QuickScanEntity>(
+            ItemDiffCallback<QuickScanListEntity>(
                 onItemsTheSame = { old, new -> old.id == new.id },
                 onContentsTheSame = { old, new -> old == new })
     }

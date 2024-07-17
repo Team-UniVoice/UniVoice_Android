@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.univoice.core_ui.view.ItemDiffCallback
 import com.univoice.databinding.ItemHomeNoticeQuickscanBinding
-import com.univoice.domain.entity.QuickScanListEntity
+import com.univoice.domain.entity.HomeQuickScanListEntity
 
 class HomeQuickscanAdapter(
-    private val click: (QuickScanListEntity, Int) -> Unit = { _, _ -> },
+    private val click: (HomeQuickScanListEntity, Int) -> Unit = { _, _ -> },
 ) :
-    ListAdapter<QuickScanListEntity, HomeQuickscanViewHolder>(
+    ListAdapter<HomeQuickScanListEntity, HomeQuickscanViewHolder>(
         HomeQuickscanAdapterDiffCallback,
     ) {
     override fun onCreateViewHolder(
@@ -35,7 +35,7 @@ class HomeQuickscanAdapter(
 
     companion object {
         private val HomeQuickscanAdapterDiffCallback =
-            ItemDiffCallback<QuickScanListEntity>(
+            ItemDiffCallback<HomeQuickScanListEntity>(
                 onItemsTheSame = { old, new -> old.name == new.name },
                 onContentsTheSame = { old, new -> old == new },
             )

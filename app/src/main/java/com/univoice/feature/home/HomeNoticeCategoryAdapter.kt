@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.univoice.core_ui.view.ItemDiffCallback
 import com.univoice.databinding.ItemHomeNoticeCategoryBinding
-import com.univoice.domain.entity.QuickScanListEntity
 
 class HomeNoticeCategoryAdapter(
     private val click: (String, Int) -> Unit = { _, _ -> },
