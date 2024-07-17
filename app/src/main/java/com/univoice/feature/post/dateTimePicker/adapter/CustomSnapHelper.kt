@@ -20,7 +20,7 @@ class CustomSnapHelper(
     override fun findSnapView(layoutManager: RecyclerView.LayoutManager?): View? {
         val view = super.findSnapView(layoutManager)
 
-        if (view != null) {
+        view?.let {
             val newPosition = layoutManager?.getPosition(view) ?: RecyclerView.NO_POSITION
             if (newPosition != lastSelectedPosition && rv.scrollState == RecyclerView.SCROLL_STATE_IDLE) {
                 lastSelectedPosition = newPosition
