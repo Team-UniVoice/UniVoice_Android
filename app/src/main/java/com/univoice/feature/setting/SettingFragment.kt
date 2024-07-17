@@ -18,7 +18,7 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>(R.layout.fragmen
     }
 
     private fun initLogoutBtnClickListener() {
-        binding.btnSettingLogout.setOnClickListener {
+        binding.ivSettingLogOut.setOnClickListener {
             loginViewModel.saveCheckLogin(false)
 
             val intent = Intent(activity, EntryActivity::class.java)
