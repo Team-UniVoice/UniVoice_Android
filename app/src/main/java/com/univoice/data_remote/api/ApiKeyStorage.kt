@@ -18,5 +18,6 @@ object ApiKeyStorage {
     const val NOTICE_ID = "noticeId"
     const val MYPAGE = "mypage"
     const val VIEW_COUNT = "view-count"
+    const val CANCEL = "cancel"
     const val CHECK_EMAIL = "check-email"
 }
