@@ -20,7 +20,7 @@ class HomeQuickscanViewHolder(
                 tvHomeNoticeQuickscanCount.text = data.count.toString()
             }
 
-            tvHomeNoticeQuickscanName.text = data.name
+            tvHomeNoticeQuickscanName.text = data.name.replace(" ", "\n")
             ivHomeNoticeQuickscanProfile.load(data.image)
 
             root.setOnClickListener {
