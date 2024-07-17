@@ -133,5 +133,6 @@
     <string name="btn_check_info_start">처음으로 돌아가기</string>
     <string name="tv_check_info_wait">학교 인증이 완료된 이후에 유니보이스를 이용할 수 있어요\n승인까지 최대 24시간이 걸릴 수 있어요</string>
     <string name="tv_check_info_explain">유니보이스가 회원님의 정보를\n확인하고 있어요</string>
+    <string name="btn_notice_post_apply_confirm">확인</string>
 
 </resources>

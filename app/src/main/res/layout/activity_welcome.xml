@@ -35,9 +35,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
                 android:src="@drawable/ic_welcome_icon"
-                app:layout_constraintTop_toBottomOf="@id/tv_welcome_title"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_welcome_title" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_welcome_confirm"
@@ -45,7 +45,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_mint400_fill_40_rect"
-                android:paddingVertical="15dp"
+                android:paddingVertical="19dp"
                 android:text="@string/btn_welcome_confirm"
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
                 android:textColor="@color/font_W01"

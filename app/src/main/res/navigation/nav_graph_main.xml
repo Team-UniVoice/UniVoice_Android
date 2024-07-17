@@ -46,5 +46,17 @@
             app:destination="@id/fragment_home"
             app:popUpTo="@id/fragment_home"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragment_notice_post_to_fragment_notice_post_apply"
+            app:destination="@id/fragment_notice_post_apply" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_notice_post_apply"
+        android:name="com.univoice.feature.noticePost.NoticePostApplyFragment"
+        android:label="NoticePostApplyFragment"
+        tools:layout="@layout/fragment_notice_post_apply" >
+        <action
+            android:id="@+id/action_fragment_notice_post_apply_to_fragment_home"
+            app:destination="@id/fragment_home" />
     </fragment>
 </navigation>
