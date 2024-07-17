@@ -22,7 +22,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -48,7 +47,7 @@ fun StorageItem(data: NoticeListEntity) {
     ) {
         Column {
             Text(
-                text = data.subTitle,
+                text = data.category,
                 color = Font_B02,
                 style = cap4Regular,
                 modifier = Modifier
@@ -67,7 +66,7 @@ fun StorageItem(data: NoticeListEntity) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = data.date,
+                    text = data.date.toString(),
                     color = Font_B03,
                     style = cap3Regular
                 )
@@ -88,7 +87,7 @@ fun StorageItem(data: NoticeListEntity) {
                     modifier = Modifier.padding(start = 2.dp),
                     color = Font_B03,
                     style = cap3Regular,
-                    text = data.like.toString()
+                    text = data.likeCount.toString()
                 )
                 Spacer(modifier = Modifier.width(6.dp))
                 Image(
@@ -100,7 +99,7 @@ fun StorageItem(data: NoticeListEntity) {
                     modifier = Modifier.padding(start = 2.dp),
                     color = Font_B03,
                     style = cap3Regular,
-                    text = data.views.toString()
+                    text = data.viewCount.toString()
                 )
             }
         }
@@ -116,19 +115,4 @@ fun StorageItem(data: NoticeListEntity) {
             contentDescription = stringResource(id = R.string.description_home_logo_img)
         )
     }
-}
-
-@Preview
-@Composable
-fun PreviewNoticeItem() {
-    StorageItem(
-        data = NoticeListEntity(
-            subTitle = "공지사항",
-            title = "전체1",
-            date = "2024/07/12",
-            like = 10,
-            views = 8,
-            image = true
-        )
-    )
 }
