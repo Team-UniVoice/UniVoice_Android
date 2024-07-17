@@ -1,5 +1,5 @@
 package com.univoice.domain.repository
 
 interface UniversityRepository {
-    suspend fun getUniversityNames(): Result<List<String>>
+    suspend fun postUniversityNames(): Result<List<String>>
 }

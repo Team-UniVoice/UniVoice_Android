@@ -7,7 +7,7 @@ import javax.inject.Inject
 class UniversityRepositoryImpl @Inject constructor(
     private val universityDataSource: UniversityDataSource
 ) : UniversityRepository {
-    override suspend fun getUniversityNames(): Result<List<String>> {
+    override suspend fun postUniversityNames(): Result<List<String>> {
         return runCatching {
             universityDataSource.postUniversityNames().data ?: emptyList()
         }
