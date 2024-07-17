@@ -24,7 +24,7 @@ class SchoolInputViewModel @Inject constructor(
     private fun fetchUniversityNames() {
         viewModelScope.launch {
             universityRepository.getUniversityNames().onSuccess { response ->
-                _schoolList.value = response.data
+                _schoolList.value = response
             }.onFailure {
             }
         }

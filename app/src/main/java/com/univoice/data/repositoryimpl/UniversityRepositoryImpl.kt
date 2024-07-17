@@ -9,11 +9,9 @@ import javax.inject.Inject
 class UniversityRepositoryImpl @Inject constructor(
     private val universityDataSource: UniversityDataSource
 ) : UniversityRepository {
-    override suspend fun getUniversityNames(): Result<ResponseUniversityDto> {
+    override suspend fun getUniversityNames(): Result<List<String>> {
         return runCatching {
-            val result = universityDataSource.getUniversityNames()
-            Timber.d(result.message)
-            result
+            universityDataSource.getUniversityNames().data ?: emptyList()
         }
     }
 }
