@@ -20,9 +20,9 @@ class NoticeDetailAdapter :
         holder: NoticeDetailViewHolder,
         position: Int
     ) {
-        holder.bind(getItem(position))
+        val item = getItem(position)
+        holder.bind(item)
     }
-
 
     companion object {
         private val NoticeDetailItemDiffCallback =

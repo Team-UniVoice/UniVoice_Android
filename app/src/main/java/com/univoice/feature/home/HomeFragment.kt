@@ -2,6 +2,7 @@ package com.univoice.feature.home
 
 import android.content.Intent
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -11,9 +12,8 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.FragmentHomeBinding
-import com.univoice.domain.entity.NoticeListEntity
 import com.univoice.domain.entity.HomeQuickScanListEntity
-import com.univoice.domain.entity.QuickScanListEntity
+import com.univoice.domain.entity.NoticeListEntity
 import com.univoice.feature.quickscan.QuickScanActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -35,6 +35,12 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         initNoticeDepartmentObserve()
 
         initPostBtnClickListener()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.getNoticeAll()
+        homeViewModel.getQuickscan()
     }
 
     private fun initPostBtnClickListener() {
@@ -100,9 +106,10 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun initNoticeContentAdapter(noticeContentData: List<NoticeListEntity>) {
         binding.rvHomeNoticeContent.adapter =
-            HomeNoticeContentAdapter(click = { _, _ ->
+            HomeNoticeContentAdapter(click = { _, position ->
                 binding.root.findNavController().navigate(
                     R.id.action_fragment_home_to_fragment_notice_detail,
+                    bundleOf(DETAIL_KEY to noticeContentData[position].id),
                 )
             }).apply {
                 submitList(noticeContentData)
@@ -158,13 +165,13 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
             )
         }
     }
-    
+
     private fun initQuickscanObserve() {
         homeViewModel.getQuickScanState.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit
                 is UiState.Success -> {
-                    iniQuickscanAdapter(it.data)
+                    initQuickScanAdapter(it.data)
                     initNoticeCategoryAdapter(it.data.map { it.name })
                 }
 
@@ -174,12 +181,15 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }.launchIn(lifecycleScope)
     }
 
-    private fun iniQuickscanAdapter(quickscanData: List<HomeQuickScanListEntity>) {
+    private fun initQuickScanAdapter(quickscanData: List<HomeQuickScanListEntity>) {
         binding.rvHomeQuickscan.adapter =
             HomeQuickscanAdapter(click = { quickscan, position ->
-                Intent(requireContext(), QuickScanActivity::class.java).apply {
-                    putExtra(AFFILIATION_KEY, position)
-                    startActivity(this)
+                if (quickscan.count > 0) {
+                    Intent(requireContext(), QuickScanActivity::class.java).apply {
+                        putExtra(AFFILIATION_KEY, position)
+                        putExtra(IMAGE_KEY, quickscan.image)
+                        startActivity(this)
+                    }
                 }
             }).apply {
                 submitList(quickscanData)
@@ -192,5 +202,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     companion object {
         const val AFFILIATION_KEY = "writeAffiliation"
+        const val IMAGE_KEY = "logoImage"
+        const val DETAIL_KEY = "detailNotice"
     }
 }

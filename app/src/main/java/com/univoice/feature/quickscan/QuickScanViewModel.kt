@@ -19,6 +19,9 @@ class QuickScanViewModel @Inject constructor(
         MutableStateFlow<UiState<List<QuickScanListEntity>>>(UiState.Empty)
     val postQuickScanList: StateFlow<UiState<List<QuickScanListEntity>>> = _postQuickScanList
 
+    private val _postQuickScanViewCheck = MutableStateFlow<UiState<Unit>>(UiState.Empty)
+    val postQuickScanViewCheck: StateFlow<UiState<Unit>> = _postQuickScanViewCheck
+
     fun postQuickScanList(writeAffiliation: String) = viewModelScope.launch {
         _postQuickScanList.emit(UiState.Loading)
         quickScanRepository.postQuickScan(writeAffiliation = writeAffiliation).fold(
@@ -30,6 +33,18 @@ class QuickScanViewModel @Inject constructor(
             { _postQuickScanList.emit(UiState.Failure(it.message.toString())) }
         )
 
+    }
+
+    fun postQuickScanViewCheck(noticeId: Int) = viewModelScope.launch {
+        _postQuickScanViewCheck.emit(UiState.Loading)
+        quickScanRepository.postQuickScanViewCheck(noticeId).fold(
+            {
+                if (it != null) _postQuickScanViewCheck.emit(UiState.Success(it)) else _postQuickScanViewCheck.emit(
+                    UiState.Failure("400")
+                )
+            },
+            { _postQuickScanViewCheck.emit(UiState.Failure(it.message.toString())) }
+        )
     }
 
 //    fun updateBookmark(id: Int, isBookmark: Boolean) {

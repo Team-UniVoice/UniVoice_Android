@@ -13,24 +13,30 @@ import com.univoice.feature.MainActivity
 class NoticePostApplyFragment :
     BindingFragment<FragmentNoticePostApplyBinding>(R.layout.fragment_notice_post_apply) {
     override fun initView() {
+        showLoadingAnimation()
         initLottieAnimation()
         initConfirmBtnClickListener()
     }
 
+    private fun showLoadingAnimation() {
+        with(binding) {
+            lottieNoticePostApplyLoading.visibility = View.VISIBLE
+            lottieNoticePostApplyFinish.visibility = View.GONE
+        }
+    }
+
     private fun initLottieAnimation() {
-        binding.lottieNoticePostApply.apply {
-            playAnimation()
-            addAnimatorListener(object : Animator.AnimatorListener {
-                override fun onAnimationStart(animation: Animator) {}
+        binding.lottieNoticePostApplyLoading.postDelayed({
+            showCompleteAnimation()
+        }, 2500)
+    }
 
-                override fun onAnimationEnd(animation: Animator) {
-                    binding.btnNoticePostApplyConfirm.visibility = View.VISIBLE
-                }
-
-                override fun onAnimationCancel(animation: Animator) {}
-
-                override fun onAnimationRepeat(animation: Animator) {}
-            })
+    private fun showCompleteAnimation() {
+        with(binding) {
+            lottieNoticePostApplyLoading.visibility = View.GONE
+            lottieNoticePostApplyFinish.visibility = View.VISIBLE
+            btnNoticePostApplyConfirm.visibility = View.VISIBLE
+            lottieNoticePostApplyFinish.playAnimation()
         }
     }
 

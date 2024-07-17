@@ -6,12 +6,15 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
+import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.ActivitySchoolInputBinding
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SchoolInputActivity :
@@ -29,6 +32,7 @@ class SchoolInputActivity :
         initSchoolDepartmentListAdapter()
         setupEditTextListener()
         setupNextButton()
+        observeSchoolList()
     }
 
     private fun initToolbar() {
@@ -135,15 +139,30 @@ class SchoolInputActivity :
     private fun filterSchools(query: String) {
         filteredList.clear()
         if (query.isNotEmpty()) {
-            val results = viewModel.mockSchoolList
-                .filter { it.contains(query, ignoreCase = true) }
-                .sortedBy { it.replace(query, "", ignoreCase = true) }
+            val results = (viewModel.schoolListState.value as? UiState.Success)?.data
+                ?.filter { it.contains(query, ignoreCase = true) }
+                ?.sortedBy { it.replace(query, "", ignoreCase = true) } ?: emptyList()
             filteredList.addAll(results.take(MAX_SIZE))
             if (results.size > MAX_SIZE) {
                 filteredList.add(applicationContext.getString(R.string.tv_ellipse))
             }
         }
         adapter.submitList(filteredList)
+    }
+
+    private fun observeSchoolList() {
+        lifecycleScope.launch {
+            viewModel.schoolListState.collect { state ->
+                when (state) {
+                    is UiState.Loading -> Unit
+                    is UiState.Success -> {
+                        filterSchools(binding.etSchoolInputSearch.text.toString().trim())
+                    }
+                    is UiState.Empty -> Unit
+                    is UiState.Failure -> Unit
+                }
+            }
+        }
     }
 
     companion object {
