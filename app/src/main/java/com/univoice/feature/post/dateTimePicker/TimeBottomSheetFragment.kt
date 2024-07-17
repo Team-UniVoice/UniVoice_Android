@@ -178,8 +178,56 @@ class TimeBottomSheetFragment(
         initEndTimeClickListener()
         initStartDateClickListener()
         initEndDateClickListener()
+        initSuccessBtnClickListener()
     }
 
+    private fun initSuccessBtnClickListener() {
+        with(binding) {
+            btnDateSuccess.setOnClickListener {
+                var setStartDate = ""
+                var setEndDate = ""
+
+                val startDate = layoutStartTime.tvStartTimeDay.text.toString()
+                val startTimeHour = layoutStartTime.tvStartTimeHour.text.toString()
+                val startTimeMinute = layoutStartTime.tvStartTimeMinute.text.toString()
+                val startTimeMeridiem = layoutStartTime.tvStartTimeMeridiem.text.toString()
+                val endDate = layoutEndTime.tvEndTimeDay.text.toString()
+                val endTimeHour = layoutEndTime.tvEndTimeHour.text.toString()
+                val endTimeMinute = layoutEndTime.tvEndTimeMinute.text.toString()
+                val endTimeMeridiem = layoutEndTime.tvEndTimeMeridiem.text.toString()
+                val startYear = layoutStartDate.tvStartDateYear.text.toString()
+                val startMonth = layoutStartDate.tvStartDateMonth.text.toString()
+                val startDay = layoutStartDate.tvStartDateDay.text.toString()
+                val endYear = layoutEndDate.tvEndDateYear.text.toString()
+                val endMonth = layoutEndDate.tvEndDateMonth.text.toString()
+                val endDay = layoutEndDate.tvEndDateDay.text.toString()
+
+                if (!isSelected) {
+                    setStartDate =
+                        "${startDate} \n ${startTimeMeridiem} ${startTimeHour} ${startTimeMinute}"
+                    setEndDate = "${endDate} \n ${endTimeMeridiem} ${endTimeHour} ${endTimeMinute}"
+
+                } else {
+                    setStartDate = context?.getString(
+                        R.string.tv_date_day_picker,
+                        startYear,
+                        startMonth,
+                        startDay
+                    ).toString()
+                    setEndDate =
+                        context?.getString(R.string.tv_date_day_picker, endYear, endMonth, endDay)
+                            .toString()
+                }
+                val resultBundle = Bundle().apply {
+                    putString("setStartDate", setStartDate)
+                    putString("setEndDate", setEndDate)
+                }
+
+                parentFragmentManager.setFragmentResult("timePickerKey", resultBundle)
+                dismiss()
+            }
+        }
+    }
 
     private fun initCloseBtnClickListener() {
         binding.btnDateClose.setOnClickListener {
