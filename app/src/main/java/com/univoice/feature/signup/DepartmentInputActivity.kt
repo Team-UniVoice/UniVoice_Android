@@ -35,7 +35,7 @@ class DepartmentInputActivity :
         setupNextButton()
         setupEditTextListener()
         postDepartments()
-        observeDepartmentList()
+        setupDepartmentObserve()
     }
 
     private fun initToolbar() {
@@ -174,14 +174,12 @@ class DepartmentInputActivity :
         }
     }
 
-    private fun observeDepartmentList() {
+    private fun setupDepartmentObserve() {
         lifecycleScope.launch {
             viewModel.departmentListState.collect { state ->
                 when (state) {
                     is UiState.Loading -> Unit
-                    is UiState.Success -> {
-                        filterDepartments(binding.etDepartmentInputSearch.text.toString().trim())
-                    }
+                    is UiState.Success -> filterDepartments(binding.etDepartmentInputSearch.text.toString().trim())
                     is UiState.Empty -> Unit
                     is UiState.Failure -> Unit
                 }

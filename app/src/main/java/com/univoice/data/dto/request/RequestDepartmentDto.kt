@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RequestDepartmentDto(
     @SerialName("universityName")
-    val universityName: String
+    val universityName: String = ""
 )

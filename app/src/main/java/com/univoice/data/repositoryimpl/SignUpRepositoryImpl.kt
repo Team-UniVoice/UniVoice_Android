@@ -18,9 +18,7 @@ class SignUpRepositoryImpl @Inject constructor(
 
     override suspend fun postDepartments(requestDepartmentDto: RequestDepartmentDto): Result<BaseResponse<List<String>>> {
         return runCatching {
-            val result = signUpDataSource.postDepartments(requestDepartmentDto)
-            Timber.d(result.message)
-            result
+            signUpDataSource.postDepartments(requestDepartmentDto)
         }
     }
 }

@@ -7,12 +7,11 @@ import com.univoice.data_remote.api.SignUpApiService
 import javax.inject.Inject
 
 class SignUpDataSourceImpl @Inject constructor(
-    private val universityApiService: SignUpApiService,
-    private val departmentApiService: SignUpApiService
+    private val signUpApiService: SignUpApiService
 ) : SignUpDataSource {
     override suspend fun postUniversityNames(): BaseResponse<List<String>> =
-        universityApiService.postUniversityNames()
+        signUpApiService.postUniversityNames()
 
     override suspend fun postDepartments(requestDepartmentDto: RequestDepartmentDto): BaseResponse<List<String>> =
-        departmentApiService.postDepartments(requestDepartmentDto)
+        signUpApiService.postDepartments(requestDepartmentDto)
 }
