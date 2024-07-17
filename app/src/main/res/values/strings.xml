@@ -74,6 +74,9 @@
     <string name="tv_date_day">%1$02d일(1$s)</string>
     <string name="tv_date_title">일시</string>
     <string name="btn_date_success">확인</string>
+    <string name="tv_day_year">2024년</string>
+    <string name="tv_day_month">7월</string>
+    <string name="tv_day_day">8일(목)</string>
 
     <!-- 저장 -->
     <string name="storage_toolbar_title">저장한 공지사항</string>
@@ -82,6 +85,7 @@
     <string name="feed_time_now">지금</string>
     <string name="feed_time_minute">분 전</string>
     <string name="feed_time_hour">시간 전</string>
+
 
     <!-- 회원가입 -->
     <string name="tv_signup_explain">회원가입을 위해서는\n몇 가지 개인정보가 필요해요</string>
@@ -156,5 +160,8 @@
     <string name="tv_setting_etc">기타</string>
     <string name="tv_setting_center">고객센터</string>
     <string name="tv_setting_log_out">로그아웃</string>
+    <string name="tv_time_date">6월 6일(목)</string>
+    <string name="tv_time_minute">:25</string>
+    <string name="tv_time_hour">12</string>
 
 </resources>
