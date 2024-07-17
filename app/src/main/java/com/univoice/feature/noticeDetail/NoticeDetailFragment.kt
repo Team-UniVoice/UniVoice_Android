@@ -12,6 +12,7 @@ import com.univoice.databinding.FragmentNoticeDetailBinding
 import com.univoice.domain.entity.NoticeDetailEntity
 import com.univoice.feature.home.HomeFragment
 import com.univoice.feature.util.CalculateDate
+import com.univoice.feature.util.Debouncer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -20,8 +21,8 @@ import timber.log.Timber
 @AndroidEntryPoint
 class NoticeDetailFragment :
     BindingFragment<FragmentNoticeDetailBinding>(R.layout.fragment_notice_detail) {
-
     private val viewModel by viewModels<NoticeDetailViewModel>()
+    private val debouncer = Debouncer<String>()
 
     override fun initView() {
         initLikeBtnClickListener()
@@ -102,9 +103,17 @@ class NoticeDetailFragment :
         with(binding) {
             btnNoticeDetailBookmark.setOnClickListener {
                 if(btnNoticeDetailBookmark.isSelected) {
-                    noticeId?.let { viewModel.postNoticeDetailCancel(noticeId) }
+                    noticeId?.let {
+                        debouncer.setDelay(it.toString(), 1000L) {
+                            viewModel.postNoticeDetailCancel(noticeId)
+                        }
+                    }
                 } else {
-                    noticeId?.let { viewModel.postNoticeDetailSave(noticeId) }
+                    noticeId?.let {
+                        debouncer.setDelay(it.toString(), 1000L) {
+                            viewModel.postNoticeDetailSave(noticeId)
+                        }
+                    }
                 }
                 btnNoticeDetailBookmark.isSelected = !binding.btnNoticeDetailBookmark.isSelected
             }
