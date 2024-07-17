@@ -1,6 +1,9 @@
 package com.univoice.feature.noticeDetail
 
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +25,15 @@ class NoticeDetailFragment :
     BindingFragment<FragmentNoticeDetailBinding>(R.layout.fragment_notice_detail) {
 
     private val viewModel by viewModels<NoticeDetailViewModel>()
+    private var noticeId: Int? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        val view = super.onCreateView(inflater, container, savedInstanceState)
+        noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
+        return view
+    }
 
     override fun initView() {
         initLikeBtnClickListener()
@@ -32,10 +44,7 @@ class NoticeDetailFragment :
     }
 
     private fun getNoticeDetail() {
-        val noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
-        noticeId?.let {
-            viewModel.getNoticeDetail(it)
-        }
+        noticeId?.let { id -> viewModel.getNoticeDetail(id) }
     }
 
     private fun initNoticeDetailObserve() {
@@ -86,6 +95,11 @@ class NoticeDetailFragment :
     private fun initLikeBtnClickListener() {
         with(binding) {
             btnNoticeDetailLike.setOnClickListener {
+                if (!btnNoticeDetailLike.isSelected) {
+                    noticeId?.let { id -> viewModel.postNoticeLike(id) }
+                } else {
+                    noticeId?.let { id -> viewModel.postNoticeDelLike(id) }
+                }
                 btnNoticeDetailLike.isSelected = !binding.btnNoticeDetailLike.isSelected
             }
         }
