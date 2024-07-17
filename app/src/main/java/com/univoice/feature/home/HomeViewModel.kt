@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.univoice.core_ui.view.UiState
 import com.univoice.domain.entity.NoticeListEntity
-import com.univoice.domain.entity.QuickScanListEntity
+import com.univoice.domain.entity.HomeQuickScanListEntity
 import com.univoice.domain.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +17,8 @@ class HomeViewModel @Inject constructor(
     private val homeRepository: HomeRepository
 ) : ViewModel() {
     private val _getQuickScanState =
-        MutableStateFlow<UiState<List<QuickScanListEntity>>>(UiState.Empty)
-    val getQuickScanState: StateFlow<UiState<List<QuickScanListEntity>>> =
+        MutableStateFlow<UiState<List<HomeQuickScanListEntity>>>(UiState.Empty)
+    val getQuickScanState: StateFlow<UiState<List<HomeQuickScanListEntity>>> =
         _getQuickScanState
 
     private val _getNoticeAllState =

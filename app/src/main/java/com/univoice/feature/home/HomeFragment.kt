@@ -12,7 +12,7 @@ import com.univoice.core_ui.base.BindingFragment
 import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.FragmentHomeBinding
 import com.univoice.domain.entity.NoticeListEntity
-import com.univoice.domain.entity.QuickScanListEntity
+import com.univoice.domain.entity.HomeQuickScanListEntity
 import com.univoice.feature.quickscan.QuickScanActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -157,7 +157,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
             )
         }
     }
-
+    
     private fun initQuickscanObserve() {
         homeViewModel.getQuickScanState.flowWithLifecycle(lifecycle).onEach {
             when (it) {
@@ -175,8 +175,10 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun iniQuickscanAdapter(quickscanData: List<QuickScanListEntity>) {
         binding.rvHomeQuickscan.adapter =
-            HomeQuickscanAdapter(click = { _, _ ->
-                startActivity(Intent(requireContext(), QuickScanActivity::class.java))
+            HomeQuickscanAdapter(click = { quickscan, position ->
+                Intent(requireContext(), QuickScanActivity::class.java).apply {
+                    putExtra(AFFILIATION_KEY, position)
+                    startActivity(this)
             }).apply {
                 submitList(quickscanData)
             }
@@ -184,5 +186,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         if (binding.rvHomeQuickscan.itemDecorationCount == 0) {
             binding.rvHomeQuickscan.addItemDecoration(HomeQuickscanItemDecorator(requireContext()))
         }
+    }
+
+    companion object {
+        const val AFFILIATION_KEY = "writeAffiliation"
     }
 }

@@ -4,13 +4,13 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.univoice.databinding.ItemHomeNoticeQuickscanBinding
-import com.univoice.domain.entity.QuickScanListEntity
+import com.univoice.domain.entity.HomeQuickScanListEntity
 
 class HomeQuickscanViewHolder(
     private val binding: ItemHomeNoticeQuickscanBinding,
-    private val click: (QuickScanListEntity, Int) -> Unit = { _, _ -> },
+    private val click: (HomeQuickScanListEntity, Int) -> Unit = { _, _ -> },
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(data: QuickScanListEntity) {
+    fun bind(data: HomeQuickScanListEntity) {
         with(binding) {
             if (data.count < 1) {
                 tvHomeNoticeQuickscanCount.visibility = View.INVISIBLE

@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_mint400_fill_40_rect"
-                android:paddingVertical="15dp"
+                android:paddingVertical="19dp"
                 android:text="@string/btn_quick_scan_confirm"
                 android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
                 android:textColor="@color/white"
