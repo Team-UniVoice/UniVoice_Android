@@ -1,12 +1,16 @@
-package com.univoice.di
+package com.univoice.app.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.univoice.BuildConfig.UNI_BASE_URL
+import com.univoice.app.interceptor.TokenInterceptor
+import com.univoice.data.datasource.UserPreferencesDataSource
+import com.univoice.data_local.UserPreferencesDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,23 +18,32 @@ import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Retrofit
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
+
     @Provides
     @Singleton
     fun provideOkHttpClient(
-        loggingInterceptor: HttpLoggingInterceptor
+        loggingInterceptor: HttpLoggingInterceptor,
+        @AccessToken tokenInterceptor: Interceptor,
     ): OkHttpClient =
-        OkHttpClient.Builder().apply {
-            connectTimeout(10, TimeUnit.SECONDS)
-            writeTimeout(5, TimeUnit.SECONDS)
-            readTimeout(5, TimeUnit.SECONDS)
-        }.addInterceptor(loggingInterceptor).build()
+        OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(tokenInterceptor)
+            .build()
 
+    @Provides
+    @Singleton
+    fun provideDataStore(dataStore: UserPreferencesDataSourceImpl): UserPreferencesDataSource =
+        dataStore
+
+    @Provides
+    @Singleton
+    @AccessToken
+    fun provideAuthInterceptor(interceptor: TokenInterceptor): Interceptor = interceptor
 
     @Provides
     @Singleton

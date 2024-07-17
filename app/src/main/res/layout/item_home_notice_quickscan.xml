@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="95dp"
+        android:layout_height="126dp"
+        android:background="@drawable/shape_blue50_fill_14_rect"
+        android:clickable="true">
+
+        <FrameLayout
+            android:id="@+id/fl_home2_notice_quickscan_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_home_notice_quickscan_profile"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginTop="11dp"
+                android:scaleType="centerCrop"
+                app:civ_border_color="@color/regular"
+                app:civ_border_overlay="true"
+                app:civ_border_width="1dp"
+                app:layout_constraintDimensionRatio="1"
+                tools:src="@drawable/ic_launcher_background" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_home_notice_quickscan_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="43dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/shape_blue300_fill_30_rect"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp">
+
+                <TextView
+                    android:id="@+id/tv_home_notice_quickscan_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.UniVoice.button2Semi"
+                    android:textColor="@color/font_W01"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="10" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_home_notice_quickscan_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="11dp"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_home2_notice_quickscan_profile"
+            tools:text="한국창업대학교\n총학생회" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
