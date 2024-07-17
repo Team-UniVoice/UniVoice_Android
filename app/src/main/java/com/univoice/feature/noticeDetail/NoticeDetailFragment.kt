@@ -88,7 +88,6 @@ class NoticeDetailFragment :
         }
     }
 
-    // 좋아요 버튼 클릭
     private fun initLikeBtnClickListener() {
         with(binding) {
             btnNoticeDetailLike.setOnClickListener {
@@ -97,7 +96,6 @@ class NoticeDetailFragment :
         }
     }
 
-    // 북마크 버튼 클릭
     private fun initBookMarkBtnClickListener() {
         val noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
         with(binding) {
@@ -120,7 +118,6 @@ class NoticeDetailFragment :
         }
     }
 
-    // Adapter 설정
     private fun initNoticeDetailItemAdapter(noticeImgList: List<String>) {
         val adapter = NoticeDetailAdapter()
         binding.vpNoticeDetailImage.adapter = adapter
