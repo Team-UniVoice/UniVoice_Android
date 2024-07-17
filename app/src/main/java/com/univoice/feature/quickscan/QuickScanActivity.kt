@@ -127,6 +127,7 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
             override fun onPageSelected(position: Int) {
                 currentPos = position
                 viewModel.postQuickScanViewCheck(adapter.currentList[position].id)
+                viewModel.postNoticeDetailViewCount(adapter.currentList[position].id)
                 super.onPageSelected(position)
             }
 

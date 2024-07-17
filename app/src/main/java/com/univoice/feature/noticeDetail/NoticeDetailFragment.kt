@@ -35,6 +35,7 @@ class NoticeDetailFragment :
         val noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
         noticeId?.let {
             viewModel.getNoticeDetail(it)
+            viewModel.postNoticeDetailViewCount(it)
         }
     }
 
@@ -47,6 +48,15 @@ class NoticeDetailFragment :
                     initNoticeDetailItemAdapter(it.data.noticeImages)
                 }
 
+                is UiState.Empty -> Unit
+                is UiState.Failure -> Timber.tag("NoticeDetailFailure").d(it.msg)
+            }
+        }.launchIn(lifecycleScope)
+
+        viewModel.postNoticeDetailViewCount.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+                is UiState.Success -> Unit
                 is UiState.Empty -> Unit
                 is UiState.Failure -> Timber.tag("NoticeDetailFailure").d(it.msg)
             }

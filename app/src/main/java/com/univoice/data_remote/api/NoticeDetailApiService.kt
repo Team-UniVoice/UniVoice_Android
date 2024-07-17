@@ -6,7 +6,9 @@ import com.univoice.data_remote.api.ApiKeyStorage.API
 import com.univoice.data_remote.api.ApiKeyStorage.NOTICE
 import com.univoice.data_remote.api.ApiKeyStorage.NOTICE_ID
 import com.univoice.data_remote.api.ApiKeyStorage.V1
+import com.univoice.data_remote.api.ApiKeyStorage.VIEW_COUNT
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface NoticeDetailApiService {
@@ -14,4 +16,9 @@ interface NoticeDetailApiService {
     suspend fun getNoticeDetail(
         @Path(NOTICE_ID) noticeId: Int
     ): BaseResponse<ResponseNoticeDetailDto>
+
+    @POST("$API/$V1/$NOTICE/$VIEW_COUNT/{$NOTICE_ID}")
+    suspend fun postNoticeDetailViewCount(
+        @Path(NOTICE_ID) noticeId: Int
+    ): BaseResponse<Unit>
 }

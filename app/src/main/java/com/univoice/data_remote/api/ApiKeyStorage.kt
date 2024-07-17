@@ -16,4 +16,5 @@ object ApiKeyStorage {
     const val DEPARTMENT = "department"
     const val VIEW_CHECK = "view-check"
     const val NOTICE_ID = "noticeId"
+    const val VIEW_COUNT = "view-count"
 }

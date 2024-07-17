@@ -20,6 +20,10 @@ class NoticeDetailViewModel @Inject constructor(
         MutableStateFlow<UiState<NoticeDetailEntity>>(UiState.Empty)
     val getNoticeDetail: StateFlow<UiState<NoticeDetailEntity>> = _getNoticeDetail
 
+    private val _postNoticeDetailViewCount =
+        MutableStateFlow<UiState<Unit>>(UiState.Empty)
+    val postNoticeDetailViewCount: StateFlow<UiState<Unit>> = _postNoticeDetailViewCount
+
     fun getNoticeDetail(noticeId: Int) = viewModelScope.launch {
         _getNoticeDetail.emit(UiState.Loading)
         noticeDetailRepository.getNoticeDetail(noticeId).fold(
@@ -27,6 +31,16 @@ class NoticeDetailViewModel @Inject constructor(
                 _getNoticeDetail.emit(UiState.Success(it))
             },
             { _getNoticeDetail.emit(UiState.Failure(it.message.toString())) }
+        )
+    }
+
+    fun postNoticeDetailViewCount(noticeId: Int) = viewModelScope.launch {
+        _postNoticeDetailViewCount.emit(UiState.Loading)
+        noticeDetailRepository.postNoticeDetailViewCount(noticeId).fold(
+            {
+                _postNoticeDetailViewCount.emit(UiState.Success(it))
+            },
+            { _postNoticeDetailViewCount.emit(UiState.Failure(it.message.toString())) }
         )
     }
 }
