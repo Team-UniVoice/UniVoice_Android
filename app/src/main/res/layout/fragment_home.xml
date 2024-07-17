@@ -88,6 +88,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/tv_home_notice_title"
                     tools:listitem="@layout/item_home_notice_category" />
+
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.core.widget.NestedScrollView
@@ -117,21 +118,22 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:listitem="@layout/item_home_notice_content" />
+
+                    <TextView
+                        android:id="@+id/tv_home_notice_empty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_home_notice_empty"
+                        android:textAppearance="@style/TextAppearance.UniVoice.head7Semi"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        <TextView
-            android:id="@+id/tv_home_notice_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_home_notice_empty"
-            android:textAppearance="@style/TextAppearance.UniVoice.head7Semi"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_home_post"
