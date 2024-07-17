@@ -135,4 +135,14 @@
     <string name="tv_check_info_explain">유니보이스가 회원님의 정보를\n확인하고 있어요</string>
     <string name="btn_notice_post_apply_confirm">확인</string>
 
+    <!-- 세팅 -->
+    <string name="tv_setting_mypage">마이페이지</string>
+    <string name="tv_setting_explain">이용안내</string>
+    <string name="tv_setting_service">서비스 이용약관</string>
+    <string name="tv_setting_personal">개인정보 처리방침</string>
+    <string name="tv_setting_version">버전 정보</string>
+    <string name="tv_setting_etc">기타</string>
+    <string name="tv_setting_center">고객센터</string>
+    <string name="tv_setting_log_out">로그아웃</string>
+
 </resources>
