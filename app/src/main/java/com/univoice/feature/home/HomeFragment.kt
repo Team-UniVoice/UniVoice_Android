@@ -2,6 +2,7 @@ package com.univoice.feature.home
 
 import android.content.Intent
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -36,6 +37,11 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         initPostBtnClickListener()
     }
 
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.getNoticeAll()
+        homeViewModel.getQuickscan()
+    }
     private fun initPostBtnClickListener() {
         binding.btnHomePost.setOnClickListener {
             findNavController().navigate(
@@ -99,9 +105,10 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun initNoticeContentAdapter(noticeContentData: List<NoticeListEntity>) {
         binding.rvHomeNoticeContent.adapter =
-            HomeNoticeContentAdapter(click = { _, _ ->
+            HomeNoticeContentAdapter(click = { _, position ->
                 binding.root.findNavController().navigate(
                     R.id.action_fragment_home_to_fragment_notice_detail,
+                    bundleOf(DETAIL_KEY to noticeContentData[position].id),
                 )
             }).apply {
                 submitList(noticeContentData)
@@ -163,7 +170,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
             when (it) {
                 is UiState.Loading -> Unit
                 is UiState.Success -> {
-                    (it.data)
+                    initQuickScanAdapter(it.data)
                     initNoticeCategoryAdapter(it.data.map { it.name })
                 }
 
@@ -173,12 +180,15 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }.launchIn(lifecycleScope)
     }
 
-    private fun initQuickscanAdapter(quickscanData: List<HomeQuickScanListEntity>) {
+    private fun initQuickScanAdapter(quickscanData: List<HomeQuickScanListEntity>) {
         binding.rvHomeQuickscan.adapter =
             HomeQuickscanAdapter(click = { quickscan, position ->
-                Intent(requireContext(), QuickScanActivity::class.java).apply {
-                    putExtra(AFFILIATION_KEY, position)
-                    startActivity(this)
+                if(quickscan.count > 0) {
+                    Intent(requireContext(), QuickScanActivity::class.java).apply {
+                        putExtra(AFFILIATION_KEY, position)
+                        putExtra(IMAGE_KEY, quickscan.image)
+                        startActivity(this)
+                    }
                 }
             }).apply {
                 submitList(quickscanData)
@@ -191,5 +201,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     companion object {
         const val AFFILIATION_KEY = "writeAffiliation"
+        const val IMAGE_KEY = "logoImage"
+        const val DETAIL_KEY = "detailNotice"
     }
 }

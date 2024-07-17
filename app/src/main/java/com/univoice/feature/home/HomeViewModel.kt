@@ -45,7 +45,7 @@ class HomeViewModel @Inject constructor(
         getNoticeAll()
     }
 
-    private fun getQuickscan() = viewModelScope.launch {
+    fun getQuickscan() = viewModelScope.launch {
         _getQuickScanState.emit(UiState.Loading)
         homeRepository.getNoticeQuickScan().fold(
             {

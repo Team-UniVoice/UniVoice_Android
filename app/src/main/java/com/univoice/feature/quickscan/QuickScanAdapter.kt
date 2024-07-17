@@ -8,6 +8,7 @@ import com.univoice.databinding.ItemQuickScanBinding
 import com.univoice.domain.entity.QuickScanListEntity
 
 class QuickScanAdapter(
+    private val image: String,
     private val onClick: (Int, Boolean) -> Unit = { _, _ -> },
 ) : ListAdapter<QuickScanListEntity, QuickScanViewHolder>(
     QuickScanDiffCallback
@@ -15,7 +16,7 @@ class QuickScanAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuickScanViewHolder {
         val binding =
             ItemQuickScanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return QuickScanViewHolder(binding, onClick)
+        return QuickScanViewHolder(image, binding, onClick)
     }
 
     override fun onBindViewHolder(holder: QuickScanViewHolder, position: Int) {
