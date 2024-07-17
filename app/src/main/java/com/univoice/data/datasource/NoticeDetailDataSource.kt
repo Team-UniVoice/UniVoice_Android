@@ -9,4 +9,6 @@ interface NoticeDetailDataSource {
     suspend fun postNoticeLike(noticeId: Int): BaseResponse<Unit>
 
     suspend fun postNoticeDelLike(noticeId: Int): BaseResponse<Unit>
+  
+    suspend fun postNoticeDetailViewCount(noticeId: Int): BaseResponse<Unit>
 }

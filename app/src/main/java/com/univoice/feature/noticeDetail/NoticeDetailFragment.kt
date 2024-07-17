@@ -44,10 +44,17 @@ class NoticeDetailFragment :
     }
 
     private fun getNoticeDetail() {
-        noticeId?.let { id -> viewModel.getNoticeDetail(id) }
+        noticeId?.let {
+            viewModel.getNoticeDetail(it)
+            viewModel.postNoticeDetailViewCount(it)
+        }
     }
 
     private fun initNoticeDetailObserve() {
+        observeNoticeDetail()
+    }
+
+    private fun observeNoticeDetail() {
         viewModel.getNoticeDetail.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit

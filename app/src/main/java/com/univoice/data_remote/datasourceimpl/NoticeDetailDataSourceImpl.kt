@@ -17,6 +17,10 @@ class NoticeDetailDataSourceImpl @Inject constructor(
         return noticeDetailApiService.postNoticeLike(noticeId)
     }
 
+    override suspend fun postNoticeLike(noticeId: Int): BaseResponse<Unit> {
+        return noticeDetailApiService.postNoticeLike(noticeId)
+    }
+
     override suspend fun postNoticeDelLike(noticeId: Int): BaseResponse<Unit> {
         return noticeDetailApiService.postNoticeDelLike(noticeId)
     }

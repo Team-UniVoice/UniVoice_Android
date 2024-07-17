@@ -42,19 +42,26 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
     }
 
     private fun setupQuickScanObserve() {
-        viewModel.postQuickScanList.flowWithLifecycle(lifecycle).onEach {
-            when (it) {
-                is UiState.Loading -> Unit
-                is UiState.Success -> initQuickScanAdapter(it.data)
-                is UiState.Empty -> Unit
-                is UiState.Failure -> Timber.tag("QuickScanFailure").d(it.msg)
-            }
-        }.launchIn(lifecycleScope)
+        observeQuickScanList()
+        observeQuickScanViewCheck()
+    }
 
+    private fun observeQuickScanViewCheck() {
         viewModel.postQuickScanViewCheck.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit
                 is UiState.Success -> Timber.tag("QuickScanSuccess").d(it.data.toString())
+                is UiState.Empty -> Unit
+                is UiState.Failure -> Timber.tag("QuickScanFailure").d(it.msg)
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun observeQuickScanList() {
+        viewModel.postQuickScanList.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+                is UiState.Success -> initQuickScanAdapter(it.data)
                 is UiState.Empty -> Unit
                 is UiState.Failure -> Timber.tag("QuickScanFailure").d(it.msg)
             }
@@ -127,6 +134,7 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
             override fun onPageSelected(position: Int) {
                 currentPos = position
                 viewModel.postQuickScanViewCheck(adapter.currentList[position].id)
+                viewModel.postNoticeDetailViewCount(adapter.currentList[position].id)
                 super.onPageSelected(position)
             }
 

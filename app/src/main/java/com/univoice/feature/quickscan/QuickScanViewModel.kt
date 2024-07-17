@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.univoice.core_ui.view.UiState
 import com.univoice.domain.entity.QuickScanListEntity
+import com.univoice.domain.repository.NoticeDetailRepository
 import com.univoice.domain.repository.QuickScanRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class QuickScanViewModel @Inject constructor(
-    private val quickScanRepository: QuickScanRepository
+    private val quickScanRepository: QuickScanRepository,
+    private val noticeDetailRepository: NoticeDetailRepository
 ) : ViewModel() {
     private val _postQuickScanList =
         MutableStateFlow<UiState<List<QuickScanListEntity>>>(UiState.Empty)
@@ -21,6 +23,10 @@ class QuickScanViewModel @Inject constructor(
 
     private val _postQuickScanViewCheck = MutableStateFlow<UiState<Unit>>(UiState.Empty)
     val postQuickScanViewCheck: StateFlow<UiState<Unit>> = _postQuickScanViewCheck
+
+    fun postNoticeDetailViewCount(noticeId: Int) = viewModelScope.launch {
+        noticeDetailRepository.postNoticeDetailViewCount(noticeId)
+    }
 
     fun postQuickScanList(writeAffiliation: String) = viewModelScope.launch {
         _postQuickScanList.emit(UiState.Loading)

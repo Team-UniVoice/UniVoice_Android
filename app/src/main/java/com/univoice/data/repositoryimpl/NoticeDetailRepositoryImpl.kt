@@ -26,4 +26,10 @@ class NoticeDetailRepositoryImpl @Inject constructor(
             noticeDetailDataSource.postNoticeDelLike(noticeId)
         }
     }
+
+    override suspend fun postNoticeDetailViewCount(noticeId: Int): Result<Unit> {
+        return runCatching {
+            noticeDetailDataSource.postNoticeDetailViewCount(noticeId).data ?: Unit
+        }
+    }
 }
