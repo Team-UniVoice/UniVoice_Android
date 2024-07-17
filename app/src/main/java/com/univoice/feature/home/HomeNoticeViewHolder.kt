@@ -13,6 +13,7 @@ class HomeNoticeViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(data: NoticeListEntity) {
         with(binding) {
+            btnItemNoticeHeader.text = data.subTitle
             tvItemNoticeTitle.text = data.title
             tvItemNoticeDate.text = CalculateDate().getCalculateDate(data.date)
             tvItemNoticeLike.text = data.like.toString()
