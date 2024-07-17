@@ -8,4 +8,6 @@ object ApiKeyStorage {
     const val NOTICE = "notice"
     const val ALL = "all"
     const val QUICKHEAD = "quickhead"
+    const val SAVE = "save"
+    const val QUICK = "quick"
 }

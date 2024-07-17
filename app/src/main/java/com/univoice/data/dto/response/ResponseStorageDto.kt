@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class StorageResponseDto(
+data class ResponseStorageDto(
     @SerialName("id") val id: Int = -1,
     @SerialName("title") val title: String = "",
     @SerialName("viewCount") val viewCount: Int = 0,
