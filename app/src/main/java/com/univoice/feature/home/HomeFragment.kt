@@ -9,7 +9,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
-import com.univoice.core_ui.util.fragment.toast
 import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.FragmentHomeBinding
 import com.univoice.domain.entity.NoticeListEntity
@@ -23,10 +22,16 @@ import timber.log.Timber
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val homeViewModel by activityViewModels<HomeViewModel>()
+    var currentCategoryIdx = 0
 
     override fun initView() {
         initQuickscanObserve()
-        initNoticeContentObserve()
+
+        initNoticeAllObserve()
+        initNoticeUniversityObserve()
+        initNoticeCollegeObserve()
+        initNoticeDepartmentObserve()
+
         initPostBtnClickListener()
     }
 
@@ -38,8 +43,8 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }
     }
 
-    private fun initNoticeContentObserve() {
-        homeViewModel.getNoticeContent.flowWithLifecycle(lifecycle).onEach {
+    private fun initNoticeDepartmentObserve() {
+        homeViewModel.getNoticeDepartmentState.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit
                 is UiState.Success -> {
@@ -47,7 +52,49 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                 }
 
                 is UiState.Empty -> Unit
-                is UiState.Failure -> Timber.tag("hh").d(it.msg)
+                is UiState.Failure -> Timber.tag("HomeFragment").d(it.msg)
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun initNoticeCollegeObserve() {
+        homeViewModel.getNoticeCollegeState.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+                is UiState.Success -> {
+                    initNoticeContentAdapter(it.data)
+                }
+
+                is UiState.Empty -> Unit
+                is UiState.Failure -> Timber.tag("HomeFragment").d(it.msg)
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun initNoticeUniversityObserve() {
+        homeViewModel.getNoticeUniversityState.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+                is UiState.Success -> {
+                    initNoticeContentAdapter(it.data)
+                }
+
+                is UiState.Empty -> Unit
+                is UiState.Failure -> Timber.tag("HomeFragment").d(it.msg)
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun initNoticeAllObserve() {
+        homeViewModel.getNoticeAllState.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+                is UiState.Success -> {
+                    initNoticeContentAdapter(it.data)
+                }
+
+                is UiState.Empty -> Unit
+                is UiState.Failure -> Timber.tag("HomeFragment").d(it.msg)
             }
         }.launchIn(lifecycleScope)
     }
@@ -56,7 +103,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         binding.rvHomeNoticeContent.adapter =
             HomeNoticeContentAdapter(click = { noticeContent, position ->
                 binding.root.findNavController().navigate(
-                    R.id.action_fragment_home_to_fragment_notice_post,
+                    R.id.action_fragment_home_to_fragment_notice_detail,
                 )
             }).apply {
                 submitList(noticeContentData)
@@ -65,6 +112,50 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         if (binding.rvHomeNoticeContent.itemDecorationCount == 0) {
             binding.rvHomeNoticeContent.addItemDecoration(
                 HomeNoticeContentItemDecorator(requireContext())
+            )
+        }
+    }
+
+    private fun initNoticeCategoryAdapter(categoryData: List<String>) {
+        binding.rvHomeNoticeCategory.adapter =
+            HomeNoticeCategoryAdapter(click = { category, position ->
+                currentCategoryIdx = position
+
+                when (position) {
+                    0 -> {
+                        binding.tvHomeNoticeEmpty.visibility = View.GONE
+                        homeViewModel.getNoticeAll()
+                    }
+
+                    1 -> {
+                        binding.tvHomeNoticeEmpty.visibility = View.GONE
+                        homeViewModel.getNoticeUniversity()
+                    }
+
+                    2 -> {
+                        binding.tvHomeNoticeEmpty.visibility = View.GONE
+                        homeViewModel.getNoticeCollege()
+                    }
+
+                    3 -> {
+                        binding.tvHomeNoticeEmpty.visibility = View.GONE
+                        homeViewModel.getNoticeDepartment()
+                    }
+
+                    else -> {
+                        binding.tvHomeNoticeEmpty.visibility = View.VISIBLE
+                        binding.rvHomeNoticeContent.visibility = View.INVISIBLE
+                    }
+                }
+            }).apply {
+                (listOf("전체") + categoryData).also { submitList(it) }
+            }
+
+        if (binding.rvHomeNoticeCategory.itemDecorationCount == 0) {
+            binding.rvHomeNoticeCategory.addItemDecoration(
+                HomeNoticeCategoryItemDecorator(
+                    requireContext()
+                )
             )
         }
     }
@@ -79,36 +170,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                 }
 
                 is UiState.Empty -> Unit
-                is UiState.Failure -> Unit
+                is UiState.Failure -> Timber.tag("HomeFragment").d(it.msg)
             }
         }.launchIn(lifecycleScope)
-    }
-
-    private fun initNoticeCategoryAdapter(categoryData: List<String>) {
-        binding.rvHomeNoticeCategory.adapter =
-            HomeNoticeCategoryAdapter(click = { category, position ->
-                when (position) {
-                    0 -> {
-                        binding.tvHomeNoticeEmpty.visibility = View.GONE
-                        homeViewModel.getNoticeContent()
-                    }
-
-                    1 -> binding.tvHomeNoticeEmpty.visibility = View.VISIBLE
-                    2 -> binding.tvHomeNoticeEmpty.visibility = View.VISIBLE
-                    3 -> binding.tvHomeNoticeEmpty.visibility = View.VISIBLE
-                    else -> binding.tvHomeNoticeEmpty.visibility = View.VISIBLE
-                }
-            }).apply {
-                (listOf("전체") + categoryData).also { submitList(it) }
-            }
-
-        if (binding.rvHomeNoticeCategory.itemDecorationCount == 0) {
-            binding.rvHomeNoticeCategory.addItemDecoration(
-                HomeNoticeCategoryItemDecorator(
-                    requireContext()
-                )
-            )
-        }
     }
 
     private fun iniQuickscanAdapter(quickscanData: List<QuickScanListEntity>) {
