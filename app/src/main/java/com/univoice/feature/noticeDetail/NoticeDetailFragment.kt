@@ -1,19 +1,79 @@
 package com.univoice.feature.noticeDetail
 
+import android.view.View
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
+import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.FragmentNoticeDetailBinding
+import com.univoice.domain.entity.NoticeDetailEntity
+import com.univoice.feature.home.HomeFragment
+import com.univoice.feature.util.CalculateDate
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
+@AndroidEntryPoint
 class NoticeDetailFragment :
     BindingFragment<FragmentNoticeDetailBinding>(R.layout.fragment_notice_detail) {
 
+    private val viewModel by viewModels<NoticeDetailViewModel>()
+
     override fun initView() {
-        binding.model = mockData
         initLikeBtnClickListener()
         initBookMarkBtnClickListener()
-        initNoticeDetailItemAdapter()
         initBackBtnClickListener()
+        getNoticeDetail()
+        initNoticeDetailObserve()
+    }
+
+    private fun getNoticeDetail() {
+        val noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
+        noticeId?.let {
+            viewModel.getNoticeDetail(it)
+        }
+    }
+
+    private fun initNoticeDetailObserve() {
+        viewModel.getNoticeDetail.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+                is UiState.Success -> {
+                    setTextNoticeDetail(it.data)
+                    initNoticeDetailItemAdapter(it.data.noticeImages)
+                }
+
+                is UiState.Empty -> Unit
+                is UiState.Failure -> Timber.tag("NoticeDetailFailure").d(it.msg)
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun setTextNoticeDetail(data: NoticeDetailEntity) {
+        with(binding) {
+            tvNoticeDetailTitle.text = data.title
+            tvNoticeDetailDate.text = data.startTime
+            tvNoticeDetailTarget.text = data.target
+            tvNoticeDetailContent.text = data.content
+            tvNoticeDetailViews.text = data.viewCount.toString()
+
+            if (data.startTime != null && data.endTime != null)
+                tvNoticeDetailDate.text =
+                    CalculateDate().getCalculateNoticeDate(data.startTime, data.endTime)
+
+            if (data.target == null)
+                groupNoticeDetailTarget.visibility = View.GONE
+
+            if (data.startTime == null)
+                groupNoticeDetailDate.visibility = View.GONE
+
+            if (data.noticeImages.isNotEmpty())
+                indicatorNoticeDetailImage.visibility = View.VISIBLE
+        }
     }
 
     private fun initBackBtnClickListener() {
@@ -41,26 +101,9 @@ class NoticeDetailFragment :
     }
 
     // Adapter 설정
-    private fun initNoticeDetailItemAdapter() {
+    private fun initNoticeDetailItemAdapter(noticeImgList: List<String>) {
         val adapter = NoticeDetailAdapter()
-        adapter.submitList(mockData.imageList)
-    }
-
-    companion object {
-        var mockData = NoticeDetailModel(
-            noticeId = 1,
-            writeAffiliation = "학과 학생회",
-            title = "2024 대학생 여름농활 준비 네트워크에서 주최하는 농촌봉사활동과 관련하여 학우분들의 문의가 많아 말씀드립니다.",
-            target = "2024-1학기 재학생",
-            startTime = "05/21(화) 14:00",
-            endTime = "06/20(목) 22:00",
-            imageList = listOf(
-                "https://img.khan.co.kr/news/2024/03/23/news-p.v1.20240323.c159a4cab6f64473adf462d873e01e43_P1.webp",
-                "https://shop.peopet.co.kr/data/goods/388/2022/06/_temp_16557127733930view.jpg"
-            ),
-            content = "시험기간 공부하시느라 힘드시죠??\noo학생회에서 간식꾸러미를 준비했습니다!\n가나다라마바사아자차카 타파하가나다라마바사아",
-            createdAt = "2024/06/22",
-            viewCount = 10
-        )
+        binding.vpNoticeDetailImage.adapter = adapter
+        adapter.submitList(noticeImgList)
     }
 }
