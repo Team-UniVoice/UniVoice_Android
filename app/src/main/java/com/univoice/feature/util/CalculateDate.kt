@@ -1,13 +1,12 @@
 package com.univoice.feature.util
 
-import android.content.Context
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class CalculateDate() {
+class CalculateDate {
     fun getCalculateDate(dateTimeString: String): String {
         val dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-        val targetDate = LocalDate.parse(dateTimeString.substring(0, 10))
+        val targetDate = LocalDate.parse(dateTimeString.substringBefore('T'))
         return targetDate.format(dateFormat)
     }
 }
