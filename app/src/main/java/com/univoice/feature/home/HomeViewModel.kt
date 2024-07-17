@@ -1,210 +1,108 @@
 package com.univoice.feature.home
 
 import androidx.lifecycle.ViewModel
-import com.univoice.domain.entity.NoticeCategoryListEntity
+import androidx.lifecycle.viewModelScope
+import com.univoice.core_ui.view.UiState
 import com.univoice.domain.entity.NoticeListEntity
-import com.univoice.domain.entity.QuickScanListEntity
+import com.univoice.domain.entity.HomeQuickScanListEntity
+import com.univoice.domain.repository.HomeRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel : ViewModel() {
-    val mockQuickScanList = listOf(
-        QuickScanListEntity(
-            name = "아주대학교\n총학생회",
-            image = "",
-            count = 5
-        ),
-        QuickScanListEntity(
-            name = "소프트웨어융합대학\n학생회",
-            image = "",
-            count = 10
-        ),
-        QuickScanListEntity(
-            name = "경영대학\n학생회",
-            image = "",
-            count = 0
-        ),
-        QuickScanListEntity(
-            name = "인문대학\n학생회",
-            image = "",
-            count = 4
-        ),
-        QuickScanListEntity(
-            name = "예술대학\n학생회",
-            image = "",
-            count = 1
-        ),
-    )
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val homeRepository: HomeRepository
+) : ViewModel() {
+    private val _getQuickScanState =
+        MutableStateFlow<UiState<List<HomeQuickScanListEntity>>>(UiState.Empty)
+    val getQuickScanState: StateFlow<UiState<List<HomeQuickScanListEntity>>> =
+        _getQuickScanState
 
-    val mockNoticeList = listOf(
-        NoticeCategoryListEntity(
-            name = "전체",
-            noticeData = listOf(
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "전체1 동해물과백두산이마르고닳도록하느님이보우하사우리나라만세무궁화삼천리화려강산대한사람대한으로길이보전하세",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "전체2",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "전체3 동해물과백두산이마르고닳도록하느님이보우하사우리나라만세무궁화삼천리화려강산대한사람대한으로길이보전하세 동해물과백두산이마르고닳도록하느님이보우하사우리나라만세무궁화삼천리화려강산대한사람대한으로길이보전하세",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "전체4",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "전체5",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "전체6",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "전체7",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "전체8",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "전체9",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "전체10",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "전체11",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-            )
-        ),
-        NoticeCategoryListEntity(
-            name = "총학생회",
-            noticeData = listOf(
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "총학생회1",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "총학생회2",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "총학생회3",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "총학생회4",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "총학생회5",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-            )
-        ),
-        NoticeCategoryListEntity(
-            name = "소프트웨어융합대학 학생회",
-            noticeData = listOf()
-        ),
-        NoticeCategoryListEntity(
-            name = "자연과학대학 학생회",
-            noticeData = listOf(
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "자연과학대학 학생회1",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "자연과학대학 학생회2",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = false,
-                ),
-                NoticeListEntity(
-                    subTitle = "공지사항",
-                    title = "자연과학대학 학생회3",
-                    date = "2024/07/12",
-                    like = 10,
-                    views = 8,
-                    image = true,
-                ),
-            )
-        ),
-    )
+    private val _getNoticeAllState =
+        MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
+    val getNoticeAllState: StateFlow<UiState<List<NoticeListEntity>>> = _getNoticeAllState
+
+    private val _getNoticeUniversityState =
+        MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
+    val getNoticeUniversityState: StateFlow<UiState<List<NoticeListEntity>>> =
+        _getNoticeUniversityState
+
+    private val _getNoticeCollegeState =
+        MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
+    val getNoticeCollegeState: StateFlow<UiState<List<NoticeListEntity>>> =
+        _getNoticeCollegeState
+
+    private val _getNoticeDepartmentState =
+        MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
+    val getNoticeDepartmentState: StateFlow<UiState<List<NoticeListEntity>>> =
+        _getNoticeDepartmentState
+
+    init {
+        getQuickscan()
+        getNoticeAll()
+    }
+
+    fun getQuickscan() = viewModelScope.launch {
+        _getQuickScanState.emit(UiState.Loading)
+        homeRepository.getNoticeQuickScan().fold(
+            {
+                if (it != null) _getQuickScanState.emit(UiState.Success(it)) else _getQuickScanState.emit(
+                    UiState.Failure("400")
+                )
+            }, {
+                _getQuickScanState.emit(UiState.Failure(it.message.toString()))
+            }
+        )
+    }
+
+    fun getNoticeAll() = viewModelScope.launch {
+        _getNoticeAllState.emit(UiState.Loading)
+        homeRepository.getNoticeAll().fold(
+            {
+                if (it != null) _getNoticeAllState.emit(UiState.Success(it)) else _getNoticeAllState.emit(
+                    UiState.Failure("400")
+                )
+            },
+            { _getNoticeAllState.emit(UiState.Failure(it.message.toString())) }
+        )
+    }
+
+    fun getNoticeUniversity() = viewModelScope.launch {
+        _getNoticeUniversityState.emit(UiState.Loading)
+        homeRepository.getNoticeUniversity().fold(
+            {
+                if (it != null) _getNoticeUniversityState.emit(UiState.Success(it)) else _getNoticeUniversityState.emit(
+                    UiState.Failure("400")
+                )
+            },
+            { _getNoticeUniversityState.emit(UiState.Failure(it.message.toString())) }
+        )
+    }
+
+    fun getNoticeCollege() = viewModelScope.launch {
+        _getNoticeCollegeState.emit(UiState.Loading)
+        homeRepository.getNoticeCollege().fold(
+            {
+                if (it != null) _getNoticeCollegeState.emit(UiState.Success(it)) else _getNoticeCollegeState.emit(
+                    UiState.Failure("400")
+                )
+            },
+            { _getNoticeCollegeState.emit(UiState.Failure(it.message.toString())) }
+        )
+    }
+
+    fun getNoticeDepartment() = viewModelScope.launch {
+        _getNoticeDepartmentState.emit(UiState.Loading)
+        homeRepository.getNoticeDepartment().fold(
+            {
+                if (it != null) _getNoticeDepartmentState.emit(UiState.Success(it)) else _getNoticeDepartmentState.emit(
+                    UiState.Failure("400")
+                )
+            },
+            { _getNoticeDepartmentState.emit(UiState.Failure(it.message.toString())) }
+        )
+    }
 }

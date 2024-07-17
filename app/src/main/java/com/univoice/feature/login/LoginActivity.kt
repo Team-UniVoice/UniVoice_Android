@@ -7,26 +7,49 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
+import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.ActivityLoginBinding
+import com.univoice.feature.MainActivity
 import com.univoice.feature.util.BiggerDotPasswordTransformationMethod
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_login) {
-    private val viewModel by viewModels<LoginViewModel>()
+    private val loginViewModel by viewModels<LoginViewModel>()
 
     override fun initView() {
+        loginViewModel.saveCheckLogin(false)
+
         initToolbar()
         initConfirmBtnClickListener()
         initConfirmBtnIsEnabled()
         setupFocusChangeListeners()
         initPwdTransformation()
         initEditTextFocus()
+        setupPostLoginObserve()
+    }
+
+    private fun setupPostLoginObserve() {
+        loginViewModel.postLoginState.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+                is UiState.Success -> {
+                    loginViewModel.saveUserAccessToken(it.data)
+                    loginViewModel.saveCheckLogin(true)
+                    navigateToWelcomeActivity()
+                }
+
+                is UiState.Empty -> Unit
+                is UiState.Failure -> showBottomSheetFragment()
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun initEditTextFocus() {
@@ -67,20 +90,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
                         etLoginPwd.requestFocus()
                         btnLoginConfirm.isEnabled = false
                     } else {
-                        val userId = etLoginId.text.toString()
-                        val userPwd = etLoginPwd.text.toString()
+                        val userEmail = etLoginId.text.toString()
+                        val userPw = etLoginPwd.text.toString()
 
-                        lifecycleScope.launch {
-                            // 로그인 성공 여부 확인
-                            if (viewModel.loginState.value == true) {
-                                // 사용자 인증 정보 저장
-                                viewModel.saveUserCredentials(userId, userPwd)
-                                navigateToWelcomeActivity()
-                            } else {
-                                // 로그인 실패 시
-                                showBottomSheetFragment()
-                            }
-                        }
+                        loginViewModel.postLogin(userEmail, userPw)
                     }
                 }
             }
@@ -88,7 +101,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun navigateToWelcomeActivity() {
-        startActivity(Intent(this, WelcomeActivity::class.java))
+        Intent(this, WelcomeActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(this)
+        }
     }
 
     private fun setupFocusChangeListeners() {
