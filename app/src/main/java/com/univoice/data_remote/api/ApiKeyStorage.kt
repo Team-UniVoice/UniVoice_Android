@@ -16,6 +16,7 @@ object ApiKeyStorage {
     const val DEPARTMENT = "department"
     const val VIEW_CHECK = "view-check"
     const val NOTICE_ID = "noticeId"
+    const val CHECK_EMAIL = "check-email"
     const val LIKE = "like"
     const val CANCEL = "cancel"
 }
