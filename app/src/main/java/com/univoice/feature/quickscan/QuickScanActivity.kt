@@ -34,8 +34,8 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
         val position = intent.getIntExtra(AFFILIATION_KEY, 0)
         val writeAffiliation = when (position) {
             0 -> "총학생회"
-            1 -> "단과대학학생회"
-            else -> "학과학생회"
+            1 -> "단과대학 학생회"
+            else -> "학과 학생회"
         }
         viewModel.postQuickScanList(writeAffiliation)
     }
