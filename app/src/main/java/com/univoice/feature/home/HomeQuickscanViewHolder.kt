@@ -13,6 +13,7 @@ class HomeQuickscanViewHolder(
     fun bind(data: HomeQuickScanListEntity) {
         with(binding) {
             if (data.count < 1) {
+                layoutHomeNoticeQuickscanCount.visibility = View.INVISIBLE
                 tvHomeNoticeQuickscanCount.visibility = View.INVISIBLE
             } else {
                 tvHomeNoticeQuickscanCount.visibility = View.VISIBLE
