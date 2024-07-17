@@ -8,7 +8,7 @@ import java.time.temporal.ChronoUnit
 
 class CalculateTime(private val context: Context) {
     fun getCalculateTime(dateTimeString: String): String {
-        val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
         val targetDate = LocalDateTime.parse(dateTimeString, dateFormat)
         val currentDate = LocalDateTime.now()
 
