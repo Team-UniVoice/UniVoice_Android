@@ -101,7 +101,6 @@
                     android:background="@null"
                     android:gravity="top"
                     android:hint="@string/et_notice_post_content_hint"
-                    android:minHeight="100dp"
                     android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
                     android:textColor="@color/font_B01"
                     android:textColorHint="@color/font_B03"
@@ -112,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="40dp"
+                    android:paddingTop="48dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_notice_post_content">
 
