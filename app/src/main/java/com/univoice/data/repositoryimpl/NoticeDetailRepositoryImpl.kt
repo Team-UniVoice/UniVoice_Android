@@ -14,4 +14,16 @@ class NoticeDetailRepositoryImpl @Inject constructor(
             noticeDetailDataSource.getNoticeDetail(noticeId).data?.toNoticeDetailEntity() ?: NoticeDetailEntity(-1, "", "", 0, 0, "", "", "", "", "", -1, "", emptyList(), "", false, false, "")
         }
     }
+
+    override suspend fun postNoticeLike(noticeId: Int): Result<Unit> {
+        return runCatching {
+            noticeDetailDataSource.postNoticeLike(noticeId)
+        }
+    }
+
+    override suspend fun postNoticeDisLike(noticeId: Int): Result<Unit> {
+        return runCatching {
+            noticeDetailDataSource.postNoticeDelLike(noticeId)
+        }
+    }
 }
