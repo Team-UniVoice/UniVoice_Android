@@ -18,10 +18,10 @@ class SchoolInputViewModel @Inject constructor(
     val schoolList: StateFlow<List<String>> = _schoolList
 
     init {
-        fetchUniversityNames()
+        postUniversityNames()
     }
 
-    private fun fetchUniversityNames() {
+    private fun postUniversityNames() {
         viewModelScope.launch {
             universityRepository.getUniversityNames().onSuccess { response ->
                 _schoolList.value = response
