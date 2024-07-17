@@ -6,7 +6,6 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.databinding.FragmentStorageBinding
 import com.univoice.domain.entity.NoticeListEntity
-import com.univoice.feature.home.HomeNoticeAdapter
 
 class StorageFragment : BindingFragment<FragmentStorageBinding>(R.layout.fragment_storage) {
     private val viewModel by viewModels<StorageViewModel>()

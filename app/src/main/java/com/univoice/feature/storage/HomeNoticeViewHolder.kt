@@ -1,4 +1,4 @@
-package com.univoice.feature.home
+package com.univoice.feature.storage
 
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -13,11 +13,11 @@ class HomeNoticeViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(data: NoticeListEntity) {
         with(binding) {
-            btnItemNoticeHeader.text = data.subTitle
+            btnItemNoticeHeader.text = data.category
             tvItemNoticeTitle.text = data.title
             tvItemNoticeDate.text = CalculateDate().getCalculateDate(data.date)
-            tvItemNoticeLike.text = data.like.toString()
-            tvItemNoticeViews.text = data.views.toString()
+            tvItemNoticeLike.text = data.likeCount.toString()
+            tvItemNoticeViews.text = data.viewCount.toString()
             ivItemNoticeThumbnail.load(data.image) {
                 transformations(RoundedCornersTransformation(5f))
             }
