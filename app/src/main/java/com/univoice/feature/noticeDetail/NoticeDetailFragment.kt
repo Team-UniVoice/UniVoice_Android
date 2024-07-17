@@ -41,18 +41,6 @@ class NoticeDetailFragment :
 
     private fun initNoticeDetailObserve() {
         observeNoticeDetail()
-        observeNoticeDetailViewCount()
-    }
-
-    private fun observeNoticeDetailViewCount() {
-        viewModel.postNoticeDetailViewCount.flowWithLifecycle(lifecycle).onEach {
-            when (it) {
-                is UiState.Loading -> Unit
-                is UiState.Success -> Unit
-                is UiState.Empty -> Unit
-                is UiState.Failure -> Timber.tag("NoticeDetailFailure").d(it.msg)
-            }
-        }.launchIn(lifecycleScope)
     }
 
     private fun observeNoticeDetail() {
