@@ -8,6 +8,6 @@ import com.univoice.data_remote.api.ApiKeyStorage.V1
 import retrofit2.http.GET
 
 interface SettingApiService {
-    @GET("/${API}/${V1}/${MYPAGE}")
+    @GET("/$API/$V1/$MYPAGE")
     suspend fun getMyPage(): BaseResponse<ResponseSettingDto>
 }
