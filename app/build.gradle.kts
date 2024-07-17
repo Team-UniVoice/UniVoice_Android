@@ -9,7 +9,8 @@ plugins {
     alias(libs.plugins.dagger.hilt)
 }
 
-val properties = Properties().apply { load(project.rootProject.file("local.properties").inputStream()) }
+val properties =
+    Properties().apply { load(project.rootProject.file("local.properties").inputStream()) }
 
 android {
     namespace = "com.univoice"
@@ -77,6 +78,7 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(platform(libs.okhttp3.bom))
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.datetime)
 
     // Third-Party
     implementation(libs.timber)
@@ -84,6 +86,7 @@ dependencies {
     implementation(libs.viewPager2)
     implementation(libs.glide)
     implementation(libs.circleindicator)
+    implementation(libs.circleimageview)
 
     // Hilt
     implementation(libs.dagger.hilt)
