@@ -42,6 +42,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         homeViewModel.getNoticeAll()
         homeViewModel.getQuickscan()
     }
+
     private fun initPostBtnClickListener() {
         binding.btnHomePost.setOnClickListener {
             findNavController().navigate(
@@ -183,7 +184,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     private fun initQuickScanAdapter(quickscanData: List<HomeQuickScanListEntity>) {
         binding.rvHomeQuickscan.adapter =
             HomeQuickscanAdapter(click = { quickscan, position ->
-                if(quickscan.count > 0) {
+                if (quickscan.count > 0) {
                     Intent(requireContext(), QuickScanActivity::class.java).apply {
                         putExtra(AFFILIATION_KEY, position)
                         putExtra(IMAGE_KEY, quickscan.image)
