@@ -12,4 +12,8 @@ class NoticeDetailDataSourceImpl @Inject constructor(
     override suspend fun getNoticeDetail(noticeId: Int): BaseResponse<ResponseNoticeDetailDto> {
         return noticeDetailApiService.getNoticeDetail(noticeId)
     }
+
+    override suspend fun postNoticeDetailViewCount(noticeId: Int): BaseResponse<Unit> {
+        return noticeDetailApiService.postNoticeDetailViewCount(noticeId)
+    }
 }

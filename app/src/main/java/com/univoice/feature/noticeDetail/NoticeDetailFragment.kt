@@ -35,10 +35,15 @@ class NoticeDetailFragment :
         val noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
         noticeId?.let {
             viewModel.getNoticeDetail(it)
+            viewModel.postNoticeDetailViewCount(it)
         }
     }
 
     private fun initNoticeDetailObserve() {
+        observeNoticeDetail()
+    }
+
+    private fun observeNoticeDetail() {
         viewModel.getNoticeDetail.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit
