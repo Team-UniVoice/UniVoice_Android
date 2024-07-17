@@ -15,4 +15,13 @@ class HomeDataSourceImpl @Inject constructor(
 
     override suspend fun getNoticeAll(): BaseResponse<List<ResponseNoticeAllDto>> =
         homeApiService.getNoticeAll()
+
+    override suspend fun getNoticeUniversity(): BaseResponse<List<ResponseNoticeAllDto>> =
+        homeApiService.getNoticeUniversity()
+
+    override suspend fun getNoticeCollege(): BaseResponse<List<ResponseNoticeAllDto>> =
+        homeApiService.getNoticeCollege()
+
+    override suspend fun getNoticeDepartment(): BaseResponse<List<ResponseNoticeAllDto>> =
+        homeApiService.getNoticeDepartment()
 }
