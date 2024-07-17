@@ -1,4 +1,4 @@
-package com.univoice.di
+package com.univoice.app.di
 
 import com.univoice.data.datasource.ExampleDataSource
 import com.univoice.data.repositoryimpl.ExampleRepositoryImpl

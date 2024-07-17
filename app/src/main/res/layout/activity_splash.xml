@@ -6,6 +6,7 @@
             android:id="@+id/lottie_splash_logo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/mint_400"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/lottie_splash" />
