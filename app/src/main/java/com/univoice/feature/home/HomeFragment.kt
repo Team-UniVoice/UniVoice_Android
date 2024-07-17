@@ -36,6 +36,11 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         initPostBtnClickListener()
     }
 
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.getNoticeAll()
+        homeViewModel.getQuickscan()
+    }
     private fun initPostBtnClickListener() {
         binding.btnHomePost.setOnClickListener {
             findNavController().navigate(
