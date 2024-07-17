@@ -120,13 +120,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_quick_scan_title">
 
-            <TextView
-                android:id="@+id/tv_quick_scan_subject"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_quick_scan_subject"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_white_line_30_rect"
+                android:clickable="false"
                 android:gravity="center"
-                android:padding="6dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="6dp"
                 android:text="@string/tv_quick_scan_subject"
                 android:textAppearance="@style/TextAppearance.UniVoice.button4_1Semi"
                 android:textColor="@color/gray_800"
@@ -143,7 +148,7 @@
                 android:textColor="@color/font_B01"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_quick_scan_subject"
+                app:layout_constraintStart_toEndOf="@id/btn_quick_scan_subject"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="2024-1학기 재학생" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -159,13 +164,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_quick_scan_subject">
 
-            <TextView
-                android:id="@+id/tv_quick_scan_date"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_quick_scan_date"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_white_line_30_rect"
+                android:clickable="false"
                 android:gravity="center"
-                android:padding="6dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="6dp"
                 android:text="@string/tv_quick_scan_date"
@@ -184,7 +192,7 @@
                 android:textColor="@color/font_B01"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_quick_scan_date"
+                app:layout_constraintStart_toEndOf="@id/btn_quick_scan_date"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="05/21(화) 14:00 ~ 06/20(목) 22:00" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -201,12 +209,17 @@
             app:layout_constraintTop_toBottomOf="@id/cl_quick_scan_date">
 
             <TextView
-                android:id="@+id/tv_quick_scan_summary"
+                android:id="@+id/btn_quick_scan_summary"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_white_line_30_rect"
+                android:clickable="false"
                 android:gravity="center"
-                android:padding="6dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="6dp"
                 android:text="@string/tv_quick_scan_summary"
                 android:textAppearance="@style/TextAppearance.UniVoice.button4_1Semi"
                 android:textColor="@color/gray_800"
@@ -223,7 +236,7 @@
                 android:textColor="@color/font_B01"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_quick_scan_summary"
+                app:layout_constraintStart_toEndOf="@id/btn_quick_scan_summary"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="2024학년도 2학기 교내장학금 신청 안내드립니다. 반드시 확인하고 놓치지 마시기 바랍니다." />
         </androidx.constraintlayout.widget.ConstraintLayout>

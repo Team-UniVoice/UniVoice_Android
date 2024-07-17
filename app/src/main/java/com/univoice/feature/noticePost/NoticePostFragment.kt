@@ -2,6 +2,7 @@ package com.univoice.feature.noticePost
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
@@ -148,9 +150,7 @@ class NoticePostFragment :
 
     private fun initApplyBtnClickListener() {
         binding.btnToolbarNoticePostApply.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_fragment_notice_post_to_fragment_home,
-            )
+            findNavController().navigate(R.id.action_fragment_notice_post_to_fragment_notice_post_apply)
         }
     }
 

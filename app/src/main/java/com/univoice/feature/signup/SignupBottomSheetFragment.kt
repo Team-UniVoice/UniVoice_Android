@@ -1,9 +1,12 @@
 package com.univoice.feature.signup
 
+import android.app.TaskStackBuilder
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import com.univoice.R
 import com.univoice.core_ui.base.BindingBottomSheetFragment
 import com.univoice.databinding.FragmentSignupBottomSheetBinding
+import com.univoice.feature.entry.EntryActivity
 
 class SignupBottomSheetFragment :
     BindingBottomSheetFragment<FragmentSignupBottomSheetBinding>(R.layout.fragment_signup_bottom_sheet) {
@@ -44,12 +47,16 @@ class SignupBottomSheetFragment :
 
     private fun handleAgreeButtonClick() {
         dismiss()
-        startActivity(Intent(requireContext(), CheckInfoActivity::class.java))
+        Intent(requireContext(), CheckInfoActivity::class.java).apply {
+            flags = FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(this)
+        }
     }
 
     private fun updateAgreeButtonState() {
         with(binding) {
-            btnBottomSheetAgree.isEnabled = cbBottomSheetService.isChecked && cbBottomSheetUse.isChecked
+            btnBottomSheetAgree.isEnabled =
+                cbBottomSheetService.isChecked && cbBottomSheetUse.isChecked
         }
     }
 }

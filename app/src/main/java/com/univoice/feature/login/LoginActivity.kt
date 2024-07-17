@@ -13,6 +13,7 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.ActivityLoginBinding
+import com.univoice.feature.MainActivity
 import com.univoice.feature.util.BiggerDotPasswordTransformationMethod
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -100,7 +101,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     }
 
     private fun navigateToWelcomeActivity() {
-        startActivity(Intent(this, WelcomeActivity::class.java))
+        Intent(this, WelcomeActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(this)
+        }
     }
 
     private fun setupFocusChangeListeners() {
