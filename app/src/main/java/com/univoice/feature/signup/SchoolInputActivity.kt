@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
+import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.ActivitySchoolInputBinding
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -138,9 +139,9 @@ class SchoolInputActivity :
     private fun filterSchools(query: String) {
         filteredList.clear()
         if (query.isNotEmpty()) {
-            val results = viewModel.schoolList.value
-                .filter { it.contains(query, ignoreCase = true) }
-                .sortedBy { it.replace(query, "", ignoreCase = true) }
+            val results = (viewModel.schoolListState.value as? UiState.Success)?.data
+                ?.filter { it.contains(query, ignoreCase = true) }
+                ?.sortedBy { it.replace(query, "", ignoreCase = true) } ?: emptyList()
             filteredList.addAll(results.take(MAX_SIZE))
             if (results.size > MAX_SIZE) {
                 filteredList.add(applicationContext.getString(R.string.tv_ellipse))
@@ -151,8 +152,15 @@ class SchoolInputActivity :
 
     private fun observeSchoolList() {
         lifecycleScope.launch {
-            viewModel.schoolList.collect { schoolList ->
-                filterSchools(binding.etSchoolInputSearch.text.toString().trim())
+            viewModel.schoolListState.collect { state ->
+                when (state) {
+                    is UiState.Loading -> Unit
+                    is UiState.Success -> {
+                        filterSchools(binding.etSchoolInputSearch.text.toString().trim())
+                    }
+                    is UiState.Empty -> Unit
+                    is UiState.Failure -> Unit
+                }
             }
         }
     }
