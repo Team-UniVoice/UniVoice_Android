@@ -23,14 +23,14 @@ interface NoticeDetailApiService {
     suspend fun postNoticeLike(
         @Path(NOTICE_ID) noticeId: Int
     ): BaseResponse<Unit>
-
-    @POST("/$API/$V1/$NOTICE/$LIKE/{$NOTICE_ID}")
-    suspend fun postNoticeLike(
-        @Path(NOTICE_ID) noticeId: Int
-    ): BaseResponse<Unit>
   
     @POST("/$API/$V1/$NOTICE/$LIKE/$CANCEL/{$NOTICE_ID}")
     suspend fun postNoticeDelLike(
+        @Path(NOTICE_ID) noticeId: Int
+    ): BaseResponse<Unit>
+
+    @POST("$API/$V1/$NOTICE/$VIEW_COUNT/{$NOTICE_ID}")
+    suspend fun postNoticeDetailViewCount(
         @Path(NOTICE_ID) noticeId: Int
     ): BaseResponse<Unit>
 }

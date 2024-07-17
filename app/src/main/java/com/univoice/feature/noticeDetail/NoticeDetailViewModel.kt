@@ -60,9 +60,9 @@ class NoticeDetailViewModel @Inject constructor(
             },
             { _postNoticeDelLike.emit(UiState.Failure(it.message.toString())) }
         )
+    }
 
-        fun postNoticeDetailViewCount(noticeId: Int) = viewModelScope.launch {
-            noticeDetailRepository.postNoticeDetailViewCount(noticeId).fold({}, {})
-        }
+    fun postNoticeDetailViewCount(noticeId: Int) = viewModelScope.launch {
+        noticeDetailRepository.postNoticeDetailViewCount(noticeId).fold({}, {})
     }
 }
