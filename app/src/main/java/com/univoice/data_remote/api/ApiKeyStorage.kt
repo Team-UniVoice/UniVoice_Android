@@ -8,4 +8,10 @@ object ApiKeyStorage {
     const val NOTICE = "notice"
     const val ALL = "all"
     const val QUICKHEAD = "quickhead"
+<<<<<<< Updated upstream
+=======
+    const val UNIVERSITYDATA = "universityData"
+    const val UNIVERSITY = "university"
+    const val DEPARTMENT = "department"
+>>>>>>> Stashed changes
 }

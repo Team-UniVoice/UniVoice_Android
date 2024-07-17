@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
@@ -14,6 +15,8 @@ import com.univoice.feature.signup.SchoolInputActivity.Companion.MAX_SIZE
 import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DepartmentInputActivity :
@@ -31,6 +34,8 @@ class DepartmentInputActivity :
         initSchoolDepartmentListAdapter()
         setupNextButton()
         setupEditTextListener()
+        fetchDepartments()
+        observeDepartmentList()
     }
 
     private fun initToolbar() {
@@ -151,7 +156,7 @@ class DepartmentInputActivity :
     private fun filterDepartments(query: String) {
         filteredList.clear()
         if (query.isNotEmpty()) {
-            val results = viewModel.mockDepartmentList
+            val results = viewModel.departmentList.value
                 .filter { it.contains(query, ignoreCase = true) }
                 .sortedBy { it.replace(query, "", ignoreCase = true) }
             filteredList.addAll(results.take(MAX_SIZE))
@@ -160,6 +165,21 @@ class DepartmentInputActivity :
             }
         }
         adapter.submitList(filteredList)
+    }
+
+    private fun fetchDepartments() {
+        val selectedSchool = intent.getStringExtra(SCHOOL_KEY)
+        selectedSchool?.let {
+            viewModel.fetchDepartments(it)
+        }
+    }
+
+    private fun observeDepartmentList() {
+        lifecycleScope.launch {
+            viewModel.departmentList.collect { departmentList ->
+                filterDepartments(binding.etDepartmentInputSearch.text.toString().trim())
+            }
+        }
     }
 
     companion object {
