@@ -12,9 +12,9 @@ data class ResponseNoticeDetailDto(
     @SerialName("viewCount") val viewCount: Int,
     @SerialName("target") val target: String,
     @SerialName("startTime")
-    val startTime: String?,
+    val startTime: String? = null,
     @SerialName("endTime")
-    val endTime: String?,
+    val endTime: String? = null,
     @SerialName("category")
     val category: String,
     @SerialName("contentSummary")
