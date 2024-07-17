@@ -20,6 +20,12 @@ class NoticeDetailViewModel @Inject constructor(
         MutableStateFlow<UiState<NoticeDetailEntity>>(UiState.Empty)
     val getNoticeDetail: StateFlow<UiState<NoticeDetailEntity>> = _getNoticeDetail
 
+    private val _postNoticeLike = MutableStateFlow<UiState<Unit>>(UiState.Empty)
+    val postNoticeLike: StateFlow<UiState<Unit>> = _postNoticeLike
+
+    private val _postNoticeDelLike = MutableStateFlow<UiState<Unit>>(UiState.Empty)
+    val postNoticeDelLike: StateFlow<UiState<Unit>> = _postNoticeDelLike
+
     fun getNoticeDetail(noticeId: Int) = viewModelScope.launch {
         _getNoticeDetail.emit(UiState.Loading)
         noticeDetailRepository.getNoticeDetail(noticeId).fold(
@@ -27,6 +33,26 @@ class NoticeDetailViewModel @Inject constructor(
                 _getNoticeDetail.emit(UiState.Success(it))
             },
             { _getNoticeDetail.emit(UiState.Failure(it.message.toString())) }
+        )
+    }
+
+    fun postNoticeLike(noticeId: Int) = viewModelScope.launch {
+        _postNoticeLike.emit(UiState.Loading)
+        noticeDetailRepository.postNoticeLike(noticeId).fold(
+            {
+                _postNoticeLike.emit(UiState.Success(it))
+            },
+            { _postNoticeLike.emit(UiState.Failure(it.message.toString())) }
+        )
+    }
+
+    fun postNoticeDelLike(noticeId: Int) = viewModelScope.launch {
+        _postNoticeDelLike.emit(UiState.Loading)
+        noticeDetailRepository.postNoticeDisLike(noticeId).fold(
+            {
+                _postNoticeDelLike.emit(UiState.Success(it))
+            },
+            { _postNoticeDelLike.emit(UiState.Failure(it.message.toString())) }
         )
     }
 }
