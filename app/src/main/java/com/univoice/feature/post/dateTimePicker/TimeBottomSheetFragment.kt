@@ -31,13 +31,16 @@ class TimeBottomSheetFragment(
 ) : BindingBottomSheetFragment<FragmentTimeBottomSheetBinding>(R.layout.fragment_time_bottom_sheet) {
 
     private lateinit var utils: DatePickerUtils
-    private var dividerHeight: Int = 38
     private var endDate: Calendar = Calendar.getInstance().also {
         it.timeInMillis = startDate.timeInMillis
         it.add(Calendar.MONTH, maxMonthToDisplay)
     }
 
     private var isSelected = true
+
+    companion object {
+        const val DIVIDER_HEIGHT = 38
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,16 +55,16 @@ class TimeBottomSheetFragment(
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
         behavior.isDraggable = false
 
-        binding.viewDateTime.layoutParams.height = dividerHeight.dpToPx(requireContext()).toInt()
+        binding.viewDateTime.layoutParams.height = DIVIDER_HEIGHT.dpToPx(requireContext()).toInt()
 
-        val dateAdapter = TimeDateAdapter(utils.getAllDates(), dividerHeight)
-        val hourAdapter = TimeHourAdapter(utils.getHours(), dividerHeight)
+        val dateAdapter = TimeDateAdapter(utils.getAllDates(), DIVIDER_HEIGHT)
+        val hourAdapter = TimeHourAdapter(utils.getHours(), DIVIDER_HEIGHT)
         val meridiemAdapter =
-            TimeMeridiemAdapter(utils.addEmptyValueInString(utils.getMeridiem()), dividerHeight)
-        val minuteAdapter = TimeMinuteAdapter(utils.getMinutes(), dividerHeight)
-        val yearAdapter = DateYearAdapter(utils.getAllYears(), dividerHeight)
-        val monthAdapter = DateMonthAdapter(utils.getAllMonths(), dividerHeight)
-        val dayAdapter = DateDayAdapter(utils.getAllDates(), dividerHeight)
+            TimeMeridiemAdapter(utils.addEmptyValueInString(utils.getMeridiem()), DIVIDER_HEIGHT)
+        val minuteAdapter = TimeMinuteAdapter(utils.getMinutes(), DIVIDER_HEIGHT)
+        val yearAdapter = DateYearAdapter(utils.getAllYears(), DIVIDER_HEIGHT)
+        val monthAdapter = DateMonthAdapter(utils.getAllMonths(), DIVIDER_HEIGHT)
+        val dayAdapter = DateDayAdapter(utils.getAllDates(), DIVIDER_HEIGHT)
 
         with(binding){
             rvDateDetail.initVerticalAdapter(dateAdapter, true)
