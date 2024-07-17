@@ -4,15 +4,23 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
+import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.ActivityCreateAccountBinding
 import com.univoice.feature.util.BiggerDotPasswordTransformationMethod
 import com.univoice.feature.util.setupToolbarClickListener
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CreateAccountActivity :
     BindingActivity<ActivityCreateAccountBinding>(R.layout.activity_create_account) {
+
+    private val viewModel by viewModels<CreateAccountViewModel>()
 
     private var isIdValid = false
     private var isIdUnique = false
@@ -27,12 +35,13 @@ class CreateAccountActivity :
     override fun initView() {
         initToolbar()
         initDisableButton()
+        setupIdValidation()
         initPwdTransformation()
         setupFocusChangeListeners()
         initEditTextIdInput()
-        setupIdValidation()
         setupDuplicateCheckButton()
         setupPasswordValidation()
+        setupIdObserve()
     }
 
     private fun initDisableButton() {
@@ -100,7 +109,7 @@ class CreateAccountActivity :
         when {
             id.isEmpty() -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
             !isValidId(id) -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
-            else -> setIdValid(R.string.tv_create_account_id_explain, R.color.blue_400)
+            else -> setIdValid(R.string.tv_create_account_id, R.color.blue_400)
         }
         updateNextButtonState()
     }
@@ -139,19 +148,14 @@ class CreateAccountActivity :
 
     private fun setupDuplicateCheckButton() {
         with(binding) {
-            btnCreateAccountId.setOnClickListener { checkDuplicateAndProceed() }
+            btnCreateAccountId.setOnClickListener { checkDuplicateProceed() }
             etCreateAccountId.setOnFocusChangeListener { _, hasFocus -> handleIdFocusChange(hasFocus) }
         }
     }
 
-    private fun checkDuplicateAndProceed() {
+    private fun checkDuplicateProceed() {
         val id = binding.etCreateAccountId.text.toString()
-        if (checkDuplicateId(id)) {
-            setIdUnique(R.string.tv_create_account_id_explain, R.color.mint_400)
-        } else {
-            setIdNotUnique(R.string.tv_create_account_id_unavailable, R.color.red)
-        }
-        updateNextButtonState()
+        viewModel.checkEmail(id)
     }
 
     private fun handleIdFocusChange(hasFocus: Boolean) {
@@ -199,11 +203,6 @@ class CreateAccountActivity :
             btnCreateAccountId.isEnabled = true
         }
         isIdUnique = false
-    }
-
-    private fun checkDuplicateId(id: String): Boolean {
-        val existingIds = listOf("user1", "user2", "user3", "user4", "user5")
-        return !existingIds.contains(id)
     }
 
     private fun setupPasswordValidation() {
@@ -273,12 +272,22 @@ class CreateAccountActivity :
                 tvCreateAccountPwCheckExplain.visibility = View.INVISIBLE
             } else if (password == confirmPassword) {
                 tvCreateAccountPwCheckExplain.setText(R.string.password_match)
-                tvCreateAccountPwCheckExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, R.color.mint_600))
+                tvCreateAccountPwCheckExplain.setTextColor(
+                    ContextCompat.getColor(
+                        this@CreateAccountActivity,
+                        R.color.mint_600
+                    )
+                )
                 tvCreateAccountPwCheckExplain.visibility = View.VISIBLE
                 isPasswordConfirmed = true
             } else {
                 tvCreateAccountPwCheckExplain.setText(R.string.password_mismatch)
-                tvCreateAccountPwCheckExplain.setTextColor(ContextCompat.getColor(this@CreateAccountActivity, R.color.red))
+                tvCreateAccountPwCheckExplain.setTextColor(
+                    ContextCompat.getColor(
+                        this@CreateAccountActivity,
+                        R.color.red
+                    )
+                )
                 tvCreateAccountPwCheckExplain.visibility = View.VISIBLE
                 isPasswordConfirmed = false
             }
@@ -357,5 +366,25 @@ class CreateAccountActivity :
     private fun showBottomSheet() {
         val bottomSheetFragment = SignupBottomSheetFragment()
         bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+    }
+
+    private fun setupIdObserve() {
+        lifecycleScope.launch {
+            viewModel.emailCheckState.collect { state ->
+                when (state) {
+                    is UiState.Loading -> Unit
+                    is UiState.Success -> setIdUnique(
+                        R.string.tv_create_account_id_explain,
+                        R.color.mint_400
+                    )
+                    is UiState.Failure -> setIdNotUnique(
+                        R.string.tv_create_account_id_unavailable,
+                        R.color.red
+                    )
+                    else -> Unit
+                }
+                updateNextButtonState()
+            }
+        }
     }
 }
