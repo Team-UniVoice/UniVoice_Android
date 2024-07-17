@@ -22,7 +22,8 @@ import timber.log.Timber
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val homeViewModel by activityViewModels<HomeViewModel>()
-    var currentCategoryIdx = 0
+
+    private var clickedCategoryIndex: Int = 0
 
     override fun initView() {
         initQuickscanObserve()
@@ -101,7 +102,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun initNoticeContentAdapter(noticeContentData: List<NoticeListEntity>) {
         binding.rvHomeNoticeContent.adapter =
-            HomeNoticeContentAdapter(click = { noticeContent, position ->
+            HomeNoticeContentAdapter(click = { _, _ ->
                 binding.root.findNavController().navigate(
                     R.id.action_fragment_home_to_fragment_notice_detail,
                 )
@@ -118,8 +119,8 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun initNoticeCategoryAdapter(categoryData: List<String>) {
         binding.rvHomeNoticeCategory.adapter =
-            HomeNoticeCategoryAdapter(click = { category, position ->
-                currentCategoryIdx = position
+            HomeNoticeCategoryAdapter(click = { _, position ->
+                clickedCategoryIndex = position
 
                 when (position) {
                     0 -> {
@@ -177,7 +178,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun iniQuickscanAdapter(quickscanData: List<QuickScanListEntity>) {
         binding.rvHomeQuickscan.adapter =
-            HomeQuickscanAdapter(click = { quickscan, position ->
+            HomeQuickscanAdapter(click = { _, _ ->
                 startActivity(Intent(requireContext(), QuickScanActivity::class.java))
             }).apply {
                 submitList(quickscanData)
