@@ -81,8 +81,12 @@ class NoticePostFragment :
         setFragmentResultListener("timePickerKey") { _, bundle ->
             val setStartDate = bundle.getString("setStartDate", "")
             val setEndDate = bundle.getString("setEndDate", "")
-            binding.tvNoticePostOptionDateStart.text = setStartDate
-            binding.tvNoticePostOptionDateEnd.text = setEndDate
+
+            with(binding){
+                tvNoticePostOptionDateStart.text = setStartDate
+                tvNoticePostOptionDateEnd.text = setEndDate
+                layoutNoticePostOptionDate.visibility = View.VISIBLE
+            }
         }
     }
 
