@@ -12,4 +12,8 @@ class QuickScanDataSourceImpl @Inject constructor(
 ) : QuickScanDataSource {
     override suspend fun postQuickScan(requestQuickScanDto: RequestQuickScanDto): BaseResponse<List<ResponseQuickScanDto>> =
         quickScanApiService.postQuickScan(requestQuickScanDto)
+
+    override suspend fun postQuickScanViewCheck(noticeId: Int): BaseResponse<Unit> =
+        quickScanApiService.postQuickScanViewCheck(noticeId)
+
 }
