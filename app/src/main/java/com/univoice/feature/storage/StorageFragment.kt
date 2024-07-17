@@ -48,7 +48,7 @@ fun StorageScreen(navController: NavController) {
             .padding(horizontal = 16.dp),
     ) {
         Text(
-            modifier = Modifier.padding(top = 26.dp, bottom = 12.dp),
+            modifier = Modifier.padding(top = 16.dp, bottom = 20.dp),
             text = stringResource(id = R.string.storage_toolbar_title),
             color = Font_B01,
             style = head5Bold
