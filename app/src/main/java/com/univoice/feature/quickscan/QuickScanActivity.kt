@@ -4,21 +4,68 @@ import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
+import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.ActivityQuickScanBinding
+import com.univoice.domain.entity.QuickScanListEntity
+import com.univoice.feature.home.HomeFragment.Companion.AFFILIATION_KEY
+import com.univoice.feature.home.HomeFragment.Companion.IMAGE_KEY
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import timber.log.Timber
 
 @AndroidEntryPoint
 class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.activity_quick_scan) {
     private val viewModel by viewModels<QuickScanViewModel>()
     override fun initView() {
         initToolbarClickListener()
-        initQuickScanAdapter()
+        initPostQuickScanList()
+        setupQuickScanObserve()
         addMarginsToTabs(binding.tabQuickScan)
+    }
+
+    private fun initPostQuickScanList() {
+        val position = intent.getIntExtra(AFFILIATION_KEY, 0)
+        val writeAffiliation = when (position) {
+            0 -> "총학생회"
+            1 -> "단과대학 학생회"
+            else -> "학과 학생회"
+        }
+        viewModel.postQuickScanList(writeAffiliation)
+    }
+
+    private fun setupQuickScanObserve() {
+        observeQuickScanList()
+        observeQuickScanViewCheck()
+    }
+
+    private fun observeQuickScanViewCheck() {
+        viewModel.postQuickScanViewCheck.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+                is UiState.Success -> Timber.tag("QuickScanSuccess").d(it.data.toString())
+                is UiState.Empty -> Unit
+                is UiState.Failure -> Timber.tag("QuickScanFailure").d(it.msg)
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun observeQuickScanList() {
+        viewModel.postQuickScanList.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+                is UiState.Success -> initQuickScanAdapter(it.data)
+                is UiState.Empty -> Unit
+                is UiState.Failure -> Timber.tag("QuickScanFailure").d(it.msg)
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun addMarginsToTabs(tabLayout: TabLayout) {
@@ -49,14 +96,15 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
 
     }
 
-    private fun initQuickScanAdapter() {
-        QuickScanAdapter() { id, isBookmark ->
-            viewModel.updateBookmark(id, isBookmark)
-        }.also {
-            binding.vpQuickScan.adapter = it
-            it.submitList(viewModel.mockQuickScanList)
-            initTabLayout()
-            initPageChangeCallback(it)
+    private fun initQuickScanAdapter(data: List<QuickScanListEntity>) {
+        val image = intent.getStringExtra(IMAGE_KEY)
+        image?.let {
+            QuickScanAdapter(it).apply {
+                submitList(data)
+                binding.vpQuickScan.adapter = this
+                initTabLayout(data.size)
+                initPageChangeCallback(this)
+            }
         }
     }
 
@@ -85,6 +133,8 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
 
             override fun onPageSelected(position: Int) {
                 currentPos = position
+                viewModel.postQuickScanViewCheck(adapter.currentList[position].id)
+                viewModel.postNoticeDetailViewCount(adapter.currentList[position].id)
                 super.onPageSelected(position)
             }
 
@@ -95,9 +145,9 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
         })
     }
 
-    private fun initTabLayout() {
+    private fun initTabLayout(size: Int) {
         with(binding.tabQuickScan) {
-            if (viewModel.mockQuickScanList.size > 1) {
+            if (size > 1) {
                 visibility = View.VISIBLE
             } else {
                 visibility = View.INVISIBLE

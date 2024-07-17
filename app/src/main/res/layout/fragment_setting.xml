@@ -8,265 +8,319 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <TextView
-            android:id="@+id/tv_setting_title"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="16dp"
-            android:text="@string/tv_setting_mypage"
-            android:textAppearance="@style/TextAppearance.UniVoice.head5Bold"
-            android:textColor="@color/font_B01"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_setting"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="16dp"
-
-        <Button
-            android:id="@+id/btn_setting_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="로그아웃 하깅"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_setting_title">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_setting_info"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/shape_gray50_line_12_rect"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <View
-                    android:id="@+id/view_setting"
-                    android:layout_width="0dp"
-                    android:layout_height="2dp"
-                    android:layout_marginHorizontal="124dp"
-                    android:background="@color/blue_200"
-                    app:layout_constraintBottom_toBottomOf="@+id/iv_setting_profile"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/iv_setting_profile" />
-
-                <ImageView
-                    android:id="@+id/iv_setting_profile"
-                    android:layout_width="87dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintDimensionRatio="1"
-                    android:layout_marginStart="37dp"
-                    android:layout_marginTop="54dp"
-                    android:layout_marginEnd="204dp"
-                    android:layout_marginBottom="124dp"
-                    android:src="@drawable/ic_setting_profile"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <TextView
+                    android:id="@+id/tv_setting_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp"
+                    android:text="@string/tv_setting_mypage"
+                    android:textAppearance="@style/TextAppearance.UniVoice.head5Bold"
+                    android:textColor="@color/font_B01"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_setting_name"
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_setting"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="182dp"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
-                    android:textColor="@color/blue_900"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_setting_profile"
-                    tools:text="김송이" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_setting_title">
 
-                <TextView
-                    android:id="@+id/tv_setting_department"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="182dp"
-                    android:layout_marginBottom="54dp"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.UniVoice.body3Regular"
-                    android:textColor="@color/font_B02"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_setting_name"
-                    tools:text="소프트웨어융합대\n디지털미디학과 22학번" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_setting_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/shape_gray50_line_12_rect"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/iv_setting_school"
-                    android:layout_width="87dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintDimensionRatio="1"
-                    android:layout_marginEnd="37dp"
-                    android:layout_marginStart="204dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@+id/view_setting"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/view_setting"
-                    tools:src="@drawable/img_school_logo" />
+                        <View
+                            android:id="@+id/view_setting"
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:background="@color/blue_200"
+                            app:layout_constraintBottom_toBottomOf="@+id/iv_setting_profile"
+                            app:layout_constraintEnd_toStartOf="@id/iv_setting_school"
+                            app:layout_constraintStart_toEndOf="@id/iv_setting_profile"
+                            app:layout_constraintTop_toTopOf="@id/iv_setting_profile" />
 
-                <TextView
-                    android:id="@+id/tv_setting_school"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="204dp"
-                    android:layout_marginEnd="37dp"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
-                    android:textColor="@color/blue_900"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_setting_name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_setting_name"
-                    tools:text="아주대학교" />
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guide_setting_top"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_begin="54dp" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guide_setting_first_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_begin="15dp" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guide_setting_first_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_begin="146dp" />
+
+                        <ImageView
+                            android:id="@+id/iv_setting_profile"
+                            android:layout_width="87dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="124dp"
+                            android:src="@drawable/ic_setting_profile"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="@id/guide_setting_first_end"
+                            app:layout_constraintStart_toStartOf="@id/guide_setting_first_start"
+                            app:layout_constraintTop_toTopOf="@id/guide_setting_top" />
+
+                        <TextView
+                            android:id="@+id/tv_setting_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+                            android:textColor="@color/blue_900"
+                            app:layout_constraintEnd_toEndOf="@id/guide_setting_first_end"
+                            app:layout_constraintStart_toStartOf="@id/guide_setting_first_start"
+                            app:layout_constraintTop_toBottomOf="@id/iv_setting_profile"
+                            tools:text="김송이" />
+
+                        <TextView
+                            android:id="@+id/tv_setting_college"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body3Regular"
+                            android:textColor="@color/font_B02"
+                            app:layout_constraintEnd_toEndOf="@id/guide_setting_first_end"
+                            app:layout_constraintStart_toStartOf="@id/guide_setting_first_start"
+                            app:layout_constraintTop_toBottomOf="@id/tv_setting_name"
+                            tools:text="소프트웨어융합대학" />
+
+                        <TextView
+                            android:id="@+id/tv_setting_department"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="54dp"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body3Regular"
+                            android:textColor="@color/font_B02"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@id/guide_setting_first_end"
+                            app:layout_constraintStart_toStartOf="@id/guide_setting_first_start"
+                            app:layout_constraintTop_toBottomOf="@id/tv_setting_college"
+                            tools:text="디지털미디학과 22학번" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guide_setting_second_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_end="124dp" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guide_setting_second_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_end="37dp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_setting_school"
+                            android:layout_width="87dp"
+                            android:layout_height="0dp"
+                            android:scaleType="centerCrop"
+                            app:layout_constraintDimensionRatio="1"
+                            app:layout_constraintEnd_toEndOf="@id/guide_setting_second_end"
+                            app:layout_constraintStart_toStartOf="@id/guide_setting_second_start"
+                            app:layout_constraintTop_toTopOf="@id/iv_setting_profile"
+                            tools:src="@drawable/ic_launcher_background" />
+
+                        <TextView
+                            android:id="@+id/tv_setting_school"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+                            android:textColor="@color/blue_900"
+                            app:layout_constraintEnd_toEndOf="@id/guide_setting_second_end"
+                            app:layout_constraintStart_toStartOf="@id/guide_setting_second_start"
+                            app:layout_constraintTop_toBottomOf="@id/iv_setting_school"
+                            tools:text="아주대학교" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/tv_setting_explain"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/tv_setting_explain"
+                        android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layout_setting_info" />
+
+                    <TextView
+                        android:id="@+id/tv_setting_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="233dp"
+                        android:text="@string/tv_setting_service"
+                        android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                        android:textColor="@color/font_B02"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_setting_explain" />
+
+                    <ImageView
+                        android:id="@+id/iv_setting_service"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_setting_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_setting_service"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_setting_service" />
+
+                    <TextView
+                        android:id="@+id/tv_setting_personal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="233dp"
+                        android:text="@string/tv_setting_personal"
+                        android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                        android:textColor="@color/font_B02"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_setting_service" />
+
+                    <ImageView
+                        android:id="@+id/iv_setting_personal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_setting_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_setting_personal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_setting_personal" />
+
+                    <TextView
+                        android:id="@+id/tv_setting_version"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="233dp"
+                        android:text="@string/tv_setting_version"
+                        android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                        android:textColor="@color/font_B02"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_setting_personal" />
+
+                    <ImageView
+                        android:id="@+id/iv_setting_version"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_setting_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_setting_version"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_setting_version" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/divider_setting_etc"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="32dp"
+                        app:dividerColor="@color/light"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/iv_setting_version" />
+
+                    <TextView
+                        android:id="@+id/tv_setting_etc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/tv_setting_etc"
+                        android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider_setting_etc"
+                        app:layout_goneMarginTop="10dp" />
+
+                    <TextView
+                        android:id="@+id/tv_setting_center"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="233dp"
+                        android:text="@string/tv_setting_center"
+                        android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                        android:textColor="@color/font_B02"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_setting_etc" />
+
+                    <ImageView
+                        android:id="@+id/iv_setting_center"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_setting_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_setting_center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_setting_center" />
+
+                    <TextView
+                        android:id="@+id/tv_setting_log_out"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="233dp"
+                        android:text="@string/tv_setting_log_out"
+                        android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                        android:textColor="@color/font_B02"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_setting_center" />
+
+                    <ImageView
+                        android:id="@+id/iv_setting_log_out"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_setting_arrow"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_setting_log_out"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/tv_setting_log_out" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tv_setting_explain"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/tv_setting_explain"
-                android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_setting_info" />
+        </ScrollView>
 
-            <TextView
-                android:id="@+id/tv_setting_service"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="233dp"
-                android:text="@string/tv_setting_service"
-                android:textColor="@color/font_B02"
-                android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_setting_explain"/>
 
-            <ImageView
-                android:id="@+id/iv_setting_service"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_setting_service"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_setting_service"
-                android:src="@drawable/ic_setting_arrow"/>
-
-            <TextView
-                android:id="@+id/tv_setting_personal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="233dp"
-                android:text="@string/tv_setting_personal"
-                android:textColor="@color/font_B02"
-                android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_setting_service"/>
-
-            <ImageView
-                android:id="@+id/iv_setting_personal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_setting_personal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_setting_personal"
-                android:src="@drawable/ic_setting_arrow"/>
-
-            <TextView
-                android:id="@+id/tv_setting_version"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="233dp"
-                android:text="@string/tv_setting_version"
-                android:textColor="@color/font_B02"
-                android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_setting_personal"/>
-
-            <ImageView
-                android:id="@+id/iv_setting_version"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_setting_version"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_setting_version"
-                android:src="@drawable/ic_setting_arrow"/>
-
-            <TextView
-                android:id="@+id/tv_setting_etc"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/tv_setting_etc"
-                android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_setting_version"/>
-
-            <TextView
-                android:id="@+id/tv_setting_center"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="233dp"
-                android:text="@string/tv_setting_center"
-                android:textColor="@color/font_B02"
-                android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_setting_etc"/>
-
-            <ImageView
-                android:id="@+id/iv_setting_center"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_setting_center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_setting_center"
-                android:src="@drawable/ic_setting_arrow"/>
-
-            <TextView
-                android:id="@+id/tv_setting_log_out"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="233dp"
-                android:text="@string/tv_setting_log_out"
-                android:textColor="@color/font_B02"
-                android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_setting_center"/>
-
-            <ImageView
-                android:id="@+id/iv_setting_log_out"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_setting_log_out"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_setting_log_out"
-                android:src="@drawable/ic_setting_arrow"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

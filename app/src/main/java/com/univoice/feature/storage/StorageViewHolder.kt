@@ -7,9 +7,9 @@ import com.univoice.databinding.ItemNoticeBinding
 import com.univoice.domain.entity.NoticeListEntity
 import com.univoice.feature.util.CalculateDate
 
-class HomeNoticeViewHolder(
+class StorageViewHolder(
     private val binding: ItemNoticeBinding,
-    private val onClick: (NoticeListEntity, Int) -> Unit,
+    private val onClick: (NoticeListEntity, Int) -> Unit = { _, _ -> },
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(data: NoticeListEntity) {
         with(binding) {

@@ -34,25 +34,19 @@ class CustomSnapHelper(
     }
 
     private fun setFont(newPosition: Int) {
-        val context = rv.context
-        val gray300 = ContextCompat.getColor(context, R.color.gray_300)
-        val mint400 = ContextCompat.getColor(context, R.color.mint_700)
 
-        // 새로운 선택된 뷰의 텍스트 색을 민트색으로 변경
         val currentViewHolder = rv.findViewHolderForAdapterPosition(newPosition) as? DateViewHolder
-        currentViewHolder?.binding?.tvDateNumber?.setTextColor(mint400)
+        currentViewHolder?.binding?.tvDateNumber?.setTextColor(ContextCompat.getColor(rv.context, R.color.mint_700))
 
-        // 선택된 위치를 업데이트
         lastSelectedPosition = newPosition
 
-        // 모든 항목의 텍스트 색 gray300으로 변경 (선택된 위치 제외)
         val adapterItemCount = rv.adapter?.itemCount ?: 0
         for (i in 0 until adapterItemCount) {
             val viewHolder = rv.findViewHolderForAdapterPosition(i) as? DateViewHolder
             if (i == newPosition) {
-                viewHolder?.binding?.tvDateNumber?.setTextColor(mint400)
+                viewHolder?.binding?.tvDateNumber?.setTextColor(ContextCompat.getColor(rv.context, R.color.mint_700))
             } else {
-                viewHolder?.binding?.tvDateNumber?.setTextColor(gray300)
+                viewHolder?.binding?.tvDateNumber?.setTextColor(ContextCompat.getColor(rv.context, R.color.gray_300))
             }
         }
     }

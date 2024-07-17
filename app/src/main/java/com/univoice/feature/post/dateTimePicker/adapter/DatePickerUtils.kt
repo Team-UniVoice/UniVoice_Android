@@ -15,7 +15,7 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
     var isPmSelectedUnvalidated = false
 
     init {
-        isPmSelectedUnvalidated = startDate.get(Calendar.HOUR_OF_DAY) >= 12
+        isPmSelectedUnvalidated = startDate.get(Calendar.HOUR_OF_DAY) >= TWELVE
     }
 
     fun getAllDates(): ArrayList<Calendar> {
@@ -36,7 +36,7 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
         val calendarEndYear = Calendar.getInstance().also { it.time = endDate.time }
 
         calendarStartYear.add(Calendar.YEAR, -2)
-        calendarEndYear.add(Calendar.YEAR, 10)
+        calendarEndYear.add(Calendar.YEAR, TWELVE)
 
         val totalYearsBetweenEnds =
             calendarEndYear.get(Calendar.YEAR) - calendarStartYear.get(Calendar.YEAR)
@@ -57,7 +57,7 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
         val calendarEndMonth = Calendar.getInstance().also { it.time = endDate.time }
 
         calendarStartMonth.add(Calendar.MONTH, -2)
-        calendarEndMonth.add(Calendar.MONTH, 12)
+        calendarEndMonth.add(Calendar.MONTH, TWELVE)
 
         val totalMonthsBetweenEnds =
             (calendarEndMonth.get(Calendar.YEAR) - calendarStartMonth.get(Calendar.YEAR)) * 12 +
@@ -131,5 +131,9 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
 
     fun setSelectedHour(hour: Int) {
         selectedDateUnvalidated.set(Calendar.HOUR_OF_DAY, hour)
+    }
+
+    companion object {
+        const val TWELVE = 12
     }
 }
