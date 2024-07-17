@@ -21,12 +21,28 @@ class HomeViewModel @Inject constructor(
     val getQuickScanState: StateFlow<UiState<List<HomeQuickScanListEntity>>> =
         _getQuickScanState
 
-    private val _getNoticeContent = MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
-    val getNoticeContent: StateFlow<UiState<List<NoticeListEntity>>> = _getNoticeContent
+    private val _getNoticeAllState =
+        MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
+    val getNoticeAllState: StateFlow<UiState<List<NoticeListEntity>>> = _getNoticeAllState
+
+    private val _getNoticeUniversityState =
+        MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
+    val getNoticeUniversityState: StateFlow<UiState<List<NoticeListEntity>>> =
+        _getNoticeUniversityState
+
+    private val _getNoticeCollegeState =
+        MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
+    val getNoticeCollegeState: StateFlow<UiState<List<NoticeListEntity>>> =
+        _getNoticeCollegeState
+
+    private val _getNoticeDepartmentState =
+        MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
+    val getNoticeDepartmentState: StateFlow<UiState<List<NoticeListEntity>>> =
+        _getNoticeDepartmentState
 
     init {
         getQuickscan()
-        getNoticeContent()
+        getNoticeAll()
     }
 
     private fun getQuickscan() = viewModelScope.launch {
@@ -42,15 +58,51 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-    fun getNoticeContent() = viewModelScope.launch {
-        _getNoticeContent.emit(UiState.Loading)
+    fun getNoticeAll() = viewModelScope.launch {
+        _getNoticeAllState.emit(UiState.Loading)
         homeRepository.getNoticeAll().fold(
             {
-                if (it != null) _getNoticeContent.emit(UiState.Success(it)) else _getNoticeContent.emit(
+                if (it != null) _getNoticeAllState.emit(UiState.Success(it)) else _getNoticeAllState.emit(
                     UiState.Failure("400")
                 )
             },
-            { _getNoticeContent.emit(UiState.Failure(it.message.toString())) }
+            { _getNoticeAllState.emit(UiState.Failure(it.message.toString())) }
+        )
+    }
+
+    fun getNoticeUniversity() = viewModelScope.launch {
+        _getNoticeUniversityState.emit(UiState.Loading)
+        homeRepository.getNoticeUniversity().fold(
+            {
+                if (it != null) _getNoticeUniversityState.emit(UiState.Success(it)) else _getNoticeUniversityState.emit(
+                    UiState.Failure("400")
+                )
+            },
+            { _getNoticeUniversityState.emit(UiState.Failure(it.message.toString())) }
+        )
+    }
+
+    fun getNoticeCollege() = viewModelScope.launch {
+        _getNoticeCollegeState.emit(UiState.Loading)
+        homeRepository.getNoticeCollege().fold(
+            {
+                if (it != null) _getNoticeCollegeState.emit(UiState.Success(it)) else _getNoticeCollegeState.emit(
+                    UiState.Failure("400")
+                )
+            },
+            { _getNoticeCollegeState.emit(UiState.Failure(it.message.toString())) }
+        )
+    }
+
+    fun getNoticeDepartment() = viewModelScope.launch {
+        _getNoticeDepartmentState.emit(UiState.Loading)
+        homeRepository.getNoticeDepartment().fold(
+            {
+                if (it != null) _getNoticeDepartmentState.emit(UiState.Success(it)) else _getNoticeDepartmentState.emit(
+                    UiState.Failure("400")
+                )
+            },
+            { _getNoticeDepartmentState.emit(UiState.Failure(it.message.toString())) }
         )
     }
 }

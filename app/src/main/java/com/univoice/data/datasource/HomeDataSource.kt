@@ -8,4 +8,10 @@ interface HomeDataSource {
     suspend fun getNoticeQuickScan(): BaseResponse<ResponseNoticeQuickScanDto>
 
     suspend fun getNoticeAll(): BaseResponse<List<ResponseNoticeAllDto>>
+
+    suspend fun getNoticeUniversity(): BaseResponse<List<ResponseNoticeAllDto>>
+
+    suspend fun getNoticeCollege(): BaseResponse<List<ResponseNoticeAllDto>>
+
+    suspend fun getNoticeDepartment(): BaseResponse<List<ResponseNoticeAllDto>>
 }

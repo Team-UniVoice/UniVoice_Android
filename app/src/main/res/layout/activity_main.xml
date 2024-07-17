@@ -34,7 +34,7 @@
             app:itemPaddingTop="9dp"
             app:itemTextAppearanceActive="@style/TextAppearance.UniVoice.caption3Regular"
             app:itemTextAppearanceInactive="@style/TextAppearance.UniVoice.caption3Regular"
-            app:itemTextColor="@color/font_B04"
+            app:itemTextColor="@color/sel_color_bnv_menu"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

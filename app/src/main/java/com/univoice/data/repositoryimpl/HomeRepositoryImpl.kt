@@ -41,4 +41,22 @@ class HomeRepositoryImpl @Inject constructor(
             homeDataSource.getNoticeAll().data?.map { it.toNoticeListEntity() }
         }
     }
+
+    override suspend fun getNoticeUniversity(): Result<List<NoticeListEntity>?> {
+        return runCatching {
+            homeDataSource.getNoticeUniversity().data?.map { it.toNoticeListEntity() }
+        }
+    }
+
+    override suspend fun getNoticeCollege(): Result<List<NoticeListEntity>?> {
+        return runCatching {
+            homeDataSource.getNoticeCollege().data?.map { it.toNoticeListEntity() }
+        }
+    }
+
+    override suspend fun getNoticeDepartment(): Result<List<NoticeListEntity>?> {
+        return runCatching {
+            homeDataSource.getNoticeDepartment().data?.map { it.toNoticeListEntity() }
+        }
+    }
 }

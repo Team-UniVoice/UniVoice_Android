@@ -10,4 +10,7 @@ object ApiKeyStorage {
     const val QUICKHEAD = "quickhead"
     const val SAVE = "save"
     const val QUICK = "quick"
+    const val UNIVERSITY = "university"
+    const val COLLEGE_DEPARTMENT = "college-department"
+    const val DEPARTMENT = "department"
 }
