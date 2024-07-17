@@ -1,6 +1,7 @@
 package com.univoice.feature.noticeDetail
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -8,18 +9,25 @@ import com.univoice.databinding.ItemNoticeDetailImageBinding
 
 class NoticeDetailViewHolder(private val binding: ItemNoticeDetailImageBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: String) {
-        binding.ivNoticeDetailContent.load(item)
+
+    fun bind(image: String) {
+        with(binding) {
+            if (image.isNullOrEmpty()) {
+                ivNoticeDetailContent.visibility = View.GONE
+            } else {
+                ivNoticeDetailContent.visibility = View.VISIBLE
+                ivNoticeDetailContent.load(image)
+            }
+        }
     }
 
     companion object {
         fun from(parent: ViewGroup): NoticeDetailViewHolder {
-            val binding =
-                ItemNoticeDetailImageBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
+            val binding = ItemNoticeDetailImageBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
             return NoticeDetailViewHolder(binding)
         }
     }
