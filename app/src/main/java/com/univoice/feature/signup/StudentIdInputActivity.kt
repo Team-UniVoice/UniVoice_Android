@@ -91,7 +91,7 @@ class StudentIdInputActivity :
         Intent(this, StudentInfoCheckActivity::class.java).apply {
             putExtra(SCHOOL_KEY, intent.getStringExtra(SCHOOL_KEY))
             putExtra(DEPARTMENT_KEY, intent.getStringExtra(DEPARTMENT_KEY))
-            putExtra(USER_ID_KEY, binding.spStudentIdInput.selectedItem.toString())
+            putExtra(USER_YEAR_KEY, binding.spStudentIdInput.selectedItem.toString())
             startActivity(this)
         }
     }
@@ -124,6 +124,6 @@ class StudentIdInputActivity :
     }
 
     companion object {
-        const val USER_ID_KEY = "selectedId"
+        const val USER_YEAR_KEY = "selectedYear"
     }
 }
