@@ -49,7 +49,7 @@
 
         <activity
             android:name=".feature.SplashActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/Theme.UniVoice.Splash"
             android:screenOrientation="portrait">
 
