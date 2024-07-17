@@ -87,6 +87,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.circleindicator)
     implementation(libs.circleimageview)
+    implementation(libs.lottie)
 
     // Hilt
     implementation(libs.dagger.hilt)
@@ -110,9 +111,6 @@ dependencies {
 
     // Preference Datastore
     implementation(libs.preference.datastore)
-
-    // Lottie
-    implementation(libs.lottie)
 
     // Splash
     implementation(libs.splash)
