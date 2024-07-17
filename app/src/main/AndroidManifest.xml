@@ -22,10 +22,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".feature.noticePost.NoticePostApplyActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".feature.login.WelcomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

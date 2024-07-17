@@ -3,13 +3,15 @@ package com.univoice.feature.noticePost
 import android.animation.Animator
 import android.content.Intent
 import android.view.View
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import com.univoice.R
-import com.univoice.core_ui.base.BindingActivity
-import com.univoice.databinding.ActivityNoticePostApplyBinding
+import com.univoice.core_ui.base.BindingFragment
+import com.univoice.databinding.FragmentNoticePostApplyBinding
 import com.univoice.feature.MainActivity
 
-class NoticePostApplyActivity :
-    BindingActivity<ActivityNoticePostApplyBinding>(R.layout.activity_notice_post_apply) {
+class NoticePostApplyFragment :
+    BindingFragment<FragmentNoticePostApplyBinding>(R.layout.fragment_notice_post_apply) {
     override fun initView() {
         initLottieAnimation()
         initConfirmBtnClickListener()
@@ -34,10 +36,10 @@ class NoticePostApplyActivity :
 
     private fun initConfirmBtnClickListener() {
         binding.btnNoticePostApplyConfirm.setOnClickListener {
-            Intent(this, MainActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(this)
-            }
+            val navOptions = NavOptions.Builder()
+                .setPopUpTo(findNavController().graph.startDestinationId, true)
+                .build()
+            findNavController().navigate(R.id.action_fragment_notice_post_apply_to_fragment_home, null, navOptions)
         }
     }
 

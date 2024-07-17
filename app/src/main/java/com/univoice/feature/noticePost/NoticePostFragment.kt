@@ -12,13 +12,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.core_ui.util.context.showPermissionAppSettingsDialog
 import com.univoice.databinding.FragmentNoticePostBinding
-import com.univoice.feature.MainActivity
 
 class NoticePostFragment :
     BindingFragment<FragmentNoticePostBinding>(R.layout.fragment_notice_post) {
@@ -150,10 +150,7 @@ class NoticePostFragment :
 
     private fun initApplyBtnClickListener() {
         binding.btnToolbarNoticePostApply.setOnClickListener {
-            Intent(requireContext(), NoticePostApplyActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(this)
-            }
+            findNavController().navigate(R.id.action_fragment_notice_post_to_fragment_notice_post_apply)
         }
     }
 
