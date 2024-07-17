@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
+import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.ActivityDepartmentInputBinding
 import com.univoice.feature.signup.SchoolInputActivity.Companion.MAX_SIZE
 import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
@@ -155,9 +156,9 @@ class DepartmentInputActivity :
     private fun filterDepartments(query: String) {
         filteredList.clear()
         if (query.isNotEmpty()) {
-            val results = viewModel.departmentList.value
-                .filter { it.contains(query, ignoreCase = true) }
-                .sortedBy { it.replace(query, "", ignoreCase = true) }
+            val results = (viewModel.departmentListState.value as? UiState.Success)?.data
+                ?.filter { it.contains(query, ignoreCase = true) }
+                ?.sortedBy { it.replace(query, "", ignoreCase = true) } ?: emptyList()
             filteredList.addAll(results.take(MAX_SIZE))
             if (results.size > MAX_SIZE) {
                 filteredList.add(applicationContext.getString(R.string.tv_ellipse))
@@ -169,14 +170,21 @@ class DepartmentInputActivity :
     private fun postDepartments() {
         val selectedSchool = intent.getStringExtra(SCHOOL_KEY)
         selectedSchool?.let {
-            viewModel.fetchDepartments(it)
+            viewModel.postDepartments(it)
         }
     }
 
     private fun observeDepartmentList() {
         lifecycleScope.launch {
-            viewModel.departmentList.collect { departmentList ->
-                filterDepartments(binding.etDepartmentInputSearch.text.toString().trim())
+            viewModel.departmentListState.collect { state ->
+                when (state) {
+                    is UiState.Loading -> Unit
+                    is UiState.Success -> {
+                        filterDepartments(binding.etDepartmentInputSearch.text.toString().trim())
+                    }
+                    is UiState.Empty -> Unit
+                    is UiState.Failure -> Unit
+                }
             }
         }
     }
