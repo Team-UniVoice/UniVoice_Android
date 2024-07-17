@@ -6,8 +6,7 @@ import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.univoice.databinding.ItemHomeNoticeContentBinding
 import com.univoice.domain.entity.NoticeListEntity
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import com.univoice.feature.util.CalculateDate
 
 class HomeNoticeContentViewHolder(
     private val binding: ItemHomeNoticeContentBinding,
@@ -19,10 +18,7 @@ class HomeNoticeContentViewHolder(
             tvHomeNoticeContentTitle.text = data.title
             tvHomeNoticeContentLike.text = data.likeCount.toString()
             tvHomeNoticeContentView.text = data.viewCount.toString()
-
-            val localDate = LocalDate.parse(data.date.substringBefore('T'))
-            val outputFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-            tvHomeNoticeContentDate.text = localDate.format(outputFormatter)
+            tvHomeNoticeContentDate.text = CalculateDate().getCalculateDate(data.date)
 
             if (data.image.isEmpty()) {
                 ivHomeNoticeContent.visibility = View.INVISIBLE
