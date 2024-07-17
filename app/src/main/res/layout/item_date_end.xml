@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_item_end_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_end_date_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_day_year"
+            android:textAppearance="@style/TextAppearance.UniVoice.button3Regular"
+            android:textColor="@color/font_B03"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_end_date_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_day_month"
+            android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+            android:textColor="@color/font_B03"
+            app:layout_constraintStart_toStartOf="@id/tv_end_date_year"
+            app:layout_constraintTop_toBottomOf="@id/tv_end_date_year" />
+
+        <TextView
+            android:id="@+id/tv_end_date_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_day_day"
+            android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+            android:textColor="@color/font_B03"
+            app:layout_constraintStart_toEndOf="@id/tv_end_date_month"
+            app:layout_constraintTop_toTopOf="@id/tv_end_date_month" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_end_date_year, tv_end_date_month, tv_end_date_day" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

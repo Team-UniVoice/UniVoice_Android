@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_item_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_start_time_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_time_date"
+            android:textAppearance="@style/TextAppearance.UniVoice.button3Regular"
+            android:textColor="@color/font_B03"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_start_time_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_time_hour"
+            android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+            android:textColor="@color/font_B03"
+            app:layout_constraintStart_toStartOf="@id/tv_start_time_day"
+            app:layout_constraintTop_toBottomOf="@id/tv_start_time_day" />
+
+        <TextView
+            android:id="@+id/tv_start_time_minute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_time_minute"
+            android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+            android:textColor="@color/font_B03"
+            app:layout_constraintStart_toEndOf="@id/tv_start_time_hour"
+            app:layout_constraintTop_toTopOf="@id/tv_start_time_hour" />
+
+        <TextView
+            android:id="@+id/tv_start_time_meridiem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_date_pm"
+            android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+            android:textColor="@color/font_B03"
+            app:layout_constraintStart_toEndOf="@id/tv_start_time_minute"
+            app:layout_constraintTop_toTopOf="@id/tv_start_time_minute" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="tv_start_time_day, tv_start_time_hour, tv_start_time_minute, tv_start_time_meridiem" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
