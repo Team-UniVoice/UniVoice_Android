@@ -23,7 +23,7 @@ class SignUpRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun postEmail(requestCheckEmailDto: RequestCheckEmailDto): Result<BaseResponse<List<String>>> {
+    override suspend fun postEmail(requestCheckEmailDto: RequestCheckEmailDto): Result<BaseResponse<Unit>> {
         return runCatching {
             signUpDataSource.postEmail(requestCheckEmailDto)
         }

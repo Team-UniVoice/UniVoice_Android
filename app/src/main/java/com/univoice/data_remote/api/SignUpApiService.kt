@@ -25,5 +25,5 @@ interface SignUpApiService {
     @POST("/$API/$V1/$AUTH/$CHECK_EMAIL")
     suspend fun postEmail(
         @Body requestCheckEmailDto: RequestCheckEmailDto
-    ): BaseResponse<List<String>>
+    ): BaseResponse<Unit>
 }

@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RequestCheckEmailDto(
     @SerialName("email")
-    val email: String=""
+    val email: String
 )

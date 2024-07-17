@@ -16,6 +16,6 @@ class SignUpDataSourceImpl @Inject constructor(
     override suspend fun postDepartments(requestDepartmentDto: RequestDepartmentDto): BaseResponse<List<String>> =
         signUpApiService.postDepartments(requestDepartmentDto)
 
-    override suspend fun postEmail(requestCheckEmailDto: RequestCheckEmailDto): BaseResponse<List<String>> =
+    override suspend fun postEmail(requestCheckEmailDto: RequestCheckEmailDto): BaseResponse<Unit> =
         signUpApiService.postEmail(requestCheckEmailDto)
 }
