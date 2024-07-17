@@ -173,12 +173,13 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }.launchIn(lifecycleScope)
     }
 
-    private fun iniQuickscanAdapter(quickscanData: List<QuickScanListEntity>) {
+    private fun iniQuickscanAdapter(quickscanData: List<HomeQuickScanListEntity>) {
         binding.rvHomeQuickscan.adapter =
             HomeQuickscanAdapter(click = { quickscan, position ->
                 Intent(requireContext(), QuickScanActivity::class.java).apply {
                     putExtra(AFFILIATION_KEY, position)
                     startActivity(this)
+                }
             }).apply {
                 submitList(quickscanData)
             }

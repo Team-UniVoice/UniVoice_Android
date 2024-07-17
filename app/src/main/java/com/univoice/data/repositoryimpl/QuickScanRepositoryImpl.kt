@@ -15,4 +15,10 @@ class QuickScanRepositoryImpl @Inject constructor(
             quickScanDataSource.postQuickScan(RequestQuickScanDto(writeAffiliation)).data?.map { it.toQuickScanListEntity() }
         }
     }
+
+    override suspend fun postQuickScanViewCheck(noticeId: Int): Result<Unit> {
+        return runCatching {
+            quickScanDataSource.postQuickScanViewCheck(noticeId)
+        }
+    }
 }

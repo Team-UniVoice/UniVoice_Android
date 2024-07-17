@@ -49,6 +49,15 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
                 is UiState.Failure -> Timber.tag("QuickScanFailure").d(it.msg)
             }
         }.launchIn(lifecycleScope)
+
+        viewModel.postQuickScanViewCheck.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Unit
+                is UiState.Success -> Unit
+                is UiState.Empty -> Unit
+                is UiState.Failure -> Timber.tag("QuickScanFailure").d(it.msg)
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun addMarginsToTabs(tabLayout: TabLayout) {
@@ -113,6 +122,7 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
 
             override fun onPageSelected(position: Int) {
                 currentPos = position
+                viewModel.postQuickScanViewCheck(adapter.currentList[position].id)
                 super.onPageSelected(position)
             }
 
