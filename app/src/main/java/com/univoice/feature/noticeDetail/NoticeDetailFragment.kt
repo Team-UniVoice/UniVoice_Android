@@ -33,8 +33,8 @@ class NoticeDetailFragment :
 
     private fun getNoticeDetail() {
         val noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
-        if (noticeId != null) {
-            viewModel.getNoticeDetail(noticeId)
+        noticeId?.let {
+            viewModel.getNoticeDetail(it)
         }
     }
 
