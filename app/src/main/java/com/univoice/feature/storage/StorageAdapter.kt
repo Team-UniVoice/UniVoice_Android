@@ -24,7 +24,7 @@ class StorageAdapter(
     companion object {
         private val StorageAdapterDiffCallback =
             ItemDiffCallback<NoticeListEntity>(
-                onItemsTheSame = { old, new -> old.title == new.title },
+                onItemsTheSame = { old, new -> old.id == new.id },
                 onContentsTheSame = { old, new -> old == new })
     }
 }

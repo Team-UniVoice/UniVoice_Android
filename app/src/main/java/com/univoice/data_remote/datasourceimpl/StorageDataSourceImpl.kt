@@ -9,7 +9,6 @@ import javax.inject.Inject
 class StorageDataSourceImpl @Inject constructor(
     private val storageApiService: StorageApiService
 ) : StorageDataSource {
-    override suspend fun getSaves(): BaseResponse<List<ResponseStorageDto>> {
-        return storageApiService.getSaves()
-    }
+    override suspend fun getSaves(): BaseResponse<List<ResponseStorageDto>> =
+        storageApiService.getSaves()
 }

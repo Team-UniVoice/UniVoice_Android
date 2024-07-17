@@ -21,13 +21,10 @@ class StorageFragment : BindingFragment<FragmentStorageBinding>(R.layout.fragmen
     }
 
     private fun initStorageObserve() {
-        viewModel.getStorageList.flowWithLifecycle(lifecycle).onEach {
+        viewModel.getStorageState.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit
-                is UiState.Success -> {
-                    initStorageAdapter(it.data)
-                }
-
+                is UiState.Success -> initStorageAdapter(it.data)
                 is UiState.Empty -> Unit
                 is UiState.Failure -> Unit
             }

@@ -10,7 +10,6 @@ import javax.inject.Inject
 class QuickScanDataSourceImpl @Inject constructor(
     private val quickScanApiService: QuickScanApiService
 ) : QuickScanDataSource {
-    override suspend fun postQuickScan(requestQuickScanDto: RequestQuickScanDto): BaseResponse<List<ResponseQuickScanDto>> {
-        return quickScanApiService.postQuickScan(requestQuickScanDto)
-    }
+    override suspend fun postQuickScan(requestQuickScanDto: RequestQuickScanDto): BaseResponse<List<ResponseQuickScanDto>> =
+        quickScanApiService.postQuickScan(requestQuickScanDto)
 }

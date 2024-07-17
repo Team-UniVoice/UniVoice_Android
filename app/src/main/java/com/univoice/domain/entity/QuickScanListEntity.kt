@@ -11,5 +11,7 @@ data class QuickScanListEntity(
     val likeCount: Int = 0,
     var viewCount: Int = 0,
     val category: String = "",
-    var createdAt: String = "",
+    val createdAt: String = "",
+    val logoImage: String = "",
+    var saveCheck: Boolean = false
 )

@@ -14,6 +14,7 @@ import com.univoice.core_ui.base.BindingActivity
 import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.ActivityQuickScanBinding
 import com.univoice.domain.entity.QuickScanListEntity
+import com.univoice.feature.home.HomeFragment.Companion.AFFILIATION_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -30,7 +31,7 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
     }
 
     private fun initPostQuickScanList() {
-        val position = intent.getIntExtra("writeAffiliation", 0)
+        val position = intent.getIntExtra(AFFILIATION_KEY, 0)
         val writeAffiliation = when (position) {
             0 -> "총학생회"
             1 -> "단과대학학생회"
@@ -45,7 +46,7 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
                 is UiState.Loading -> Unit
                 is UiState.Success -> initQuickScanAdapter(it.data)
                 is UiState.Empty -> Unit
-                is UiState.Failure -> Timber.tag("hh").d(it.msg)
+                is UiState.Failure -> Timber.tag("QuickScanFailure").d(it.msg)
             }
         }.launchIn(lifecycleScope)
     }
@@ -79,12 +80,12 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
     }
 
     private fun initQuickScanAdapter(data: List<QuickScanListEntity>) {
-        val adapter = QuickScanAdapter().apply {
+        QuickScanAdapter().apply {
             submitList(data)
+            binding.vpQuickScan.adapter = this
+            initTabLayout(data.size)
+            initPageChangeCallback(this)
         }
-        binding.vpQuickScan.adapter = adapter
-        initTabLayout(data.size)
-        initPageChangeCallback(adapter)
     }
 
     private fun initPageChangeCallback(adapter: QuickScanAdapter) {

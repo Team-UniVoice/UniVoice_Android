@@ -15,22 +15,22 @@ import javax.inject.Inject
 class StorageViewModel @Inject constructor(
     private val storageRepository: StorageRepository
 ) : ViewModel() {
-    private val _getStorageList = MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
-    val getStorageList: StateFlow<UiState<List<NoticeListEntity>>> = _getStorageList
+    private val _getStorageState = MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
+    val getStorageState: StateFlow<UiState<List<NoticeListEntity>>> = _getStorageState
 
     init {
         getStorageList()
     }
 
     private fun getStorageList() = viewModelScope.launch {
-        _getStorageList.emit(UiState.Loading)
+        _getStorageState.emit(UiState.Loading)
         storageRepository.getSaves().fold(
             {
-                if (it != null) _getStorageList.emit(UiState.Success(it)) else _getStorageList.emit(
+                if (it != null) _getStorageState.emit(UiState.Success(it)) else _getStorageState.emit(
                     UiState.Failure("400")
                 )
             },
-            { _getStorageList.emit(UiState.Failure(it.message.toString())) }
+            { _getStorageState.emit(UiState.Failure(it.message.toString())) }
         )
 
     }

@@ -10,9 +10,9 @@ import javax.inject.Inject
 class QuickScanRepositoryImpl @Inject constructor(
     private val quickScanDataSource: QuickScanDataSource
 ) : QuickScanRepository {
-    override suspend fun postQuickScan(requestQuickScanDto: String): Result<List<QuickScanListEntity>?> {
+    override suspend fun postQuickScan(writeAffiliation: String): Result<List<QuickScanListEntity>?> {
         return runCatching {
-            quickScanDataSource.postQuickScan(RequestQuickScanDto(requestQuickScanDto)).data?.map { it.toQuickScanListEntity() }
+            quickScanDataSource.postQuickScan(RequestQuickScanDto(writeAffiliation)).data?.map { it.toQuickScanListEntity() }
         }
     }
 }

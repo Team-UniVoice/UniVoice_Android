@@ -21,7 +21,7 @@ class QuickScanViewModel @Inject constructor(
 
     fun postQuickScanList(writeAffiliation: String) = viewModelScope.launch {
         _postQuickScanList.emit(UiState.Loading)
-        quickScanRepository.postQuickScan(requestQuickScanDto = writeAffiliation).fold(
+        quickScanRepository.postQuickScan(writeAffiliation = writeAffiliation).fold(
             {
                 if (it != null) _postQuickScanList.emit(UiState.Success(it)) else _postQuickScanList.emit(
                     UiState.Failure("400")

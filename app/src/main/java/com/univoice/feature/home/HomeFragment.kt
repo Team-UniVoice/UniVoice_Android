@@ -114,7 +114,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         binding.rvHomeQuickscan.adapter =
             HomeQuickscanAdapter(click = { quickscan, position ->
                 Intent(requireContext(), QuickScanActivity::class.java).apply {
-                    putExtra("writeAffiliation", position)
+                    putExtra(AFFILIATION_KEY, position)
                     startActivity(this)
                 }
             }).apply {
@@ -124,5 +124,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         if (binding.rvHomeQuickscan.itemDecorationCount == 0) {
             binding.rvHomeQuickscan.addItemDecoration(HomeQuickscanItemDecorator(requireContext()))
         }
+    }
+
+    companion object {
+        const val AFFILIATION_KEY = "writeAffiliation"
     }
 }
