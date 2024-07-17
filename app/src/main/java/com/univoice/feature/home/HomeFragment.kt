@@ -11,9 +11,8 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.FragmentHomeBinding
-import com.univoice.domain.entity.NoticeListEntity
 import com.univoice.domain.entity.HomeQuickScanListEntity
-import com.univoice.domain.entity.QuickScanListEntity
+import com.univoice.domain.entity.NoticeListEntity
 import com.univoice.feature.quickscan.QuickScanActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -158,13 +157,13 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
             )
         }
     }
-    
+
     private fun initQuickscanObserve() {
         homeViewModel.getQuickScanState.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit
                 is UiState.Success -> {
-                    iniQuickscanAdapter(it.data)
+                    (it.data)
                     initNoticeCategoryAdapter(it.data.map { it.name })
                 }
 
@@ -174,7 +173,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }.launchIn(lifecycleScope)
     }
 
-    private fun iniQuickscanAdapter(quickscanData: List<HomeQuickScanListEntity>) {
+    private fun initQuickscanAdapter(quickscanData: List<HomeQuickScanListEntity>) {
         binding.rvHomeQuickscan.adapter =
             HomeQuickscanAdapter(click = { quickscan, position ->
                 Intent(requireContext(), QuickScanActivity::class.java).apply {
