@@ -6,6 +6,7 @@ import com.univoice.data.dto.response.ResponseQuickScanDto
 import com.univoice.data.dto.response.ResponseStorageDto
 import com.univoice.data_remote.api.ApiKeyStorage.API
 import com.univoice.data_remote.api.ApiKeyStorage.NOTICE
+import com.univoice.data_remote.api.ApiKeyStorage.NOTICE_ID
 import com.univoice.data_remote.api.ApiKeyStorage.QUICK
 import com.univoice.data_remote.api.ApiKeyStorage.V1
 import com.univoice.data_remote.api.ApiKeyStorage.VIEW_CHECK
@@ -19,8 +20,8 @@ interface QuickScanApiService {
         @Body requestQuickScanDto: RequestQuickScanDto
     ): BaseResponse<List<ResponseQuickScanDto>>
 
-    @POST("$API/$V1/$NOTICE/$VIEW_CHECK/{noticeId}")
+    @POST("$API/$V1/$NOTICE/$VIEW_CHECK/{$NOTICE_ID}")
     suspend fun postQuickScanViewCheck(
-        @Path("noticeId") noticeId: Int
+        @Path(NOTICE_ID) noticeId: Int
     ): BaseResponse<Unit>
 }

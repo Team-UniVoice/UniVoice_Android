@@ -15,4 +15,5 @@ object ApiKeyStorage {
     const val COLLEGE_DEPARTMENT = "college-department"
     const val DEPARTMENT = "department"
     const val VIEW_CHECK = "view-check"
+    const val NOTICE_ID = "noticeId"
 }

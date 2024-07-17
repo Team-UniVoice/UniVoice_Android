@@ -53,7 +53,7 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
         viewModel.postQuickScanViewCheck.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit
-                is UiState.Success -> Unit
+                is UiState.Success -> Timber.tag("QuickScanSuccess").d(it.data.toString())
                 is UiState.Empty -> Unit
                 is UiState.Failure -> Timber.tag("QuickScanFailure").d(it.msg)
             }
