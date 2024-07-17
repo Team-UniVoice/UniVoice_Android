@@ -62,6 +62,7 @@
     <string name="btn_notice_post_target">대상</string>
     <string name="btn_notice_post_date">일시</string>
     <string name="et_bottomsheet_notice_post_target_hint">행사 대상을 입력해주세요.</string>
+    <string name="tv_notice_post_date">%1$02d월</string>
 
     <!--날짜-->
     <string name="tv_date_time">%1$02d</string>
@@ -74,6 +75,8 @@
     <string name="tv_date_day">%1$02d일(1$s)</string>
     <string name="tv_date_title">일시</string>
     <string name="btn_date_success">확인</string>
+    <string name="tv_date_time_picker">%1$s \n 2$s %3$s%4$s</string>
+    <string name="tv_date_day_picker">%1$s %2$s%3$s</string>
 
     <!-- 저장 -->
     <string name="storage_toolbar_title">저장한 공지사항</string>

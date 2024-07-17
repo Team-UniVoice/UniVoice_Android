@@ -220,7 +220,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
-                            tools:text="2024년 06월 12일\n오후 6시" />
+                            tools:text="@string/tv_date_time_picker" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -242,8 +242,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
-                            tools:text="2024년 06월 13일\n오후 6시" />
-
+                            tools:text="@string/tv_notice_post_date" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <Space
