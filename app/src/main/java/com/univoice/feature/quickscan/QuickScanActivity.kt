@@ -15,6 +15,7 @@ import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.ActivityQuickScanBinding
 import com.univoice.domain.entity.QuickScanListEntity
 import com.univoice.feature.home.HomeFragment.Companion.AFFILIATION_KEY
+import com.univoice.feature.home.HomeFragment.Companion.IMAGE_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -89,11 +90,14 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
     }
 
     private fun initQuickScanAdapter(data: List<QuickScanListEntity>) {
-        QuickScanAdapter().apply {
-            submitList(data)
-            binding.vpQuickScan.adapter = this
-            initTabLayout(data.size)
-            initPageChangeCallback(this)
+        val image = intent.getStringExtra(IMAGE_KEY)
+        image?.let {
+            QuickScanAdapter(it).apply {
+                submitList(data)
+                binding.vpQuickScan.adapter = this
+                initTabLayout(data.size)
+                initPageChangeCallback(this)
+            }
         }
     }
 

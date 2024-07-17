@@ -10,6 +10,7 @@ import com.univoice.feature.util.CalculateDate
 import com.univoice.feature.util.CalculateTime
 
 class QuickScanViewHolder(
+    private val image: String,
     private val binding: ItemQuickScanBinding,
     private val onClick: (Int, Boolean) -> Unit = { _, _ -> },
 ) : RecyclerView.ViewHolder(binding.root) {
@@ -27,9 +28,7 @@ class QuickScanViewHolder(
             if(data.startTime != null && data.endTime != null)
                 tvQuickScanDateContent.text = CalculateDate().getCalculateNoticeDate(data.startTime, data.endTime)
 
-            ivQuickScanAvatar.load(data.logoImage) {
-                transformations(CircleCropTransformation())
-            }
+            ivQuickScanAvatar.load(image)
             ivQuickScanBookmark.isSelected = data.saveCheck
             ivQuickScanBookmark.setOnClickListener {
                 val newBookmarkState = !data.saveCheck

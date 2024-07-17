@@ -163,7 +163,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
             when (it) {
                 is UiState.Loading -> Unit
                 is UiState.Success -> {
-                    iniQuickscanAdapter(it.data)
+                    initQuickScanAdapter(it.data)
                     initNoticeCategoryAdapter(it.data.map { it.name })
                 }
 
@@ -173,12 +173,15 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }.launchIn(lifecycleScope)
     }
 
-    private fun iniQuickscanAdapter(quickscanData: List<HomeQuickScanListEntity>) {
+    private fun initQuickScanAdapter(quickscanData: List<HomeQuickScanListEntity>) {
         binding.rvHomeQuickscan.adapter =
             HomeQuickscanAdapter(click = { quickscan, position ->
-                Intent(requireContext(), QuickScanActivity::class.java).apply {
-                    putExtra(AFFILIATION_KEY, position)
-                    startActivity(this)
+                if(quickscan.count > 0) {
+                    Intent(requireContext(), QuickScanActivity::class.java).apply {
+                        putExtra(AFFILIATION_KEY, position)
+                        putExtra(IMAGE_KEY, quickscan.image)
+                        startActivity(this)
+                    }
                 }
             }).apply {
                 submitList(quickscanData)
@@ -191,5 +194,6 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     companion object {
         const val AFFILIATION_KEY = "writeAffiliation"
+        const val IMAGE_KEY = "logoImage"
     }
 }
