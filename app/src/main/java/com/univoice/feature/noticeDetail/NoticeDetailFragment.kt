@@ -98,8 +98,14 @@ class NoticeDetailFragment :
 
     // 북마크 버튼 클릭
     private fun initBookMarkBtnClickListener() {
+        val noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
         with(binding) {
             btnNoticeDetailBookmark.setOnClickListener {
+                if(btnNoticeDetailBookmark.isSelected) {
+                    noticeId?.let { viewModel.postNoticeDetailCancel(noticeId) }
+                } else {
+                    noticeId?.let { viewModel.postNoticeDetailSave(noticeId) }
+                }
                 btnNoticeDetailBookmark.isSelected = !binding.btnNoticeDetailBookmark.isSelected
             }
         }

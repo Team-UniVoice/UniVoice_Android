@@ -98,13 +98,18 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
 
     private fun initQuickScanAdapter(data: List<QuickScanListEntity>) {
         val image = intent.getStringExtra(IMAGE_KEY)
-        image?.let {
-            QuickScanAdapter(it).apply {
-                submitList(data)
-                binding.vpQuickScan.adapter = this
-                initTabLayout(data.size)
-                initPageChangeCallback(this)
+        if(image != null) {
+            val adapter = QuickScanAdapter(image) { id, isChecked ->
+                if(isChecked) {
+                    viewModel.postQuickScanSave(id)
+                } else {
+                    viewModel.postQuickScanCancel(id)
+                }
             }
+            adapter.submitList(data)
+            binding.vpQuickScan.adapter = adapter
+            initTabLayout(data.size)
+            initPageChangeCallback(adapter)
         }
     }
 
