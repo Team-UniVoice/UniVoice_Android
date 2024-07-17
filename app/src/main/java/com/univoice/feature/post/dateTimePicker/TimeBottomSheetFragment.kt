@@ -9,6 +9,9 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.univoice.R
 import com.univoice.core_ui.base.BindingBottomSheetFragment
 import com.univoice.databinding.FragmentTimeBottomSheetBinding
+import com.univoice.feature.noticePost.NoticePostFragment.Companion.SET_END_DATE
+import com.univoice.feature.noticePost.NoticePostFragment.Companion.SET_START_DATE
+import com.univoice.feature.noticePost.NoticePostFragment.Companion.TIME_PICKER_KEY
 import com.univoice.feature.post.dateTimePicker.adapter.AM
 import com.univoice.feature.post.dateTimePicker.adapter.CustomSnapHelper
 import com.univoice.feature.post.dateTimePicker.adapter.DateDayAdapter
@@ -222,11 +225,11 @@ class TimeBottomSheetFragment(
                             .toString()
                 }
                 val resultBundle = Bundle().apply {
-                    putString("setStartDate", setStartDate)
-                    putString("setEndDate", setEndDate)
+                    putString(SET_START_DATE, setStartDate)
+                    putString(SET_END_DATE, setEndDate)
                 }
 
-                parentFragmentManager.setFragmentResult("timePickerKey", resultBundle)
+                parentFragmentManager.setFragmentResult(TIME_PICKER_KEY, resultBundle)
                 dismiss()
             }
         }

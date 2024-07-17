@@ -78,9 +78,9 @@ class NoticePostFragment :
     }
 
     private fun initSetText() {
-        setFragmentResultListener("timePickerKey") { _, bundle ->
-            val setStartDate = bundle.getString("setStartDate", "")
-            val setEndDate = bundle.getString("setEndDate", "")
+        setFragmentResultListener(TIME_PICKER_KEY) { _, bundle ->
+            val setStartDate = bundle.getString(SET_START_DATE, "")
+            val setEndDate = bundle.getString(SET_END_DATE, "")
 
             with(binding){
                 tvNoticePostOptionDateStart.text = setStartDate
@@ -238,7 +238,9 @@ class NoticePostFragment :
     companion object {
         const val NOTICE_POST_TARGET_BOTTOM_SHEET = "notice_post_target_bottom_sheet"
         const val NOTICE_POST_TARGET_BOTTOM_SHEET_ARGS = "notice_post_target_bottom_sheet_args"
-        const val NOTICE_POST_TARGET_BOTTOM_SHEET_ARGS_CONTENT =
-            "notice_post_target_bottom_sheet_args_content"
+        const val NOTICE_POST_TARGET_BOTTOM_SHEET_ARGS_CONTENT = "notice_post_target_bottom_sheet_args_content"
+        const val TIME_PICKER_KEY = "timePickerKey"
+        const val SET_START_DATE = "setStartDate"
+        const val SET_END_DATE = "setEndDate"
     }
 }
