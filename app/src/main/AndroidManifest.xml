@@ -42,7 +42,11 @@
             android:exported="true"
             android:theme="@style/Theme.UniVoice.Splash"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".feature.MainActivity"
@@ -111,9 +115,5 @@
             android:name=".feature.example.compose.ExampleComposeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity android:name=".feature.post.dateTimePicker.PostDateActivity"
-            android:exported="false">
-        </activity>
     </application>
-
 </manifest>
