@@ -53,8 +53,12 @@ class QuickScanViewModel @Inject constructor(
         )
     }
 
-//    fun updateBookmark(id: Int, isBookmark: Boolean) {
-//        val target = mockQuickScanList.find { it.id == id }
-//        target?.isBookmark = isBookmark
-//    }
+    fun postQuickScanSave(noticeId: Int) = viewModelScope.launch {
+        noticeDetailRepository.postNoticeDetailSave(noticeId)
+    }
+
+    fun postQuickScanCancel(noticeId: Int) = viewModelScope.launch {
+        noticeDetailRepository.postNoticeDetailCancel(noticeId)
+    }
+
 }
