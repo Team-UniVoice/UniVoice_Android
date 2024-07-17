@@ -28,7 +28,7 @@ class SchoolInputViewModel @Inject constructor(
             universityRepository.postUniversityNames().onSuccess { response ->
                 _schoolListState.value = UiState.Success(response)
             }.onFailure {
-                _schoolListState.value = UiState.Failure(it.message ?: "Unknown error")
+                _schoolListState.value = UiState.Failure(it.message ?: "")
             }
         }
     }
