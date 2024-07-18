@@ -47,11 +47,11 @@ class InfoInputActivity : BindingActivity<ActivityInfoInputBinding>(R.layout.act
     private fun initConfirmBtnIsEnabled() {
         with(binding) {
             etNameInputName.addTextChangedListener {
-                btnNameInputNext.btnSignupNext.isEnabled = etNameInputName.text.isNotEmpty()
+                btnNameInputNext.btnSignupNext.isEnabled = etNameInputName.text.isNotBlank()
             }
             etNameInputStudentId.addTextChangedListener {
                 btnNameInputNext.btnSignupNext.isEnabled =
-                    etNameInputName.text.isNotEmpty() && etNameInputStudentId.text.isNotEmpty()
+                    etNameInputName.text.isNotBlank() && etNameInputStudentId.text.isNotBlank()
             }
         }
     }
@@ -60,7 +60,7 @@ class InfoInputActivity : BindingActivity<ActivityInfoInputBinding>(R.layout.act
         with(binding) {
             btnNameInputNext.btnSignupNext.setOnClickListener {
                 if (btnNameInputNext.btnSignupNext.isEnabled) {
-                    if (etNameInputStudentId.text.isEmpty()) {
+                    if (etNameInputStudentId.text.isBlank()) {
                         etNameInputStudentId.isEnabled = true
                         etNameInputStudentId.requestFocus()
                         btnNameInputNext.btnSignupNext.isEnabled = false

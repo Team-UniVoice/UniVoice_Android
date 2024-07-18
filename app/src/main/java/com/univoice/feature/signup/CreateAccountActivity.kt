@@ -116,7 +116,7 @@ class CreateAccountActivity :
 
     private fun validateId(id: String) {
         when {
-            id.isEmpty() -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
+            id.isBlank() -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
             !isValidId(id) -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
             else -> setIdValid(R.string.tv_create_account_id, R.color.blue_400)
         }
@@ -278,7 +278,7 @@ class CreateAccountActivity :
         with(binding) {
             val password = etCreateAccountPw.text.toString()
             val confirmPassword = etCreateAccountPwCheck.text.toString()
-            if (confirmPassword.isEmpty()) {
+            if (confirmPassword.isBlank()) {
                 tvCreateAccountPwCheckExplain.visibility = View.INVISIBLE
             } else if (password == confirmPassword) {
                 tvCreateAccountPwCheckExplain.setText(R.string.password_match)

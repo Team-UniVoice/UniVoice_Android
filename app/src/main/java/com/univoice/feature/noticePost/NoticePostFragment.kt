@@ -169,10 +169,10 @@ class NoticePostFragment :
                 hereEndTime = bundle.getString(SET_END_TIME, "")
                 allDayCheck = bundle.getBoolean(CLICK_BUTTON)
 
-                if(allDayCheck){
+                if (allDayCheck) {
                     binding.tvNoticePostOptionTimeStart.visibility = View.GONE
                     binding.tvNoticePostOptionTimeEnd.visibility = View.GONE
-                }else{
+                } else {
                     binding.tvNoticePostOptionTimeStart.visibility = View.VISIBLE
                     binding.tvNoticePostOptionTimeEnd.visibility = View.VISIBLE
                 }
@@ -337,12 +337,6 @@ class NoticePostFragment :
                 sendTarget = null
             }
 
-//            Timber.tag("dd").d(sendStartTotalTime)
-//            Timber.tag("dd").d(sendEndTotalTime)
-//
-//            Timber.tag("dd").d(sendStartTotalTime?.let { it1 -> convertToISO8601(it1) })
-//            Timber.tag("dd").d(sendEndTotalTime?.let { it1 -> convertToISO8601(it1) })
-
             noticePostViewModel.postNotice(
                 title = binding.etNoticePostTitle.text.toString(),
                 content = binding.etNoticePostContent.text.toString(),
@@ -379,6 +373,7 @@ class NoticePostFragment :
             uriToFile(context, uri)
         }
     }
+
     private fun uriToFile(context: Context, uri: Uri): File? {
         val projection = arrayOf(MediaStore.Images.Media.DATA)
         val cursor: Cursor? = context.contentResolver.query(uri, projection, null, null, null)
@@ -394,7 +389,7 @@ class NoticePostFragment :
 
     private fun setApplyBtnEnable() {
         with(binding) {
-            if (etNoticePostTitle.text.isNotEmpty() && etNoticePostContent.text.isNotEmpty()) {
+            if (etNoticePostTitle.text.isNotBlank() && etNoticePostContent.text.isNotBlank()) {
                 btnToolbarNoticePostApply.setBackgroundResource(R.drawable.shape_mint400_fill_20_rect)
                 btnToolbarNoticePostApply.isEnabled = true
             } else {

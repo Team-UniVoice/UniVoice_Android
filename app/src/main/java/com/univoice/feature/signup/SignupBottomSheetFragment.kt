@@ -34,6 +34,20 @@ class SignupBottomSheetFragment :
     override fun initView() {
         setupListeners()
         observePostSignup()
+        initServiceArrowClickListener()
+        initUseArrowClickListener()
+    }
+
+    private fun initUseArrowClickListener() {
+        binding.ivBottomSheetUseArrow.setOnClickListener {
+            navigateToComplaintWeb("https://massive-maple-b53.notion.site/430e2c92b8694ad6a8b4497f3a3b4452?pvs=4")
+        }
+    }
+
+    private fun initServiceArrowClickListener() {
+        binding.ivBottomSheetServiceArrow.setOnClickListener {
+            navigateToComplaintWeb("https://massive-maple-b53.notion.site/426578b24235447abccaae359549cdb7?pvs=4")
+        }
     }
 
     private fun setupListeners() {
@@ -131,5 +145,14 @@ class SignupBottomSheetFragment :
             }
         }
         return tempFile
+    }
+
+    private fun navigateToComplaintWeb(uri: String) {
+        val urlIntentComplaint =
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(uri),
+            )
+        startActivity(urlIntentComplaint)
     }
 }
