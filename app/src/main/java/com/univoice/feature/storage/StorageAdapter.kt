@@ -8,7 +8,7 @@ import com.univoice.databinding.ItemNoticeBinding
 import com.univoice.domain.entity.NoticeListEntity
 
 class StorageAdapter(
-    private val onClick: (NoticeListEntity, Int) -> Unit = { _, _ -> },
+    private val onClick: (NoticeListEntity) -> Unit = { _ -> },
 ) : ListAdapter<NoticeListEntity, StorageViewHolder>(
     StorageAdapterDiffCallback
 ) {

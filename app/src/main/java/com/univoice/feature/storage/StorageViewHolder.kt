@@ -9,7 +9,7 @@ import com.univoice.feature.util.CalculateDate
 
 class StorageViewHolder(
     private val binding: ItemNoticeBinding,
-    private val onClick: (NoticeListEntity, Int) -> Unit = { _, _ -> },
+    private val onClick: (NoticeListEntity) -> Unit = { _ -> },
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(data: NoticeListEntity) {
         with(binding) {
@@ -22,7 +22,7 @@ class StorageViewHolder(
                 transformations(RoundedCornersTransformation(5f))
             }
             root.setOnClickListener {
-                onClick(data, layoutPosition)
+                onClick(data)
             }
         }
     }

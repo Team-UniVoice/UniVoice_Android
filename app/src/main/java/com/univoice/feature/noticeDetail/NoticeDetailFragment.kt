@@ -14,6 +14,7 @@ import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.FragmentNoticeDetailBinding
 import com.univoice.domain.entity.NoticeDetailEntity
 import com.univoice.feature.home.HomeFragment
+import com.univoice.feature.storage.StorageFragment
 import com.univoice.feature.util.CalculateDate
 import com.univoice.feature.util.Debouncer
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +33,14 @@ class NoticeDetailFragment :
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
-        noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
+        val previousBackStackEntry = findNavController().previousBackStackEntry
+        previousBackStackEntry?.destination?.id?.let { previousDestinationId ->
+            when (previousDestinationId) {
+                R.id.fragment_home -> noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
+                R.id.fragment_storage -> noticeId = arguments?.getInt(StorageFragment.STORAGE_KEY)
+                else -> Timber.d("Unknown previous fragment")
+            }
+        }
         return view
     }
 
