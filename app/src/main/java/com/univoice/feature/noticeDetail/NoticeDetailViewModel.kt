@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.univoice.core_ui.view.UiState
 import com.univoice.domain.entity.NoticeDetailEntity
 import com.univoice.domain.repository.NoticeDetailRepository
+import com.univoice.feature.util.throttleFirst
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -74,5 +75,37 @@ class NoticeDetailViewModel @Inject constructor(
     fun postNoticeDetailCancel(noticeId: Int) = viewModelScope.launch {
         _postNoticeDetailCancel.emit(UiState.Loading)
         noticeDetailRepository.postNoticeDetailCancel(noticeId).fold({}, {})
+    }
+
+    fun onLikeBtnClick(noticeId: Int){
+        viewModelScope.launch {
+           _postNoticeLike.throttleFirst(1000L).collect {
+               postNoticeLike(noticeId)
+           }
+        }
+    }
+
+    fun onDisLikeBtnClick(noticeId: Int) {
+        viewModelScope.launch {
+            _postNoticeCancelLike.throttleFirst(1000L).collect {
+                postNoticeCancelLike(noticeId)
+            }
+        }
+    }
+
+    fun onBookmarkBtnClick(noticeId: Int) {
+        viewModelScope.launch {
+            _postNoticeDetailSave.throttleFirst(1000L).collect {
+                postNoticeDetailSave(noticeId)
+            }
+        }
+    }
+
+    fun onBookmarkCancelBtnClick(noticeId: Int) {
+        viewModelScope.launch {
+            _postNoticeDetailCancel.throttleFirst(1000L).collect {
+                postNoticeDetailCancel(noticeId)
+            }
+        }
     }
 }

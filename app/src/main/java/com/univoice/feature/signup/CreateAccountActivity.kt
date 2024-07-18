@@ -36,7 +36,7 @@ class CreateAccountActivity :
 
     companion object {
         const val ID_REGEX = "^[a-z0-9!@#\$%^&*]{5,20}$"
-        const val PASSWORD_REGEX = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#\$%^&*]).{8,16}$"
+        const val PASSWORD_REGEX = "^(?!.*[ㄱ-ㅎㅏ-ㅣ가-힣])(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#\$%^&*]).{8,16}$"
         const val PASSWORD_KEY = "passWord"
         const val ID_KEY = "id"
     }
@@ -147,6 +147,7 @@ class CreateAccountActivity :
                 )
             )
             btnCreateAccountId.isEnabled = true
+            isPasswordValid = false
         }
         isIdValid = true
     }
@@ -342,7 +343,9 @@ class CreateAccountActivity :
     }
 
     private fun isValidPassword(password: String): Boolean {
-        return password.matches(PASSWORD_REGEX.toRegex())
+        val regex = PASSWORD_REGEX.toRegex()
+        val containsKorean = password.any { it in '\u1100'..'\u11FF' || it in '\uAC00'..'\uD7AF' }
+        return regex.matches(password) && !containsKorean
     }
 
     private fun handleNextButtonClick() {
@@ -375,7 +378,7 @@ class CreateAccountActivity :
     private fun showBottomSheet() {
         val bottomSheetFragment = SignupBottomSheetFragment().apply {
             arguments = Bundle().apply {
-                putString(USER_ID_KEY, binding.etCreateAccountId.text.toString())
+                putString(USER_ID_KEY, intent.getStringExtra(USER_ID_KEY))
                 putString(USER_NAME_KEY, intent.getStringExtra(USER_NAME_KEY))
                 putString(USER_IMAGE_KEY, intent.getStringExtra(USER_IMAGE_KEY))
                 putString(USER_YEAR_KEY, intent.getStringExtra(USER_YEAR_KEY))
