@@ -50,7 +50,7 @@
     <!--세부 공지사항 -->
     <string name="btn_notice_detail_target">대상</string>
     <string name="btn_notice_detail_date">일시</string>
-    <string name="tv_notice_detail_views">조회수</string>
+    <string name="tv_notice_detail_views">조회수 %1$d</string>
 
     <!-- 공지사항 작성 -->
     <string name="toolbar_notice_detail">학과 학생회</string>
@@ -69,14 +69,16 @@
     <string name="tv_date_minute">:%1$02d</string>
     <string name="tv_date_am">AM</string>
     <string name="tv_date_pm">PM</string>
+    <string name="tv_date_am_kr">오전</string>
+    <string name="tv_date_pm_kr">오후</string>
     <string name="btn_date_time_selected">시간해제</string>
     <string name="btn_date_time_unselected">시간설정</string>
     <string name="tv_date_month">%1$02d월 </string>
     <string name="tv_date_day">%1$02d일(1$s)</string>
     <string name="tv_date_title">일시</string>
     <string name="btn_date_success">확인</string>
-    <string name="tv_date_time_picker">%1$s \n 2$s %3$s%4$s</string>
-    <string name="tv_date_day_picker">%1$s %2$s%3$s</string>
+    <string name="tv_date_time_picker">%1$s\n2$s%3$s%4$s</string>
+    <string name="tv_date_day_picker">%1$s%2$s%3$s</string>
     <string name="tv_day_year">2024년</string>
     <string name="tv_day_month">7월</string>
     <string name="tv_day_day">8일(목)</string>
