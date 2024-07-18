@@ -59,4 +59,12 @@ class NoticeDetailViewModel @Inject constructor(
     fun postNoticeDetailViewCount(noticeId: Int) = viewModelScope.launch {
         noticeDetailRepository.postNoticeDetailViewCount(noticeId).fold({}, {})
     }
+
+    fun postNoticeDetailSave(noticeId: Int) = viewModelScope.launch {
+        noticeDetailRepository.postNoticeDetailSave(noticeId).fold({}, {})
+    }
+
+    fun postNoticeDetailCancel(noticeId: Int) = viewModelScope.launch {
+        noticeDetailRepository.postNoticeDetailCancel(noticeId).fold({}, {})
+    }
 }

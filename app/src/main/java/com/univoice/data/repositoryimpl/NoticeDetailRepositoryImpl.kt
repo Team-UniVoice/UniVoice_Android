@@ -32,4 +32,16 @@ class NoticeDetailRepositoryImpl @Inject constructor(
             noticeDetailDataSource.postNoticeDetailViewCount(noticeId).data ?: Unit
         }
     }
+
+    override suspend fun postNoticeDetailSave(noticeId: Int): Result<Unit> {
+        return runCatching {
+            noticeDetailDataSource.postNoticeDetailSave(noticeId).data ?: Unit
+        }
+    }
+
+    override suspend fun postNoticeDetailCancel(noticeId: Int): Result<Unit> {
+        return runCatching {
+            noticeDetailDataSource.postNoticeDetailCancel(noticeId).data ?: Unit
+        }
+    }
 }

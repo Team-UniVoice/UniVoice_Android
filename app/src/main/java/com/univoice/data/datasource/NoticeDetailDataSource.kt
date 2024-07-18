@@ -11,4 +11,8 @@ interface NoticeDetailDataSource {
     suspend fun postNoticeCancelLike(noticeId: Int): BaseResponse<Unit>
   
     suspend fun postNoticeDetailViewCount(noticeId: Int): BaseResponse<Unit>
+
+    suspend fun postNoticeDetailSave(noticeId: Int): BaseResponse<Unit>
+
+    suspend fun postNoticeDetailCancel(noticeId: Int): BaseResponse<Unit>
 }

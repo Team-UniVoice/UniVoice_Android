@@ -16,6 +16,7 @@ import com.univoice.databinding.ActivityQuickScanBinding
 import com.univoice.domain.entity.QuickScanListEntity
 import com.univoice.feature.home.HomeFragment.Companion.AFFILIATION_KEY
 import com.univoice.feature.home.HomeFragment.Companion.IMAGE_KEY
+import com.univoice.feature.util.Debouncer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -24,6 +25,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.activity_quick_scan) {
     private val viewModel by viewModels<QuickScanViewModel>()
+    private val debouncer = Debouncer<Int>()
     override fun initView() {
         initToolbarClickListener()
         initPostQuickScanList()
@@ -98,13 +100,22 @@ class QuickScanActivity : BindingActivity<ActivityQuickScanBinding>(R.layout.act
 
     private fun initQuickScanAdapter(data: List<QuickScanListEntity>) {
         val image = intent.getStringExtra(IMAGE_KEY)
-        image?.let {
-            QuickScanAdapter(it).apply {
-                submitList(data)
-                binding.vpQuickScan.adapter = this
-                initTabLayout(data.size)
-                initPageChangeCallback(this)
+        if(image != null) {
+            val adapter = QuickScanAdapter(image) { id, isChecked ->
+                if(isChecked) {
+                    debouncer.setDelay(id, 1000L) {
+                        viewModel.postQuickScanSave(id)
+                    }
+                } else {
+                    debouncer.setDelay(id, 1000L) {
+                        viewModel.postQuickScanCancel(id)
+                    }
+                }
             }
+            adapter.submitList(data)
+            binding.vpQuickScan.adapter = adapter
+            initTabLayout(data.size)
+            initPageChangeCallback(adapter)
         }
     }
 

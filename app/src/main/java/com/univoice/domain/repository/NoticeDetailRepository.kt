@@ -10,4 +10,8 @@ interface NoticeDetailRepository {
     suspend fun postNoticeCancelLike(noticeId: Int): Result<Unit>
   
     suspend fun postNoticeDetailViewCount(noticeId: Int): Result<Unit>
+
+    suspend fun postNoticeDetailSave(noticeId: Int): Result<Unit>
+
+    suspend fun postNoticeDetailCancel(noticeId: Int): Result<Unit>
 }

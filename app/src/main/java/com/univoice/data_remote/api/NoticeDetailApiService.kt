@@ -7,6 +7,7 @@ import com.univoice.data_remote.api.ApiKeyStorage.CANCEL
 import com.univoice.data_remote.api.ApiKeyStorage.LIKE
 import com.univoice.data_remote.api.ApiKeyStorage.NOTICE
 import com.univoice.data_remote.api.ApiKeyStorage.NOTICE_ID
+import com.univoice.data_remote.api.ApiKeyStorage.SAVE
 import com.univoice.data_remote.api.ApiKeyStorage.V1
 import com.univoice.data_remote.api.ApiKeyStorage.VIEW_COUNT
 import retrofit2.http.GET
@@ -23,14 +24,24 @@ interface NoticeDetailApiService {
     suspend fun postNoticeLike(
         @Path(NOTICE_ID) noticeId: Int
     ): BaseResponse<Unit>
-  
+
     @POST("/$API/$V1/$NOTICE/$LIKE/$CANCEL/{$NOTICE_ID}")
-    suspend fun postNoticeDelLike(
+    suspend fun postNoticeCancelLike(
         @Path(NOTICE_ID) noticeId: Int
     ): BaseResponse<Unit>
 
     @POST("$API/$V1/$NOTICE/$VIEW_COUNT/{$NOTICE_ID}")
     suspend fun postNoticeDetailViewCount(
+        @Path(NOTICE_ID) noticeId: Int
+    ): BaseResponse<Unit>
+
+    @POST("$API/$V1/$NOTICE/$SAVE/{$NOTICE_ID}")
+    suspend fun postNoticeDetailSave(
+        @Path(NOTICE_ID) noticeId: Int
+    ): BaseResponse<Unit>
+
+    @POST("$API/$V1/$NOTICE/$SAVE/$CANCEL/{$NOTICE_ID}")
+    suspend fun postNoticeDetailCancel(
         @Path(NOTICE_ID) noticeId: Int
     ): BaseResponse<Unit>
 }

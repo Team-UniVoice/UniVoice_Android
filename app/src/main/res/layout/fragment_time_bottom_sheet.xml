@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/regular"
+        android:paddingBottom="42dp">
+
+        <TextView
+            android:id="@+id/tv_date_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tv_date_title"
+            android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+            android:textColor="@color/font_B01"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_date_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_date_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/layout_date_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="34dp"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@id/btn_date_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_date_title">
+
+            <include
+                android:id="@+id/layout_start_time"
+                layout="@layout/item_time_start"
+                app:layout_constraintStart_toEndOf="@id/iv_date_arrow_time"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_date_arrow_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="12dp"
+                android:src="@drawable/ic_date_arrow" />
+
+            <include
+                android:id="@+id/layout_end_time"
+                layout="@layout/item_time_end"
+                app:layout_constraintStart_toEndOf="@id/iv_date_arrow_time"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_date_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/layout_date_time"
+            app:layout_constraintStart_toStartOf="@id/layout_date_time"
+            app:layout_constraintTop_toTopOf="@id/layout_date_time">
+
+            <include
+                android:id="@+id/layout_start_date"
+                layout="@layout/item_date_start"
+                app:layout_constraintBottom_toBottomOf="@id/layout_date_time"
+                app:layout_constraintStart_toStartOf="@id/layout_date_time"
+                app:layout_constraintTop_toTopOf="@id/layout_date_time" />
+
+            <ImageView
+                android:id="@+id/iv_date_arrow_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="12dp"
+                android:src="@drawable/ic_date_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/layout_end_date"
+                app:layout_constraintStart_toEndOf="@id/layout_end_date"
+                app:layout_constraintTop_toTopOf="@id/layout_end_date" />
+
+            <include
+                android:id="@+id/layout_end_date"
+                layout="@layout/item_date_end"
+                app:layout_constraintBottom_toBottomOf="@id/layout_date_time"
+                app:layout_constraintStart_toStartOf="@id/layout_date_time"
+                app:layout_constraintTop_toTopOf="@id/layout_date_time" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_date_time"
+            style="@style/date_day_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="@string/btn_date_time_selected"
+            app:layout_constraintBottom_toBottomOf="@id/layout_date_time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/layout_date_time" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_date_time_picker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="37dp"
+            android:layout_marginTop="27dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_date_time">
+
+            <View
+                android:id="@+id/view_date_time"
+                android:layout_width="0dp"
+                android:layout_height="29dp"
+                android:background="@drawable/shape_gray100_fill_8_rect"
+                android:clickable="false"
+                android:focusable="false"
+                app:layout_constraintBottom_toBottomOf="@id/rv_date_detail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rv_date_detail" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_date_detail"
+                android:layout_width="0dp"
+                android:layout_height="190dp"
+                android:layout_marginStart="19dp"
+                android:overScrollMode="never"
+                android:paddingTop="12dp"
+                app:layout_constraintEnd_toStartOf="@id/rv_date_meridiem"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_weight="3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_date_number" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_date_meridiem"
+                android:layout_width="0dp"
+                android:layout_height="190dp"
+                android:overScrollMode="never"
+                android:paddingTop="12dp"
+                app:layout_constraintEnd_toStartOf="@id/rv_date_hour"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintStart_toEndOf="@id/rv_date_detail"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_date_number" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_date_hour"
+                android:layout_width="0dp"
+                android:layout_height="190dp"
+                android:overScrollMode="never"
+                android:paddingTop="12dp"
+                app:layout_constraintEnd_toStartOf="@id/rv_date_minute"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/rv_date_meridiem"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_date_number" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_date_minute"
+                android:layout_width="0dp"
+                android:layout_height="190dp"
+                android:layout_marginEnd="19dp"
+                android:overScrollMode="never"
+                android:paddingTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/rv_date_hour"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_date_number" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_date_day_picker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="37dp"
+            android:layout_marginTop="27dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_date_time">
+
+            <View
+                android:id="@+id/view_date_day"
+                android:layout_width="0dp"
+                android:layout_height="29dp"
+                android:background="@drawable/shape_gray100_fill_8_rect"
+                android:clickable="false"
+                android:focusable="false"
+                app:layout_constraintBottom_toBottomOf="@id/rv_date_day_year"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rv_date_day_year" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_date_day_year"
+                android:layout_width="0dp"
+                android:layout_height="190dp"
+                android:layout_marginStart="19dp"
+                android:overScrollMode="never"
+                android:paddingTop="12dp"
+                app:layout_constraintEnd_toStartOf="@id/rv_date_day_month"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_date_number" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_date_day_month"
+                android:layout_width="0dp"
+                android:layout_height="190dp"
+                android:overScrollMode="never"
+                android:paddingTop="12dp"
+                app:layout_constraintEnd_toStartOf="@+id/rv_date_day"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/rv_date_day_year"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_date_number" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_date_day"
+                android:layout_width="0dp"
+                android:layout_height="190dp"
+                android:layout_marginEnd="19dp"
+                android:overScrollMode="never"
+                android:paddingTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/rv_date_day_month"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_date_number" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_date_success"
+            style="@style/LoginButtonWithoutShadow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/shape_mint400_fill_40_rect"
+            android:paddingVertical="19dp"
+            android:text="@string/btn_date_success"
+            android:textAppearance="@style/TextAppearance.UniVoice.title4Bold"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_date_time_picker" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
