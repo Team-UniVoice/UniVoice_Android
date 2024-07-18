@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.setFragmentResult
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -23,9 +24,19 @@ class NoticePostTargetBottomSheet(private val targetText: String? = null) :
     }
 
     override fun initView() {
+        initEditTextWatcher()
         initContentText()
         initCheckBtnClickListener()
         initBottomSheetCloseBtnClickListener()
+    }
+
+    private fun initEditTextWatcher() {
+        with(binding) {
+            etBottomsheetNoticePostTarget.addTextChangedListener {
+                btnBottomsheetNoticePostTargetCheck.isEnabled =
+                    etBottomsheetNoticePostTarget.text.isNotBlank()
+            }
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
