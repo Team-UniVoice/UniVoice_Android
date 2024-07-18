@@ -32,11 +32,11 @@ class NoticeDetailViewModel @Inject constructor(
         MutableSharedFlow<UiState<Unit>>()
     val postNoticeDetailViewCount: SharedFlow<UiState<Unit>> = _postNoticeDetailViewCount
 
-    private val _postNoticeDetailSave = MutableSharedFlow<UiState<Unit>>()
-    val postNoticeDetailSave: SharedFlow<UiState<Unit>> = _postNoticeDetailSave
+    private val _postNoticeDetailSave = MutableStateFlow<UiState<Unit>>(UiState.Empty)
+    val postNoticeDetailSave: StateFlow<UiState<Unit>> = _postNoticeDetailSave
 
-    private val _postNoticeDetailCancel = MutableSharedFlow<UiState<Unit>>()
-    val postNoticeDetailCancel: SharedFlow<UiState<Unit>> = _postNoticeDetailCancel
+    private val _postNoticeDetailCancel = MutableStateFlow<UiState<Unit>>(UiState.Empty)
+    val postNoticeDetailCancel: StateFlow<UiState<Unit>> = _postNoticeDetailCancel
 
     fun getNoticeDetail(noticeId: Int) = viewModelScope.launch {
         _getNoticeDetail.emit(UiState.Loading)
@@ -67,10 +67,12 @@ class NoticeDetailViewModel @Inject constructor(
     }
 
     fun postNoticeDetailSave(noticeId: Int) = viewModelScope.launch {
+        _postNoticeDetailSave.emit(UiState.Loading)
         noticeDetailRepository.postNoticeDetailSave(noticeId).fold({}, {})
     }
 
     fun postNoticeDetailCancel(noticeId: Int) = viewModelScope.launch {
+        _postNoticeDetailCancel.emit(UiState.Loading)
         noticeDetailRepository.postNoticeDetailCancel(noticeId).fold({}, {})
     }
 }

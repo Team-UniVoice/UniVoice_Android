@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -197,14 +198,25 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_notice_detail_create_date" />
 
+                <TextView
+                    android:id="@+id/tv_notice_detail_like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="12"
+                    android:textAppearance="@style/TextAppearance.UniVoice.caption3Regular"
+                    android:textColor="@color/font_B03"
+                    app:layout_constraintEnd_toStartOf="@id/btn_notice_detail_bookmark"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_notice_detail_like"
+                    app:layout_constraintTop_toTopOf="@id/btn_notice_detail_like" />
+
                 <ImageButton
                     android:id="@+id/btn_notice_detail_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/sel_notice_detail_like"
-                    app:layout_constraintEnd_toStartOf="@id/btn_notice_detail_bookmark"
+                    app:layout_constraintEnd_toStartOf="@id/tv_notice_detail_like_count"
                     app:layout_constraintTop_toTopOf="@id/tv_notice_detail_create_date" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
