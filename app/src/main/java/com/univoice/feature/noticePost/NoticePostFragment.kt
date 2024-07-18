@@ -16,6 +16,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
@@ -107,7 +108,7 @@ class NoticePostFragment :
                 is UiState.Loading -> Timber.tag("signup").d("로딩")
                 is UiState.Success -> findNavController().navigate(
                     R.id.action_fragment_notice_post_to_fragment_notice_post_apply,
-                    null
+                    null, NavOptions.Builder().setPopUpTo(R.id.fragment_notice_post, true).build()
                 )
 
                 is UiState.Failure -> Timber.tag("signup").d(it.msg)
