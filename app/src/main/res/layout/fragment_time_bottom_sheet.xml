@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/tv_date_title"
-            android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
+            android:textAppearance="@style/TextAppearance.UniVoice.head5Semi"
             android:textColor="@color/font_B01"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,13 +34,13 @@
 
         <LinearLayout
             android:id="@+id/layout_date_time"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="34dp"
+            android:layout_marginTop="33dp"
+            android:gravity="center"
             android:orientation="horizontal"
             android:visibility="visible"
-            app:layout_constraintEnd_toStartOf="@id/btn_date_time"
+            app:layout_constraintEnd_toStartOf="@+id/layout_date_day"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_date_title">
 
@@ -69,10 +69,12 @@
             android:id="@+id/layout_date_day"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@id/layout_date_time"
-            app:layout_constraintStart_toStartOf="@id/layout_date_time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/layout_date_time">
 
             <include
@@ -100,17 +102,6 @@
                 app:layout_constraintStart_toStartOf="@id/layout_date_time"
                 app:layout_constraintTop_toTopOf="@id/layout_date_time" />
         </LinearLayout>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_date_time"
-            style="@style/date_day_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:text="@string/btn_date_time_selected"
-            app:layout_constraintBottom_toBottomOf="@id/layout_date_time"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/layout_date_time" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_date_time_picker"
@@ -249,6 +240,30 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_date_number" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_date_gradient"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_date_gradient"
+            android:clickable="false"
+            android:focusable="false"
+            app:layout_constraintBottom_toBottomOf="@id/layout_date_day_picker"
+            app:layout_constraintEnd_toEndOf="@id/layout_date_day_picker"
+            app:layout_constraintStart_toStartOf="@id/layout_date_day_picker"
+            app:layout_constraintTop_toTopOf="@id/layout_date_day_picker" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_date_time"
+            style="@style/date_day_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="@string/btn_date_time_selected"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/layout_date_time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/layout_date_time" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_date_success"

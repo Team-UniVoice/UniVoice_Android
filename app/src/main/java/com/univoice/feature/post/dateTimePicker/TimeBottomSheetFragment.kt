@@ -1,7 +1,6 @@
 package com.univoice.feature.post.dateTimePicker
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.Group
@@ -28,6 +27,7 @@ import com.univoice.feature.post.dateTimePicker.adapter.TimeMeridiemAdapter
 import com.univoice.feature.post.dateTimePicker.adapter.TimeMinuteAdapter
 import com.univoice.feature.post.dateTimePicker.adapter.dpToPx
 import com.univoice.feature.post.dateTimePicker.adapter.initVerticalAdapter
+import com.univoice.feature.util.CalculateDate
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -207,48 +207,20 @@ class TimeBottomSheetFragment(
                 val endTimeHour = layoutEndTime.tvEndTimeHour.text.toString()
                 val endTimeMinute = layoutEndTime.tvEndTimeMinute.text.toString()
                 var endTimeMeridiem = layoutEndTime.tvEndTimeMeridiem.text.toString()
-                val startYear = layoutStartDate.tvStartDateYear.text.toString()
-                val startMonth = layoutStartDate.tvStartDateMonth.text.toString()
-                val startDay = layoutStartDate.tvStartDateDay.text.toString()
-                val endYear = layoutEndDate.tvEndDateYear.text.toString()
-                val endMonth = layoutEndDate.tvEndDateMonth.text.toString()
-                val endDay = layoutEndDate.tvEndDateDay.text.toString()
 
 
-                if (startTimeMeridiem == "PM")
-                    startTimeMeridiem = "오후"
-                else
-                    startTimeMeridiem = "오전"
-
-                if (endTimeMeridiem == "PM")
-                    endTimeMeridiem = "오후"
-                else
-                    endTimeMeridiem = "오전"
+                setStartDate = CalculateDate().convertToFullDateFormat(startDate)
+                setStartTime = CalculateDate().convertToFullTimeFormat(startTimeMeridiem, startTimeHour, startTimeMinute)
+                setEndDate = CalculateDate().convertToFullDateFormat(endDate)
+                setEndTime =  CalculateDate().convertToFullTimeFormat(endTimeMeridiem, endTimeHour, endTimeMinute)
 
 
-                if (!isSelected) {
-                    setStartDate = "${startDate}"
-                    setStartTime = "${startTimeMeridiem} ${startTimeHour}${startTimeMinute}"
-                    setEndDate = "${endDate}"
-                    setEndTime = "${endTimeMeridiem} ${endTimeHour}${endTimeMinute}"
-                } else {
-                    setStartDate = context?.getString(
-                        R.string.tv_date_day_picker,
-                        startYear,
-                        startMonth,
-                        startDay
-                    ).toString()
-                    setEndDate =
-                        context?.getString(R.string.tv_date_day_picker, endYear, endMonth, endDay)
-                            .toString()
-                }
                 val resultBundle = Bundle().apply {
                     putString(SET_START_DATE, setStartDate)
                     putString(SET_END_DATE, setEndDate)
                     putString(SET_START_TIME, setStartTime)
                     putString(SET_END_TIME, setEndTime)
                     putBoolean(CLICK_BUTTON, isSelected)
-                    Log.d("setDateStart", setStartTime)
                 }
 
                 parentFragmentManager.setFragmentResult(TIME_PICKER_KEY, resultBundle)

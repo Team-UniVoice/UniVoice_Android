@@ -126,17 +126,6 @@ class NoticePostFragment :
         }
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        if(allDayCheck){
-//            binding.tvNoticePostOptionTimeStart.visibility = View.GONE
-//            binding.tvNoticePostOptionTimeEnd.visibility = View.GONE
-//        }else{
-//            binding.tvNoticePostOptionTimeStart.visibility = View.VISIBLE
-//            binding.tvNoticePostOptionTimeEnd.visibility = View.VISIBLE
-//        }
-//    }
-
     private fun initSetDateClickListener() {
         binding.layoutNoticePostOptionDate.setOnClickListener {
             val startDate: Calendar = Calendar.getInstance()
@@ -162,20 +151,14 @@ class NoticePostFragment :
 
                 tvNoticePostOptionDateStart.text = bundle.getString(SET_START_DATE, "")
                 tvNoticePostOptionDateEnd.text = bundle.getString(SET_END_DATE, "")
-
+                tvNoticePostOptionTimeStart.text = bundle.getString(SET_START_TIME, "")
+                tvNoticePostOptionTimeEnd.text = bundle.getString(SET_END_TIME, "")
                 hereStartDate = bundle.getString(SET_START_DATE, "")
                 hereEndData = bundle.getString(SET_END_DATE, "")
                 hereStartTime = bundle.getString(SET_START_TIME, "")
                 hereEndTime = bundle.getString(SET_END_TIME, "")
                 allDayCheck = bundle.getBoolean(CLICK_BUTTON)
 
-                if(allDayCheck){
-                    binding.tvNoticePostOptionTimeStart.visibility = View.GONE
-                    binding.tvNoticePostOptionTimeEnd.visibility = View.GONE
-                }else{
-                    binding.tvNoticePostOptionTimeStart.visibility = View.VISIBLE
-                    binding.tvNoticePostOptionTimeEnd.visibility = View.VISIBLE
-                }
 
                 layoutNoticePostOptionDate.visibility = View.VISIBLE
 
@@ -200,32 +183,25 @@ class NoticePostFragment :
         }
     }
 
-    // "2024년7월8일(목)"로 들어오면 "2024년 7월 8일 오전 00시 00분" 로 반환
     private fun convertToFullDateFormat(inputDate: String): String {
-        // 정규식을 사용하여 날짜 부분과 요일 부분을 분리
         val datePattern = Regex("""(\d{4})년(\d{1,2})월(\d{1,2})일\(\p{IsAlphabetic}+\)""")
         val matchResult = datePattern.find(inputDate)
 
         return if (matchResult != null) {
             val (year, month, day) = matchResult.destructured
-            // 새로운 형식으로 변환
             "${year}년 ${month}월 ${day}일 오전 00시 00분"
         } else {
-            // 매칭되지 않을 경우 원본 문자열 반환
             inputDate
         }
     }
 
-    // 유진언니가 UI 시, 분 텍스트 추가하면 없애야 함!! : "6월 6일(목) 오후 12:25" 로 들어오면 "2024년 6월 6일 오후 12시 25분" 로 반환
     private fun formatDateTime(input: String): String {
-        // 정규식을 사용하여 날짜와 시간을 추출
         val regex = Regex("(\\d{1,2})월 (\\d{1,2})일\\(\\S+\\) (오전|오후) (\\d{1,2}):(\\d{2})")
         val matchResult = regex.find(input)
 
         return if (matchResult != null) {
             val (month, day, period, hour, minute) = matchResult.destructured
 
-            // 시간 부분을 변환
             val formattedHour = if (period == "오후" && hour.toInt() != 12) {
                 hour.toInt() + 12
             } else if (period == "오전" && hour.toInt() == 12) {
@@ -234,13 +210,10 @@ class NoticePostFragment :
                 hour.toInt()
             }
 
-            // 최종 시간 표현
             val finalHour = if (formattedHour == 0) 12 else formattedHour
 
-            // 원하는 형식으로 조립
             "2024년 ${month}월 ${day}일 ${period} ${finalHour}시 ${minute}분"
         } else {
-            // 매칭되지 않으면 원래 문자열 반환
             input
         }
     }
@@ -337,12 +310,6 @@ class NoticePostFragment :
                 sendTarget = null
             }
 
-//            Timber.tag("dd").d(sendStartTotalTime)
-//            Timber.tag("dd").d(sendEndTotalTime)
-//
-//            Timber.tag("dd").d(sendStartTotalTime?.let { it1 -> convertToISO8601(it1) })
-//            Timber.tag("dd").d(sendEndTotalTime?.let { it1 -> convertToISO8601(it1) })
-
             noticePostViewModel.postNotice(
                 title = binding.etNoticePostTitle.text.toString(),
                 content = binding.etNoticePostContent.text.toString(),
@@ -356,17 +323,13 @@ class NoticePostFragment :
 
     @SuppressLint("SimpleDateFormat")
     private fun convertToISO8601(inputDate: String): String? {
-        // 한국어 날짜 형식
         val koreanDateFormat = SimpleDateFormat("yyyy년 M월 d일 a h시 m분", Locale.KOREAN)
 
-        // ISO 8601 날짜 형식
         val iso8601Format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
         iso8601Format.timeZone = TimeZone.getTimeZone("UTC")
 
         return try {
-            // 입력된 한국어 날짜를 파싱
             val date = koreanDateFormat.parse(inputDate)
-            // ISO 8601 형식으로 변환하여 반환
             iso8601Format.format(date)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -379,6 +342,7 @@ class NoticePostFragment :
             uriToFile(context, uri)
         }
     }
+
     private fun uriToFile(context: Context, uri: Uri): File? {
         val projection = arrayOf(MediaStore.Images.Media.DATA)
         val cursor: Cursor? = context.contentResolver.query(uri, projection, null, null, null)
