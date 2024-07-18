@@ -50,7 +50,7 @@
     <!--세부 공지사항 -->
     <string name="btn_notice_detail_target">대상</string>
     <string name="btn_notice_detail_date">일시</string>
-    <string name="tv_notice_detail_views">조회수</string>
+    <string name="tv_notice_detail_views">조회수 %1$d</string>
 
     <!-- 공지사항 작성 -->
     <string name="toolbar_notice_detail">학과 학생회</string>

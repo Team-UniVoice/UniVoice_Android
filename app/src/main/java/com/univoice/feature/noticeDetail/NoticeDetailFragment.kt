@@ -72,24 +72,41 @@ class NoticeDetailFragment :
 
     private fun setTextNoticeDetail(data: NoticeDetailEntity) {
         with(binding) {
+            toolbarNoticeDetail.title = data.writeAffiliation
             tvNoticeDetailTitle.text = data.title
-            tvNoticeDetailDate.text = data.startTime
             tvNoticeDetailTarget.text = data.target
             tvNoticeDetailContent.text = data.content
             tvNoticeDetailViews.text = data.viewCount.toString()
+            tvNoticeDetailCreateDate.text = CalculateDate().getCalculateDate(data.createdAt)
+            tvNoticeDetailViews.text =
+                context?.getString(R.string.tv_notice_detail_views, data.viewCount)
 
-            if (data.startTime != null && data.endTime != null)
-                tvNoticeDetailDate.text =
-                    CalculateDate().getCalculateNoticeDate(data.startTime, data.endTime)
-
-            if (data.target == null)
+            if (data.target == null) {
                 groupNoticeDetailTarget.visibility = View.GONE
+            }
 
-            if (data.startTime == null)
-                groupNoticeDetailDate.visibility = View.GONE
+            setNoticeDate(data.startTime, data.endTime)
 
-            if (data.noticeImages.isNotEmpty())
+            if (data.noticeImages.isNotEmpty()) {
                 indicatorNoticeDetailImage.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun setNoticeDate(startTime: String?, endTime: String?) {
+        if (startTime != null && endTime != null) {
+            val startHasTime = CalculateDate().getHasTime(startTime)
+            val endHasTime = CalculateDate().getHasTime(endTime)
+
+            if (startHasTime && endHasTime) {
+                val noticeDayString = CalculateDate().getCalculateNoticeDate(startTime, endTime)
+                binding.tvNoticeDetailDate.text = noticeDayString
+            } else {
+                val noticeDayString = CalculateDate().getCalculateNoticeDay(startTime, endTime)
+                binding.tvNoticeDetailDate.text = noticeDayString
+            }
+        } else {
+            binding.groupNoticeDetailDate.visibility = View.GONE
         }
     }
 
