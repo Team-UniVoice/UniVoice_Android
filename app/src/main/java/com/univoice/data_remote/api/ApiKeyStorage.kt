@@ -22,4 +22,5 @@ object ApiKeyStorage {
     const val CHECK_EMAIL = "check-email"
     const val SIGNUP = "signup"
     const val LIKE = "like"
+    const val CREATE = "create"
 }
