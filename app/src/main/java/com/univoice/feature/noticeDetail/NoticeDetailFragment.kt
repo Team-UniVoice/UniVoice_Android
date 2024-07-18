@@ -67,10 +67,10 @@ class NoticeDetailFragment :
     private fun observeNoticeDetailBookmark() {
         viewModel.postNoticeDetailCancel.flowWithLifecycle(lifecycle).onEach {
             when (it) {
-                is UiState.Loading -> Timber.tag("NoticeDetailFailure").d(it.toString())
-                is UiState.Success -> Timber.tag("NoticeDetailFailure").d(it.toString())
-                is UiState.Empty -> Timber.tag("NoticeDetailFailure").d(it.toString())
-                is UiState.Failure -> Timber.tag("NoticeDetailFailure").d(it.msg)
+                is UiState.Loading -> Timber.tag("NoticeDetail").d(it.toString())
+                is UiState.Success -> Timber.tag("NoticeDetail").d(it.toString())
+                is UiState.Empty -> Timber.tag("NoticeDetail").d(it.toString())
+                is UiState.Failure -> Timber.tag("NoticeDetail").d(it.msg)
             }
         }.launchIn(lifecycleScope)
     }

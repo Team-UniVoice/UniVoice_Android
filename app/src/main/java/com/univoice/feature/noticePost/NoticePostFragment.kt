@@ -105,14 +105,14 @@ class NoticePostFragment :
     private fun setupPostNoticeObserve() {
         noticePostViewModel.postNoticeState.flowWithLifecycle(viewLifeCycle).onEach {
             when (it) {
-                is UiState.Loading -> Timber.tag("signup").d("로딩")
+                is UiState.Loading -> Timber.tag("NoticePost").d("로딩")
                 is UiState.Success -> findNavController().navigate(
                     R.id.action_fragment_notice_post_to_fragment_notice_post_apply,
                     null, NavOptions.Builder().setPopUpTo(R.id.fragment_notice_post, true).build()
                 )
 
-                is UiState.Failure -> Timber.tag("signup").d(it.msg)
-                is UiState.Empty -> Timber.tag("signup").d("비었음")
+                is UiState.Failure -> Timber.tag("NoticePost").d(it.msg)
+                is UiState.Empty -> Timber.tag("NoticePost").d("비었음")
             }
         }.launchIn(viewLifeCycleScope)
     }
