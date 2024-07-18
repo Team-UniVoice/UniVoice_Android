@@ -57,7 +57,7 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
         val calendarEndMonth = Calendar.getInstance().also { it.time = endDate.time }
 
         calendarStartMonth.add(Calendar.MONTH, -2)
-        calendarEndMonth.add(Calendar.MONTH, TWELVE)
+        calendarEndMonth.add(Calendar.MONTH, 50)
 
         val totalMonthsBetweenEnds =
             (calendarEndMonth.get(Calendar.YEAR) - calendarStartMonth.get(Calendar.YEAR)) * 12 +
@@ -77,7 +77,7 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
         val hoursList = ArrayList<Calendar>()
         val calendar = Calendar.getInstance()
 
-        for (hour in 1..12) {
+        for (hour in -2..14) {
             calendar.set(Calendar.HOUR_OF_DAY, hour)
             hoursList.add(calendar.clone() as Calendar)
         }
@@ -90,7 +90,7 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
 
         calendar.set(Calendar.MINUTE, 0)
 
-        for (minute in 0..59 step 5) {
+        for (minute in -10..70 step 5) {
             calendar.set(Calendar.MINUTE, minute)
             minutesList.add(calendar.clone() as Calendar)
         }
