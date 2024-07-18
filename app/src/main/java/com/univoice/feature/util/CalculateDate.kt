@@ -29,4 +29,8 @@ class CalculateDate {
         val outputFormatter = DateTimeFormatter.ofPattern("MM/dd(E)", Locale.KOREAN)
         return startDateTime.format(outputFormatter) + " ~ " + endDateTime.format(outputFormatter)
     }
+
+    fun getHasTime(dateTime: String): Boolean {
+        return dateTime.substringAfter('T') != "00:00:00"
+    }
 }
