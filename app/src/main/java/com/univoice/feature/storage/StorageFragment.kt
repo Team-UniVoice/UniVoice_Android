@@ -1,5 +1,7 @@
 package com.univoice.feature.storage
 
+import android.os.Bundle
+import androidx.compose.runtime.Composable
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -32,14 +34,21 @@ class StorageFragment : BindingFragment<FragmentStorageBinding>(R.layout.fragmen
     }
 
     private fun initStorageAdapter(data: List<NoticeListEntity>) {
-        binding.rvStorageList.adapter = StorageAdapter(onClick = { data, position ->
-            navigateToNoticeDetail(data, position)
+        binding.rvStorageList.adapter = StorageAdapter(onClick = { data ->
+            navigateToNoticeDetail(data.id)
         }).apply {
             submitList(data)
         }
     }
 
-    private fun navigateToNoticeDetail(data: NoticeListEntity, position: Int) {
-        findNavController().navigate(R.id.action_fragment_storage_to_fragment_notice_detail)
+    private fun navigateToNoticeDetail(id: Int) {
+        val bundle = Bundle().apply {
+            putInt(STORAGE_KEY, id)
+        }
+        findNavController().navigate(R.id.action_fragment_storage_to_fragment_notice_detail, bundle)
+    }
+
+    companion object {
+        const val STORAGE_KEY = "storage_detail_key"
     }
 }

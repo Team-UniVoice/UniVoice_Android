@@ -14,6 +14,7 @@ import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.FragmentNoticeDetailBinding
 import com.univoice.domain.entity.NoticeDetailEntity
 import com.univoice.feature.home.HomeFragment
+import com.univoice.feature.storage.StorageFragment
 import com.univoice.feature.util.CalculateDate
 import com.univoice.feature.util.Debouncer
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +33,14 @@ class NoticeDetailFragment :
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
-        noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
+        val previousBackStackEntry = findNavController().previousBackStackEntry
+        previousBackStackEntry?.destination?.id?.let { previousDestinationId ->
+            when (previousDestinationId) {
+                R.id.fragment_home -> noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
+                R.id.fragment_storage -> noticeId = arguments?.getInt(StorageFragment.STORAGE_KEY)
+                else -> Timber.d("Unknown previous fragment")
+            }
+        }
         return view
     }
 
@@ -77,6 +85,12 @@ class NoticeDetailFragment :
             tvNoticeDetailTarget.text = data.target
             tvNoticeDetailContent.text = data.content
             tvNoticeDetailViews.text = data.viewCount.toString()
+
+            toolbarNoticeDetail.title = data.writeAffiliation
+            tvNoticeDetailTitle.text = data.title
+            tvNoticeDetailContent.text = data.content
+            tvNoticeDetailViews.text = data.viewCount.toString()
+            tvNoticeDetailTarget.text = data.target
             tvNoticeDetailCreateDate.text = CalculateDate().getCalculateDate(data.createdAt)
             tvNoticeDetailViews.text =
                 context?.getString(R.string.tv_notice_detail_views, data.viewCount)
@@ -88,6 +102,25 @@ class NoticeDetailFragment :
             setNoticeDate(data.startTime, data.endTime)
 
             if (data.noticeImages.isNotEmpty()) {
+            if(data.likeCheck){
+                btnNoticeDetailLike.isSelected = true
+            }
+
+            if(data.saveCheck){
+                btnNoticeDetailBookmark.isSelected = true
+            }
+
+            if(data.target.isNullOrEmpty()){
+                groupNoticeDetailTarget.visibility = View.GONE
+            }
+
+            tvNoticeDetailDate.let {
+                groupNoticeDetailDate.visibility = View.VISIBLE
+            }
+
+            setNoticeDate(data.startTime, data.endTime)
+
+            if (data.noticeImages.size > 2) {
                 indicatorNoticeDetailImage.visibility = View.VISIBLE
             }
         }
@@ -109,6 +142,7 @@ class NoticeDetailFragment :
             binding.groupNoticeDetailDate.visibility = View.GONE
         }
     }
+
 
     private fun initBackBtnClickListener() {
         binding.toolbarNoticeDetail.setNavigationOnClickListener {
@@ -154,5 +188,6 @@ class NoticeDetailFragment :
         val adapter = NoticeDetailAdapter()
         binding.vpNoticeDetailImage.adapter = adapter
         adapter.submitList(noticeImgList)
+        binding.indicatorNoticeDetailImage.setViewPager(binding.vpNoticeDetailImage)
     }
 }

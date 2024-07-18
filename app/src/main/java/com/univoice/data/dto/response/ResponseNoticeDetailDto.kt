@@ -10,7 +10,7 @@ data class ResponseNoticeDetailDto(
     @SerialName("content") val content: String,
     @SerialName("noticeLike") val noticeLike: Int,
     @SerialName("viewCount") val viewCount: Int,
-    @SerialName("target") val target: String,
+    @SerialName("target") val target: String? = "",
     @SerialName("startTime")
     val startTime: String? = null,
     @SerialName("endTime")

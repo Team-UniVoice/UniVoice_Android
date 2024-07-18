@@ -5,9 +5,12 @@ import android.net.Uri
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityStudentCardCheckBinding
+import com.univoice.feature.signup.DepartmentInputActivity.Companion.DEPARTMENT_KEY
+import com.univoice.feature.signup.InfoInputActivity.Companion.USER_ID_KEY
 import com.univoice.feature.signup.InfoInputActivity.Companion.USER_NAME_KEY
+import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
 import com.univoice.feature.signup.StudentCardPhotoActivity.Companion.USER_IMAGE_KEY
-import com.univoice.feature.signup.StudentIdInputActivity.Companion.USER_ID_KEY
+import com.univoice.feature.signup.StudentIdInputActivity.Companion.USER_YEAR_KEY
 import com.univoice.feature.util.setupToolbarClickListener
 
 class StudentCardCheckActivity :
@@ -39,8 +42,15 @@ class StudentCardCheckActivity :
 
     private fun setupNextButtonClickListener() {
         binding.btnStudentCardCheckNext.setOnClickListener {
-            val intent = Intent(this, CreateAccountActivity::class.java)
-            startActivity(intent)
+            Intent(this, CreateAccountActivity::class.java).apply {
+                putExtra(USER_ID_KEY, intent.getStringExtra(USER_ID_KEY))
+                putExtra(USER_NAME_KEY, intent.getStringExtra(USER_NAME_KEY))
+                putExtra(USER_IMAGE_KEY, intent.getStringExtra(USER_IMAGE_KEY))
+                putExtra(USER_YEAR_KEY, intent.getStringExtra(USER_YEAR_KEY))
+                putExtra(SCHOOL_KEY, intent.getStringExtra(SCHOOL_KEY))
+                putExtra(DEPARTMENT_KEY, intent.getStringExtra(DEPARTMENT_KEY))
+                startActivity(this)
+            }
         }
     }
 }

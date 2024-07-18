@@ -8,8 +8,10 @@ import androidx.core.widget.addTextChangedListener
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityInfoInputBinding
+import com.univoice.feature.signup.DepartmentInputActivity.Companion.DEPARTMENT_KEY
+import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
 import com.univoice.feature.signup.StudentCardPhotoActivity.Companion.USER_IMAGE_KEY
-import com.univoice.feature.signup.StudentIdInputActivity.Companion.USER_ID_KEY
+import com.univoice.feature.signup.StudentIdInputActivity.Companion.USER_YEAR_KEY
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -72,9 +74,12 @@ class InfoInputActivity : BindingActivity<ActivityInfoInputBinding>(R.layout.act
 
     private fun navigateToStudentCardCheck() {
         Intent(this, StudentCardCheckActivity::class.java).apply {
-            putExtra(USER_NAME_KEY, binding.etNameInputName.text.toString())
             putExtra(USER_ID_KEY, binding.etNameInputStudentId.text.toString())
+            putExtra(USER_NAME_KEY, binding.etNameInputName.text.toString())
             putExtra(USER_IMAGE_KEY, intent.getStringExtra(USER_IMAGE_KEY))
+            putExtra(USER_YEAR_KEY, intent.getStringExtra(USER_YEAR_KEY))
+            putExtra(SCHOOL_KEY, intent.getStringExtra(SCHOOL_KEY))
+            putExtra(DEPARTMENT_KEY, intent.getStringExtra(DEPARTMENT_KEY))
             startActivity(this)
         }
     }
@@ -94,5 +99,6 @@ class InfoInputActivity : BindingActivity<ActivityInfoInputBinding>(R.layout.act
 
     companion object {
         const val USER_NAME_KEY = "userName"
+        const val USER_ID_KEY = "userId"
     }
 }

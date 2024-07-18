@@ -16,8 +16,8 @@ class QuickScanViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(data: QuickScanListEntity) {
         with(binding) {
-            if(data.startTime == null && data.endTime == null) layoutQuickScanDate.visibility = View.GONE
-            if(data.target == null) layoutQuickScanSubject.visibility = View.GONE
+            if(data.startTime.isNullOrEmpty() && data.endTime.isNullOrEmpty()) layoutQuickScanDate.visibility = View.GONE
+            if(data.target.isNullOrEmpty()) layoutQuickScanSubject.visibility = View.GONE
 
             tvQuickScanTime.text = CalculateTime(itemView.context).getCalculateTime(data.createdAt)
             tvQuickScanCouncilName.text = data.writeAffiliation
