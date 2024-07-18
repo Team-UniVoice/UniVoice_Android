@@ -156,15 +156,13 @@ class NoticeDetailFragment :
                 if (!btnNoticeDetailLike.isSelected) {
                     noticeId?.let { id ->
                         tvNoticeDetailLikeCount.text = (tvNoticeDetailLikeCount.text.toString().toInt() + 1).toString()
-                        debouncer.setDelay(it.id, 1000L){
-                            viewModel.postNoticeLike(id) }
+                        viewModel.onLikeBtnClick(id)
                         }
+
                 } else {
                     noticeId?.let { id ->
                         tvNoticeDetailLikeCount.text = (tvNoticeDetailLikeCount.text.toString().toInt() - 1).toString()
-                        debouncer.setDelay(it.id, 1000L) {
-                            viewModel.postNoticeCancelLike(id)
-                        }
+                       viewModel.onDisLikeBtnClick(id)
                     }
                 }
                 btnNoticeDetailLike.isSelected = !binding.btnNoticeDetailLike.isSelected
@@ -177,15 +175,11 @@ class NoticeDetailFragment :
             btnNoticeDetailBookmark.setOnClickListener {
                 if (btnNoticeDetailBookmark.isSelected) {
                     noticeId?.let { id ->
-                        debouncer.setDelay(it.id, 1000L) {
-                            viewModel.postNoticeDetailCancel(id)
-                        }
+                     viewModel.onBookmarkCancelBtnClick(id)
                     }
                 } else {
                     noticeId?.let { id ->
-                        debouncer.setDelay(it.id, 1000L) {
-                            viewModel.postNoticeDetailSave(id)
-                        }
+                        viewModel.onBookmarkBtnClick(id)
                     }
                 }
                 btnNoticeDetailBookmark.isSelected = !binding.btnNoticeDetailBookmark.isSelected

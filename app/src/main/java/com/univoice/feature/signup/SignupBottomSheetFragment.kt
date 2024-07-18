@@ -34,6 +34,20 @@ class SignupBottomSheetFragment :
     override fun initView() {
         setupListeners()
         observePostSignup()
+        initServiceArrowClickListener()
+        initUseArrowClickListener()
+    }
+
+    private fun initUseArrowClickListener() {
+        binding.ivBottomSheetUseArrow.setOnClickListener {
+            navigateToComplaintWeb("https://massive-maple-b53.notion.site/430e2c92b8694ad6a8b4497f3a3b4452?pvs=4")
+        }
+    }
+
+    private fun initServiceArrowClickListener() {
+        binding.ivBottomSheetServiceArrow.setOnClickListener {
+            navigateToComplaintWeb("https://massive-maple-b53.notion.site/426578b24235447abccaae359549cdb7?pvs=4")
+        }
     }
 
     private fun setupListeners() {
@@ -78,8 +92,6 @@ class SignupBottomSheetFragment :
         val userImageUri = Uri.parse(userImagePath)
         val userImageFile = getFileFromUri(userImageUri)
 
-        val userImageFile11 = File(userImagePath)
-
         viewModel.postSignUp(
             admissionNumber = admissionNumber.substring(0, 2),
             name = name,
@@ -118,10 +130,6 @@ class SignupBottomSheetFragment :
         }
     }
 
-    private fun showError(message: String) {
-        println("에러: $message")
-    }
-
     private fun getFileFromUri(uri: Uri): File {
         val inputStream = requireContext().contentResolver.openInputStream(uri)
         val tempFile = File.createTempFile("tempImage", null, requireContext().cacheDir)
@@ -131,5 +139,14 @@ class SignupBottomSheetFragment :
             }
         }
         return tempFile
+    }
+
+    private fun navigateToComplaintWeb(uri: String) {
+        val urlIntentComplaint =
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(uri),
+            )
+        startActivity(urlIntentComplaint)
     }
 }

@@ -72,11 +72,11 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>(R.layout.activity_lo
     private fun initConfirmBtnIsEnabled() {
         with(binding) {
             etLoginId.addTextChangedListener {
-                btnLoginConfirm.isEnabled = etLoginId.text.isNotEmpty()
+                btnLoginConfirm.isEnabled = etLoginId.text.isNotBlank()
             }
             etLoginPwd.addTextChangedListener {
                 btnLoginConfirm.isEnabled =
-                    etLoginId.text.isNotEmpty() && etLoginPwd.text.isNotEmpty()
+                    etLoginId.text.isNotBlank() && etLoginPwd.text.isNotBlank()
             }
         }
     }

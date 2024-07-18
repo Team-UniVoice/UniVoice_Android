@@ -52,12 +52,11 @@
 
         <CheckBox
             android:id="@+id/cb_bottom_sheet_service"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:button="@android:color/transparent"
             android:drawableStart="@drawable/checkbox_selector"
-            android:drawableEnd="@drawable/ic_signup_right_arrow"
             android:drawablePadding="12dp"
             android:lineHeight="20sp"
             android:minHeight="0dp"
@@ -66,18 +65,25 @@
             android:textAppearance="@font/pretendard_regular"
             android:textFontWeight="400"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cb_bottom_sheet_agree_all" />
 
+        <ImageView
+            android:id="@+id/iv_bottom_sheet_service_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_signup_right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cb_bottom_sheet_service"
+            app:layout_constraintBottom_toBottomOf="@id/cb_bottom_sheet_service"/>
+
         <CheckBox
             android:id="@+id/cb_bottom_sheet_use"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:button="@android:color/transparent"
             android:drawableStart="@drawable/checkbox_selector"
-            android:drawableEnd="@drawable/ic_signup_right_arrow"
             android:drawablePadding="12dp"
             android:lineHeight="20sp"
             android:minHeight="0dp"
@@ -86,9 +92,17 @@
             android:textAppearance="@font/pretendard_regular"
             android:textFontWeight="400"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cb_bottom_sheet_service" />
+
+        <ImageView
+            android:id="@+id/iv_bottom_sheet_use_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_signup_right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cb_bottom_sheet_use"
+            app:layout_constraintBottom_toBottomOf="@id/cb_bottom_sheet_use"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_bottom_sheet_agree"

@@ -1,6 +1,7 @@
 package com.univoice.feature.setting
 
 import android.content.Intent
+import android.net.Uri
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +24,20 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>(R.layout.fragmen
     override fun initView() {
         initLogoutBtnClickListener()
         setupUserProfileObserve()
+        initServiceClickListener()
+        initPersonalClickListener()
+    }
+
+    private fun initPersonalClickListener() {
+        binding.layoutSettingPersonal.setOnClickListener {
+            navigateToComplaintWeb("https://massive-maple-b53.notion.site/430e2c92b8694ad6a8b4497f3a3b4452?pvs=4")
+        }
+    }
+
+    private fun initServiceClickListener() {
+        binding.layoutSettingService.setOnClickListener {
+            navigateToComplaintWeb("https://massive-maple-b53.notion.site/426578b24235447abccaae359549cdb7?pvs=4")
+        }
     }
 
     private fun setupUserProfileObserve() {
@@ -48,12 +63,21 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>(R.layout.fragmen
     }
 
     private fun initLogoutBtnClickListener() {
-        binding.ivSettingLogOut.setOnClickListener {
+        binding.layoutSettingLogOut.setOnClickListener {
             settingViewModel.saveCheckLogin(false)
 
             val intent = Intent(activity, EntryActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
+    }
+
+    private fun navigateToComplaintWeb(uri: String) {
+        val urlIntentComplaint =
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(uri),
+            )
+        startActivity(urlIntentComplaint)
     }
 }

@@ -183,87 +183,121 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/layout_setting_info" />
 
-                    <TextView
-                        android:id="@+id/tv_setting_service"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_setting_service"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginEnd="233dp"
-                        android:text="@string/tv_setting_service"
-                        android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                        android:textColor="@color/font_B02"
+                        android:layout_marginTop="16dp"
+                        android:clickable="true"
+                        android:paddingVertical="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_setting_explain" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_setting_explain">
 
-                    <ImageView
-                        android:id="@+id/iv_setting_service"
+                        <TextView
+                            android:id="@+id/tv_setting_service"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tv_setting_service"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                            android:textColor="@color/font_B02"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_setting_service"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_setting_arrow"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_setting_personal"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_setting_arrow"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_setting_service"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tv_setting_service" />
-
-                    <TextView
-                        android:id="@+id/tv_setting_personal"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginEnd="233dp"
-                        android:text="@string/tv_setting_personal"
-                        android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                        android:textColor="@color/font_B02"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_setting_service" />
-
-                    <ImageView
-                        android:id="@+id/iv_setting_personal"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_setting_arrow"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_setting_personal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tv_setting_personal" />
-
-                    <TextView
-                        android:id="@+id/tv_setting_version"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginEnd="233dp"
-                        android:text="@string/tv_setting_version"
-                        android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                        android:textColor="@color/font_B02"
+                        android:clickable="true"
+                        android:paddingVertical="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_setting_personal" />
+                        app:layout_constraintTop_toBottomOf="@id/layout_setting_service">
 
-                    <ImageView
-                        android:id="@+id/iv_setting_version"
+                        <TextView
+                            android:id="@+id/tv_setting_personal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tv_setting_personal"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                            android:textColor="@color/font_B02"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_setting_personal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_setting_arrow"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_setting_version"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_setting_arrow"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_setting_version"
+                        android:clickable="true"
+                        android:paddingVertical="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tv_setting_version" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layout_setting_personal">
+
+                        <TextView
+                            android:id="@+id/tv_setting_version"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tv_setting_version"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                            android:textColor="@color/font_B02"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_setting_version"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_setting_arrow"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                     <com.google.android.material.divider.MaterialDivider
                         android:id="@+id/divider_setting_etc"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="15dp"
                         app:dividerColor="@color/light"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/iv_setting_version" />
+                        app:layout_constraintTop_toBottomOf="@id/layout_setting_version" />
 
                     <TextView
                         android:id="@+id/tv_setting_etc"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
+                        android:paddingVertical="16dp"
                         android:text="@string/tv_setting_etc"
                         android:textAppearance="@style/TextAppearance.UniVoice.head6Semi"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -271,49 +305,69 @@
                         app:layout_constraintTop_toBottomOf="@id/divider_setting_etc"
                         app:layout_goneMarginTop="10dp" />
 
-                    <TextView
-                        android:id="@+id/tv_setting_center"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_setting_center"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginEnd="233dp"
-                        android:text="@string/tv_setting_center"
-                        android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                        android:textColor="@color/font_B02"
+                        android:clickable="true"
+                        android:paddingVertical="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_setting_etc" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_setting_etc">
 
-                    <ImageView
-                        android:id="@+id/iv_setting_center"
+                        <TextView
+                            android:id="@+id/tv_setting_center"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tv_setting_center"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                            android:textColor="@color/font_B02"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_setting_center"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_setting_arrow"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_setting_log_out"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_setting_arrow"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_setting_center"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tv_setting_center" />
-
-                    <TextView
-                        android:id="@+id/tv_setting_log_out"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginEnd="233dp"
-                        android:text="@string/tv_setting_log_out"
-                        android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
-                        android:textColor="@color/font_B02"
+                        android:clickable="true"
+                        android:paddingVertical="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_setting_center" />
+                        app:layout_constraintTop_toBottomOf="@id/layout_setting_center">
 
-                    <ImageView
-                        android:id="@+id/iv_setting_log_out"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_setting_arrow"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_setting_log_out"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/tv_setting_log_out" />
+                        <TextView
+                            android:id="@+id/tv_setting_log_out"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tv_setting_log_out"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
+                            android:textColor="@color/font_B02"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/iv_setting_log_out"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_setting_arrow"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

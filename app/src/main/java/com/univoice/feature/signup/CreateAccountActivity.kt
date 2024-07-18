@@ -36,7 +36,7 @@ class CreateAccountActivity :
 
     companion object {
         const val ID_REGEX = "^[a-z0-9!@#\$%^&*]{5,20}$"
-        const val PASSWORD_REGEX = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#\$%^&*]).{8,16}$"
+        const val PASSWORD_REGEX = "^(?!.*[ㄱ-ㅎㅏ-ㅣ가-힣])(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#\$%^&*]).{8,16}$"
         const val PASSWORD_KEY = "passWord"
         const val ID_KEY = "id"
     }
@@ -116,7 +116,7 @@ class CreateAccountActivity :
 
     private fun validateId(id: String) {
         when {
-            id.isEmpty() -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
+            id.isBlank() -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
             !isValidId(id) -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
             else -> setIdValid(R.string.tv_create_account_id, R.color.blue_400)
         }
@@ -147,6 +147,7 @@ class CreateAccountActivity :
                 )
             )
             btnCreateAccountId.isEnabled = true
+            isPasswordValid = false
         }
         isIdValid = true
     }
@@ -277,7 +278,7 @@ class CreateAccountActivity :
         with(binding) {
             val password = etCreateAccountPw.text.toString()
             val confirmPassword = etCreateAccountPwCheck.text.toString()
-            if (confirmPassword.isEmpty()) {
+            if (confirmPassword.isBlank()) {
                 tvCreateAccountPwCheckExplain.visibility = View.INVISIBLE
             } else if (password == confirmPassword) {
                 tvCreateAccountPwCheckExplain.setText(R.string.password_match)
@@ -342,7 +343,9 @@ class CreateAccountActivity :
     }
 
     private fun isValidPassword(password: String): Boolean {
-        return password.matches(PASSWORD_REGEX.toRegex())
+        val regex = PASSWORD_REGEX.toRegex()
+        val containsKorean = password.any { it in '\u1100'..'\u11FF' || it in '\uAC00'..'\uD7AF' }
+        return regex.matches(password) && !containsKorean
     }
 
     private fun handleNextButtonClick() {
@@ -375,7 +378,7 @@ class CreateAccountActivity :
     private fun showBottomSheet() {
         val bottomSheetFragment = SignupBottomSheetFragment().apply {
             arguments = Bundle().apply {
-                putString(USER_ID_KEY, binding.etCreateAccountId.text.toString())
+                putString(USER_ID_KEY, intent.getStringExtra(USER_ID_KEY))
                 putString(USER_NAME_KEY, intent.getStringExtra(USER_NAME_KEY))
                 putString(USER_IMAGE_KEY, intent.getStringExtra(USER_IMAGE_KEY))
                 putString(USER_YEAR_KEY, intent.getStringExtra(USER_YEAR_KEY))
