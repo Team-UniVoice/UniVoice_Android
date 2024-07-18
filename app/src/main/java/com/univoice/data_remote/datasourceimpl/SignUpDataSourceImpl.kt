@@ -29,7 +29,7 @@ class SignUpDataSourceImpl @Inject constructor(
         password: RequestBody,
         universityName: RequestBody,
         departmentName: RequestBody,
-        studentCardImage: MultipartBody.Part?
+        studentCardImage: MultipartBody.Part
     ): BaseResponse<Unit> {
         return signUpApiService.postSignUp(admissionNumber, name, studentNumber, email, password, universityName, departmentName, studentCardImage)
     }
