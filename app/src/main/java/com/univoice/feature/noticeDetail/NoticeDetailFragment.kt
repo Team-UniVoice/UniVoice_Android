@@ -15,6 +15,7 @@ import com.univoice.databinding.FragmentNoticeDetailBinding
 import com.univoice.domain.entity.NoticeDetailEntity
 import com.univoice.feature.home.HomeFragment
 import com.univoice.feature.util.CalculateDate
+import com.univoice.feature.util.Debouncer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -23,8 +24,8 @@ import timber.log.Timber
 @AndroidEntryPoint
 class NoticeDetailFragment :
     BindingFragment<FragmentNoticeDetailBinding>(R.layout.fragment_notice_detail) {
-
     private val viewModel by viewModels<NoticeDetailViewModel>()
+    private val debouncer = Debouncer<String>()
     private var noticeId: Int? = null
 
     override fun onCreateView(
@@ -98,30 +99,40 @@ class NoticeDetailFragment :
         }
     }
 
-    // 좋아요 버튼 클릭
     private fun initLikeBtnClickListener() {
         with(binding) {
             btnNoticeDetailLike.setOnClickListener {
                 if (!btnNoticeDetailLike.isSelected) {
                     noticeId?.let { id -> viewModel.postNoticeLike(id) }
                 } else {
-                    noticeId?.let { id -> viewModel.postNoticeDelLike(id) }
+                    noticeId?.let { id -> viewModel.postNoticeCancelLike(id) }
                 }
                 btnNoticeDetailLike.isSelected = !binding.btnNoticeDetailLike.isSelected
             }
         }
     }
 
-    // 북마크 버튼 클릭
     private fun initBookMarkBtnClickListener() {
         with(binding) {
             btnNoticeDetailBookmark.setOnClickListener {
+                if (btnNoticeDetailBookmark.isSelected) {
+                    noticeId?.let { id ->
+                        debouncer.setDelay(it.toString(), 1000L) {
+                            viewModel.postNoticeDetailCancel(id)
+                        }
+                    }
+                } else {
+                    noticeId?.let { id ->
+                        debouncer.setDelay(it.toString(), 1000L) {
+                            viewModel.postNoticeDetailSave(id)
+                        }
+                    }
+                }
                 btnNoticeDetailBookmark.isSelected = !binding.btnNoticeDetailBookmark.isSelected
             }
         }
     }
 
-    // Adapter 설정
     private fun initNoticeDetailItemAdapter(noticeImgList: List<String>) {
         val adapter = NoticeDetailAdapter()
         binding.vpNoticeDetailImage.adapter = adapter
