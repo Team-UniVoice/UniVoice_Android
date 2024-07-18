@@ -11,7 +11,7 @@
 </br>
 
 ## 💙Contributors
-|<img src="https://avatars.githubusercontent.com/u/85453429?v=4" width="150" />|<img src="https://avatars.githubusercontent.com/u/68536115?v=4" width="150" />|<img src="https://avatars.githubusercontent.com/u/91470334?s=400&u=4a743fda141cf8a074022b515b0ce3286e6c8560&v=4" width="150" />|<img src="https://avatars.githubusercontent.com/u/79982452?v=4" width="150" />
+|<img src="https://avatars.githubusercontent.com/u/85453429?v=4" width="250" />|<img src="https://avatars.githubusercontent.com/u/68536115?v=4" width="250" />|<img src="https://avatars.githubusercontent.com/u/91470334?s=400&u=4a743fda141cf8a074022b515b0ce3286e6c8560&v=4" width="250" />|<img src="https://avatars.githubusercontent.com/u/79982452?v=4" width="250" />
 |:---------:|:---------:|:---------:|:---------:|
 |[👑김언지](https://github.com/Eonji-sw)|[박유진](https://github.com/youjin09222)|[이가을](https://github.com/gaeulzzang)|[임하늘](https://github.com/twogarlic)|
 | `메인 홈`</br>`공지사항 등록화면` | `공지사항 세부화면`</br>`타임피커` | `로그인`</br>`퀵스캔`</br>`저장 홈` | `회원가입`</br>`마이페이지` |
