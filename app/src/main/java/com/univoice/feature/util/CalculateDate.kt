@@ -20,4 +20,13 @@ class CalculateDate {
         val outputFormatter = DateTimeFormatter.ofPattern("MM/dd(E) HH:mm", Locale.KOREAN)
         return startDateTime.format(outputFormatter) + " ~ " + endDateTime.format(outputFormatter)
     }
+
+    fun getCalculateNoticeDay(startTime: String, endTime: String): String {
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+        val startDateTime = LocalDateTime.parse(startTime, inputFormatter)
+        val endDateTime = LocalDateTime.parse(endTime, inputFormatter)
+
+        val outputFormatter = DateTimeFormatter.ofPattern("MM/dd(E)", Locale.KOREAN)
+        return startDateTime.format(outputFormatter) + " ~ " + endDateTime.format(outputFormatter)
+    }
 }
