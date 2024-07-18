@@ -7,7 +7,7 @@ data class NoticeDetailEntity(
     val content: String,
     val noticeLike: Int,
     val viewCount: Int,
-    val target: String,
+    val target: String?,
     val startTime: String?,
     val endTime: String?,
     val category: String,

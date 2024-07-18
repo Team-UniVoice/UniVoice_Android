@@ -213,13 +213,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
+                            tools:text="2024년" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_time_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
                             android:layout_marginBottom="16dp"
                             android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
                             android:textColor="@color/font_B01"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
-                            tools:text="@string/tv_date_time_picker" />
+                            app:layout_constraintTop_toBottomOf="@+id/tv_notice_post_option_date_start"
+                            tools:text="ㅁㅁㅁㅁㅁㅁㅁㅁ" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -235,12 +246,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
                             android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
                             android:textColor="@color/font_B01"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_notice_post_option_date_title"
+                            app:layout_constraintTop_toTopOf="@+id/tv_notice_post_option_date_start"
+                            tools:text="@string/tv_notice_post_date" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_post_option_time_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:textAppearance="@style/TextAppearance.UniVoice.body1Regular"
+                            android:textColor="@color/font_B01"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_notice_post_option_date_end"
                             tools:text="@string/tv_notice_post_date" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

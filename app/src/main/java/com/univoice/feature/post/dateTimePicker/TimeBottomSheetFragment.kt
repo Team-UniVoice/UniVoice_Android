@@ -1,6 +1,7 @@
 package com.univoice.feature.post.dateTimePicker
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.Group
@@ -9,8 +10,11 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.univoice.R
 import com.univoice.core_ui.base.BindingBottomSheetFragment
 import com.univoice.databinding.FragmentTimeBottomSheetBinding
+import com.univoice.feature.noticePost.NoticePostFragment.Companion.CLICK_BUTTON
 import com.univoice.feature.noticePost.NoticePostFragment.Companion.SET_END_DATE
+import com.univoice.feature.noticePost.NoticePostFragment.Companion.SET_END_TIME
 import com.univoice.feature.noticePost.NoticePostFragment.Companion.SET_START_DATE
+import com.univoice.feature.noticePost.NoticePostFragment.Companion.SET_START_TIME
 import com.univoice.feature.noticePost.NoticePostFragment.Companion.TIME_PICKER_KEY
 import com.univoice.feature.post.dateTimePicker.adapter.AM
 import com.univoice.feature.post.dateTimePicker.adapter.CustomSnapHelper
@@ -69,7 +73,7 @@ class TimeBottomSheetFragment(
         val monthAdapter = DateMonthAdapter(utils.getAllMonths(), DIVIDER_HEIGHT)
         val dayAdapter = DateDayAdapter(utils.getAllDates(), DIVIDER_HEIGHT)
 
-        with(binding){
+        with(binding) {
             rvDateDetail.initVerticalAdapter(dateAdapter, true)
             rvDateHour.initVerticalAdapter(hourAdapter, true)
             rvDateMeridiem.initVerticalAdapter(meridiemAdapter, true)
@@ -191,16 +195,18 @@ class TimeBottomSheetFragment(
         with(binding) {
             btnDateSuccess.setOnClickListener {
                 var setStartDate = ""
+                var setStartTime = ""
                 var setEndDate = ""
+                var setEndTime = ""
 
                 val startDate = layoutStartTime.tvStartTimeDay.text.toString()
                 val startTimeHour = layoutStartTime.tvStartTimeHour.text.toString()
                 val startTimeMinute = layoutStartTime.tvStartTimeMinute.text.toString()
-                val startTimeMeridiem = layoutStartTime.tvStartTimeMeridiem.text.toString()
+                var startTimeMeridiem = layoutStartTime.tvStartTimeMeridiem.text.toString()
                 val endDate = layoutEndTime.tvEndTimeDay.text.toString()
                 val endTimeHour = layoutEndTime.tvEndTimeHour.text.toString()
                 val endTimeMinute = layoutEndTime.tvEndTimeMinute.text.toString()
-                val endTimeMeridiem = layoutEndTime.tvEndTimeMeridiem.text.toString()
+                var endTimeMeridiem = layoutEndTime.tvEndTimeMeridiem.text.toString()
                 val startYear = layoutStartDate.tvStartDateYear.text.toString()
                 val startMonth = layoutStartDate.tvStartDateMonth.text.toString()
                 val startDay = layoutStartDate.tvStartDateDay.text.toString()
@@ -208,11 +214,23 @@ class TimeBottomSheetFragment(
                 val endMonth = layoutEndDate.tvEndDateMonth.text.toString()
                 val endDay = layoutEndDate.tvEndDateDay.text.toString()
 
-                if (!isSelected) {
-                    setStartDate =
-                        "${startDate} \n ${startTimeMeridiem} ${startTimeHour} ${startTimeMinute}"
-                    setEndDate = "${endDate} \n ${endTimeMeridiem} ${endTimeHour} ${endTimeMinute}"
 
+                if (startTimeMeridiem == "PM")
+                    startTimeMeridiem = "오후"
+                else
+                    startTimeMeridiem = "오전"
+
+                if (endTimeMeridiem == "PM")
+                    endTimeMeridiem = "오후"
+                else
+                    endTimeMeridiem = "오전"
+
+
+                if (!isSelected) {
+                    setStartDate = "${startDate}"
+                    setStartTime = "${startTimeMeridiem} ${startTimeHour}${startTimeMinute}"
+                    setEndDate = "${endDate}"
+                    setEndTime = "${endTimeMeridiem} ${endTimeHour}${endTimeMinute}"
                 } else {
                     setStartDate = context?.getString(
                         R.string.tv_date_day_picker,
@@ -227,6 +245,10 @@ class TimeBottomSheetFragment(
                 val resultBundle = Bundle().apply {
                     putString(SET_START_DATE, setStartDate)
                     putString(SET_END_DATE, setEndDate)
+                    putString(SET_START_TIME, setStartTime)
+                    putString(SET_END_TIME, setEndTime)
+                    putBoolean(CLICK_BUTTON, isSelected)
+                    Log.d("setDateStart", setStartTime)
                 }
 
                 parentFragmentManager.setFragmentResult(TIME_PICKER_KEY, resultBundle)

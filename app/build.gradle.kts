@@ -61,6 +61,7 @@ dependencies {
     implementation(libs.androidx.lifecycle)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.exifinterface)
 
     // Navigation
     implementation(libs.bundles.navigation)

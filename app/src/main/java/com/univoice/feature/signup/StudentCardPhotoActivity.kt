@@ -16,6 +16,9 @@ import com.univoice.core_ui.base.BindingActivity
 import com.univoice.databinding.ActivityStudentCardPhotoBinding
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import com.univoice.feature.signup.DepartmentInputActivity.Companion.DEPARTMENT_KEY
+import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
+import com.univoice.feature.signup.StudentIdInputActivity.Companion.USER_YEAR_KEY
 
 @AndroidEntryPoint
 class StudentCardPhotoActivity :
@@ -110,6 +113,9 @@ class StudentCardPhotoActivity :
     private fun navigateToInfoInput(selectedImageUri: Uri) {
         Intent(this, InfoInputActivity::class.java).apply {
             putExtra(USER_IMAGE_KEY, selectedImageUri.toString())
+            putExtra(USER_YEAR_KEY, intent.getStringExtra(USER_YEAR_KEY))
+            putExtra(SCHOOL_KEY, intent.getStringExtra(SCHOOL_KEY))
+            putExtra(DEPARTMENT_KEY, intent.getStringExtra(DEPARTMENT_KEY))
             startActivity(this)
         }
     }

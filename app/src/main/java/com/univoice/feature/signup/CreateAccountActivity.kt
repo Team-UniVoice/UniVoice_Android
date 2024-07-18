@@ -1,5 +1,6 @@
 package com.univoice.feature.signup
 
+import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -11,6 +12,12 @@ import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
 import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.ActivityCreateAccountBinding
+import com.univoice.feature.signup.DepartmentInputActivity.Companion.DEPARTMENT_KEY
+import com.univoice.feature.signup.InfoInputActivity.Companion.USER_ID_KEY
+import com.univoice.feature.signup.InfoInputActivity.Companion.USER_NAME_KEY
+import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
+import com.univoice.feature.signup.StudentCardPhotoActivity.Companion.USER_IMAGE_KEY
+import com.univoice.feature.signup.StudentIdInputActivity.Companion.USER_YEAR_KEY
 import com.univoice.feature.util.BiggerDotPasswordTransformationMethod
 import com.univoice.feature.util.setupToolbarClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +37,8 @@ class CreateAccountActivity :
     companion object {
         const val ID_REGEX = "^[a-z0-9!@#\$%^&*]{5,20}$"
         const val PASSWORD_REGEX = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#\$%^&*]).{8,16}$"
+        const val PASSWORD_KEY = "passWord"
+        const val ID_KEY = "id"
     }
 
     override fun initView() {
@@ -364,7 +373,18 @@ class CreateAccountActivity :
     }
 
     private fun showBottomSheet() {
-        val bottomSheetFragment = SignupBottomSheetFragment()
+        val bottomSheetFragment = SignupBottomSheetFragment().apply {
+            arguments = Bundle().apply {
+                putString(USER_ID_KEY, binding.etCreateAccountId.text.toString())
+                putString(USER_NAME_KEY, intent.getStringExtra(USER_NAME_KEY))
+                putString(USER_IMAGE_KEY, intent.getStringExtra(USER_IMAGE_KEY))
+                putString(USER_YEAR_KEY, intent.getStringExtra(USER_YEAR_KEY))
+                putString(SCHOOL_KEY, intent.getStringExtra(SCHOOL_KEY))
+                putString(DEPARTMENT_KEY, intent.getStringExtra(DEPARTMENT_KEY))
+                putString(PASSWORD_KEY, binding.etCreateAccountPw.text.toString())
+                putString(ID_KEY, binding.etCreateAccountId.text.toString())
+            }
+        }
         bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
     }
 
