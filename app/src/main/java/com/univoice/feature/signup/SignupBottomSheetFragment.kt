@@ -92,8 +92,6 @@ class SignupBottomSheetFragment :
         val userImageUri = Uri.parse(userImagePath)
         val userImageFile = getFileFromUri(userImageUri)
 
-        val userImageFile11 = File(userImagePath)
-
         viewModel.postSignUp(
             admissionNumber = admissionNumber.substring(0, 2),
             name = name,
@@ -130,10 +128,6 @@ class SignupBottomSheetFragment :
             flags = FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(this)
         }
-    }
-
-    private fun showError(message: String) {
-        println("에러: $message")
     }
 
     private fun getFileFromUri(uri: Uri): File {
