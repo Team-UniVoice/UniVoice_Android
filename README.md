@@ -27,7 +27,7 @@
 | ------------ | -------------------------- |
 | Architecture | Clean Architecture, MVVM  |
 | Design Pattern | Repository Pattern, Adapter Pattern, Observer Pattern |
-| Jetpack Components | AAC Bottom Navigation, Preference Datastore, Lifecycle, ViewModel, DataBindng  |
+| Jetpack Components | AAC Bottom Navigation, ViewPager2, Preference Datastore, Lifecycle, ViewModel, DataBindng  |
 | Dependency Injection | Hilt  |
 | Network | Retrofit, OkHttp  |
 | Asynchronous Processing | Coroutine(+ Flow)  |
