@@ -21,5 +21,4 @@ object ApiKeyStorage {
     const val CANCEL = "cancel"
     const val CHECK_EMAIL = "check-email"
     const val LIKE = "like"
-    const val CANCEL = "cancel"
 }
