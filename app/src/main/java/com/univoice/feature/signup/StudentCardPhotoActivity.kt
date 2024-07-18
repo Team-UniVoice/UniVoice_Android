@@ -47,7 +47,7 @@ class StudentCardPhotoActivity :
     }
 
     private fun uploadBtnClickListener() {
-        binding.btnStudentCardPhotoUpload.setOnClickListener {
+        binding.layoutStudentCardPhotoUpload.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
             } else {
