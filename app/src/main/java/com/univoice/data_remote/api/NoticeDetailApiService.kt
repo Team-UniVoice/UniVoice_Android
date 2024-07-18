@@ -4,6 +4,7 @@ import com.univoice.data.dto.BaseResponse
 import com.univoice.data.dto.response.ResponseNoticeDetailDto
 import com.univoice.data_remote.api.ApiKeyStorage.API
 import com.univoice.data_remote.api.ApiKeyStorage.CANCEL
+import com.univoice.data_remote.api.ApiKeyStorage.LIKE
 import com.univoice.data_remote.api.ApiKeyStorage.NOTICE
 import com.univoice.data_remote.api.ApiKeyStorage.NOTICE_ID
 import com.univoice.data_remote.api.ApiKeyStorage.SAVE
@@ -18,6 +19,16 @@ interface NoticeDetailApiService {
     suspend fun getNoticeDetail(
         @Path(NOTICE_ID) noticeId: Int
     ): BaseResponse<ResponseNoticeDetailDto>
+
+    @POST("/$API/$V1/$NOTICE/$LIKE/{$NOTICE_ID}")
+    suspend fun postNoticeLike(
+        @Path(NOTICE_ID) noticeId: Int
+    ): BaseResponse<Unit>
+
+    @POST("/$API/$V1/$NOTICE/$LIKE/$CANCEL/{$NOTICE_ID}")
+    suspend fun postNoticeCancelLike(
+        @Path(NOTICE_ID) noticeId: Int
+    ): BaseResponse<Unit>
 
     @POST("$API/$V1/$NOTICE/$VIEW_COUNT/{$NOTICE_ID}")
     suspend fun postNoticeDetailViewCount(

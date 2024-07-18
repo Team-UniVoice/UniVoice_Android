@@ -15,6 +15,18 @@ class NoticeDetailRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun postNoticeLike(noticeId: Int): Result<Unit> {
+        return runCatching {
+            noticeDetailDataSource.postNoticeLike(noticeId)
+        }
+    }
+
+    override suspend fun postNoticeCancelLike(noticeId: Int): Result<Unit> {
+        return runCatching {
+            noticeDetailDataSource.postNoticeCancelLike(noticeId)
+        }
+    }
+
     override suspend fun postNoticeDetailViewCount(noticeId: Int): Result<Unit> {
         return runCatching {
             noticeDetailDataSource.postNoticeDetailViewCount(noticeId).data ?: Unit

@@ -34,8 +34,9 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".feature.entry.EntryActivity"
+            android:name=".feature.SplashActivity"
             android:exported="true"
+            android:theme="@style/Theme.UniVoice.Splash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,10 +46,9 @@
         </activity>
 
         <activity
-            android:name=".feature.SplashActivity"
+            android:name=".feature.entry.EntryActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.UniVoice.Splash">
+            android:screenOrientation="portrait">
 
         </activity>
         <activity

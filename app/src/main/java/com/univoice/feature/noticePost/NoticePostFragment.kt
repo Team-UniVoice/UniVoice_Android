@@ -2,7 +2,6 @@ package com.univoice.feature.noticePost
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.view.View
@@ -12,13 +11,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.core_ui.util.context.showPermissionAppSettingsDialog
 import com.univoice.databinding.FragmentNoticePostBinding
+import com.univoice.feature.post.dateTimePicker.TimeBottomSheetFragment
+import java.util.Calendar
 
 class NoticePostFragment :
     BindingFragment<FragmentNoticePostBinding>(R.layout.fragment_notice_post) {
@@ -64,6 +64,48 @@ class NoticePostFragment :
         setOptionTarget()
         initOptionTargetClickListener()
         initOptionTargetDeleteBtnClickListener()
+        initPostDateClickListener()
+        initSetDateClickListener()
+        initCloseClickListener()
+    }
+
+    private fun initPostDateClickListener() {
+        binding.layoutNoticePostDateBtn.setOnClickListener {
+            val startDate: Calendar = Calendar.getInstance()
+            val timeBottomSheetFragment = TimeBottomSheetFragment(startDate, 12)
+            timeBottomSheetFragment.show(parentFragmentManager, timeBottomSheetFragment.tag)
+            initSetDateText()
+        }
+    }
+
+    private fun initSetDateClickListener(){
+        binding.layoutNoticePostOptionDate.setOnClickListener {
+            val startDate: Calendar = Calendar.getInstance()
+            val timeBottomSheetFragment = TimeBottomSheetFragment(startDate, 12)
+            timeBottomSheetFragment.show(parentFragmentManager, timeBottomSheetFragment.tag)
+            initSetDateText()
+        }
+    }
+
+    private fun initCloseClickListener(){
+        with(binding){
+            ivNoticePostOptionDateDelete.setOnClickListener {
+                layoutNoticePostOptionDate.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun initSetDateText() {
+        setFragmentResultListener(TIME_PICKER_KEY) { _, bundle ->
+            val setStartDate = bundle.getString(SET_START_DATE, "")
+            val setEndDate = bundle.getString(SET_END_DATE, "")
+
+            with(binding){
+                tvNoticePostOptionDateStart.text = setStartDate
+                tvNoticePostOptionDateEnd.text = setEndDate
+                layoutNoticePostOptionDate.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun initPostImageAdapter() {
@@ -84,13 +126,18 @@ class NoticePostFragment :
     }
 
     private fun getGalleryPermission() {
-        // API 34 이상인 경우
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            selectImage()
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requestPermissions.launch(Manifest.permission.READ_MEDIA_IMAGES)
-        } else {
-            requestPermissions.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE -> {
+                selectImage()
+            }
+
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> {
+                requestPermissions.launch(Manifest.permission.READ_MEDIA_IMAGES)
+            }
+
+            else -> {
+                requestPermissions.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
         }
     }
 
@@ -108,7 +155,7 @@ class NoticePostFragment :
     private fun initPhotoPickerLauncher() {
         getPhotoPickerLauncher =
             registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia()) { imageUriData ->
-                imageUriData.let {
+                imageUriData?.let {
                     if (imageUris.size + it.size <= 5) {
                         imageUris.addAll(it)
                         imageAdapter.notifyDataSetChanged()
@@ -124,7 +171,7 @@ class NoticePostFragment :
     private fun initGalleryLauncher() {
         getGalleryLauncher =
             registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { imageUriData ->
-                imageUriData.let {
+                imageUriData?.let {
                     if (imageUris.size + it.size <= 5) {
                         imageUris.addAll(it)
                         imageAdapter.notifyDataSetChanged()
@@ -150,7 +197,9 @@ class NoticePostFragment :
 
     private fun initApplyBtnClickListener() {
         binding.btnToolbarNoticePostApply.setOnClickListener {
-            findNavController().navigate(R.id.action_fragment_notice_post_to_fragment_notice_post_apply)
+            findNavController().navigate(
+                R.id.action_fragment_notice_post_to_fragment_home,
+            )
         }
     }
 
@@ -206,9 +255,10 @@ class NoticePostFragment :
 
     companion object {
         const val NOTICE_POST_TARGET_BOTTOM_SHEET = "notice_post_target_bottom_sheet"
-        const val NOTICE_POST_TARGET_BOTTOM_SHEET_ARGS =
-            "notice_post_target_bottom_sheet_args"
-        const val NOTICE_POST_TARGET_BOTTOM_SHEET_ARGS_CONTENT =
-            "notice_post_target_bottom_sheet_args_content"
+        const val NOTICE_POST_TARGET_BOTTOM_SHEET_ARGS = "notice_post_target_bottom_sheet_args"
+        const val NOTICE_POST_TARGET_BOTTOM_SHEET_ARGS_CONTENT = "notice_post_target_bottom_sheet_args_content"
+        const val TIME_PICKER_KEY = "timePickerKey"
+        const val SET_START_DATE = "setStartDate"
+        const val SET_END_DATE = "setEndDate"
     }
 }

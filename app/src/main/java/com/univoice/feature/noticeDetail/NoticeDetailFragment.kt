@@ -1,6 +1,9 @@
 package com.univoice.feature.noticeDetail
 
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +26,15 @@ class NoticeDetailFragment :
     BindingFragment<FragmentNoticeDetailBinding>(R.layout.fragment_notice_detail) {
     private val viewModel by viewModels<NoticeDetailViewModel>()
     private val debouncer = Debouncer<String>()
+    private var noticeId: Int? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        val view = super.onCreateView(inflater, container, savedInstanceState)
+        noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
+        return view
+    }
 
     override fun initView() {
         initLikeBtnClickListener()
@@ -33,7 +45,6 @@ class NoticeDetailFragment :
     }
 
     private fun getNoticeDetail() {
-        val noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
         noticeId?.let {
             viewModel.getNoticeDetail(it)
             viewModel.postNoticeDetailViewCount(it)
@@ -88,30 +99,32 @@ class NoticeDetailFragment :
         }
     }
 
-    // 좋아요 버튼 클릭
     private fun initLikeBtnClickListener() {
         with(binding) {
             btnNoticeDetailLike.setOnClickListener {
+                if (!btnNoticeDetailLike.isSelected) {
+                    noticeId?.let { id -> viewModel.postNoticeLike(id) }
+                } else {
+                    noticeId?.let { id -> viewModel.postNoticeCancelLike(id) }
+                }
                 btnNoticeDetailLike.isSelected = !binding.btnNoticeDetailLike.isSelected
             }
         }
     }
 
-    // 북마크 버튼 클릭
     private fun initBookMarkBtnClickListener() {
-        val noticeId = arguments?.getInt(HomeFragment.DETAIL_KEY)
         with(binding) {
             btnNoticeDetailBookmark.setOnClickListener {
-                if(btnNoticeDetailBookmark.isSelected) {
-                    noticeId?.let {
+                if (btnNoticeDetailBookmark.isSelected) {
+                    noticeId?.let { id ->
                         debouncer.setDelay(it.toString(), 1000L) {
-                            viewModel.postNoticeDetailCancel(noticeId)
+                            viewModel.postNoticeDetailCancel(id)
                         }
                     }
                 } else {
-                    noticeId?.let {
+                    noticeId?.let { id ->
                         debouncer.setDelay(it.toString(), 1000L) {
-                            viewModel.postNoticeDetailSave(noticeId)
+                            viewModel.postNoticeDetailSave(id)
                         }
                     }
                 }
@@ -120,7 +133,6 @@ class NoticeDetailFragment :
         }
     }
 
-    // Adapter 설정
     private fun initNoticeDetailItemAdapter(noticeImgList: List<String>) {
         val adapter = NoticeDetailAdapter()
         binding.vpNoticeDetailImage.adapter = adapter

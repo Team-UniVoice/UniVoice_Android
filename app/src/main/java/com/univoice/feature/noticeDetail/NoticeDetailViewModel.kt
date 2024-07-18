@@ -22,6 +22,12 @@ class NoticeDetailViewModel @Inject constructor(
         MutableStateFlow<UiState<NoticeDetailEntity>>(UiState.Empty)
     val getNoticeDetail: StateFlow<UiState<NoticeDetailEntity>> = _getNoticeDetail
 
+    private val _postNoticeLike = MutableStateFlow<UiState<Unit>>(UiState.Empty)
+    val postNoticeLike: StateFlow<UiState<Unit>> = _postNoticeLike
+
+    private val _postNoticeCancelLike = MutableStateFlow<UiState<Unit>>(UiState.Empty)
+    val postNoticeCancelLike: StateFlow<UiState<Unit>> = _postNoticeCancelLike
+
     private val _postNoticeDetailViewCount =
         MutableSharedFlow<UiState<Unit>>()
     val postNoticeDetailViewCount: SharedFlow<UiState<Unit>> = _postNoticeDetailViewCount
@@ -39,6 +45,20 @@ class NoticeDetailViewModel @Inject constructor(
                 _getNoticeDetail.emit(UiState.Success(it))
             },
             { _getNoticeDetail.emit(UiState.Failure(it.message.toString())) }
+        )
+    }
+
+    fun postNoticeLike(noticeId: Int) = viewModelScope.launch {
+        _postNoticeLike.emit(UiState.Loading)
+        noticeDetailRepository.postNoticeLike(noticeId).fold(
+            {}, {}
+        )
+    }
+
+    fun postNoticeCancelLike(noticeId: Int) = viewModelScope.launch {
+        _postNoticeCancelLike.emit(UiState.Loading)
+        noticeDetailRepository.postNoticeCancelLike(noticeId).fold(
+            {}, {}
         )
     }
 
