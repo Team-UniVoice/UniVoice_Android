@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.univoice.core_ui.view.UiState
 import com.univoice.domain.repository.SignUpRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,38 +19,30 @@ class SignupBottomSheetFragmentViewModel @Inject constructor(
     private val signUpRepository: SignUpRepository
 ) : ViewModel() {
 
-    private val _signupState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
-    val signupState: StateFlow<UiState<Unit>> = _signupState
-    fun signUp(
-        admissionNumber: RequestBody,
-        name: RequestBody,
-        studentNumber: RequestBody,
-        email: RequestBody,
-        password: RequestBody,
-        universityName: RequestBody,
-        departmentName: RequestBody,
-        studentCardImage: MultipartBody.Part?
-    ) {
-        _signupState.value = UiState.Loading
-        viewModelScope.launch {
-            signUpRepository.postSignUp(
-                admissionNumber,
-                name,
-                studentNumber,
-                email,
-                password,
-                universityName,
-                departmentName,
-                studentCardImage
-            ).fold(
-                onSuccess = {
-                    _signupState.value = UiState.Success(Unit)
-                },
-                onFailure = {
-                    println("실패: ${it.message}")
-                    _signupState.value = UiState.Failure(it.message ?: "Unknown Error")
-                }
-            )
-        }
+    private val _postSignupState = MutableSharedFlow<UiState<Any>>()
+    val postSignupState: SharedFlow<UiState<Any>> get() = _postSignupState.asSharedFlow()
+
+    fun postSignUp(
+        admissionNumber: String,
+        name: String,
+        studentNumber: String,
+        email: String,
+        password: String,
+        universityName: String,
+        departmentName: String,
+        studentCardImage: File
+    ) = viewModelScope.launch {
+        _postSignupState.emit(UiState.Loading)
+        signUpRepository.postSignUp(
+            admissionNumber,
+            name,
+            studentNumber,
+            email,
+            password,
+            universityName,
+            departmentName,
+            studentCardImage
+        ).onSuccess { _postSignupState.emit(UiState.Success(it)) }
+            .onFailure { _postSignupState.emit(UiState.Failure(it.message.toString())) }
     }
 }
