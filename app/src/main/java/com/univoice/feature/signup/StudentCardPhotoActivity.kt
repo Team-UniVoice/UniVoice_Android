@@ -43,7 +43,7 @@ class StudentCardPhotoActivity :
     }
 
     private fun uploadBtnClickListener() {
-        binding.btnStudentCardPhotoUpload.setOnClickListener {
+        binding.layoutStudentCardPhotoUpload.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
             } else {
@@ -79,8 +79,8 @@ class StudentCardPhotoActivity :
                         cornerRadius = 10f * resources.displayMetrics.density
                     }
                     with(binding) {
-                        btnStudentCardPhotoUpload.background = drawable
-                        btnStudentCardPhotoUpload.text = ""
+                        ivStudentCardPhoto.background = drawable
+                        tvStudentCardPhotoText.text = ""
                         btnStudentCardPhotoNext.visibility = View.VISIBLE
                         btnStudentCardPhotoNext.setOnClickListener {
                             navigateToInfoInput(selectedImageUri)
