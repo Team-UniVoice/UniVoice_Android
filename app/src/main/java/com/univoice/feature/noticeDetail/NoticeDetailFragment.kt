@@ -26,7 +26,7 @@ import timber.log.Timber
 class NoticeDetailFragment :
     BindingFragment<FragmentNoticeDetailBinding>(R.layout.fragment_notice_detail) {
     private val viewModel by viewModels<NoticeDetailViewModel>()
-    private val debouncer = Debouncer<String>()
+    private val debouncer = Debouncer<Int>()
     private var noticeId: Int? = null
 
     override fun onCreateView(
@@ -45,6 +45,7 @@ class NoticeDetailFragment :
     }
 
     override fun initView() {
+        observeNoticeDetailBookmark()
         initLikeBtnClickListener()
         initBookMarkBtnClickListener()
         initBackBtnClickListener()
@@ -63,6 +64,16 @@ class NoticeDetailFragment :
         observeNoticeDetail()
     }
 
+    private fun observeNoticeDetailBookmark() {
+        viewModel.postNoticeDetailCancel.flowWithLifecycle(lifecycle).onEach {
+            when (it) {
+                is UiState.Loading -> Timber.tag("NoticeDetailFailure").d(it.toString())
+                is UiState.Success -> Timber.tag("NoticeDetailFailure").d(it.toString())
+                is UiState.Empty -> Timber.tag("NoticeDetailFailure").d(it.toString())
+                is UiState.Failure -> Timber.tag("NoticeDetailFailure").d(it.msg)
+            }
+        }.launchIn(lifecycleScope)
+    }
     private fun observeNoticeDetail() {
         viewModel.getNoticeDetail.flowWithLifecycle(lifecycle).onEach {
             when (it) {
@@ -89,6 +100,7 @@ class NoticeDetailFragment :
             tvNoticeDetailCreateDate.text = CalculateDate().getCalculateDate(data.createdAt)
             tvNoticeDetailViews.text =
                 context?.getString(R.string.tv_notice_detail_views, data.viewCount)
+            tvNoticeDetailLikeCount.text = data.noticeLike.toString()
 
             if(data.likeCheck){
                 btnNoticeDetailLike.isSelected = true
@@ -142,9 +154,18 @@ class NoticeDetailFragment :
         with(binding) {
             btnNoticeDetailLike.setOnClickListener {
                 if (!btnNoticeDetailLike.isSelected) {
-                    noticeId?.let { id -> viewModel.postNoticeLike(id) }
+                    noticeId?.let { id ->
+                        tvNoticeDetailLikeCount.text = (tvNoticeDetailLikeCount.text.toString().toInt() + 1).toString()
+                        debouncer.setDelay(it.id, 1000L){
+                            viewModel.postNoticeLike(id) }
+                        }
                 } else {
-                    noticeId?.let { id -> viewModel.postNoticeCancelLike(id) }
+                    noticeId?.let { id ->
+                        tvNoticeDetailLikeCount.text = (tvNoticeDetailLikeCount.text.toString().toInt() - 1).toString()
+                        debouncer.setDelay(it.id, 1000L) {
+                            viewModel.postNoticeCancelLike(id)
+                        }
+                    }
                 }
                 btnNoticeDetailLike.isSelected = !binding.btnNoticeDetailLike.isSelected
             }
@@ -156,13 +177,13 @@ class NoticeDetailFragment :
             btnNoticeDetailBookmark.setOnClickListener {
                 if (btnNoticeDetailBookmark.isSelected) {
                     noticeId?.let { id ->
-                        debouncer.setDelay(it.toString(), 1000L) {
+                        debouncer.setDelay(it.id, 1000L) {
                             viewModel.postNoticeDetailCancel(id)
                         }
                     }
                 } else {
                     noticeId?.let { id ->
-                        debouncer.setDelay(it.toString(), 1000L) {
+                        debouncer.setDelay(it.id, 1000L) {
                             viewModel.postNoticeDetailSave(id)
                         }
                     }
