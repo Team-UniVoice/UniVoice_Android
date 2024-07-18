@@ -18,6 +18,6 @@ interface SignUpDataSource {
         password: RequestBody,
         universityName: RequestBody,
         departmentName: RequestBody,
-        studentCardImage: MultipartBody.Part?,
+        studentCardImage: MultipartBody.Part,
     ): BaseResponse<Unit>
 }
