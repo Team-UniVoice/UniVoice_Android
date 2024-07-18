@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.ListAdapter
 import com.univoice.core_ui.view.ItemDiffCallback
 import com.univoice.databinding.ItemNoticeBinding
 import com.univoice.domain.entity.NoticeListEntity
+import com.univoice.domain.entity.StorageListEntity
 
 class StorageAdapter(
-    private val onClick: (NoticeListEntity) -> Unit = { _ -> },
-) : ListAdapter<NoticeListEntity, StorageViewHolder>(
+    private val onClick: (StorageListEntity) -> Unit = { _ -> },
+) : ListAdapter<StorageListEntity, StorageViewHolder>(
     StorageAdapterDiffCallback
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StorageViewHolder {
@@ -23,7 +24,7 @@ class StorageAdapter(
 
     companion object {
         private val StorageAdapterDiffCallback =
-            ItemDiffCallback<NoticeListEntity>(
+            ItemDiffCallback<StorageListEntity>(
                 onItemsTheSame = { old, new -> old.id == new.id },
                 onContentsTheSame = { old, new -> old == new })
     }

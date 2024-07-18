@@ -3,7 +3,7 @@ package com.univoice.feature.storage
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.univoice.core_ui.view.UiState
-import com.univoice.domain.entity.NoticeListEntity
+import com.univoice.domain.entity.StorageListEntity
 import com.univoice.domain.repository.StorageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,14 +15,14 @@ import javax.inject.Inject
 class StorageViewModel @Inject constructor(
     private val storageRepository: StorageRepository
 ) : ViewModel() {
-    private val _getStorageState = MutableStateFlow<UiState<List<NoticeListEntity>>>(UiState.Empty)
-    val getStorageState: StateFlow<UiState<List<NoticeListEntity>>> = _getStorageState
+    private val _getStorageState = MutableStateFlow<UiState<List<StorageListEntity>>>(UiState.Empty)
+    val getStorageState: StateFlow<UiState<List<StorageListEntity>>> = _getStorageState
 
     init {
         getStorageList()
     }
 
-    private fun getStorageList() = viewModelScope.launch {
+    fun getStorageList() = viewModelScope.launch {
         _getStorageState.emit(UiState.Loading)
         storageRepository.getSaves().fold(
             {

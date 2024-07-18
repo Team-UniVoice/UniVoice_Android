@@ -9,14 +9,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_regular_line_20_rect"
+        android:background="@drawable/shape_regular_line_rect"
         app:layout_behavior="com.google.android.material.bottom-sheet.BottomSheetBehavior">
 
         <TextView
             android:id="@+id/tv_bottomsheet_notice_post_target_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="20dp"
             android:text="@string/btn_notice_post_target"
             android:textAppearance="@style/TextAppearance.UniVoice.title3Semi"
             android:textColor="@color/font_B01"
@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/shape_regular_line_4_rect"
             android:hint="@string/et_bottomsheet_notice_post_target_hint"
             android:padding="16dp"
@@ -60,8 +60,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:background="@drawable/shape_mint400_fill_24_rect"
-            android:paddingVertical="12dp"
+            android:background="@drawable/sel_signup_button"
+            android:enabled="false"
+            android:paddingVertical="19dp"
             android:text="@string/btn_login_confirm"
             android:textAppearance="@style/TextAppearance.UniVoice.body1Semi"
             android:textColor="@color/white"
