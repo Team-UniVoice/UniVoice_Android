@@ -4,6 +4,9 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
@@ -19,6 +22,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.decode.DecodeUtils.calculateInSampleSize
 import com.univoice.R
 import com.univoice.core_ui.base.BindingFragment
 import com.univoice.core_ui.util.context.showPermissionAppSettingsDialog
@@ -31,7 +35,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -339,7 +346,8 @@ class NoticePostFragment :
 
     private fun convertUriListToFileList(context: Context, uriList: MutableList<Uri>): List<File> {
         return uriList.mapNotNull { uri ->
-            uriToFile(context, uri)
+            val originalFile = uriToFile(context, uri)
+            originalFile?.let { compressImageFile(it) }
         }
     }
 
@@ -356,9 +364,29 @@ class NoticePostFragment :
         return null
     }
 
+    private fun compressImageFile(file: File): File {
+        var bitmap = BitmapFactory.decodeFile(file.path)
+        var quality = 100
+        val maxFileSize = 5 * 1024 * 1024 // 5MB
+        val byteArrayOutputStream = ByteArrayOutputStream()
+
+        while (true) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, byteArrayOutputStream)
+            if (byteArrayOutputStream.size() <= maxFileSize) break
+            quality -= 5
+        }
+
+        val compressedFile = File(file.parent, "compressed_${file.name}")
+        FileOutputStream(compressedFile).use { out ->
+            out.write(byteArrayOutputStream.toByteArray())
+        }
+
+        return compressedFile
+    }
+
     private fun setApplyBtnEnable() {
         with(binding) {
-            if (etNoticePostTitle.text.isNotEmpty() && etNoticePostContent.text.isNotEmpty()) {
+            if (etNoticePostTitle.text.isNotBlank() && etNoticePostContent.text.isNotBlank()) {
                 btnToolbarNoticePostApply.setBackgroundResource(R.drawable.shape_mint400_fill_20_rect)
                 btnToolbarNoticePostApply.isEnabled = true
             } else {
