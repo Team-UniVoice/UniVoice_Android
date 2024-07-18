@@ -9,8 +9,6 @@ fun ResponseStorageDto.toStorageListEntity() = StorageListEntity(
     viewCount,
     noticeLike,
     category,
-    startTime,
-    endTime,
     createdAt,
     image ?: ""
 )
