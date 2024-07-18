@@ -42,6 +42,6 @@ interface SignUpApiService {
         @Part("password") password: RequestBody,
         @Part("universityName") universityName: RequestBody,
         @Part("departmentName") departmentName: RequestBody,
-        @Part studentCardImage: MultipartBody.Part?,
+        @Part studentCardImage: MultipartBody.Part,
     ): BaseResponse<Unit>
 }
