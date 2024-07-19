@@ -18,6 +18,25 @@
 </br>
 
 ## 📷 스크린샷
+|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/2758a3a8-90c0-4af6-9b66-a45dcdd29ec8" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/9694e24f-6246-490c-ad07-951eb2dec06b" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/05c5b55d-89bf-44c4-9194-ce1cfd7b98c8" width=70% />|
+|:---------:|:---------:|:---------:|
+|스플래시|초기|로그인|
+
+|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/031666ba-6484-41ba-9cb8-80048c9f958d" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/4cad0e49-522c-443c-98d2-978f7e8e1fcd" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/548e1ab5-f2cc-411b-a83b-ec689d5110ba" width=70% />|
+|:---------:|:---------:|:---------:|
+|회원가입|회원가입_개인정보입력|회원가입_학생증 인증|
+
+|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/031666ba-6484-41ba-9cb8-80048c9f958d" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/4cad0e49-522c-443c-98d2-978f7e8e1fcd" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/548e1ab5-f2cc-411b-a83b-ec689d5110ba" width=70% />|
+|:---------:|:---------:|:---------:|
+|회원가입_계정 생성|회원가입_약관동의|회원가입_학생증 확인|
+
+|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/031666ba-6484-41ba-9cb8-80048c9f958d" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/4cad0e49-522c-443c-98d2-978f7e8e1fcd" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/548e1ab5-f2cc-411b-a83b-ec689d5110ba" width=70% />|
+|:---------:|:---------:|:---------:|
+|메인 홈|퀵스캔|공지사항 세부화면|
+
+|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/031666ba-6484-41ba-9cb8-80048c9f958d" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/4cad0e49-522c-443c-98d2-978f7e8e1fcd" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/548e1ab5-f2cc-411b-a83b-ec689d5110ba" width=70% />|
+|:---------:|:---------:|:---------:|
+|저장 홈|공지사항 등록화면|마이페이지|
 
 </br>
 </br>
