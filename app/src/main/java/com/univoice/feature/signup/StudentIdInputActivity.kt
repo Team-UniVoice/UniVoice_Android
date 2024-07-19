@@ -1,13 +1,15 @@
 package com.univoice.feature.signup
 
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.core.content.ContextCompat
 import com.univoice.R
 import com.univoice.core_ui.base.BindingActivity
-import com.univoice.core_ui.view.CustomSpinner
+import com.univoice.core_ui.CustomSpinner
 import com.univoice.databinding.ActivityStudentIdInputBinding
 import com.univoice.feature.signup.DepartmentInputActivity.Companion.DEPARTMENT_KEY
 import com.univoice.feature.signup.SchoolInputActivity.Companion.SCHOOL_KEY
@@ -26,6 +28,13 @@ class StudentIdInputActivity :
         disableButton()
         setupTextViews()
         setupNextButton()
+        initSpinner()
+    }
+
+    private fun initSpinner(){
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.spStudentIdInput.performClick()
+        }, 200)
     }
 
     private fun initToolbar() {

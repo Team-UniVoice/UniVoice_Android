@@ -16,7 +16,7 @@ class HomeNoticeCategoryAdapter(
     ListAdapter<String, HomeNoticeCategoryAdapter.HomeNoticeCategoryViewHolder>(
         HomeNoticeCategoryDiffCallback,
     ) {
-    private var selectedCategoryIndex: Int = 0 // 초기에는 첫 번째 아이템을 선택
+    private var selectedCategoryIndex: Int = 0
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -41,7 +41,7 @@ class HomeNoticeCategoryAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun setSelectedCategory(position: Int) {
         selectedCategoryIndex = position
-        notifyDataSetChanged() // 선택된 탭을 갱신하기 위해 RecyclerView를 다시 그리도록 함
+        notifyDataSetChanged()
     }
 
     companion object {
@@ -62,7 +62,7 @@ class HomeNoticeCategoryAdapter(
 
                 root.setOnClickListener {
                     click(data, bindingAdapterPosition)
-                    setSelectedCategory(adapterPosition) // 클릭된 탭의 위치를 설정
+                    setSelectedCategory(adapterPosition)
                 }
 
                 if (adapterPosition == selectedCategoryIndex) {

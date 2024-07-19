@@ -22,6 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/notice_detail_rounded_image"
-            tools:background="@drawable/ic_launcher_background" />
+            tools:src="@color/mint_400" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

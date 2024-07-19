@@ -1,4 +1,4 @@
-package com.univoice.feature.post.dateTimePicker.adapter
+package com.univoice.feature.noticePost.timePicker.adapter
 
 import androidx.annotation.Keep
 import androidx.recyclerview.widget.RecyclerView

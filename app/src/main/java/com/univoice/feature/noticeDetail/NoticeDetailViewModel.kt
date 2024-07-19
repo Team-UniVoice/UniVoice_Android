@@ -49,14 +49,14 @@ class NoticeDetailViewModel @Inject constructor(
         )
     }
 
-    fun postNoticeLike(noticeId: Int) = viewModelScope.launch {
+    private fun postNoticeLike(noticeId: Int) = viewModelScope.launch {
         _postNoticeLike.emit(UiState.Loading)
         noticeDetailRepository.postNoticeLike(noticeId).fold(
             {}, {}
         )
     }
 
-    fun postNoticeCancelLike(noticeId: Int) = viewModelScope.launch {
+    private fun postNoticeCancelLike(noticeId: Int) = viewModelScope.launch {
         _postNoticeCancelLike.emit(UiState.Loading)
         noticeDetailRepository.postNoticeCancelLike(noticeId).fold(
             {}, {}
@@ -67,12 +67,12 @@ class NoticeDetailViewModel @Inject constructor(
         noticeDetailRepository.postNoticeDetailViewCount(noticeId).fold({}, {})
     }
 
-    fun postNoticeDetailSave(noticeId: Int) = viewModelScope.launch {
+    private fun postNoticeDetailSave(noticeId: Int) = viewModelScope.launch {
         _postNoticeDetailSave.emit(UiState.Loading)
         noticeDetailRepository.postNoticeDetailSave(noticeId).fold({}, {})
     }
 
-    fun postNoticeDetailCancel(noticeId: Int) = viewModelScope.launch {
+    private fun postNoticeDetailCancel(noticeId: Int) = viewModelScope.launch {
         _postNoticeDetailCancel.emit(UiState.Loading)
         noticeDetailRepository.postNoticeDetailCancel(noticeId).fold({}, {})
     }

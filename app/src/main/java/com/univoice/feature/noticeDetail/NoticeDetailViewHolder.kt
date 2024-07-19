@@ -12,7 +12,7 @@ class NoticeDetailViewHolder(private val binding: ItemNoticeDetailImageBinding) 
 
     fun bind(image: String) {
         with(binding) {
-            if (image.isNullOrEmpty()) {
+            if (image.isEmpty()) {
                 ivNoticeDetailContent.visibility = View.GONE
             } else {
                 ivNoticeDetailContent.visibility = View.VISIBLE

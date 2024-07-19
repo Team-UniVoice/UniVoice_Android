@@ -1,4 +1,4 @@
-package com.univoice.feature.post.dateTimePicker.adapter
+package com.univoice.feature.noticePost.timePicker
 
 import java.util.Calendar
 

@@ -1,4 +1,4 @@
-package com.univoice.core_ui.view
+package com.univoice.core_ui
 
 import android.content.Context
 import android.util.AttributeSet

@@ -26,7 +26,6 @@ import timber.log.Timber
 class NoticeDetailFragment :
     BindingFragment<FragmentNoticeDetailBinding>(R.layout.fragment_notice_detail) {
     private val viewModel by viewModels<NoticeDetailViewModel>()
-    private val debouncer = Debouncer<Int>()
     private var noticeId: Int? = null
 
     override fun onCreateView(
@@ -110,8 +109,8 @@ class NoticeDetailFragment :
                 btnNoticeDetailBookmark.isSelected = true
             }
 
-            if(data.target.isNullOrEmpty()){
-                groupNoticeDetailTarget.visibility = View.GONE
+            if(!data.target.isNullOrEmpty()){
+                groupNoticeDetailTarget.visibility = View.VISIBLE
             }
 
             tvNoticeDetailDate.let {
@@ -120,7 +119,7 @@ class NoticeDetailFragment :
 
             setNoticeDate(data.startTime, data.endTime)
 
-            if (data.noticeImages.size > 2) {
+            if (data.noticeImages.size >= 2) {
                 indicatorNoticeDetailImage.visibility = View.VISIBLE
             }
         }

@@ -1,18 +1,17 @@
-package com.univoice.feature.post.dateTimePicker.adapter
+package com.univoice.feature.noticePost.timePicker.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.univoice.R
-import java.util.Calendar
+import com.univoice.feature.noticePost.timePicker.dpToPx
 
-class DateMonthAdapter(
-    val months: ArrayList<Calendar>,
+class TimeMeridiemAdapter(
+    val meridiem: ArrayList<String>,
     private val dividerHeight: Int
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = DateViewHolder(
             DataBindingUtil.inflate(
@@ -30,10 +29,13 @@ class DateMonthAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val viewHolder = holder as DateViewHolder
 
-        viewHolder.binding.tvDateNumber.text = getMonthFromCalendar(months[position])
+        if (meridiem[position].isNotEmpty())
+            viewHolder.binding.tvDateNumber.text = meridiem[position]
+        else
+            viewHolder.binding.tvDateNumber.text = ""
     }
 
-    override fun getItemCount() = months.size
+    override fun getItemCount() = meridiem.size
 
     override fun getItemId(position: Int): Long {
         return position.toLong()

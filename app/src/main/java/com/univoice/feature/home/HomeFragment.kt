@@ -55,10 +55,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         homeViewModel.getNoticeDepartmentState.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit
-                is UiState.Success -> {
-                    initNoticeContentAdapter(it.data)
-                }
-
+                is UiState.Success -> initNoticeContentAdapter(it.data)
                 is UiState.Empty -> Unit
                 is UiState.Failure -> Timber.tag("HomeFragment").d(it.msg)
             }
@@ -69,10 +66,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         homeViewModel.getNoticeCollegeState.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit
-                is UiState.Success -> {
-                    initNoticeContentAdapter(it.data)
-                }
-
+                is UiState.Success -> initNoticeContentAdapter(it.data)
                 is UiState.Empty -> Unit
                 is UiState.Failure -> Timber.tag("HomeFragment").d(it.msg)
             }
@@ -83,10 +77,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         homeViewModel.getNoticeUniversityState.flowWithLifecycle(lifecycle).onEach {
             when (it) {
                 is UiState.Loading -> Unit
-                is UiState.Success -> {
-                    initNoticeContentAdapter(it.data)
-                }
-
+                is UiState.Success -> initNoticeContentAdapter(it.data)
                 is UiState.Empty -> Unit
                 is UiState.Failure -> Timber.tag("HomeFragment").d(it.msg)
             }
