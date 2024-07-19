@@ -1,20 +1,18 @@
 # 💙 UNIVOICE-Android 💙
 ### 유니보이스 (UniVoice)
-<img src="https://github.com/user-attachments/assets/d205e261-da14-4c22-adb4-7b795c54132e" width="100%" height="400"/> </br>
+<img src="https://github.com/user-attachments/assets/d205e261-da14-4c22-adb4-7b795c54132e" width="100%" height="450"/> </br>
 > 34st NOW SOPT APP JAM </br>
 > 프로젝트 기간 : 2024.06.15 ~ </br>
 
 “다양한 목소리를 통해 더 나은 학생 사회, 더 나은 대학 생활을 만들기 위해서” </br>
-```
-⏰ 학생회와 학생들의 목소리로 함께 만들어가는 대학 생활 필수 앱, 유니보이스
-```
+학생회와 학생들의 목소리로 함께 만들어가는 대학 생활 필수 앱, **유니보이스** 입니다.⏰ 
 </br>
 
 ## 💙Contributors
 |<img src="https://github.com/user-attachments/assets/ff4f7095-6eee-4d56-94aa-eaf59771256f" width="250" />|<img src="https://github.com/user-attachments/assets/d44cc116-4591-4458-81db-13c2b57bba96" width="250" />|<img src="https://github.com/user-attachments/assets/9bdc9d59-61a6-4446-a400-1c024a59233f" width="250" />|<img src="https://github.com/user-attachments/assets/c71e02dc-bb8d-4454-92ac-080648bb5f28" width="250" />
 |:---------:|:---------:|:---------:|:---------:|
 |[👑김언지](https://github.com/Eonji-sw)|[박유진](https://github.com/youjin09222)|[이가을](https://github.com/gaeulzzang)|[임하늘](https://github.com/twogarlic)|
-| `메인 홈`</br>`공지사항 등록화면`</br>`자동로그인` | `공지사항 세부화면`</br>`타임피커` | `로그인`</br>`퀵스캔`</br>`저장 홈` | `회원가입`</br>`마이페이지` |
+| **[Team Leader]** </br> 메인 홈</br>공지사항 등록화면</br>자동로그인 | **[Team Member]** </br>공지사항 세부화면</br>타임피커 | **[Team Member]** </br>로그인</br>퀵스캔</br>저장 홈 | **[Team Member]** </br>회원가입</br>마이페이지 |
 </br>
 
 ## 📷 Screenshot
