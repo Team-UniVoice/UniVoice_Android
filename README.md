@@ -1,6 +1,6 @@
 # 💙 UNIVOICE-Android 💙
 ### 유니보이스 (UniVoice)
-<img src="https://github.com/user-attachments/assets/d205e261-da14-4c22-adb4-7b795c54132e" width="85%" height="400"/> </br>
+<img src="https://github.com/user-attachments/assets/d205e261-da14-4c22-adb4-7b795c54132e" width="100%" height="400"/> </br>
 > 34st NOW SOPT APP JAM </br>
 > 프로젝트 기간 : 2024.06.15 ~ </br>
 
