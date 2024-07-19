@@ -107,10 +107,16 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     private fun initNoticeContentAdapter(noticeContentData: List<NoticeListEntity>) {
         binding.rvHomeNoticeContent.adapter =
             HomeNoticeContentAdapter(click = { _, position ->
-                binding.root.findNavController().navigate(
-                    R.id.action_fragment_home_to_fragment_notice_detail,
-                    bundleOf(DETAIL_KEY to noticeContentData[position].id),
-                )
+                try {
+                    binding.root.findNavController().navigate(
+                        R.id.action_fragment_home_to_fragment_notice_detail,
+                        bundleOf(DETAIL_KEY to noticeContentData[position].id),
+                    )
+                } catch (e: IllegalArgumentException) {
+                    // 예외 처리: 네비게이션 실패 시 현재 화면에 그대로 있도록 처리
+                    e.printStackTrace()
+                    // 필요 시 사용자에게 알림을 표시하거나 로깅
+                }
             }).apply {
                 submitList(noticeContentData)
             }
