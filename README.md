@@ -28,7 +28,7 @@
 |:---------:|:---------:|:---------:|
 |회원가입_계정 생성|회원가입_약관동의|회원가입_학생증 확인|
 
-|<img src="https://github.com/user-attachments/assets/f8bdb6cd-d340-437e-889d-eaf2d8df2c8a" width=70% />|<img src="https://github.com/user-attachments/assets/e457b0a7-0f4c-48e2-8b67-a127f003c2ff" width=70% />|<img src="https://github.com/user-attachments/assets/b6388e26-ce2b-41ea-96fd-de59edf211f9" width=70% />|
+|<img src="https://github.com/user-attachments/assets/f8bdb6cd-d340-437e-889d-eaf2d8df2c8a" width=70% />|<img src="https://github.com/user-attachments/assets/20f0a66e-b9de-49ba-ac4d-e45a05a168f4" width=70% />|<img src="https://github.com/user-attachments/assets/b6388e26-ce2b-41ea-96fd-de59edf211f9" width=70% />|
 |:---------:|:---------:|:---------:|
 |메인 홈|퀵스캔|공지사항 세부화면|
 
