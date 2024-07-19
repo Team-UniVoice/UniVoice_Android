@@ -38,12 +38,13 @@
                 android:id="@+id/iv_student_card_check_photo"
                 android:layout_width="0dp"
                 android:layout_height="195dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="28dp"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_student_card_check_explain"
-                tools:src="@drawable/example_studentcard" />
+                tools:src="@color/mint_400" />
 
             <TextView
                 android:id="@+id/tv_student_card_check_name"

@@ -26,7 +26,6 @@ import timber.log.Timber
 class NoticeDetailFragment :
     BindingFragment<FragmentNoticeDetailBinding>(R.layout.fragment_notice_detail) {
     private val viewModel by viewModels<NoticeDetailViewModel>()
-    private val debouncer = Debouncer<Int>()
     private var noticeId: Int? = null
 
     override fun onCreateView(

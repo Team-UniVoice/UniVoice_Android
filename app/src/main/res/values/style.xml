@@ -49,13 +49,13 @@
 
 
     <style name="NoShadowPopupTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:popupBackground">@drawable/student_id_spinner</item>
+        <item name="android:popupBackground">@drawable/bg_student_id_spinner</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:dropDownListViewStyle">@style/NoShadowListViewStyle</item>
     </style>
 
     <style name="NoShadowListViewStyle" parent="Widget.AppCompat.ListView">
-        <item name="android:background">@drawable/student_id_spinner</item>
+        <item name="android:background">@drawable/bg_student_id_spinner</item>
         <item name="android:divider">@color/gray_50</item>
         <item name="android:dividerHeight">1dp</item>
     </style>

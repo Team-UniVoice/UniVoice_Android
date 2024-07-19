@@ -155,7 +155,7 @@
                             app:layout_constraintEnd_toEndOf="@id/guide_setting_second_end"
                             app:layout_constraintStart_toStartOf="@id/guide_setting_second_start"
                             app:layout_constraintTop_toTopOf="@id/iv_setting_profile"
-                            tools:src="@drawable/ic_launcher_background" />
+                            tools:src="@color/mint_400" />
 
                         <TextView
                             android:id="@+id/tv_setting_school"

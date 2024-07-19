@@ -1,6 +1,5 @@
 package com.univoice.data.repositoryimpl
 
-import android.content.ContentResolver
 import com.univoice.data.datasource.SignUpDataSource
 import com.univoice.data.dto.BaseResponse
 import com.univoice.data.dto.request.RequestCheckEmailDto
@@ -9,17 +8,14 @@ import com.univoice.data.repositoryimpl.util.extractErrorMessage
 import com.univoice.domain.repository.SignUpRepository
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONObject
 import retrofit2.HttpException
 import java.io.File
 import java.io.IOException
 import javax.inject.Inject
 
 class SignUpRepositoryImpl @Inject constructor(
-    private val contentResolver: ContentResolver,
     private val signUpDataSource: SignUpDataSource
 ) : SignUpRepository {
     override suspend fun postUniversityNames(): Result<List<String>> {
@@ -90,14 +86,5 @@ class SignUpRepositoryImpl @Inject constructor(
                 else -> Result.failure(throwable)
             }
         }
-    }
-
-    private fun createContentRequestBody(
-        json: JSONObject,
-        name: String,
-        content: String
-    ): RequestBody {
-        val contentJson = json.apply { put(name, content) }.toString()
-        return contentJson.toRequestBody("application/json".toMediaTypeOrNull())
     }
 }

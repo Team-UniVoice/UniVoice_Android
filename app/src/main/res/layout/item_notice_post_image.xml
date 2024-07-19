@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
         app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerRadius8"
-        tools:background="@drawable/ic_launcher_background" />
+        tools:src="@color/mint_400" />
 
     <ImageView
         android:id="@+id/iv_posting_cancel_image"

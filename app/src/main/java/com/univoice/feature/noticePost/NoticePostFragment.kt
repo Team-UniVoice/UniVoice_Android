@@ -9,7 +9,6 @@ import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
@@ -29,7 +28,7 @@ import com.univoice.core_ui.util.fragment.viewLifeCycle
 import com.univoice.core_ui.util.fragment.viewLifeCycleScope
 import com.univoice.core_ui.view.UiState
 import com.univoice.databinding.FragmentNoticePostBinding
-import com.univoice.feature.post.dateTimePicker.TimeBottomSheetFragment
+import com.univoice.feature.noticePost.timePicker.TimeBottomSheetFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -187,34 +186,30 @@ class NoticePostFragment :
                 }
             }
         }
+
     }
 
     // "2024년7월8일(목)"로 들어오면 "2024년 7월 8일 오전 00시 00분" 로 반환
     private fun convertToFullDateFormat(inputDate: String): String {
-        // 정규식을 사용하여 날짜 부분과 요일 부분을 분리
         val datePattern = Regex("""(\d{4})년(\d{1,2})월(\d{1,2})일\(\p{IsAlphabetic}+\)""")
         val matchResult = datePattern.find(inputDate)
 
         return if (matchResult != null) {
             val (year, month, day) = matchResult.destructured
-            // 새로운 형식으로 변환
             "${year}년 ${month}월 ${day}일 오전 00시 00분"
         } else {
-            // 매칭되지 않을 경우 원본 문자열 반환
             inputDate
         }
     }
 
-    // 유진언니가 UI 시, 분 텍스트 추가하면 없애야 함!! : "6월 6일(목) 오후 12:25" 로 들어오면 "2024년 6월 6일 오후 12시 25분" 로 반환
+    // "6월 6일(목) 오후 12:25" 로 들어오면 "2024년 6월 6일 오후 12시 25분" 로 반환
     private fun formatDateTime(input: String): String {
-        // 정규식을 사용하여 날짜와 시간을 추출
         val regex = Regex("(\\d{1,2})월 (\\d{1,2})일\\(\\S+\\) (오전|오후) (\\d{1,2}):(\\d{2})")
         val matchResult = regex.find(input)
 
         return if (matchResult != null) {
             val (month, day, period, hour, minute) = matchResult.destructured
 
-            // 시간 부분을 변환
             val formattedHour = if (period == "오후" && hour.toInt() != 12) {
                 hour.toInt() + 12
             } else if (period == "오전" && hour.toInt() == 12) {
@@ -223,13 +218,10 @@ class NoticePostFragment :
                 hour.toInt()
             }
 
-            // 최종 시간 표현
             val finalHour = if (formattedHour == 0) 12 else formattedHour
 
-            // 원하는 형식으로 조립
             "2024년 ${month}월 ${day}일 ${period} ${finalHour}시 ${minute}분"
         } else {
-            // 매칭되지 않으면 원래 문자열 반환
             input
         }
     }
@@ -247,7 +239,7 @@ class NoticePostFragment :
 
     private fun initPhotoBtnClickListener() {
         binding.layoutNoticePostPhotoBtn.setOnClickListener {
-            if(imageUris.size<5){
+            if (imageUris.size < 5) {
                 getGalleryPermission()
             }
         }
@@ -341,14 +333,14 @@ class NoticePostFragment :
             lifecycleScope.launch {
                 val compressedImages = compressImageUris(requireContext(), imageUris)
                 compressedImages.forEach { file ->
-                    Log.d("ImageCompression", "Compressed image size: ${file.length()} bytes")
+                    Timber.d("ImageCompression", "Compressed image size: ${file.length()} bytes")
                 }
                 noticePostViewModel.postNotice(
                     title = binding.etNoticePostTitle.text.toString(),
                     content = binding.etNoticePostContent.text.toString(),
                     target = sendTarget,
-                    startTime = sendStartTotalTime?.let { it -> convertToISO8601(it) },
-                    endTime = sendEndTotalTime?.let { it -> convertToISO8601(it) },
+                    startTime = sendStartTotalTime?.let { convertToISO8601(it) },
+                    endTime = sendEndTotalTime?.let { convertToISO8601(it) },
                     noticeImages = compressedImages
                 )
             }
@@ -357,17 +349,13 @@ class NoticePostFragment :
 
     @SuppressLint("SimpleDateFormat")
     private fun convertToISO8601(inputDate: String): String? {
-        // 한국어 날짜 형식
         val koreanDateFormat = SimpleDateFormat("yyyy년 M월 d일 a h시 m분", Locale.KOREAN)
 
-        // ISO 8601 날짜 형식
         val iso8601Format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
         iso8601Format.timeZone = TimeZone.getTimeZone("UTC")
 
         return try {
-            // 입력된 한국어 날짜를 파싱
             val date = koreanDateFormat.parse(inputDate)
-            // ISO 8601 형식으로 변환하여 반환
             iso8601Format.format(date)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -375,8 +363,8 @@ class NoticePostFragment :
         }
     }
 
-    private suspend fun compressImageUris(context: Context, uriList: MutableList<Uri>): List<File> {
-        return uriList.mapNotNull { uri ->
+    private fun compressImageUris(context: Context, uriList: MutableList<Uri>): List<File> {
+        return uriList.map { uri ->
             val bitmap = decodeSampledBitmapFromUri(context, uri, 512, 512)
             val rotatedBitmap = handleImageRotation(context, uri, bitmap)
             val compressedBitmap = compressBitmapToMaxSize(rotatedBitmap, 1024 * 1024)
@@ -384,14 +372,19 @@ class NoticePostFragment :
         }
     }
 
-    private suspend fun compressImageUri(context: Context, uri: Uri): Uri? {
+    private fun compressImageUri(context: Context, uri: Uri): Uri? {
         val bitmap = decodeSampledBitmapFromUri(context, uri, 512, 512)
         val rotatedBitmap = handleImageRotation(context, uri, bitmap)
         val compressedBitmap = compressBitmapToMaxSize(rotatedBitmap, 1024 * 1024)
         return saveBitmapToUri(context, compressedBitmap)
     }
 
-    private fun decodeSampledBitmapFromUri(context: Context, uri: Uri, reqWidth: Int, reqHeight: Int): Bitmap {
+    private fun decodeSampledBitmapFromUri(
+        context: Context,
+        uri: Uri,
+        reqWidth: Int,
+        reqHeight: Int
+    ): Bitmap {
         val options = BitmapFactory.Options().apply {
             inJustDecodeBounds = true
         }
@@ -410,12 +403,9 @@ class NoticePostFragment :
 
     private fun handleImageRotation(context: Context, uri: Uri, bitmap: Bitmap): Bitmap {
         val inputStream = context.contentResolver.openInputStream(uri)
-        val exif = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            ExifInterface(inputStream!!)
-        } else {
-            ExifInterface(uri.path!!)
-        }
-        val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+        val exif = ExifInterface(inputStream!!)
+        val orientation =
+            exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
         val matrix = Matrix()
         when (orientation) {
             ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90f)
@@ -426,7 +416,11 @@ class NoticePostFragment :
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
-    private fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
+    private fun calculateInSampleSize(
+        options: BitmapFactory.Options,
+        reqWidth: Int,
+        reqHeight: Int
+    ): Int {
         val (height: Int, width: Int) = options.run { outHeight to outWidth }
         var inSampleSize = 1
 
@@ -456,16 +450,21 @@ class NoticePostFragment :
             if (compressedImageSize > maxSize) {
                 compressRate -= 5
             } else {
-                resultBitmap = BitmapFactory.decodeByteArray(compressedImage, 0, compressedImage.size)
+                resultBitmap =
+                    BitmapFactory.decodeByteArray(compressedImage, 0, compressedImage.size)
             }
         } while (compressedImageSize > maxSize && compressRate > 0)
 
-        Log.d("ImageCompression", "Compressed image size: ${bytesToMegabytes(compressedImageSize)} MB")
+        Timber.d(
+            "ImageCompression",
+            "Compressed image size: ${bytesToMegabytes(compressedImageSize)} MB"
+        )
         return resultBitmap
     }
 
     private fun saveBitmapToFile(context: Context, bitmap: Bitmap): File {
-        val file = File(context.externalCacheDir, "compressed_image_${System.currentTimeMillis()}.jpg")
+        val file =
+            File(context.externalCacheDir, "compressed_image_${System.currentTimeMillis()}.jpg")
         val fileOutputStream = FileOutputStream(file)
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
         fileOutputStream.flush()

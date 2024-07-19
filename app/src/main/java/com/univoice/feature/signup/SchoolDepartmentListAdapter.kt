@@ -1,5 +1,6 @@
 package com.univoice.feature.signup
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
 import android.text.Spannable
@@ -46,6 +47,7 @@ class SchoolDepartmentListAdapter(private val context: Context, private var high
         holder.textView.text = spannable
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setHighlightText(newText: String) {
         highlightText = newText
         notifyDataSetChanged()

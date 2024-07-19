@@ -45,9 +45,7 @@ class QuickScanViewModel @Inject constructor(
         _postQuickScanViewCheck.emit(UiState.Loading)
         quickScanRepository.postQuickScanViewCheck(noticeId).fold(
             {
-                if (it != null) _postQuickScanViewCheck.emit(UiState.Success(it)) else _postQuickScanViewCheck.emit(
-                    UiState.Failure("400")
-                )
+                _postQuickScanViewCheck.emit(UiState.Success(it))
             },
             { _postQuickScanViewCheck.emit(UiState.Failure(it.message.toString())) }
         )

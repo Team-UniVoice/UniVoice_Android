@@ -102,7 +102,7 @@ class StudentCardPhotoActivity :
                                 navigateToInfoInput(compressedImageUri)
                             }
                         }
-                    } catch (e: IOException) {
+                    } catch (_: IOException) {
                     } finally {
                         isProcessingImage = false
                         setButtonsEnabled(true)
@@ -114,12 +114,8 @@ class StudentCardPhotoActivity :
 
     private fun handleImageRotation(uri: Uri, bitmap: Bitmap): Bitmap {
         val inputStream = contentResolver.openInputStream(uri)
-        val exif = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            ExifInterface(inputStream!!)
-        } else {
-            ExifInterface(uri.path!!)
-        }
-        val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+        val exif = inputStream?.let { ExifInterface(it) }
+        val orientation = exif?.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
         val matrix = Matrix()
         when (orientation) {
             ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90f)
@@ -169,7 +165,7 @@ class StudentCardPhotoActivity :
         var compressedImageSize: Long
 
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-        val initialImage = outputStream.toByteArray()
+        outputStream.toByteArray()
 
         outputStream.reset()
 
@@ -195,10 +191,6 @@ class StudentCardPhotoActivity :
         fileOutputStream.flush()
         fileOutputStream.close()
         return Uri.fromFile(file)
-    }
-
-    private fun bytesToMegabytes(bytes: Long): Double {
-        return bytes / (1024.0 * 1024.0)
     }
 
     private fun allPermissionsGranted(): Boolean {

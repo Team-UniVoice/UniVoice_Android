@@ -29,7 +29,7 @@
                 app:civ_border_overlay="true"
                 app:civ_border_width="1dp"
                 app:layout_constraintDimensionRatio="1"
-                tools:src="@drawable/ic_launcher_background" />
+                tools:src="@color/mint_400" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_home_notice_quickscan_count"
@@ -52,7 +52,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="5" />
+                    tools:text="1" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
