@@ -11,8 +11,8 @@
 ## 💙Contributors
 |<img src="https://github.com/user-attachments/assets/ff4f7095-6eee-4d56-94aa-eaf59771256f" width="250" />|<img src="https://github.com/user-attachments/assets/d44cc116-4591-4458-81db-13c2b57bba96" width="250" />|<img src="https://github.com/user-attachments/assets/9bdc9d59-61a6-4446-a400-1c024a59233f" width="250" />|<img src="https://github.com/user-attachments/assets/c71e02dc-bb8d-4454-92ac-080648bb5f28" width="250" />
 |:---------:|:---------:|:---------:|:---------:|
-|[👑김언지](https://github.com/Eonji-sw)|[박유진](https://github.com/youjin09222)|[이가을](https://github.com/gaeulzzang)|[임하늘](https://github.com/twogarlic)|
-| **[Team Leader]** </br> 메인 홈</br>공지사항 등록화면</br>자동로그인 | **[Team Member]** </br>공지사항 세부화면</br>타임피커 | **[Team Member]** </br>로그인</br>퀵스캔</br>저장 홈 | **[Team Member]** </br>회원가입</br>마이페이지 |
+|[김언지](https://github.com/Eonji-sw)|[박유진](https://github.com/youjin09222)|[이가을](https://github.com/gaeulzzang)|[임하늘](https://github.com/twogarlic)|
+| **[👑 Team Leader]** </br> 메인 홈</br>공지사항 등록화면</br>자동로그인 | **[🤖 Team Member]** </br>공지사항 세부화면</br>타임 피커 | **[🤖 Team Member]** </br>로그인</br>퀵스캔</br>저장 홈 | **[🤖 Team Member]** </br>회원가입</br>마이페이지 |
 </br>
 
 ## 📷 Screenshot
