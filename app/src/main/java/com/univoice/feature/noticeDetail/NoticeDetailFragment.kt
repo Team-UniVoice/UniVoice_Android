@@ -109,8 +109,8 @@ class NoticeDetailFragment :
                 btnNoticeDetailBookmark.isSelected = true
             }
 
-            if(data.target.isNullOrEmpty()){
-                groupNoticeDetailTarget.visibility = View.GONE
+            if(!data.target.isNullOrEmpty()){
+                groupNoticeDetailTarget.visibility = View.VISIBLE
             }
 
             tvNoticeDetailDate.let {
@@ -119,7 +119,7 @@ class NoticeDetailFragment :
 
             setNoticeDate(data.startTime, data.endTime)
 
-            if (data.noticeImages.size > 2) {
+            if (data.noticeImages.size >= 2) {
                 indicatorNoticeDetailImage.visibility = View.VISIBLE
             }
         }
