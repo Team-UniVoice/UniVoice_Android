@@ -16,6 +16,6 @@ data class ResponseQuickScanDto(
     @SerialName("viewCount") val viewCount: Int = 0,
     @SerialName("category") val category: String = "",
     @SerialName("createdAt") val createdAt: String = "",
-    @SerialName("logoImage") val logoImage: String = "",
+    @SerialName("logoImage") val logoImage: String? = null,
     @SerialName("saveCheck") val saveCheck: Boolean = false
 )
