@@ -162,6 +162,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:paddingBottom="100dp"
                 android:text="@string/tv_create_account_pwd_check"
                 android:textAppearance="@style/TextAppearance.UniVoice.body4Regular"
                 android:textColor="@color/mint_600"
