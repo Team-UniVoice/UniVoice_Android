@@ -54,7 +54,7 @@ class CreateAccountActivity :
     }
 
     private fun initDisableButton() {
-        binding.btnCreateAccountNext.btnSignupNext.isEnabled = false
+        binding.btnCreateAccountNext.btnCreateNext.isEnabled = false
     }
 
     private fun initToolbar() {
@@ -116,10 +116,11 @@ class CreateAccountActivity :
 
     private fun validateId(id: String) {
         when {
-            id.isBlank() -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
-            !isValidId(id) -> setIdInvalid(R.string.tv_create_account_id, R.color.black)
+            id.isBlank() -> setIdInvalid(R.string.tv_create_account_id, R.color.font_B01)
+            !isValidId(id) -> setIdInvalid(R.string.tv_create_account_id, R.color.font_B01)
             else -> setIdValid(R.string.tv_create_account_id, R.color.blue_400)
         }
+        isIdUnique = false  // 아이디가 수정되었으므로 중복확인 상태를 초기화합니다.
         updateNextButtonState()
     }
 
@@ -175,7 +176,7 @@ class CreateAccountActivity :
                 tvCreateAccountIdExplain.setTextColor(
                     ContextCompat.getColor(
                         this@CreateAccountActivity,
-                        R.color.black
+                        R.color.font_B01
                     )
                 )
                 updateDividerColor(viewCreateAccountIdDivider, R.color.mint_400)
@@ -199,6 +200,8 @@ class CreateAccountActivity :
             etCreateAccountPw.requestFocus()
         }
         isIdUnique = true
+        validatePassword(binding.etCreateAccountPw.text.toString())
+        updateNextButtonState()
     }
 
     private fun setIdNotUnique(messageResId: Int, colorResId: Int) {
@@ -219,7 +222,7 @@ class CreateAccountActivity :
         with(binding) {
             etCreateAccountPw.addTextChangedListener(createPasswordTextWatcher())
             etCreateAccountPwCheck.addTextChangedListener(createPasswordConfirmationTextWatcher())
-            btnCreateAccountNext.btnSignupNext.setOnClickListener { handleNextButtonClick() }
+            btnCreateAccountNext.btnCreateNext.setOnClickListener { handleNextButtonClick() }
         }
         setupPasswordFocusChangeListeners()
     }
@@ -239,7 +242,7 @@ class CreateAccountActivity :
         if (isValidPassword(password)) {
             setPasswordValid(R.color.blue_400)
         } else {
-            setPasswordInvalid(R.color.red)
+            setPasswordInvalid(R.color.font_B01)
         }
         updateNextButtonState()
     }
@@ -358,8 +361,8 @@ class CreateAccountActivity :
 
     private fun showPasswordConfirmation() {
         with(binding) {
-            btnCreateAccountNext.btnSignupNext.isEnabled = false
-            btnCreateAccountNext.btnSignupNext.text =
+            btnCreateAccountNext.btnCreateNext.isEnabled = false
+            btnCreateAccountNext.btnCreateNext.text =
                 getString(R.string.btn_create_account_next_twice)
             etCreateAccountPwCheck.visibility = View.VISIBLE
             viewCreateAccountPwCheckDivider.visibility = View.VISIBLE
@@ -370,7 +373,7 @@ class CreateAccountActivity :
 
     private fun updateNextButtonState() {
         with(binding) {
-            btnCreateAccountNext.btnSignupNext.isEnabled =
+            btnCreateAccountNext.btnCreateNext.isEnabled =
                 isIdValid && isIdUnique && isPasswordValid && (etCreateAccountPwCheck.visibility != View.VISIBLE || isPasswordConfirmed)
         }
     }

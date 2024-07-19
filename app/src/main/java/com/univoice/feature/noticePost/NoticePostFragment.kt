@@ -5,6 +5,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.util.Log
@@ -153,23 +155,16 @@ class NoticePostFragment :
     private fun initSetDateText() {
         setFragmentResultListener(TIME_PICKER_KEY) { _, bundle ->
             with(binding) {
-
-                tvNoticePostOptionDateStart.text = bundle.getString(SET_START_DATE, "")
-                tvNoticePostOptionDateEnd.text = bundle.getString(SET_END_DATE, "")
-
                 hereStartDate = bundle.getString(SET_START_DATE, "")
                 hereEndData = bundle.getString(SET_END_DATE, "")
                 hereStartTime = bundle.getString(SET_START_TIME, "")
                 hereEndTime = bundle.getString(SET_END_TIME, "")
                 allDayCheck = bundle.getBoolean(CLICK_BUTTON)
 
-                if (allDayCheck) {
-                    binding.tvNoticePostOptionTimeStart.visibility = View.GONE
-                    binding.tvNoticePostOptionTimeEnd.visibility = View.GONE
-                } else {
-                    binding.tvNoticePostOptionTimeStart.visibility = View.VISIBLE
-                    binding.tvNoticePostOptionTimeEnd.visibility = View.VISIBLE
-                }
+                tvNoticePostOptionDateStart.text = hereStartDate
+                tvNoticePostOptionDateEnd.text = hereEndData
+                tvNoticePostOptionTimeStart.text = hereStartTime
+                tvNoticePostOptionTimeEnd.text = hereEndTime
 
                 layoutNoticePostOptionDate.visibility = View.VISIBLE
 
@@ -252,7 +247,9 @@ class NoticePostFragment :
 
     private fun initPhotoBtnClickListener() {
         binding.layoutNoticePostPhotoBtn.setOnClickListener {
-            getGalleryPermission()
+            if(imageUris.size<5){
+                getGalleryPermission()
+            }
         }
     }
 
@@ -381,14 +378,16 @@ class NoticePostFragment :
     private suspend fun compressImageUris(context: Context, uriList: MutableList<Uri>): List<File> {
         return uriList.mapNotNull { uri ->
             val bitmap = decodeSampledBitmapFromUri(context, uri, 512, 512)
-            val compressedBitmap = compressBitmapToMaxSize(bitmap, 1024 * 1024)
+            val rotatedBitmap = handleImageRotation(context, uri, bitmap)
+            val compressedBitmap = compressBitmapToMaxSize(rotatedBitmap, 1024 * 1024)
             saveBitmapToFile(context, compressedBitmap)
         }
     }
 
     private suspend fun compressImageUri(context: Context, uri: Uri): Uri? {
         val bitmap = decodeSampledBitmapFromUri(context, uri, 512, 512)
-        val compressedBitmap = compressBitmapToMaxSize(bitmap, 1024 * 1024)
+        val rotatedBitmap = handleImageRotation(context, uri, bitmap)
+        val compressedBitmap = compressBitmapToMaxSize(rotatedBitmap, 1024 * 1024)
         return saveBitmapToUri(context, compressedBitmap)
     }
 
@@ -407,6 +406,24 @@ class NoticePostFragment :
         return context.contentResolver.openInputStream(uri)?.use {
             BitmapFactory.decodeStream(it, null, options)!!
         } ?: throw IOException("Unable to decode bitmap from URI")
+    }
+
+    private fun handleImageRotation(context: Context, uri: Uri, bitmap: Bitmap): Bitmap {
+        val inputStream = context.contentResolver.openInputStream(uri)
+        val exif = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            ExifInterface(inputStream!!)
+        } else {
+            ExifInterface(uri.path!!)
+        }
+        val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+        val matrix = Matrix()
+        when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90f)
+            ExifInterface.ORIENTATION_ROTATE_180 -> matrix.postRotate(180f)
+            ExifInterface.ORIENTATION_ROTATE_270 -> matrix.postRotate(270f)
+        }
+
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
     private fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
