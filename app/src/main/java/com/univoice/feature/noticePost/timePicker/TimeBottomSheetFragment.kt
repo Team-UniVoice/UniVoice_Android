@@ -1,4 +1,4 @@
-package com.univoice.feature.post.dateTimePicker
+package com.univoice.feature.noticePost.timePicker
 
 import android.os.Bundle
 import android.view.View
@@ -15,18 +15,13 @@ import com.univoice.feature.noticePost.NoticePostFragment.Companion.SET_END_TIME
 import com.univoice.feature.noticePost.NoticePostFragment.Companion.SET_START_DATE
 import com.univoice.feature.noticePost.NoticePostFragment.Companion.SET_START_TIME
 import com.univoice.feature.noticePost.NoticePostFragment.Companion.TIME_PICKER_KEY
-import com.univoice.feature.post.dateTimePicker.adapter.AM
-import com.univoice.feature.post.dateTimePicker.adapter.CustomSnapHelper
-import com.univoice.feature.post.dateTimePicker.adapter.DateDayAdapter
-import com.univoice.feature.post.dateTimePicker.adapter.DateMonthAdapter
-import com.univoice.feature.post.dateTimePicker.adapter.DatePickerUtils
-import com.univoice.feature.post.dateTimePicker.adapter.DateYearAdapter
-import com.univoice.feature.post.dateTimePicker.adapter.TimeDateAdapter
-import com.univoice.feature.post.dateTimePicker.adapter.TimeHourAdapter
-import com.univoice.feature.post.dateTimePicker.adapter.TimeMeridiemAdapter
-import com.univoice.feature.post.dateTimePicker.adapter.TimeMinuteAdapter
-import com.univoice.feature.post.dateTimePicker.adapter.dpToPx
-import com.univoice.feature.post.dateTimePicker.adapter.initVerticalAdapter
+import com.univoice.feature.noticePost.timePicker.adapter.DateDayAdapter
+import com.univoice.feature.noticePost.timePicker.adapter.DateMonthAdapter
+import com.univoice.feature.noticePost.timePicker.adapter.DateYearAdapter
+import com.univoice.feature.noticePost.timePicker.adapter.TimeDateAdapter
+import com.univoice.feature.noticePost.timePicker.adapter.TimeHourAdapter
+import com.univoice.feature.noticePost.timePicker.adapter.TimeMeridiemAdapter
+import com.univoice.feature.noticePost.timePicker.adapter.TimeMinuteAdapter
 import com.univoice.feature.util.CalculateDate
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -202,11 +197,11 @@ class TimeBottomSheetFragment(
                 val startDate = layoutStartTime.tvStartTimeDay.text.toString()
                 val startTimeHour = layoutStartTime.tvStartTimeHour.text.toString()
                 val startTimeMinute = layoutStartTime.tvStartTimeMinute.text.toString()
-                var startTimeMeridiem = layoutStartTime.tvStartTimeMeridiem.text.toString()
+                val startTimeMeridiem = layoutStartTime.tvStartTimeMeridiem.text.toString()
                 val endDate = layoutEndTime.tvEndTimeDay.text.toString()
                 val endTimeHour = layoutEndTime.tvEndTimeHour.text.toString()
                 val endTimeMinute = layoutEndTime.tvEndTimeMinute.text.toString()
-                var endTimeMeridiem = layoutEndTime.tvEndTimeMeridiem.text.toString()
+                val endTimeMeridiem = layoutEndTime.tvEndTimeMeridiem.text.toString()
 
 
                 setStartDate = CalculateDate().convertToFullDateFormat(startDate)
