@@ -166,7 +166,7 @@ class StudentCardPhotoActivity :
 
     private fun compressBitmap(bitmap: Bitmap): Bitmap {
         val outputStream = ByteArrayOutputStream()
-        var compressRate = 75
+        var compressRate = 100
         var compressedImageSize: Long
 
         // Calculate the initial size
@@ -242,6 +242,6 @@ class StudentCardPhotoActivity :
 
     companion object {
         const val USER_IMAGE_KEY = "selectedImageUri"
-        const val MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB in bytes
+        const val MAX_FILE_SIZE = 512 * 512
     }
 }
