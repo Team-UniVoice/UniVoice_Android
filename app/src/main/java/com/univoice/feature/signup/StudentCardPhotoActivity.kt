@@ -27,7 +27,6 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import kotlin.math.min
 
 @AndroidEntryPoint
 class StudentCardPhotoActivity :
@@ -145,7 +144,7 @@ class StudentCardPhotoActivity :
         options.inJustDecodeBounds = false
         return contentResolver.openInputStream(uri)?.use {
             BitmapFactory.decodeStream(it, null, options)!!
-        } ?: throw IOException("Unable to decode bitmap from URI")
+        } ?: throw IOException("")
     }
 
     private fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
@@ -169,11 +168,8 @@ class StudentCardPhotoActivity :
         var compressRate = 100
         var compressedImageSize: Long
 
-        // Calculate the initial size
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
         val initialImage = outputStream.toByteArray()
-        val initialImageSize = initialImage.size.toLong()
-        Log.d("ImageCompression", "Initial image size: ${bytesToMegabytes(initialImageSize)} MB")
 
         outputStream.reset()
 
@@ -188,8 +184,6 @@ class StudentCardPhotoActivity :
             compressedImage = outputStream.toByteArray()
             compressedImageSize = compressedImage.size.toLong()
         }
-
-        Log.d("ImageCompression", "Compressed image size: ${bytesToMegabytes(compressedImageSize)} MB")
 
         return BitmapFactory.decodeByteArray(compressedImage, 0, compressedImage.size)
     }
