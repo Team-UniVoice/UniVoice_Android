@@ -1,14 +1,16 @@
-package com.univoice.feature.post.dateTimePicker.adapter
+package com.univoice.feature.noticePost.timePicker.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.univoice.R
+import com.univoice.feature.noticePost.timePicker.dpToPx
+import com.univoice.feature.noticePost.timePicker.getMonthFromCalendar
 import java.util.Calendar
 
-class DateYearAdapter(
-    val years: ArrayList<Calendar>,
+class DateMonthAdapter(
+    val months: ArrayList<Calendar>,
     private val dividerHeight: Int
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -30,11 +32,10 @@ class DateYearAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val viewHolder = holder as DateViewHolder
 
-        viewHolder.binding.tvDateNumber.text = getYearFromCalendar(years[position])
+        viewHolder.binding.tvDateNumber.text = getMonthFromCalendar(months[position])
     }
 
-
-    override fun getItemCount() = years.size
+    override fun getItemCount() = months.size
 
     override fun getItemId(position: Int): Long {
         return position.toLong()

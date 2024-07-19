@@ -1,17 +1,20 @@
-package com.univoice.feature.post.dateTimePicker.adapter
+package com.univoice.feature.noticePost.timePicker.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.univoice.R
+import com.univoice.feature.noticePost.timePicker.dpToPx
+import com.univoice.feature.noticePost.timePicker.getDayFromCalendar
 import java.util.Calendar
 
-class TimeMinuteAdapter(
-    val minute: ArrayList<Calendar>,
+class DateDayAdapter(
+    val days: ArrayList<Calendar>,
     private val dividerHeight: Int
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = DateViewHolder(
             DataBindingUtil.inflate(
@@ -28,11 +31,10 @@ class TimeMinuteAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val viewHolder = holder as DateViewHolder
-
-        viewHolder.binding.tvDateNumber.text = getMinuteFromCalendar(minute[position])
+        viewHolder.binding.tvDateNumber.text = getDayFromCalendar(days[position])
     }
 
-    override fun getItemCount() = minute.size
+    override fun getItemCount() = days.size
 
     override fun getItemId(position: Int): Long {
         return position.toLong()

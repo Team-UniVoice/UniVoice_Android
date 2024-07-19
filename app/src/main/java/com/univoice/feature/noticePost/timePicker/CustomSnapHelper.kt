@@ -1,10 +1,11 @@
-package com.univoice.feature.post.dateTimePicker.adapter
+package com.univoice.feature.noticePost.timePicker
 
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.univoice.R
+import com.univoice.feature.noticePost.timePicker.adapter.DateViewHolder
 
 class CustomSnapHelper(
     private val rv: RecyclerView,
