@@ -18,23 +18,23 @@
 </br>
 
 ## 📷 스크린샷
-|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/2758a3a8-90c0-4af6-9b66-a45dcdd29ec8" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/9694e24f-6246-490c-ad07-951eb2dec06b" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/05c5b55d-89bf-44c4-9194-ce1cfd7b98c8" width=70% />|
+|<img src="https://github.com/user-attachments/assets/e4f576df-565e-47bf-b235-f929e5ea1527" width=70% />|<img src="https://github.com/user-attachments/assets/ffc9104d-3c25-49d9-b2e1-b306ead2405b" width=70% />|<img src="https://github.com/user-attachments/assets/44874438-40f9-445c-885b-65ceda26f16e" width=70% />|
 |:---------:|:---------:|:---------:|
 |스플래시|초기|로그인|
 
-|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/031666ba-6484-41ba-9cb8-80048c9f958d" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/4cad0e49-522c-443c-98d2-978f7e8e1fcd" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/548e1ab5-f2cc-411b-a83b-ec689d5110ba" width=70% />|
+|<img src="https://github.com/user-attachments/assets/7972a1fc-91c5-45bb-a5e2-31ed65230537" width=70% />|<img src="https://github.com/user-attachments/assets/4eb82928-125b-441e-8275-e65dd75133d9" width=70% />|<img src="https://github.com/user-attachments/assets/f9fa9a04-8b89-409a-aa1e-48bda61719a0" width=70% />|
 |:---------:|:---------:|:---------:|
 |회원가입|회원가입_개인정보입력|회원가입_학생증 인증|
 
-|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/031666ba-6484-41ba-9cb8-80048c9f958d" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/4cad0e49-522c-443c-98d2-978f7e8e1fcd" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/548e1ab5-f2cc-411b-a83b-ec689d5110ba" width=70% />|
+|<img src="https://github.com/user-attachments/assets/7445659f-67ec-4a23-85e7-f34ae978a13b" width=70% />|<img src="https://github.com/user-attachments/assets/911402c5-8183-48ed-9299-12c733ca38e9" width=70% />|<img src="https://github.com/user-attachments/assets/c0bb8d7a-0ad5-48a0-8f4e-2a0b07dc99c0" width=70% />|
 |:---------:|:---------:|:---------:|
 |회원가입_계정 생성|회원가입_약관동의|회원가입_학생증 확인|
 
-|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/031666ba-6484-41ba-9cb8-80048c9f958d" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/4cad0e49-522c-443c-98d2-978f7e8e1fcd" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/548e1ab5-f2cc-411b-a83b-ec689d5110ba" width=70% />|
+|<img src="https://github.com/user-attachments/assets/f8bdb6cd-d340-437e-889d-eaf2d8df2c8a" width=70% />|<img src="https://github.com/user-attachments/assets/e457b0a7-0f4c-48e2-8b67-a127f003c2ff" width=70% />|<img src="https://github.com/user-attachments/assets/b6388e26-ce2b-41ea-96fd-de59edf211f9" width=70% />|
 |:---------:|:---------:|:---------:|
 |메인 홈|퀵스캔|공지사항 세부화면|
 
-|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/031666ba-6484-41ba-9cb8-80048c9f958d" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/4cad0e49-522c-443c-98d2-978f7e8e1fcd" width=70% />|<img src="https://github.com/34th-SOPKATHON-ANDROID-TEAM3/Android/assets/109855280/548e1ab5-f2cc-411b-a83b-ec689d5110ba" width=70% />|
+|<img src="https://github.com/user-attachments/assets/cdc6954d-09f7-4da7-b84b-b6275a28c41e" width=70% />|<img src="https://github.com/user-attachments/assets/f1b963f8-061e-45ad-91b8-71d3fea9bdd7" width=70% />|<img src="https://github.com/user-attachments/assets/776a864b-31c4-4314-a5b8-ef3967b5b9df" width=70% />|
 |:---------:|:---------:|:---------:|
 |저장 홈|공지사항 등록화면|마이페이지|
 
