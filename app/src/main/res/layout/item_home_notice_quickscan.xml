@@ -37,14 +37,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="43dp"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/shape_blue300_fill_30_rect"
-                android:paddingHorizontal="6dp"
-                android:paddingVertical="2dp">
+                android:background="@drawable/shape_blue300_fill_30_rect">
 
                 <TextView
                     android:id="@+id/tv_home_notice_quickscan_count"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="21dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.UniVoice.button2Semi"
                     android:textColor="@color/font_W01"
                     android:visibility="visible"
@@ -52,7 +52,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="10" />
+                    tools:text="5" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>

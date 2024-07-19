@@ -21,7 +21,7 @@ class SignUpActivity : BindingActivity<ActivitySignupBinding>(R.layout.activity_
 
     private fun initStartBtnClickListener() {
         binding.btnSignupStart.setOnClickListener {
-            startActivity(Intent(this, SchoolInputActivity::class.java))
+            startActivity(Intent(this, CreateAccountActivity::class.java))
         }
     }
 }
